@@ -1,0 +1,28 @@
+{% extends "biblored/includes/options_menu/options_base.html" %}
+{% load i18n %}
+
+{% block options_item_list %}
+
+{% if user.is_authenticated %}
+{% if user == collectionsgroup.owner %}
+<li class="ag-list-button__item">
+  <a 
+    class="ag-list-button__button i-pen"
+    title=" {% trans 'Editar esta colección' %}"
+    href="{% url 'collectionsgroup_edit' collectionsgroup.id %}#edit"
+  >
+    {% trans "Editar" %}
+  </a>
+</li>
+<li class="ag-list-button__item">
+  <a 
+    class="ag-list-button__button i-delete" 
+    title=" {% trans 'Eliminar esta colección' %}"
+    href="{% url 'collectionsgroup_edit' collectionsgroup.id %}#delete">
+    {% trans "Eliminar" %}
+  </a>
+</li>
+{% endif %}
+{% endif %}
+
+{% endblock %}

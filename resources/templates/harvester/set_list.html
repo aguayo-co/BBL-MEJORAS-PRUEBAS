@@ -1,0 +1,143 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {% trans "Colecciones" %} {% endblock %}
+
+{% comment %} Template parent: base.html {% endcomment %}
+{% block description %}
+  {% trans "Las colecciones de la Biblioteca Digital de Bogotá reúnen contenidos producidos y preservados por ciudadanos, bibliotecas, museos, archivos y bases de datos" %} {% endblock %}
+{% block keywords %} {% trans 'Bogotá, Entretenimiento, Libros, Fotos, Música, Historia' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Colecciones de instituciones' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+  <main class="ag-l-page">
+    <section>
+      <header class="ag-o-header" id="maincontent" tabindex="0">
+        <h1 class="ag-o-heading">
+          {% trans "Colecciones de instituciones" %}
+        </h1>
+        <p class="ag-o-subheading">
+          {% trans "Encuentra colecciones de los diferentes aliados de la Biblioteca Digital de Bogotá" %}
+        </p>
+      </header>
+      <div class="ag-l-band-primary" id="content" tabindex="0">
+        <div class="ag-l-inner-wide">
+          <div class="swiper-container ag-c-slider_set ag-js-sliderSet">
+            <div class="swiper-wrapper">
+              {% for collection in promoted %}
+                {% include "biblored/includes/collections/set_slide.html" with collection=collection only %}
+              {% endfor %}
+            </div>
+            <div class="ag-c-slider__controls-row">
+              <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left" type="button">
+                <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+              </button>
+              <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right" type="button">
+                <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ag-l-inner-wide">
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Explora las Colecciones de instituciones" %}
+        </h2>
+        <p class="ag-o-subheading" tabindex="0">
+          {% trans "Colecciones curadas por expertos de instituciones certificadas por la Biblioteca Digital de Bogotá (BDB)" %}
+        </p>
+      </header>
+
+      {# filter-band #}
+      <div class="ag-c-filter-band">
+        {# Botón despliega filtros en Mobile #}
+        <div class="ag-is-show_mobile">
+          <button class="ag-o-btn ag-o-btn_small ag-js-asideOpen ag-js-filterBtn" type="button">
+            {% trans "Filtrar" %}
+          </button>
+        </div>
+
+        {# clase para abrir los filtros en mobile ag-is-aside_open #}
+        <div class="ag-l-aside ag-l-aside_band ag-js-aside">
+          <div class="ag-c-filter ag-js-asideContent">
+            <h2 class="ag-c-filter-band__title"
+              tabindex="0"
+            >
+              {% trans "Filtrar" %}
+            </h2>
+            <div class="ag-c-filter-band__grid">
+              <form method="get"
+                id="filters_form"
+                class="ag-c-filter-band__form
+                ag-js-searchFilter"
+              >
+                {% include "biblored/includes/filters/filter_sources.html" %}
+
+                {% for hidden in filters_form.hidden_fields %}
+                  {{ hidden }}
+                {% endfor %}
+              </form>
+            </div>
+          </div>
+
+          {# Button to close the aside filter #}
+          <button class="ag-c-filter-band__btn
+            ag-o-btn-tooltip
+            i-close
+            ag-js-asideClose"
+            type="button"
+          >
+            <span class="ag-o-btn-tooltip__tooltip">{% trans "Cerrar" %}</span>
+          </button>
+        </div>
+
+        {% include "biblored/includes/blocks/order_by.html" %}
+
+
+
+      </div>
+      {# Listado de set #}
+      <div class="ag-c-card-grid ag-c-card-grid_space">
+        {% for collection in set_list %}
+            {% include "biblored/includes/collections/set_card.html" with collection=collection counter=forloop.counter0 only %}
+            {% if request.user.is_authenticated %}
+              {% include "biblored/includes/collectionsgroup/search_select_list_page_component.html" with counter=forloop.counter0 formset=collections_formset collection=collection favorites_group=collections_favorites_group csrf_token=csrf_token only %}
+            {% endif %}
+        {% endfor %}
+      </div>
+
+      {# Paginador lista #}
+      {% include "biblored/includes/paginator.html" %}
+    </section>
+
+    {% include "biblored/includes/messages/messages_templates.html" %}
+  </main>
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'collection_groups_card_component_form' 'js' %}
+  {% render_bundle 'collections_add_to_groups_api' 'js' %}
+  {% render_bundle 'collections_group_favorites_api' 'js' %}
+{% endblock %}

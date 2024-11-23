@@ -1,0 +1,133 @@
+{% load wagtailcore_tags wagtailimages_tags i18n static %}
+
+{% spaceless %}
+  <div class="c-hero swiper-container js-hero-slider">
+
+    <div class="swiper-wrapper">
+
+      {% for slide in slide %}
+        <div class="swiper-slide js-hero-slide">
+
+          <div class="c-hero__slide">
+            <div class="c-hero__wrap">
+          
+              {# Top content hero #}
+              <div class="c-hero__top">
+          
+                {# Multimedia hero #}
+                {% for content in slide.value.slide_content %}
+
+                  {% if content.block_type == "image" or content.block_type == "video" %}
+
+                    {# Image or video #}
+                    <figure class="c-hero__figure">
+                      {% if content.block_type == "image" %}
+                        {% image content.value max-480x270 class="c-hero__img" %}
+                      {% else %}
+                        {{ content.value }}
+                      {% endif %}
+                    </figure>
+
+                  {% else %}
+
+                    {# Background #}
+                    <span
+                      data-background-image="{{ content.value.file.url }}"
+                      class="ag-is-visuallyhidden js-slider-background"
+                    >
+                      {% trans "Slide background" %}
+                    </span>
+
+                  {% endif %}
+
+                {% endfor %}
+
+                {# Header #}
+                <header class="c-hero__header">
+
+                  {% if slide.value.subtitle %}
+                    <span
+                      class="c-hero__text c-hero__text_uppercase ag-o-text_bold"
+                    >
+                      {{ slide.value.subtitle }}
+                    </span>
+                  {% endif %}
+
+                  {% if slide.value.title %}
+                    <h2 class="c-hero__title">{{ slide.value.title }}</h2>
+                  {% endif %}
+
+                  {% if slide.value.description %}
+                    <div class="c-hero__text c-hero__lead">
+                      {{ slide.value.description|richtext }}
+                    </div>
+                  {% endif %}
+
+                  {% if slide.value.primary_action_url %}
+                    <a
+                      href="{% pageurl slide.value.primary_action_url.specific %}"
+                      title="{% trans "Ir a" %} {{ slide.value.primary_action_text }}"
+                      class="c-hero__btn ag-o-btn"
+                    >
+                      {{ slide.value.primary_action_text }}
+                    </a>
+                  {% endif %}
+
+                </header>
+          
+              </div>
+          
+            </div>
+          </div>
+        
+        </div>
+      {% endfor %}
+
+    </div>
+
+    {% if slide|length > 1 %}
+    
+      <div class="ag-c-slider__dots ag-c-slider__dots_end js-hero-pagination"></div>
+
+      <div class="c-hero__controls">
+
+        <button
+          class="
+            ag-c-slider__control
+            ag-c-slider__control_outline
+            ag-c-slider__control_prev
+            i-arrow-left
+            ag-has-slider_box_prev
+          "
+          type="button"
+        >
+          <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+        </button>
+      
+        <button
+          class="
+            ag-c-slider__control
+            ag-c-slider__control_outline
+            ag-c-slider__control_next
+            i-arrow-right
+            ag-has-slider_box_next
+          "
+          type="button"
+        >
+          <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+        </button>
+
+      </div>
+
+    {% endif %}
+
+    {# Scroll up button #}
+    <footer class="c-hero__footer">
+      <a class="c-hero__footer-btn" href="#scroll-down-to-first-content">
+        <span class="ag-o-mark c-hero__footer-text">{% trans 'Explora la' %} BDB</span>
+        <span class="c-hero__footer-action ag-o-button-action i-arrow-alt-down"></span>
+      </a>
+    </footer>
+
+  </div>
+{% endspaceless %}

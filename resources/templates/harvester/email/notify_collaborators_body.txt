@@ -1,0 +1,7 @@
+Email plain text
+
+{{ collaborative_collection.title }}
+{{ collaborative_collection.description }}
+{{ collaborative_collection.owner.pk }}
+{{ collaborative_collection.owner.full_name }}
+{{ inviter.pk }}

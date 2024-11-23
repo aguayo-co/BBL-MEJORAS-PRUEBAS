@@ -1,0 +1,86 @@
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+
+<nav class="ag-c-menu-aside__nav ag-is-menu-aside-close ag-js-asideMenuNav">
+
+
+  <div class="ag-c-menu-aside__main-button ag-js-menuAsideControl">
+    <button class="ag-c-menu-aside__wrap">
+      <span class="ag-c-menu-aside__text-button i-after-square">{% trans "Recorre esta exposición" %}</span>
+    </button>
+  </div>
+
+  <div class="ag-c-menu-aside__inner">
+    <div class="ag-c-menu-aside__wrap">
+      <div class="ag-c-menu-aside__head">
+
+        <ul class="ag-tags ag-tags_press ag-tags_margin-none">
+
+          <li class="ag-tags__item">
+            <span class="ag-tags__ico ag-tags__ico_theme i-sketch">
+              <span class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+                {% trans "Exposición" %}
+              </span>
+            </span>
+          </li>
+  
+          {% if subpage_parent.get_parent.exposition.exposition_type %}
+            <li class="ag-tags__item ag-tags__bullet">
+              <span class="ag-tags__ico">
+                <span class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+                    {{ subpage_parent.get_parent.exposition.exposition_type }}
+                  </span>
+                </span>
+            </li>
+          {% endif %}
+  
+          {% if subpage_parent.subject.name %}
+            <li class="ag-tags__item ag-tags__bullet">
+              <p class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+                {{ subpage_parent.subject.name }}
+              </p>
+            </li>
+          {% endif %}
+
+        </ul>
+
+        <h2 class="ag-c-menu-aside__title">
+          {% trans "Estás en: " %}
+          <a class="ag-c-menu-aside__title-link"
+            title="{% trans 'Ir a la exposición principal' %}"
+            href="{% pageurl subpage_parent.get_parent.specific %}">
+            {{ subpage_parent.get_parent.title }}</a>
+        </h2>
+
+        <button class="ag-o-btn-tooltip ag-is-menu-aside__close i-close">
+          <span class="ag-o-btn-tooltip__tooltip">{% trans "Cerrar" %}</span>
+        </button>
+
+      </div>
+
+      <ul class="ag-c-menu-aside__list">
+
+        {% for aside_menu_item in aside_menu %}
+
+          <li class="ag-c-menu-aside__item">
+            <a
+              class="ag-c-menu-aside__anchor {% if aside_menu_item.id == subpage_parent.id %} ag-has-menu-aside__current {% endif %}"
+              href="{% url 'expositions:wagtail_serve' subpage_parent.get_parent.get_parent.slug|add:'/'|add:page_slug|add:'/'|add:aside_menu_item.slug|add:'/' %}">
+              <figure class="ag-c-menu-aside__anchor-mask">
+                {% image aside_menu_item.image fill-80x80 class="ag-c-menu-aside__anchor-img" %}
+              </figure>
+              <div class="ag-c-menu-aside__anchor-caption">
+                <h3 class="ag-c-menu-aside__anchor-title">{{ aside_menu_item.title }}</h3>
+                <p class="ag-c-menu-aside__anchor-description">{{ aside_menu_item.short_description }}</p>
+              </div>
+            </a>
+          </li>
+
+        {% endfor %}
+
+      </ul>
+
+    </div>
+  </div>
+
+</nav>

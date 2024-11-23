@@ -1,0 +1,157 @@
+/*------------------------------------*\
+  Bloque b06_menu-bar
+  Description: Pie de página de la aplicacion. Contiene información relacionada o     complementaria de la aplicación.
+  Type: Navigation
+  Path:
+\*------------------------------------*/
+
+/**
+  * Class: .ag-menu-bar
+  * @description  bloque que agrupa enlaces de navegación entre contenidos.
+  * @molecule b06_menu-bar
+  * @section Navegación
+  * @markup
+  *  <div class="ag-menu-bar">
+  *    <a class="ag-menu-bar__item ag-menu-bar__item_active" href="#" title="colecciones individuales">Colecciones individuales</a>
+  *    <a class="ag-menu-bar__item" href="#" title="colecciones colaborativas">Colecciones colaborativas</a>
+  *  </div>
+  */
+
+.ag-menu-bar {
+  @include align-items(flex-end);
+  @include flexbox;
+  @include px-rem(margin-bottom, 24px);
+  text-align: center;
+  border-bottom: 1px solid $c-on-border;
+}
+.ag-menu-bar_border-primary {
+  border-bottom: 1px solid $c-primary;
+}
+
+.ag-menu-bar__item {
+  position: relative;
+  @include px-rem(padding, 14px 4px);
+  line-height: 1.5;
+  font-weight: $f-medium;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 5px;
+    opacity: 0;
+    transform: translateY(calc(50% + .5px));
+    transition: all .4s ease-in-out;
+    background-color: $c-primary-hover;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}
+
+.ag-menu-bar__item_primary {
+  &::after {
+    background-color: $c-primary;
+  }
+
+  &.ag-menu-bar__item_active {
+    color: $c-primary;
+
+    &::after {
+      background-color: $c-primary;
+    }
+  }
+}
+
+.ag-menu-bar__item:last-of-type {
+  margin-right: 0;
+}
+
+.ag-menu-bar__item_active {
+  color: $c-primary-hover;
+  pointer-events: none;
+  border: 1px solid transparent;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 5px;
+    opacity: 1;
+    transform: translateY(calc(50% + .5px));
+    background-color: $c-primary-hover;
+  }
+
+  // when one the tab of menu is active
+  .ag-menu-bar__notification {
+    background-color: $c-primary-hover;
+  }
+}
+
+.ag-menu-bar__notification {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 24px);
+  @include px-rem(height, 24px);
+  margin: 4px auto 0 auto;
+  border-radius: 50%;
+  color: $c-neutro;
+  background-color: $c-secondary;
+}
+
+.ag-menu-bar__content {
+  position: relative;
+  padding: calc(53px - 28px) 0;
+}
+
+.ag-has-content-menu-hide {
+  position: absolute;
+  top: -1000px;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+  transition: all .3s linear;
+}
+
+//  small     : $bp-small  : 375px
+@include media-query(small) {
+  .ag-menu-bar__item {
+    @include px-rem(padding, 14px 8px);
+  }
+}
+
+@media all and (min-width: 480px) {
+  .ag-menu-bar__notification {
+    @include inline-flex;
+    margin: 0 auto 0 8px;
+  }
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-menu-bar {
+    @include px-rem(margin-bottom, 28px);
+  }
+
+  .ag-menu-bar__item {
+    @include flex(0 1 320px);
+    @include px-rem(padding, 14px);
+    @include font-rem(16px);
+  }
+
+  .ag-menu-bar__item_primary {
+    @include flex(0 1 auto);
+  }
+}

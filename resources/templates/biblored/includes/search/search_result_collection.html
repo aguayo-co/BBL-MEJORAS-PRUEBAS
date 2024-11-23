@@ -1,0 +1,41 @@
+{% extends "biblored/includes/search/search_result_card.html" %}
+
+{% load i18n static %}
+
+
+{% block result-icon %}
+  {% if  collection.collaborativecollection %}
+    <span class="ag-tags__ico ag-tags__ico_purple i-collective">
+      <span class="ag-tags__tag ag-tags__tag_dark">
+        {% trans "Colección colaborativa" %}
+      </span>
+    </span>
+  {% else %}
+    <span class="ag-tags__ico ag-tags__ico_pink i-personal">
+      <span class="ag-tags__tag ag-tags__tag_dark">
+        {% trans "Colección individual" %}
+      </span>
+    </span>
+  {% endif %}
+{% endblock %}
+
+{% block creator %}
+  {% if object.owner.full_name or object.created_at %}
+    <p class="ag-c-card__bar-label">
+      {% if object.owner.full_name %}
+      <span class="ag-c-card__redundant">{% trans "Por: " %}</span><strong class="ag-o-text_semibold">{{ object.owner.full_name }}</strong>
+      {% endif %}
+      {% if object.owner.full_name and object.created_at %}
+        |
+        <span class="ag-c-card__redundant">{% trans "Fecha: " %}</span><strong class="ag-o-text_semibold"> {{ object.created_at|date:"d/m/Y" }}</strong>
+      {% else %}
+        <span class="ag-c-card__redundant">{% trans "Fecha: " %}</span><strong class="ag-o-text_semibold"> {{ object.created_at|date:"d/m/Y" }}</strong>
+      {% endif %}
+    </p>
+  {% endif %}
+{% endblock %}
+
+{% block modal %}
+  {# Modal for share collections #}
+  {% include "biblored/includes/modals/modal_share_social.html" with object=object title=title card="search" counter=counter classJsCopyUrl="ag-js-copyUrlAnotherPage" only %}
+{% endblock %}

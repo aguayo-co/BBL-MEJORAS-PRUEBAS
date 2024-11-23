@@ -1,0 +1,30 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: B03
+  Tag
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+.ag-tags {
+  .ag-tags__bullet {
+    &::before {
+      background: $c-primary-hover;
+    }
+  }
+
+  .ag-tags__tag_color {
+    border: 1px solid $c-primary-hover;
+    background-color: $c-primary-hover;
+  }
+
+  .ag-tags__ico {
+
+    &_theme {
+      &:before {
+        border-color: $c-primary-hover;
+        background-color: $c-primary-hover;
+      }
+    }
+  }
+}

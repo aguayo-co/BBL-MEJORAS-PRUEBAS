@@ -1,0 +1,22 @@
+{% load i18n %}
+
+{# Resumen de filtros aplicados #}
+<div class="ag-l-block ag-l-block_top ag-js-filterChip">
+  {% block title %}{% endblock title %}
+  {% block alert_message %}{% endblock alert_message %}
+
+  <div class="ag-filter-chip">
+
+    {% block template %}
+      {% include "biblored/includes/selected_options/filter_chip_template.html" %}
+    {% endblock template %}
+
+    {% block ul %}
+      <ul class="ag-filter-chip__set ag-filter-chip__set_width ag-js-filterSet">
+        {# Holder para listado de Tags. #}
+      </ul>
+    {% endblock ul %}
+
+    {% block actions %}{% endblock actions %}
+  </div>
+</div>

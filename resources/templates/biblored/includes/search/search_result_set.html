@@ -1,0 +1,34 @@
+{% extends "biblored/includes/search/search_result_card.html" %}
+
+{% load i18n %}
+
+
+{% block result-icon %}
+  <span class="ag-tags__ico ag-tags__ico_green i-star">
+    <span class="ag-tags__tag ag-tags__tag_dark">
+      {% trans "Contenido sugerido" %}
+    </span>
+  </span>
+{% endblock %}
+
+{% block creator %}
+  {% if object.data_source.name or object.data_source.created_at %}
+    <p> 
+      {% if object.data_source.name %}
+        <span class="ag-c-card__redundant">{% trans "Por: " %}</span><strong class="ag-o-text_semibold">{{ object.data_source.name }}</strong>
+      {% endif %}
+      {% if object.data_source.name and object.data_source.created_at %}
+        |
+        <span class="ag-c-card__redundant">{% trans "Fecha: " %}</span><strong class="ag-o-text_semibold"> {{ object.data_source.created_at|date:"d/m/Y" }}</strong>
+      {% else %}
+        <span class="ag-c-card__redundant">{% trans "Fecha: " %} </span><strong class="ag-o-text_semibold"> {{ object.data_source.created_at|date:"d/m/Y" }}</strong>
+      {% endif %}
+    </p>
+  {% endif %}
+{% endblock %}
+
+
+{% block modal %}
+  {# Modal for share collections #}
+  {% include "biblored/includes/modals/modal_share_social.html" with object=object title=title card="search" counter=counter classJsCopyUrl="ag-js-copyUrlAnotherPage" only %}
+{% endblock %}

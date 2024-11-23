@@ -1,0 +1,63 @@
+{% extends "biblored/base.html" %}
+
+{% load wagtailcore_tags i18n static %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {{ title }} {% endblock %}
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+
+  {# Hero component #}
+  {% include 'biblored/includes/hero.html' with slide=self.hero only %}
+  
+  {# Page components #}
+{% with first_content_id='scroll-down-to-first-content' first_content_class='o-section_mb-0 ag-u-scroll-space' %}
+
+  {% for block in self.content %}
+    {% if user.is_authenticated %}
+      {% if forloop.first %}
+        {% include_block block with block_id=block.id id_section=first_content_id class_section=first_content_class request=request %}
+      {% else %}
+        {% include_block block with block_id=block.id class_section='' request=request %}
+      {% endif %}
+    {% else %}
+      {% if forloop.first %}
+        {% if block.block_type == "logged_user" %}
+          {% include_block block with block_id=block.id class_section='' request=request %}
+        {% else %}
+          {% include_block block with block_id=block.id id_section=first_content_id class_section=first_content_class request=request %}
+        {% endif %}
+      {% elif forloop.counter == 2 and self.content.0.block_type == "logged_user" %}
+        {% include_block block with block_id=block.id id_section=first_content_id class_section=first_content_class request=request %}
+      {% else %}
+        {% include_block block with block_id=block.id class_section='' request=request %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+{% endwith %}
+
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+    {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+    {% render_bundle 'collection_groups_card_component_form' 'js' %}
+    {% render_bundle 'collections_add_to_groups_api' 'js' %}
+    {% render_bundle 'collections_group_favorites_api' 'js' %}
+{% endblock %}

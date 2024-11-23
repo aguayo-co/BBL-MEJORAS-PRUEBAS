@@ -1,0 +1,677 @@
+/*----------------------------------------------*\
+  ID: B02
+  Banner
+  Type: Banner
+  Description: Banner secundario con imagen
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-banner
+ * @description Son banners de gran tamaño ubicados de modo visible en la páginas internas. Contienen el componente `c03_card` y un llamado a la acción.
+ * @structure b02_banner
+ * @flag full-width
+ * @section Banner
+ * @markup
+ *   <div class="SG-component__preview">
+ *   <!-- Banner: Detalle de colección -->
+ *   <div class="ag-banner">
+ *
+ *     <!-- Imagen: Adaptativa de fondo -->
+ *     <figure class="ag-banner__background ag-banner__background_outside">
+ *       <img class="ag-banner__img"  src="/static/biblored/img/demo/banner/banner_colecciones-1.jpg"
+ *         alt="Colecciones - Biblioteca Digital de Bogotá">
+ *     </figure>
+ *     <div class="ag-banner__wrapper">
+ *
+ *       <!-- Componente: Action button -->
+ *        <div class="ag-banner__box">
+ *          <button class="ag-o-btn ag-o-btn_outline" type="button">Invitar</button>
+ *          <button class="ag-o-btn" type="button">Editar</button>
+ *        </div>
+ *       <!-- Bloque: Caption card -->
+ *       <div class="ag-banner__card">
+ *              <!-- Componente: c03_card  #1-->
+ *              <article class="ag-c-card">
+ *                <div class="ag-c-card__border">
+ *                  <div class="ag-c-card__canvas">
+ *                    <div class="ag-c-card__top">
+ *                      <ul class="ag-tags">
+ *                        <li class="ag-tags__item">
+ *                          <span class="ag-tags__tag ag-tags__tag_outline">
+ *                            { Video }
+ *                          </span>
+ *                        </li>
+ *                      </ul>
+ *                    </div>
+ *                    <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver">
+ *                      <div class="ag-c-card__content">
+ *                        <figure class="ag-c-card__media">
+ *                          <img class="ag-c-card__img" src="../biblored/img/resource/type-video.svg" alt="">
+ *                        </figure>
+ *                        <div class="ag-c-card__text">
+ *                          <h2 class="ag-c-card__title"> { Resultados de la convocatoria artística "Artes plásticas y visuales, música, danza, teatro e interdisciplinar", del programa de apoyos a la creación artística y para la circulación.}</h2>
+ *                          <p class="ag-c-card__subtitle"><strong>Por:</strong> {Lorena Carvajal}</p>
+ *                          <div class="ag-c-card__lead">
+ *                            { Narración oral sobre su vida al sur de Bogotá, en los barrios Restrepo y El Libertador entre los años 40 y los años 50. El testimonio fue grabado en el marco de la actividad "Los bogotanos del Bogotazo" con el club de adultos mayores de la Biblioteca Carlos E. Restrepo.}
+ *                          </div>
+ *                        </div>
+ *                      </div>
+ *                    </a>
+ *                    <footer class="ag-c-card__footer">
+ *                      <ul class="ag-c-card__list">
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Publicador</strong>
+ *                          {N/A}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                          {1997}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Idioma</strong>
+ *                          {Español}
+ *                        </li>
+ *                      </ul>
+ *                         <div class="ag-c-card__list-full">
+ *                          <strong class="ag-c-card__list-label">Temas</strong>
+ *                          <ul class="ag-tags">
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Educación}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Conferencia}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Fantasía}
+ *                              </a>
+ *                            </li>
+ *                          </ul>
+ *                     </div>
+ *                    </footer>
+ *                  </div>
+ *                </div>
+ *              </article>
+ *
+ *       </div>
+ *
+ *     </div>
+ *   </div>
+ *   </div>
+ *
+ *   <div class="SG-component__preview">
+ *   <!-- Banner: Home de colecciones -->
+ *   <div class="ag-banner">
+ *
+ *     <!-- Imagen: Adaptativa de fondo -->
+ *     <figure class="ag-banner__background ag-banner__mask">
+ *       <img class="ag-banner__img" src="/static/biblored/img/demo/banner/banner_home-exhibiciones.jpg"
+ *         alt="Colecciones - Biblioteca Digital de Bogotá">
+ *     </figure>
+ *     <div class="ag-banner__content">
+ *       <!-- Bloque: Caption card -->
+ *       <div class="ag-banner__card">
+ *              <!-- Componente: c03_card  #2-->
+ *              <article class="ag-c-card">
+ *                <div class="ag-c-card__border">
+ *                  <div class="ag-c-card__canvas">
+ *                    <div class="ag-c-card__top">
+ *                      <ul class="ag-tags">
+ *                        <li class="ag-tags__item">
+ *                          <span class="ag-tags__tag ag-tags__tag_outline">
+ *                            { Video }
+ *                          </span>
+ *                        </li>
+ *                      </ul>
+ *                    </div>
+ *                    <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver">
+ *                      <div class="ag-c-card__content">
+ *                        <figure class="ag-c-card__media">
+ *                          <img class="ag-c-card__img" src="../biblored/img/resource/type-video.svg" alt="">
+ *                        </figure>
+ *                        <div class="ag-c-card__text">
+ *                          <h2 class="ag-c-card__title"> { Resultados de la convocatoria artística "Artes plásticas y visuales, música, danza, teatro e interdisciplinar", del programa de apoyos a la creación artística y para la circulación.}</h2>
+ *                          <p class="ag-c-card__subtitle"><strong>Por:</strong> {Lorena Carvajal}</p>
+ *                          <div class="ag-c-card__lead">
+ *                            { Narración oral sobre su vida al sur de Bogotá, en los barrios Restrepo y El Libertador entre los años 40 y los años 50. El testimonio fue grabado en el marco de la actividad "Los bogotanos del Bogotazo" con el club de adultos mayores de la Biblioteca Carlos E. Restrepo.}
+ *                          </div>
+ *                        </div>
+ *                      </div>
+ *                    </a>
+ *                    <footer class="ag-c-card__footer">
+ *                      <ul class="ag-c-card__list">
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Publicador</strong>
+ *                          {N/A}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                          {1997}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Idioma</strong>
+ *                          {Español}
+ *                        </li>
+ *                      </ul>
+ *                         <div class="ag-c-card__list-full">
+ *                          <strong class="ag-c-card__list-label">Temas</strong>
+ *                          <ul class="ag-tags">
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Educación}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Conferencia}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Fantasía}
+ *                              </a>
+ *                            </li>
+ *                          </ul>
+ *                     </div>
+ *                    </footer>
+ *                  </div>
+ *                </div>
+ *              </article>
+ *       </div>
+
+ *     </div>
+ *   </div>
+ *   </div>
+ *    <div class="SG-component__preview">
+ *    <!-- Banner: Home de Exposición -->
+ *     <div class="ag-banner">
+ *     <figure class="ag-banner__background ag-banner__mask">
+ *       <img class="ag-banner__img" src="/static/biblored/img/demo/banner/banner_home-exhibiciones.jpg"
+ *         alt="Colecciones - Biblioteca Digital de Bogotá">
+ *     </figure>
+ *     <div class="ag-banner__content ag-c-card__border">
+ *       <div class="ag-banner__card">
+ *         <article class="ag-c-card ag-c-card_slide">
+ *           <a class="ag-c-card__canvas ag-c-card__action" href="#"
+ *             title="#">
+ *             <div class="ag-c-card__top">
+ *               <ul class="ag-tags">
+ *                 <li class="ag-tags__item">
+ *                   <span class="ag-tags__ico ag-tags__ico_blue i-sketch">
+ *                     <span class="ag-tags__tag ag-tags__tag_dark">
+ *                       Exposición
+ *                     </span>
+ *                   </span>
+ *                 </li>
+ *               </ul>
+ *             </div>
+ *             <h2 class="ag-c-card__title" tabindex="0"> Historia de Rock al Parque </h2>
+ *             <small> Publicada el: Publicada el: 20 de Enero de 2020 </small>
+ *             <div class="ag-c-card__lead ag-c-card__lead_primary">
+ *                Colección sobre la historia del festival Rock al Parque, evento que desde 1995 es un referente cultural de los bogotanos.
+ *                Desde sus inicios, la historia del festival ha acompañado de cerca las dinámicas de la escena cultural de la ciudad.
+ *             </div>
+ *             <div class="ag-chip">
+ *               <figure class="ag-chip__avatar">
+ *                AT
+ *               </figure>
+ *               <span class="ag-chip__text">
+ *                 <strong class="ag-chip__label"> Curador </strong>
+ *                   Andres Tafur
+ *               </span>
+ *             </div>
+ *           </a>
+ *           <footer class="ag-c-card__footer ag-c-card__footer_bg">
+ *             <div class="ag-c-card__bar-item">
+ *               <strong class="ag-c-card__bar-label"> Encuentra en esta exposición </strong>
+ *               <ul class="ag-c-card__bar-sublist">
+ *                 <li class="ag-c-card__bar-subitem"> 2 videos </li>
+ *                 <li class="ag-c-card__bar-subitem"> 5 Articulos </li>
+ *                 <li class="ag-c-card__bar-subitem"> 1 Linea del tiempo </li>
+ *               </ul>
+ *             </div>
+ *           </footer>
+ *         </article>
+ *       </div>
+ *     </div>
+ *    </div>
+ *   </div>
+*/
+
+// - Shared classes Expositions - Collections
+.ag-banner {
+  position: relative;
+  @include flexbox;
+  @include flex-direction(column);
+}
+
+.ag-banner_simple {
+  overflow: hidden;
+}
+
+.ag-banner__content,
+.ag-banner__wrapper {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0;
+}
+
+.ag-banner__content {
+  width: 90%;
+  @include px-rem(max-width, 820px);
+}
+
+// - Collections banner
+.ag-banner__wrapper {
+  width: 92%;
+  @include px-rem(max-width, 1000px);
+}
+
+// - Collections banner
+.ag-banner__surface {
+  @include px-rem(top, 40px);
+  background-color: $c-neutro;
+  border: 1px solid rgba($c-on-border, 0.8);
+}
+
+// - Collections banner
+.ag-banner__canvas {
+  @include px-rem(padding-top, 26px);
+  @include px-rem(padding-right, 16px);
+  @include px-rem(padding-left, 16px);
+}
+
+// - Collections banner
+.ag-banner__buttons-list {
+  list-style: none;
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-rem(margin-top, 16px);
+}
+
+// - Collections banner
+.ag-banner__buttons-item {
+  &:last-child {
+    margin-right: 0;
+    margin-left: auto;
+  }
+}
+
+// - Collections banner
+.ag-banner__hide-item {
+  @include flex(0 0 0);
+}
+
+// Banner Home Exposiciones
+.ag-banner__content {
+  margin-top: 20%;
+}
+
+.ag-banner__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  @include px-rem(min-height, 160px);
+  overflow: hidden;
+}
+
+.ag-banner__mask {
+  width: 100%;
+  @include px-rem(max-height, 450px);
+}
+
+@supports(object-fit: cover) {
+  .ag-banner__mask {
+    .ag-banner__img {
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+  }
+}
+
+.ag-banner__card {
+  text-align: initial;
+  width: 100%;
+
+  // - The card block class is cleared
+  .ag-c-card__border {
+    border: none;
+
+    // - The card block state is changed
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.ag-banner__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ag-banner__background_outside {
+  width: 100%;
+  @include px-rem(max-height, 200px);
+}
+
+@supports(object-fit: cover) {
+  .ag-banner__background_outside {
+    .ag-banner__img {
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+  }
+}
+
+// - Andre's Class -> Expositions
+.ag-banner__intro {
+  color: $c-neutro;
+  background-color: $c-primary;
+}
+
+// - Andre's Class -> Expositions
+.ag-banner__picture {
+  position: relative;
+  overflow: hidden;
+  @include px-rem(max-height, 584px);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    @include px-rem(height, 4px);
+    background-color: $c-secondary;
+  }
+}
+
+// - Andre's Class -> Expositions
+.ag-banner__headline {
+  @include px-rem(margin-bottom, 8px);
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  line-height: 1.1;
+  color: $c-neutro;
+  @include font-rem(26px);
+}
+
+// - Andre's Class -> Expositions
+.ag-banner__btn {
+  display: block;
+  width: 100%;
+  @include px-rem(max-width, 240px);
+  @include px-rem(margin, 20px 0 20px auto);
+  border-color: $c-secondary;
+  background-color: $c-secondary;
+
+  &:hover {
+    border-color: $c-neutro;
+    color: $c-secondary;
+    background-color: $c-neutro;
+    transition: all 500ms ease-in-out;
+  }
+}
+
+// - Set detail
+.ag-banner__footer {
+  @include px-rem(padding-top, 24px);
+  border-top: 1px solid $c-neutro;
+}
+
+// - Scope Class : This class is used in Sets Details
+.ag-s-banner {
+  color: $c-neutro;
+  @include px-rem(margin-top, 48px);
+  @include px-rem(margin-bottom, 48px);
+
+  .ag-o-btn-svg,
+  .ag-list-button__action {
+    color: $c-neutro;
+    &:hover {
+      color: $c-neutro;
+    }
+  }
+
+  .ag-list-button_position-list {
+    @include px-rem(right, -10px);
+  }
+}
+
+@media screen and(max-width: 940px) {
+  .ag-banner__content {
+    width: 96%;
+    margin-top: 30%;
+  }
+}
+
+// BP max-width: 767px
+@include media-query(medium-max) {
+  .ag-c-slider_card {
+    .ag-banner {
+      .ag-c-slider__control {
+        top: 38%;
+        display: block;
+      }
+    }
+  }
+
+  .ag-banner__picture {
+    &:before {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
+  .ag-banner__img {
+    .ag-banner__picture & {
+      height: 584px;
+      object-fit: cover;
+    }
+  }
+
+  .ag-banner__intro {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    @include px-rem(padding, 14px);
+    -moz-justify-content: space-between;
+    justify-content: space-between;
+    width: 92%;
+    border-top: 1px solid #ffffff4d;
+    background-color: #0000;
+  }
+
+  .ag-banner__btn {
+    margin-right: auto;
+  }
+
+  .ag-banner__foot-button {
+    display: block;
+    @include px-rem(max-width, 375px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // - Lower spaces = 24px
+  .ag-banner__foot-avatar {
+    @include px-rem(margin-bottom, 24px);
+  }
+}
+
+// 768px
+@include media-query(medium) {
+  .ag-banner__background_outside {
+    @include px-rem(max-height, 260px);
+  }
+
+  .ag-banner__picture {
+    &:before {
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 30%);
+    }
+  }
+
+  // &:after {
+  //     content: "";
+  //     position: absolute;
+  //     bottom: 0;
+  //     display: block;
+  //     width: 100%;
+  //     @include px-rem(height, 4px);
+  //     background-color: $c-secondary;
+  // }
+  // }
+
+  // - Andre's Class -> Expositions
+  .ag-banner__intro {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    @include flexbox;
+    @include justify-content(space-between);
+    @include px-rem(padding, 20px);
+    width: 92%;
+    border-top: 1px solid rgba($c-neutro, 0.3);
+    background-color: transparent;
+  }
+
+  .ag-banner__side {
+    @include px-rem(margin-right, 20px);
+  }
+
+  // - Andre's Class -> Expositions
+  .ag-banner__btn {
+    @include align-self(center);
+  }
+
+  // - Andre's Class -> Expositions
+  .ag-banner__headline {
+    @include font-rem(32px);
+  }
+
+  // - Collections banner
+  .ag-banner__canvas {
+    @include px-rem(padding-right, 24px);
+    @include px-rem(padding-left, 24px);
+  }
+
+  // - Collections banner
+  .ag-banner__box {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+
+  // - Collections banner
+  .ag-banner__buttons-list {
+    @include justify-content(flex-end);
+    @include flex(1 0 auto);
+    margin-top: 0;
+  }
+
+  // - Collections banner
+  .ag-banner__buttons-item {
+    &:first-child {
+      @include px-rem(margin-right, 16px);
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-left: initial;
+    }
+  }
+
+  .ag-banner__footer {
+    @include flexbox;
+    @include justify-content(space-between);
+  }
+
+  .ag-banner__foot-avatar,
+  .ag-banner__foot-button {
+    @include flex(1 0 auto);
+  }
+
+  .ag-banner__foot-button {
+    @include px-rem(min-width, 200px);
+    @include px-rem(max-width, 200px);
+    @include px-rem(padding, 14px);
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+// BP min-width: 1024px
+@include media-query(wide) {
+  // Banner Home Exposiciones
+  .ag-banner__content {
+    margin-top: 12.5%;
+  }
+
+  .ag-banner__background {
+    width: 100%;
+    height: auto;
+    background-color: $c-bg;
+  }
+
+  // Banner Colecciones
+  .ag-banner__background_outside {
+    overflow: hidden;
+    height: 100%;
+    max-height: initial;
+
+    .ag-banner__img {
+      width: auto;
+      min-height: 100%;
+    }
+  }
+
+  @supports(object-fit: cover) {
+    .ag-banner__background_outside {
+      .ag-banner__img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// BP min-width: 1440px
+@include media-query(large) {
+  // Banner Home Exposiciones
+  .ag-banner__content {
+    margin-top: 14%;
+  }
+}
+
+@media screen and(min-width: 1660px) {
+  // Banner Colecciones
+  .ag-banner__background_outside {
+    min-height: initial;
+
+    .ag-banner__img {
+      width: 100%;
+      min-height: initial;
+    }
+  }
+}

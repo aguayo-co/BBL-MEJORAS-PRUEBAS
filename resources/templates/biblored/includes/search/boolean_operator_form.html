@@ -1,0 +1,42 @@
+{% load i18n %}
+
+{# Fila operadores  #}
+<div class="ag-form-group ag-form-grid ag-js-set">
+	<div class="ag-form-group__col ag-form-grid__left">
+		<label class="ag-form__label ag-form__label_light" for="{{ form.operator.id_for_label }}">
+			{{ form.operator.label }}
+		</label>
+		<div class="ag-form__select i-after-arrow-down">
+			{{ form.operator }}
+		</div>
+		{% if  form.operator.errors %}
+			<small class="ag-form__error">{{ form.operator.errors }}</small>
+		{% endif %}
+	</div>
+	<div class="ag-form-group__col">
+		<label class="ag-form__label ag-form__label_light" for="{{ form.field.id_for_label }}">
+			{{ form.field.label }}
+		</label>
+		<div class="ag-form__select i-after-arrow-down">
+			{{ form.field }}
+		</div>
+		{% if  form.field.errors %}
+			<small class="ag-form__error">{{ form.field.errors }}</small>
+		{% endif %}
+
+	</div>
+	<div class="ag-form-group__col ag-form-group__col_1">
+		<label class="ag-form__label ag-form__label_light" for="{{ form.q.id_for_label }}">
+			{{ form.q.label  }}
+		</label>
+		<div class="ag-form__input ag-form__input_unflex">
+			{{ form.q }}
+		</div>
+		{% if form.q.errors %}
+			<small class="ag-form__error">{{ form.q.errors }}</small>
+		{% endif %}
+	</div>
+	<div class="ag-form-group__out-of ag-js-btn_delete_boolean_operator_container">
+		<button class="ag-o-btn-delete i-delete ag-js-btn_delete_boolean_operator" type="button" data-modal="delete_operator" data-parent-form-id="{{ form.prefix }}">{% trans "Eliminar" %}</button>
+	</div>
+</div>

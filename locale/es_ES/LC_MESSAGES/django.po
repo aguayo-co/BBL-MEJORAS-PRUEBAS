@@ -1,0 +1,646 @@
+# Custom language overrides for Django.
+msgid ""
+msgstr ""
+"Project-Id-Version: biblored\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Save as new"
+msgstr "Guardar como nuevo"
+
+msgid "Save and add another"
+msgstr "Guardar y añadir otro"
+
+msgid "Save and continue editing"
+msgstr "Guardar y continuar editando"
+
+msgid "Created"
+msgstr "Creado"
+
+msgid "Pages"
+msgstr "Páginas"
+
+msgid "Image"
+msgstr "Imagen"
+
+msgid "Document"
+msgstr "Documento"
+
+msgid "This page is unlocked"
+msgstr "Esta página está desbloqueada"
+
+msgid "This page is locked"
+msgstr "Esta página está bloqueada"
+
+msgid "<b>Page '{}' was locked</b> by <b>you</b> on <b>{}</b>."
+msgstr "<b>Página '{}' fue bloqueada</b> por <b>ti</b> el <b>{}</b>."
+
+msgid "<b>Page '{}' was locked</b> by <b>{}</b> on <b>{}</b>."
+msgstr "<b>Página '{}' fue bloqueada</b> por <b>{}</b> el <b>{}</b>."
+
+msgid "Reports"
+msgstr "Reportes"
+
+msgid "Locked Pages"
+msgstr "Páginas bloqueadas"
+
+msgid "No locked pages found"
+msgstr "No hay páginas bloqueadas"
+
+msgid "Unlock"
+msgstr "Desbloquear"
+
+msgid "Popular Tags:"
+msgstr "Etiquetas populares:"
+
+msgid "Sort"
+msgstr "Ordenar"
+
+msgid "Your locked pages"
+msgstr "Tus páginas bloqueadas"
+
+msgid "See all locked pages"
+msgstr "Ver todas las páginas bloqueadas"
+
+msgid "Locked at"
+msgstr "Fue bloqueada"
+
+msgid "Visit the live page"
+msgstr "Ver página en vivo"
+
+msgid "No, don't delete"
+msgstr "No, no eliminar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Edit"
+msgstr "Editar"
+
+#, python-format
+msgid ""
+"\n"
+"                                Locked by <b>you</b> at <b>%(locking_date)s</"
+"b>\n"
+"                            "
+msgstr ""
+"\n"
+"                                Bloqueada por <b>ti</b> el <b>%(locking_date)s</"
+"b>\n"
+"                            "
+
+#, python-format
+msgid ""
+"\n"
+"                                Locked by <b>%(locked_by)s</b> at <b>"
+"%(locking_date)s</b>\n"
+"                            "
+msgstr ""
+"\n"
+"                                Bloqueada por <b>%(locked_by)s</b> el <b>"
+"%(locking_date)s</b>\n"
+"                            "
+
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] "Asegúrese de que no haya más de %(max)s decimal."
+msgstr[1] "Asegúrese de que no haya más de %(max)s decimales."
+
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+"Asegúrese de que no haya más de %(max)s dígito antes del punto decimal."
+msgstr[1] ""
+"Asegúrese de que no haya más de %(max)s dígitos antes del punto decimal"
+
+#, python-format
+msgid ""
+"\n"
+"            <span>%(total)s</span> Page <span class=\"visuallyhidden"
+"\">created in %(site_name)s</span>\n"
+"        "
+msgid_plural ""
+"\n"
+"            <span>%(total)s</span> Pages <span class=\"visuallyhidden"
+"\">created in %(site_name)s</span>\n"
+"        "
+msgstr[0] ""
+"\n"
+"            <span>%(total)s</span> Página <span class=\"visuallyhidden"
+"\">creada en %(site_name)s</span>\n"
+"        "
+msgstr[1] ""
+"\n"
+"            <span>%(total)s</span> Páginas <span class=\"visuallyhidden"
+"\">creadas en %(site_name)s</span>\n"
+"        "
+
+#, python-format
+msgid ""
+"Sort the order of child pages within '%(parent)s' by '%(label)s' in "
+"ascending order."
+msgstr ""
+"Ordene las páginas secundarias en '%(parent)s' por '%(label)s' en "
+"orden ascendente."
+
+#, python-format
+msgid ""
+"Sort the order of child pages within '%(parent)s' by '%(label)s' in "
+"descending order."
+msgstr ""
+"Ordene las páginas secundarias en '%(parent)s' por '%(label)s' en "
+"orden descendente."
+
+msgid "advanced search"
+msgstr "Búsqueda Avanzada"
+
+msgid "filter"
+msgstr "Filtrar"
+
+#: advanced_filters/templates/admin/advanced_filters/change_form.html:16
+msgid "Change advanced filter"
+msgstr "Cambiar filtro avanzado"
+
+#: advanced_filters/templates/admin/advanced_filters.html:67
+#: advanced_filters/templates/admin/advanced_filters/change_form.html:52
+msgid "Save & Filter Now!"
+msgstr "¡Guardar y filtrar!"
+
+#: advanced_filters/models.py:18 advanced_filters/templates/admin/advanced_filters.html:16
+msgid "Advanced Filter"
+msgstr "Filtro avanzado"
+
+#: advanced_filters/models.py:19 advanced_filters/admin.py:24
+msgid "Advanced Filters"
+msgstr "Filtros avanzados"
+
+#: advanced_filters/forms.py:79
+msgid "Operator"
+msgstr "Operador"
+
+#: advanced_filters/forms.py:86
+msgid "Negate"
+msgstr "Negación"
+
+#: advanced_filters/forms.py:58
+msgid "Equals"
+msgstr "Igual"
+
+#: advanced_filters/forms.py:59
+msgid "Contains"
+msgstr "Contiene"
+
+#: advanced_filters/forms.py:60
+msgid "One of"
+msgstr "Uno de"
+
+#: advanced_filters/forms.py:61
+msgid "DateTime Range"
+msgstr "Rango de fecha y hora"
+
+#: advanced_filters/forms.py:62
+msgid "Is NULL"
+msgstr "es Nulo"
+
+#: advanced_filters/forms.py:63
+msgid "Is TRUE"
+msgstr "Es Verdadero"
+
+#: advanced_filters/forms.py:64
+msgid "Is FALSE"
+msgstr "Es Falso"
+
+#: advanced_filters/forms.py:65
+msgid "Less Than"
+msgstr "Menor que"
+
+#: advanced_filters/forms.py:66
+msgid "Greater Than"
+msgstr "Mayor que"
+
+#: advanced_filters/forms.py:67
+msgid "Less Than or Equal To"
+msgstr "Menor o igual a"
+
+#: advanced_filters/forms.py:68
+msgid "Greater Than or Equal To"
+msgstr "Mayor o igual a"
+
+#: advanced_filters/models.py:22
+msgid "Created by"
+msgstr "Creado por"
+
+#: advanced_filters/models.py:28
+msgid "Created at"
+msgstr "Creado el"
+
+#: advanced_filters/forms.py:72
+msgid "Or (mark an or between blocks)"
+msgstr "O (Marca O entre bloques)"
+
+#: templates/admin/constance/includes/results_list.html:39
+msgid "Reset to default"
+msgstr "valor predeterminado"
+
+#: simple_history/templates/simple_history/_object_history_list.html:9
+msgid "Object"
+msgstr "objeto"
+
+#: simple_history/templates/simple_history/_object_history_list.html:14
+msgid "Comment"
+msgstr "observación"
+
+#: simple_history/templates/simple_history/_object_history_list.html:15
+msgid "Changed by"
+msgstr "cambiado por"
+
+#: simple_history/templates/simple_history/_object_history_list.html:16
+msgid "Change reason"
+msgstr "motivo del cambio"
+
+#: simple_history/templates/simple_history/_object_history_list.html:37
+msgid "None"
+msgstr "ninguno"
+
+#: simple_history/templates/simple_history/_object_history.html:11
+msgid ""
+"Choose a date from the list below to revert to a previous version of this "
+"object."
+msgstr ""
+"Seleccione una version del objeto de la lista siguiente para "
+"restaurar."
+
+#: simple_history/admin.py:162
+#, python-format
+msgid "Revert %s"
+msgstr "Restaurar %s"
+
+#: simple_history/templates/simple_history/object_history_form.html:21
+msgid ""
+"Press the 'Revert' button below to revert to this version of the object."
+msgstr ""
+"Haga clic en 'Restaurar' a continuación para volver a esta versión del objeto."
+
+#: simple_history/templates/simple_history/_submit_line.html:3
+msgid "Revert"
+msgstr "Restaurar"
+
+#: django_q/admin.py:40
+msgid "Resubmit selected tasks to queue"
+msgstr "Volver a enviar tareas seleccionadas en la cola"
+
+#: django_q/models.py:205
+msgid "Queued tasks"
+msgstr "Tareas en cola"
+
+#: django_q/models.py:204
+msgid "Queued task"
+msgstr "Tarea en cola"
+
+#: models.py:180
+msgid "Scheduled task"
+msgstr "Tarea programada"
+
+#: django_q/models.py:181
+msgid "Scheduled tasks"
+msgstr "Tareas programadas"
+
+#: models.py:105
+msgid "Successful task"
+msgstr "Tarea exitosa"
+
+#: models.py:105
+msgid "Successful tasks"
+msgstr "Tareas exitosas"
+
+#: django_q/models.py:135
+msgid "Failed task"
+msgstr "Tarea fallida"
+
+#: django_q/models.py:135
+msgid "Failed tasks"
+msgstr "Tareas fallidas"
+
+#: django_q/models.py:155
+msgid "Next Run"
+msgstr "Próxima ejecución"
+
+#: django_q/models.py:151
+msgid "Schedule Type"
+msgstr "Tipo tarea"
+
+#: django_q/models.py:154
+msgid "Repeats"
+msgstr "Repetir"
+
+#: wagtailmenus/conf/constants.py:5
+msgid "1: No sub-navigation (flat)"
+msgstr "1: Sin subnavegación (plano)"
+
+#: wagtailmenus/conf/constants.py:6
+msgid "2: Allow 1 level of sub-navigation"
+msgstr "2: Permitir 1 nivel de subnavegación"
+
+#: wagtailmenus/conf/constants.py:7
+msgid "3: Allow 2 levels of sub-navigation"
+msgstr "3: Permitir 2 niveles de subnavegación"
+
+#: wagtailmenus/conf/constants.py:8
+msgid "4: Allow 3 levels of sub-navigation"
+msgstr "4: Permitir 3 niveles de subnavegación"
+
+#: wagtailmenus/forms.py:22
+msgid ""
+"By default, this will be used as the link text when appearing in menus."
+msgstr ""
+"Por defecto este será usado como texto del enlace cuando aparezca en menús."
+
+#: wagtailmenus/modeladmin.py:14
+msgid "Main menu"
+msgstr "Menú principal"
+
+#: wagtailmenus/modeladmin.py:42
+msgid "Copy"
+msgstr "Copiar"
+
+#: wagtailmenus/modeladmin.py:44
+#, python-format
+msgid "Copy this %(model_name)s"
+msgstr "Copiar este %(model_name)s"
+
+#: wagtailmenus/modeladmin.py:65
+msgid "Flat menus"
+msgstr "Menús planos"
+
+#: wagtailmenus/modeladmin.py:103 wagtailmenus/models/menuitems.py:53
+#: wagtailmenus/models/menus.py:1118
+msgid "handle"
+msgstr "manejar"
+
+#: wagtailmenus/modeladmin.py:111
+msgid "no. of items"
+msgstr "No. de elementos"
+
+#: wagtailmenus/models/menuitems.py:32 wagtailmenus/models/pages.py:142
+msgid "link to an internal page"
+msgstr "enlace a una página interna"
+
+#: wagtailmenus/models/menuitems.py:38 wagtailmenus/models/pages.py:149
+msgid "link to a custom URL"
+msgstr "enlace a una URL personalizada"
+
+#: wagtailmenus/models/menuitems.py:44 wagtailmenus/models/pages.py:155
+msgid "append to URL"
+msgstr "adjuntar a URL"
+
+#: wagtailmenus/models/menuitems.py:48
+msgid ""
+"Use this to optionally append a #hash or querystring to the above page's "
+"URL."
+msgstr ""
+"Úselo para agregar opcionalmente un #hash o una cadena de consulta a la URL "
+"de la página anterior."
+
+#: wagtailmenus/models/menuitems.py:57
+msgid ""
+"Use this field to optionally specify an additional value for each menu item,"
+" which you can then reference in custom menu templates."
+msgstr ""
+"Utilice este campo para especificar opcionalmente un valor adicional para "
+"cada elemento de menú, que luego puede consultar en plantillas de menú "
+"personalizadas."
+
+#: wagtailmenus/models/menuitems.py:63
+msgid "link text"
+msgstr "texto del enlace"
+
+#: wagtailmenus/models/menuitems.py:67
+msgid ""
+"Provide the text to use for a custom URL, or set on an internal page link to"
+" use instead of the page's title."
+msgstr ""
+"Proporcione el texto que se utilizará para una URL personalizada o "
+"establezca un enlace de página interna para usar en lugar del título de la "
+"página."
+
+#: wagtailmenus/models/menuitems.py:76 wagtailmenus/panels.py:22
+msgid "menu item"
+msgstr "elemento del menú"
+
+#: wagtailmenus/models/menuitems.py:77
+msgid "menu items"
+msgstr "elementos del menú"
+
+#: wagtailmenus/models/menuitems.py:113 wagtailmenus/models/pages.py:209
+msgid "Please choose an internal page or provide a custom URL"
+msgstr "Elija una página interna o proporcione una URL personalizada"
+
+#: wagtailmenus/models/menuitems.py:116 wagtailmenus/models/pages.py:214
+msgid "Linking to both a page and custom URL is not permitted"
+msgstr "No se permite el enlace a una página ni a una URL personalizada"
+
+#: wagtailmenus/models/menuitems.py:119
+msgid "This field is required when linking to a custom URL"
+msgstr "Este campo es requerido cuando se enlaza a una URL personalizada"
+
+#: wagtailmenus/models/menuitems.py:157 wagtailmenus/models/menuitems.py:173
+msgid "allow sub-menu for this item"
+msgstr "permitir submenpu para este elemento"
+
+#: wagtailmenus/models/menuitems.py:160 wagtailmenus/models/menuitems.py:176
+msgid ""
+"NOTE: The sub-menu might not be displayed, even if checked. It depends on "
+"how the menu is used in this project's templates."
+msgstr ""
+"NOTA: Es posible que el submenú no se muestre, incluso si está marcado. "
+"Depende de cómo se usa el menú en las plantillas de este proyecto."
+
+#: wagtailmenus/models/menus.py:1031 wagtailmenus/models/menus.py:1107
+msgid "site"
+msgstr "sitio"
+
+#: wagtailmenus/models/menus.py:1038 wagtailmenus/models/menus.py:1132
+msgid "maximum levels"
+msgstr "máximo de niveles"
+
+#: wagtailmenus/models/menus.py:1042
+msgid ""
+"The maximum number of levels to display when rendering this menu. The value "
+"can be overidden by supplying a different <code>max_levels</code> value to "
+"the <code>{% main_menu %}</code> tag in your templates."
+msgstr ""
+"El número máximo de niveles para mostrar cuando se reproduce este menú. El "
+"valor puede omitirse al proporcionar un valor de <code>max_levels "
+"</code>diferente a la etiqueta <code>{% main_menu%}</code> en sus "
+"plantillas."
+
+#: wagtailmenus/models/menus.py:1051 wagtailmenus/models/menus.py:1052
+msgid "main menu"
+msgstr "menú principal"
+
+#: wagtailmenus/models/menus.py:1092
+#, python-format
+msgid "Main menu for %(site_name)s"
+msgstr "Menú principal para %(site_name)s"
+
+#: wagtailmenus/models/menus.py:1113
+msgid "title"
+msgstr "título"
+
+#: wagtailmenus/models/menus.py:1115
+msgid "For internal reference only."
+msgstr "Para referencia interna unicamente."
+
+#: wagtailmenus/models/menus.py:1121
+msgid ""
+"Used to reference this menu in templates etc. Must be unique for the "
+"selected site."
+msgstr ""
+"Se utiliza para hacer referencia a este menú en plantillas, etc. Debe ser "
+"exclusivo para el sitio seleccionado."
+
+#: wagtailmenus/models/menus.py:1126
+msgid "heading"
+msgstr "cabecera"
+
+#: wagtailmenus/models/menus.py:1129
+msgid "If supplied, appears above the menu when rendered."
+msgstr "Si es suministrada, aparece sobre el menú cuando es reproducido."
+
+#: wagtailmenus/models/menus.py:1136
+msgid ""
+"The maximum number of levels to display when rendering this menu. The value "
+"can be overidden by supplying a different <code>max_levels</code> value to "
+"the <code>{% flat_menu %}</code> tag in your templates."
+msgstr ""
+"El número máximo de niveles para mostrar cuando se reproduce este menú. El "
+"valor puede omitirse al proporcionar un valor de <code>max_levels "
+"</code>diferente a la etiqueta <code>{% flat_menu%}</code> en sus "
+"plantillas."
+
+#: wagtailmenus/models/menus.py:1146
+msgid "flat menu"
+msgstr "menú plano"
+
+#: wagtailmenus/models/menus.py:1147
+msgid "flat menus"
+msgstr "menús planos"
+
+#: wagtailmenus/models/pages.py:19
+msgid "repeat in sub-navigation"
+msgstr "repetir en subnavegación "
+
+#: wagtailmenus/models/pages.py:22
+msgid ""
+"If checked, a link to this page will be repeated alongside it's direct "
+"children when displaying a sub-navigation for this page."
+msgstr ""
+"Si está marcado, se mantendrá un enlace a esta página junto con sus hijos "
+"directos cuando se muestre una subnavegación para esta página."
+
+#: wagtailmenus/models/pages.py:27
+msgid "repeated item link text"
+msgstr "repetir texto del enlace del elemento"
+
+#: wagtailmenus/models/pages.py:31
+msgid ""
+"e.g. 'Section home' or 'Overview'. If left blank, the page title will be "
+"used."
+msgstr ""
+"p.ej. 'Sección de inicio' o 'Descripción general'. Si se deja en blanco, se "
+"usará el título de la página."
+
+#: wagtailmenus/models/pages.py:159
+msgid "Use this to optionally append a #hash or querystring to the URL."
+msgstr ""
+"Úselo para agregar opcionalmente un #hash o una cadena de consulta a la URL."
+
+#: wagtailmenus/models/pages.py:163
+msgid "menu item css classes"
+msgstr "clases css del elemento del menú"
+
+#: wagtailmenus/models/pages.py:167
+msgid ""
+"Optionally specify css classes to be added to this page when it appears in "
+"menus."
+msgstr ""
+"Opcionalmente, especifique las clases CSS que se agregarán a esta página "
+"cuando aparezca en los menús."
+
+#: wagtailmenus/models/pages.py:203
+msgid "A link page cannot link to another link page"
+msgstr "Un enlace de página no puede enlazar a otro enlace de página"
+
+#: wagtailmenus/models/pages.py:291
+#, python-format
+msgid "This page redirects to: %(url)s"
+msgstr "Esta página redirecciona a: %(url)s"
+
+#: wagtailmenus/panels.py:21
+msgid "Menu items"
+msgstr "Elementos del menú"
+
+#: wagtailmenus/panels.py:53
+msgid "Menu details"
+msgstr "Detalles del menú"
+
+#: wagtailmenus/panels.py:67
+msgid "Render settings"
+msgstr "Ajustes de presentación"
+
+#: wagtailmenus/panels.py:90 wagtailmenus/panels.py:124
+#: wagtailmenus/views.py:54
+msgid "Settings"
+msgstr "Ajustes"
+
+#: wagtailmenus/panels.py:101
+msgid "Advanced menu behaviour"
+msgstr "Comportamiento avanzado del menú"
+
+#: wagtailmenus/panels.py:111
+msgid "Scheduled publishing"
+msgstr "Publicación agendada"
+
+#: wagtailmenus/views.py:53
+msgid "Content"
+msgstr "Contenido"
+
+#: wagtailmenus/views.py:71
+msgid "Editing"
+msgstr "Editando"
+
+#: wagtailmenus/views.py:95
+#, python-format
+msgid "Editing %(model_name)s"
+msgstr "Editando %(model_name)s"
+
+#: wagtailmenus/views.py:126
+msgid "Main menu updated successfully."
+msgstr "Menú principal actualizado exitosamente."
+
+#: wagtailmenus/views.py:130
+msgid "The menu could not be saved due to errors."
+msgstr "El menú no pudo ser guardado debido a errores."
+
+#: wagtailmenus/views.py:145
+msgid "Copying"
+msgstr "Copiando"
+
+#: wagtailmenus/views.py:152
+#, python-format
+msgid "Copying %(model_name)s"
+msgstr "Copiando %(model_name)s"
+
+#: wagtailmenus/views.py:184
+#, python-brace-format
+msgid "Flat menu '{instance}' created."
+msgstr "Menú plano '{instance}' creado."

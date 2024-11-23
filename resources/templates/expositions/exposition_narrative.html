@@ -1,0 +1,32 @@
+{% load i18n static %}
+
+<div class="ag-l-inner-outside">
+  <span class="ag-o-head-tag">
+    <strong class="ag-o-head-tag__ico ag-o-head-tag__ico_big i-narrative">{% trans 'Recursos recomendados' %}</strong>
+  </span>
+</div>
+
+<section class="ag-l-inner-inside ag-o-header-wink">
+  <header class="ag-o-header-wink__inner">
+    <h2 class="ag-o-header-wink__title ag-o-subheadwink">{{ resources_narrative.title }}</h2>
+    <p class="ag-o-header-wink__lead">{{ resources_narrative.description }}</p>
+  </header>
+</section>
+
+<section class="ag-l-inner-outside ag-u-space-bottom">
+  <ul class="ag-zig-cards">
+    {% for resources_narrative_item in resources_narrative.resources.all %}
+      <li class="ag-zig-cards__item">
+        <div class="ag-zig-cards__card">
+          {% include "biblored/includes/resource/resource_item.html" with request=request object=resources_narrative_item.processed_data user=user counter=forloop.counter0 only %}
+        </div>
+        <div class="ag-zig-cards__lead ag-s01-rich-text ag-s01-rich-text_card">
+          <div class="ag-s01-rich-text__scroll">
+            {{ resources_narrative_item.related_text }}
+          </div>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}
+</section>

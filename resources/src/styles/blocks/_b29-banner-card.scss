@@ -1,0 +1,128 @@
+/*------------------------------------*
+  Block in context
+  #Styles into the detail banner sets
+  Description: only use in detail banner sets
+/*------------------------------------*/
+
+.ag-banner__card {
+  position: static;
+}
+
+.ag-banner-card__media {
+  position: relative;
+  @include px-rem(height, 300px);
+}
+
+.ag-banner-card__img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.ag-banner-card__ref {
+  display: inline-block;
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  letter-spacing: 0.06em;
+}
+
+.ag-banner-card__title {
+  @include px-rem(font-size, 18px);
+  font-family: $f-primary;
+}
+
+.ag-banner-card__list {
+  list-style: none;
+}
+
+.ag-banner-card__dots-list {
+  list-style: none;
+  @include flexbox;
+  @include flex-wrap(wrap);
+}
+
+.ag-banner-card__dots-item {
+  @include px-rem(padding-right, 4px);
+
+  &:not(:first-child) {
+    &:before {
+      content: "•";
+      @include px-rem(padding-right, 4px);
+    }
+  }
+}
+
+//- Lower spaces = 8px
+.ag-banner-card__ref {
+  @include px-rem(margin-bottom, 8px);
+}
+
+//- Lower spaces = 8px
+
+.ag-banner-card__item {
+  @include px-rem(margin-bottom, 8px);
+
+  &:last-child {
+    @include px-rem(margin-bottom, 24px);
+  }
+}
+
+//- Lower spaces = 16px
+.ag-banner-card__box,
+.ag-banner-card__title,
+.ag-banner-card__lead,
+.ag-banner-card__list {
+  @include px-rem(margin-bottom, 16px);
+}
+
+// BP max-width: 1023px
+@include media-query(wide-max) {
+  //- Lower spaces = 16px
+  .ag-banner-card__media {
+    @include px-rem(margin-bottom, 16px);
+  }
+}
+
+// BP min-width: 768px
+@include media-query(medium) {
+  .ag-banner-card__list {
+    @include flexbox;
+  }
+
+  .ag-banner-card__item {
+    @include flex(1 0 auto);
+    @include px-rem(margin-bottom, 24px);
+
+    &:nth-child(2n) {
+      @include px-rem(padding-left, 16px);
+      @include px-rem(margin-left, 16px);
+      border-left: 1px solid $c-neutro;
+    }
+  }
+
+  .ag-banner-card__title {
+    @include px-rem(font-size, 20px);
+  }
+}
+
+// BP min-width: 1024px
+@include media-query(wide) {
+  .ag-banner-card__cols {
+    @include flexbox;
+    @include justify-content(space-between);
+  }
+
+  .ag-banner-card__media {
+    @include flex(1 0 48%);
+    height: initial;
+    //- Lower spaces = 16px
+    @include px-rem(margin-bottom, 16px);
+  }
+
+  .ag-banner-card__side {
+    @include flex(1 0 52%);
+    @include px-rem(padding-left, 24px);
+  }
+}

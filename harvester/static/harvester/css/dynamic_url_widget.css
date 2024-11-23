@@ -1,0 +1,15 @@
+form .aligned ul.data_source_config_widget {
+ margin-left: 0px;
+}
+
+td.has-help-text {
+    border-bottom: 0;
+}
+
+.result_row td {
+    border: 1px solid #eee;
+}
+
+th {
+    border: 1px solid #eee;
+}

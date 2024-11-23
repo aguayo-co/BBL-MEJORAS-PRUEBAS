@@ -1,0 +1,32 @@
+.button.warning, input[type=submit].warning, input[type=button].warning {
+    background: #E59400;
+    color: #fff;
+}
+
+.button:active.warning, input[type=submit].warning:active, input[type=button].warning:active,
+.button:focus.warning, input[type=submit].warning:focus, input[type=button].warning:focus,
+.button:hover.warning, input[type=submit].warning:hover, input[type=button].warning:hover {
+    background: #B77600;
+}
+
+.button.danger, input[type=submit].danger, input[type=button].danger {
+    background: #ba2121;
+    color: #fff;
+}
+
+.button:active.danger, input[type=submit].danger:active, input[type=button].danger:active,
+.button:focus.danger, input[type=submit].danger:focus, input[type=button].danger:focus,
+.button:hover.danger, input[type=submit].danger:hover, input[type=button].danger:hover {
+    background: #a41515;
+}
+
+.button.cancel, input[type=submit].cancel, input[type=button].cancel {
+    background: #ddd;
+    color: #333;
+}
+
+.button:active.cancel, input[type=submit].cancel:active, input[type=button].cancel:active,
+.button:focus.cancel, input[type=submit].cancel:focus, input[type=button].cancel:focus,
+.button:hover.cancel, input[type=submit].cancel:hover, input[type=button].cancel:hover {
+    background: #ccc;
+}

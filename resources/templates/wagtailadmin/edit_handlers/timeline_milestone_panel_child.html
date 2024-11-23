@@ -1,0 +1,33 @@
+{% load i18n %}
+<li data-inline-panel-child id="inline_child_{{ child.form.prefix }}">
+    <ul class="controls">
+        {% if can_order %}
+            <li><button type="button" class="button icon text-replace white icon-order-up inline-child-move-up" id="{{ child.form.prefix }}-move-up" title="{% trans 'Move up' %}">{% trans "Move up" %}</button></li>
+            <li><button type="button" class="button icon text-replace white icon-order-down inline-child-move-down" id="{{ child.form.prefix }}-move-down" title="{% trans 'Move down' %}">{% trans "Move down" %}</button></li>
+        {% endif %}
+    </ul>
+    <!-- TODO Logica para widget custom -->
+    <input value="{{ child.instance.pk }}" id="id_{{ child.form.prefix }}-id" name="{{ child.form.prefix }}-id" type="hidden">
+    <input type="hidden" name="{{ child.form.prefix }}-DELETE" id="{{ child.form.prefix }}-DELETE">
+    {% if child.instance.pk %}
+        <div class="instance-selector-widget__display__title-wrap">
+            {{ child.instance.title }}
+        </div>
+        <div class="instance-selector-widget__actions">
+            <a
+                    href="{% url 'expositions_timelinemilestone_modeladmin_edit' child.instance.pk %}"
+                    class="edit-link button button-small button-secondary instance-selector-widget__actions__edit js-instance-selector-widget-edit"
+                    target="_blank"
+            >Editar Hito</a>
+        </div>
+    {% else %}
+        <div class="instance-selector-widget__actions">
+            <a
+                    href="{% url 'expositions_timelinemilestone_modeladmin_create'%}?timeline={{parent_id}}"
+                    class="edit-link button button-small button-secondary instance-selector-widget__actions__edit js-instance-selector-widget-edit"
+                    target="_blank"
+            >Seleccionar un Hito</a>
+        </div>
+    {% endif  %}
+</li>
+

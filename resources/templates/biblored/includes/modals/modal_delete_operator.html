@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<div class="ag-c-modal ag-c-modal_smallSize ag-js-modal" data-modal="delete_operator" tabindex="0" id="wai-modal-delete">
+  <div class="ag-c-modal__content ag-js-modalContent" tabindex="0">
+    <div class="ag-c-modal__setting">
+
+      <div class="ag-c-modal__inner">
+
+        <h3 class="ag-c-modal__title">{% trans "¿Deseas eliminar el operador que añadiste?" %}</h3>
+        <p class="ag-o-text ag-c-modal__text ag-c-modal__row">{% trans "Recuerda que los operadores te ayudan a obtener resultados mucho más precisos." %}</p>
+
+        <div class="ag-c-modal__footer" tabindex="0">
+          <div class="ag-c-modal__item-control">
+            <button class="ag-c-modal__btn ag-o-btn ag-o-btn_outline ag-js-modalClose" type="button">{% trans "Cancelar" %}</button>
+          </div>
+          <div class="ag-c-modal__item-control">
+            <button class="ag-c-modal__btn ag-o-btn ag-js-modal-delete__btn ag-js-modalClose" type="button">{% trans "Eliminar" %}</button>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="ag-is-modal__close i-close ag-js-modalClose">
+        <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+      </button>
+    </div>
+  </div>
+</div>

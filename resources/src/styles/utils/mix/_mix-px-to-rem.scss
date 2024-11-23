@@ -1,0 +1,59 @@
+//*----------------------------------------------------*\
+    // Converter pixels (px) to (rem) with Fallback
+//*----------------------------------------------------*/
+
+// 1. función para analizar analizar una cadena de texto y retornar el valor numérico
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1); /* 2 */
+}
+
+/**
+ * Convierte el valor de px a rem de cualquier propiedad, agrega fallback en px para navegadores antiguos.
+ *
+ * @mixin
+ * @section Convertir valor de (px) a (rem)
+ * @param $property Propiedad css, ej. margin, max-width, etc..
+ * @param $values Valor en px
+ * @example
+ *  .foo {
+ *    @include px-rem(padding, 20px 10px);
+ *  }
+ */
+
+@mixin px-rem($property, $values) {
+  // 3. Definimos una lista de valores para ambas unidades
+  $px: (); /* 3 */
+  $rem: (); /* 3 */
+  // 4. Recorremos cada valor en el parámetro dado ($values)
+  @each $value in $values {
+    // 5. Si el valor es igual a auto o 0, lo agregamos sin modificar.
+    @if $value == 0 or $value == auto {
+      $px: append($px, $value); /* 5 */
+      $rem: append($rem, $value); /* 5 */
+    } @else {
+      //6. Si el valor tiene una unidad, obtenenemos la unidad y el valor sin procesar
+      $unit: unit($value); /* 6  determina las unidades (px o rem)*/
+      $val: parseInt($value); /* 6 retorna el valor numérico*/
+      $base: parseInt($font-size-base);
+      // 7. Agregamos los valores a las listas dependiendo de la unidad del valor dado (px o rem)
+      @if $unit == 'px' {
+        /* 7 */
+        $px: append($px, $value);
+        $rem: append($rem, ($val /  $base + rem ));
+      }
+      @if $unit == 'rem' {
+        /* 7 */
+        $px: append($px, ($val * $base + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+  // 8. Si el valor de las listas es igual, solo se muestra una
+  @if $px == $rem {
+    #{$property}: $px; /* 8 */
+  } @else {
+    // 9. retornamos el resultado en pixeles Fallback y rem.
+    #{$property}: $px; /* 9 */
+    #{$property}: $rem; /* 9 */
+  }
+}

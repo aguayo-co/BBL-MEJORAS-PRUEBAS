@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<ul class="ag-quote__list">
+  <li class="ag-quote__item">
+    <button
+    class="ag-o-link i-delete ag-js-deleteReviewPk"
+    type="button"
+    value="{{ review.pk }}"
+    data-modal="delete_review"
+    >
+      {% trans 'Eliminar' %}
+    </button>
+  </li>
+  <li class="ag-quote__item">
+    <a href="{% url "review_edit" review.pk %}?next={{ next_url }}" class="ag-o-link">{% trans "Editar reseña" %}</a>
+  </li>
+</ul>

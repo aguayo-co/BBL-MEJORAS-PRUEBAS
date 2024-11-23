@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<span class="ag-filter-chip__row">
+
+  <a class="ag-o-btn ag-o-btn_small ag-filter-chip__action" href="{% url 'advanced_search' %}?{% url_params %}">{% trans 'Búsqueda avanzada' %}</a>
+  {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="advanced_search" only %}
+
+</span>

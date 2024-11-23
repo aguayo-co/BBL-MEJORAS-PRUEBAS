@@ -1,0 +1,5 @@
+{% extends 'biblored/includes/custom_user/tab-nav-items/link/base.html' %}
+{% load i18n %}
+{% block anchor_url %}{% url 'profile-invitations' %}{% endblock %}
+{% block anchor_title %}{% trans 'Ver invitaciones recibidas' %}{% endblock %}
+{% block tab_text %}{% trans "Invitaciones recibidas" %}{% endblock %}

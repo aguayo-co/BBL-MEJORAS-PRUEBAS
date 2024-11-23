@@ -1,0 +1,260 @@
+/*------------------------------------*
+  Transversal Elements
+  #Styles for layout theme
+/*------------------------------------*/
+
+.ag-l-page {
+  @include px-rem(margin-top, 68px);
+  @include px-rem(margin-bottom, 120px);
+}
+
+.ag-l-page-below {
+  @include px-rem(margin-bottom, 80px);
+}
+
+.ag-l-page-both {
+  @include px-rem(margin, 40px 0);
+}
+
+.ag-l-page-up {
+  @include px-rem(margin-top, 40px);
+}
+
+.ag-l-page-top {
+  @include px-rem(margin-top, 68px);
+}
+
+.ag-l-subsection {
+  @include px-rem(margin-bottom, 40px);
+}
+
+.ag-l-block {
+  @include px-rem(margin-bottom, 30px);
+}
+
+.ag-l-block_top {
+  @include px-rem(padding-top, 2px);
+}
+
+.ag-l-content__border-top {
+  @include px-rem(padding-top, 40px);
+  border-top: 1px solid $c-on-border;
+}
+
+.ag-l-middle {
+  @include px-rem(margin-top, 230px);
+}
+
+// Canvas de los contenidos
+//- Ancho max: 1170px
+.ag-l-canvas {
+  width: $canvas-w;
+  @include px-rem(max-width, $canvas-mw);
+  margin: 0 auto;
+}
+
+.ag-l-border {
+  border: 1px solid $c-on-border;
+}
+
+//- Ancho max en mobile 500px, tablet: 700px
+.ag-l-inner-small {
+  width: 92%;
+  @include px-rem(max-width, 500px);
+  margin: 0 auto;
+}
+
+//- Ancho max: 1000px
+.ag-l-inner-wide {
+  width: $canvas-w;
+  @include px-rem(max-width, $canvas-wide-mw);
+  margin: 0 auto;
+  padding: 1px 0;
+}
+
+//- Ancho max: 1000px
+.ag-l-inner {
+  @include px-rem(max-width, $canvas-wide-mw);
+  margin: 0 auto;
+}
+
+//- Ancho max 1060px (general content in expositions section)
+.ag-l-inner-inside,
+.ag-l-inner-inside-huge {
+  width: 92%;
+  @include px-rem(max-width, $canvas-large);
+  margin: 0 auto;
+}
+
+//- Ancho max 1060px (internal content in expositions section, 100% mobile)
+//- Is apply especially in mobile images with 100% to width
+.ag-l-inner-outside {
+  width: 100%;
+  @include px-rem(max-width, $canvas-large);
+  margin: 0 auto;
+}
+
+.ag-l-inner-bothside {
+  width: 92%;
+  @include px-rem(max-width, $canvas-large);
+  margin: 0 auto;
+}
+
+//- Ancho max: 1108px
+.ag-l-inner-large {
+  @include px-rem(max-width, $canvas-large-mw);
+  margin: 0 auto;
+}
+
+//- Ancho max: 1440px
+.ag-l-inner-huge {
+  @include px-rem(max-width, $canvas-huge);
+  margin: 0 auto;
+}
+
+//- Ancho max: 780px
+.ag-l-inner-medium-780 {
+  @include px-rem(max-width, $medium-w780);
+}
+// Bandas de colores de fondo
+.ag-l-band-primary {
+  background-color: $c-primary;
+  .ag-c-card__lead {
+    a {
+      color: $c-neutro;
+      text-decoration: underline;
+      &:hover,
+      &:focus,
+      &:active {
+        color: $c-neutro;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.ag-l-band-surface {
+  background-color: $c-surface;
+}
+
+.ag-l-band_top-shadow {
+  box-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.2) inset;
+}
+
+
+.ag-l-band-neutro {
+  background-color: $c-neutro;
+}
+
+.ag-l-form {
+  @include px-rem(max-width, $canvas-form);
+  margin: 0 auto;
+}
+
+// layout dos columnas: aside out Mobile
+.ag-l-out-flex {
+  width: $canvas-w;
+  @include px-rem(max-width, $canvas-huge);
+  position: relative;
+  margin: 0 auto;
+}
+
+.ag-l-page-down {
+  @include px-rem(margin-bottom, 24px);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ag-l-inner-inside {
+    width: 85%;
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+
+  .ag-l-page {
+    @include px-rem(margin-top, 0);
+    @include px-rem(margin-bottom, 160px);
+  }
+
+  .ag-l-page-top {
+    @include px-rem(margin-top, 0);
+  }
+
+  .ag-l-subsection {
+    @include px-rem(margin-bottom, 70px);
+  }
+
+  .ag-l-content__border-top {
+    @include px-rem(padding-top, 60px);
+  }
+
+  //- Ancho max: 700px
+  .ag-l-inner-small {
+    @include px-rem(max-width, $canvas-sm);
+  }
+
+  .ag-l-inner-outside,
+  .ag-l-inner-bothside {
+    width: 85%;
+  }
+
+  .ag-l-page-down {
+    @include px-rem(margin-bottom, 60px);
+  }
+
+  .ag-l-middle {
+    @include px-rem(margin-top, 160px);
+  }
+}
+
+//  wide: $bp-wide   : 1024px
+@include media-query(wide) {
+  //layout aside
+  .ag-l-out-flex {
+    @include flexbox;
+  }
+  .ag-l-out-flex_70 {
+    flex: 3;
+    @include px-rem(padding-right, 40px);
+  }
+  .ag-l-out-flex_30 {
+    flex: 1;
+  }
+
+  .ag-l-middle {
+    @include px-rem(margin-top, 170px);
+    @include flex(1);
+    max-width: -webkit-calc(100% - 320px);
+    max-width: -moz-calc(100% - 320px);
+    max-width: -o-calc(100% - 320px);
+    max-width: calc(100% - 320px);
+    z-index: 0;
+  }
+
+  .ag-l-inner-outside,
+  .ag-l-inner-bothside {
+    width: 92%;
+  }
+
+}
+
+@media (min-width: 1200px) {
+  .ag-l-inner-outside,
+  .ag-l-inner-bothside {
+    width: 100%;
+  }
+}
+
+//- BP Min 1280px
+@media (min-width: 1280px) {
+  .ag-l-inner-inside-huge {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .ag-l-middle {
+    @include px-rem(margin-top, 280px);
+  }
+}

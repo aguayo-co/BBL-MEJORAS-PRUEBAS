@@ -1,0 +1,38 @@
+.ag-radio-group {
+  @include px-rem(margin-left, 24px);
+}
+
+.ag-radio-group__item {
+  @include px-rem(margin-bottom, 24px);
+
+  &::after {
+    display: block;
+    @include px-rem(margin-left, 32px);
+    @include px-rem(font-size, 12px);
+  }
+  
+  // Public collaborative collection
+  &:nth-child(1) {
+    &::after {
+      content: "Otros usuarios podrán agregar contenido a tu colección después de enviar una solicitud. Cualquier usuario podrá ver esta colección.";
+    }
+  }
+  // Public closed collection
+  &:nth-child(2) {
+    &::after {
+      content: "Solo tú podrás agregar contenido a esta colección. Cualquier usuario podrá ver esta colección.";
+    }
+  }
+  // Private collection
+  &:nth-child(3) {
+    &::after {
+      content: "Solo tú podrás ver y agregar contenido a esta colección.";
+    }
+  }
+}
+
+.ag-radio-group__label {
+  font-weight: $f-bold;
+  @include px-rem(font-size, 14px);
+  color: $c-primary;
+}

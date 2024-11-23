@@ -1,0 +1,93 @@
+{% load i18n static %}
+
+<article class="ag-c-card ag-s-card_position">
+  <div class="ag-c-card_top-shadow">
+    {# wrap: indenta los contenidos #}
+    <div class="ag-c-card__border">
+      <a class="ag-c-card__action" href="{{ collection.get_absolute_url }}" title="{% trans 'Ir al detalle de' %} {{ collection.name }}">
+        {% if collection.image %}
+          <figure class="ag-c-card__media">
+            <img class="ag-c-card__img" src="{{ collection.image.url }}" alt=" {% trans 'Imagen de referencia' %} {{ collection.name }}">
+          </figure>
+        {% endif %}
+        <ul class="ag-c-card__bar ag-c-card__bar_bg">
+            {% for resource_type, count in collection.resources_by_type_count.items %}
+                {% if forloop.first %}
+                <li class="ag-c-card__bar-item">
+                    <strong class="ag-c-card__bar-label">{% trans "Encuentra en esta colección" %}:</strong>
+                    <ul class="ag-c-card__bar-sublist">
+                {% endif %}
+                        <li class="ag-c-card__bar-subitem">{% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}</li>
+                {% if forloop.last %}
+                    </ul>
+                </li>
+                {% endif %}
+            {% endfor %}
+          {% if collection.created_at %}
+          <li class="ag-c-card__bar-item ag-c-card__bar-item_last">
+            <strong class="ag-c-card__bar-label">{% trans "Creada el" %}:</strong>
+            <ul class="ag-c-card__bar-sublist">
+              <li class="ag-c-card__bar-subitem"> {{ collection.created_at|date:"DATE_FORMAT" }} </li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+
+        <div class="ag-c-card__canvas">
+
+          <div class="ag-c-card__top">
+            <ul class="ag-tags">
+              <li class="ag-tags__item">
+                <span class="ag-tags__ico ag-tags__ico_green i-star">
+                  <span class="ag-tags__tag ag-tags__tag_dark">
+                    {% trans "Contenido Sugerido" %}
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ag-c-card__divider">
+            {% if  collection.name %}
+            <h2 class="ag-c-card__title" tabindex="0"> {{ collection.name }} </h2>
+            {% endif %}
+            {% if collection.description %}
+            <div class="ag-c-card__lead">
+              {{ collection.description|striptags }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+
+      <footer class="ag-c-card__footer">
+        <ul class="ag-c-card__list ag-c-card__list_end">
+          <li class="ag-c-card__list-item">
+            <a class="ag-chip" href="{{ collection.data_source.search_url }}" title="{% trans 'Ver otras colecciones creadas por' %} {{ collection.data_source.name }} ">
+              {% if collection.data_source.logo %}
+              <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+                <img class="ag-chip__img" src="{{ collection.data_source.logo.url }}" alt="{% trans 'Logo' %} {{ collection.data_source.name }}">
+              </figure>
+              {% endif %}
+
+              <span class="ag-chip__text">
+                <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+                {{ collection.data_source.name }}
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div class="ag-c-card__footer-flex {% if title_group == 'favoritos' %}ag-c-card__footer-flex_end{% endif %}">
+          {{ form }}
+          {% if title_group != 'favoritos' %}
+          {% include "biblored/includes/collectionsgroup/buttons/collections_add_to_remove_from_favorites_group.html" with collection=collection favorites_group=collections_favorites_group collections_groups_initial=collection.groups_list color_icon=color_icon only %}
+          {% endif %}
+          {% include "biblored/includes/options_menu/options_menu_for_card_group_collections.html" with counter=counter card="set" %}
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</article>
+
+{% include "biblored/includes/modals/modal_share_social.html" with counter=counter card="set" object=collection title=collection.name classJsCopyUrl="ag-js-copyUrlAnotherPage" only %}

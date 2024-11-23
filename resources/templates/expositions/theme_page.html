@@ -1,0 +1,84 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {{ page.title }} {% endblock %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %}{% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%}{% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %} 
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" title="{% trans 'Ir a ' %}{{ page.get_parent.title }}" href="{% pageurl page.get_parent.specific %}">{{ page.get_parent.title }}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {{ page.title }}
+  </dd>
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="ag-l-page-top ag-l-band-surface">
+    <div class="ag-l-inner-wide ag-l-inner-medium-780">
+
+      {# page title #}
+      <header class="ag-o-header" id="maincontent" tabindex="0">
+        <h2 class="ag-o-heading">{{ page.title }}</h2>
+        {% if page.description %}
+          <p class="ag-o-subheading">{{ page.description }}</p>
+        {% endif %}
+      </header>   
+
+      {# order by #}
+      <div class="ag-c-filter-band ag-c-filter-band_space-between" tabindex="0">
+        <a class="ag-o-undeline ag-o-btn_ico-left i-arrow-alt-left" href="{% pageurl self.get_parent.specific %}">{% trans "volver al centro de ayuda" %}</a>
+        {% include 'biblored/includes/blocks/order_by.html' %}
+      </div>
+
+      {# list of cards #}
+      <main class="c-landscape-card o-section o-section_mt-0">
+        {% for question in page_obj %}
+          <a class="c-landscape-card__link" href="{% pageurl question %}">
+            <article class="c-landscape-card__body">
+              <h3 class="c-landscape-card__title ag-o-headline">{{ question.title }}</h3>
+              <p class="c-landscape-card__paragraph">{{ question.description }}</p>
+              <p class="c-landscape-card__cta ag-o-undeline ag-o-btn_ico-right i-arrow-alt-right">Más Información</p>
+            </article>
+          </a>
+        {% endfor %}
+
+      </main>
+
+      {# paginator #}
+      {% include 'biblored/includes/paginator.html' %}
+
+    </div>
+  </div>
+
+  
+    {# page components #}
+    {% for block in self.content %}
+     
+      {% if block.block_type == 'image_gallery' %}
+        <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+            {% include "expositions/exposition_image_gallery.html" with imagegallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+        </section>
+      {% elif  block.block_type == 'video_gallery' %}
+        <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+            {% include "expositions/exposition_video_gallery.html" with videogallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+        </section>
+      {% else %}
+        {% include_block block with block_id=block.id %}
+      {% endif %}
+
+    {% endfor %}
+
+{% endblock %}

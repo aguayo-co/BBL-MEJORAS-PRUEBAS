@@ -1,0 +1,42 @@
+//*----------------------------------------------------*\
+    // Converter pixels (px) to (rem) with Fallback
+//*----------------------------------------------------*/
+
+// calcula el valor de la fuente de px a rem
+@function calculate_px_to_rem($size) {
+  $remSize: $size /  $font-size-base;
+  @return #{$remSize}rem;
+}
+// calcula el valor del alto del contenedor
+@function calculate_height_box($value_font-size, $value_line-height, $value_number-lines) {
+    $height_box: ($value_font-size * $value_line-height * $value_number-lines) / $font-size-base;
+    @return #{$height_box}rem;
+}
+
+/**
+ * Overflow ellipsis multiples lineas de texto: Adición de CSS a un elemento que limitará la visibilidad del texto después de cierto punto. La altura máxima en rem se calcula multiplicado font-size * line-heigth * el número de líneas que se quiera mostrar. Además calcula en rems el tamaño de la fuente.
+ *
+ * @mixin
+ * @section Textos Ellipsis
+ * @param $font-size Valor en px
+ * @param $line-height Valor unitless
+ * @param $lines Número de lineas a mostrar.
+ * @example
+ *  .foo {
+ *    @include text-ellipsis-multiple(16px, 1.4, 3)
+ *  }
+ */
+
+@mixin text-ellipsis-multiple($font-size, $line-height, $lines) {
+  display: block;
+  display: -webkit-box;
+  max-height: $font-size * $line-height * $lines;
+  max-height: calculate_height_box($font-size, $line-height, $lines);
+  overflow: hidden;
+  line-height: $line-height;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  font-size: $font-size;
+  font-size: calculate_px_to_rem($font-size);
+}

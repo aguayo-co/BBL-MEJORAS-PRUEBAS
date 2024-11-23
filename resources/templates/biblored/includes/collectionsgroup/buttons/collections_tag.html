@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% if  collection.collaborativecollection %}
+  <span class="ag-tags__ico ag-tags__ico_purple i-collective">
+    <span class="ag-tags__tag ag-tags__tag_dark">
+      {% trans "Colección colaborativa" %}
+    </span>
+  </span>
+{% elif collection.data_source %}
+  <span class="ag-tags__ico ag-tags__ico_green i-star">
+    <span class="ag-tags__tag ag-tags__tag_light">
+      {% trans "Contenido sugerido" %}
+    </span>
+  </span>
+{% else %}
+  <span class="ag-tags__ico ag-tags__ico_pink i-personal">
+    <span class="ag-tags__tag ag-tags__tag_dark">
+      {% trans "Colección individual" %}
+    </span>
+  </span>
+{% endif %}

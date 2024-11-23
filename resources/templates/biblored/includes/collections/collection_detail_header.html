@@ -1,0 +1,169 @@
+{% load i18n static %}
+
+{% if collection.detail_image %}
+  <figure class="ag-banner__background
+    ag-banner__background_outside"
+  >
+    <img
+      class="ag-banner__img"
+      src="{% static collection.detail_image %}"
+      alt="{% trans 'Imagen de referencia de' %} {{ collection.title }}"
+    />
+  </figure>
+{% endif %}
+
+<div id="content"
+  class="ag-banner__wrapper
+  ag-banner__surface"
+  tabindex="0"
+>
+
+  {% if user.is_authenticated %}
+    <div class="ag-banner__box ag-banner__canvas">
+      {% include "biblored/includes/collectionsgroup/search_select_detail_page_component.html" with collection=collection user=user form=forms.collection favorites_group=favorites_group form_name=forms.collection.initial.form_name csrf_token=csrf_token color_icon='blue' classJsCopyUrl=classJsCopyUrl only %}
+    </div>
+  {% endif %}
+
+  {# Card Banner #}
+  <div class="ag-banner__card">
+    <div class="ag-c-card ag-s-card">
+
+        <div class="ag-c-card__canvas">
+
+          <div class="ag-c-card__divider">
+            {% if collection.title %}
+              <h1 class="ag-c-card__title"
+                tabindex="0"
+              >
+                {{ collection.title }}
+              </h1>
+            {% endif %}
+            {% if collection.description %}
+              <div class="ag-c-card__lead">
+                {{ collection.description }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <footer class="ag-c-card__footer">
+
+          {% if collection.resources_by_type_count.items or object.collections_groups.count >= 1 %}
+            <ul class="ag-c-card__list ag-c-card__list_end">
+
+              {% if collection.resources_by_type_count.items %}
+                <li class="ag-c-card__list-item">
+                  <strong class="ag-c-card__bar-label">
+                    {% trans "Encuentra en esta colección" %}
+                  </strong>
+                  <ul class="ag-c-card__bar-sublist">
+                    {% for resource_type, count in collection.resources_by_type_count.items %}
+                      <li class="ag-c-card__bar-subitem">
+                        {% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endif %}
+
+             {% for group in object.collection_group_exclude_favorites.iterator %}
+                 {% if forloop.first %}
+                     <li class="ag-c-card__list-item">
+                         <strong class="ag-c-card__bar-label">
+                             {% trans "Mis Grupos de Colecciones que contienen esta colección" %}
+                         </strong>
+                         <ul class="ag-c-card__bar-sublist">
+                 {% endif %}
+                            <li class="ag-c-card__bar-subitem">
+                                {{ group.collections_group.title|capfirst }}
+                            </li>
+                {% if forloop.last %}
+                        </ul>
+                    </li>
+                {% endif %}
+             {% endfor %}
+            </ul>
+          {% endif %}
+
+          <ul
+            class="ag-c-card__list
+            ag-c-card__list_end
+            ag-c-card__list_align"
+          >
+            <li class="ag-c-card__list-item">
+              <a
+                class="ag-s-chip
+                ag-chip"
+                href="{{ collection.owner.get_absolute_url }}"
+                title="{% trans 'Ver el perfil de' %} {{ collection.owner.full_name }}"
+              >
+                <figure class="ag-chip__avatar">
+                  {% if  collection.owner.profile.avatar %}
+                    <img
+                      class="ag-chip__img"
+                      src="{{ collection.owner.profile.avatar.url }}"
+                      alt="{% trans 'Avatar creador' %} {{ collection.owner.full_name }}"
+                    />
+                  {% else %}
+                    {{ collection.owner.initials }}
+                  {% endif %}
+                </figure>
+                {% if  collection.owner.full_name %}
+                  <span class="ag-chip__text">
+                  <strong class="ag-chip__label">
+                    {% trans "Creador" %}
+                  </strong>
+                  {{ collection.owner.full_name }}
+                </span>
+                {% endif %}
+              </a>
+            </li>
+
+            {% if collection.collaborativecollection.active_collaborators %}
+              <li class="ag-c-card__list-item">
+                <strong class="ag-c-card__list-label">
+                  {% trans "Colaboradores" %}
+                  <span>(+{{ collection.collaborativecollection.active_collaborators.count }})</span>
+                </strong>
+
+                <ul class="ag-s-chip
+                  ag-chip
+                  ag-chip_set
+                  i-after-plus"
+                >
+                  {% for collaborator in collection.collaborativecollection.active_collaborators|slice:":6" %}
+                    <li class="ag-chip_set">
+                      <a
+                        class="ag-chip__avatar
+                        ag-chip__avatar_set"
+                        href="{{ collaborator.get_absolute_url }}"
+                        title="{% trans 'Ver el perfil de' %} {{ collaborator.full_name }} "
+                      >
+                        {% if  collaborator.profile.avatar %}
+                          <img
+                            class="ag-chip__img
+                            ag-chip__img_set"
+                            src="{{ collaborator.profile.avatar.url }}"
+                            alt="{% trans 'Avatar colaborador' %} {{ collaborator.full_name }}"
+                          />
+                        {% else %}
+                          {{ collaborator.initials }}
+                        {% endif %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endif %}
+
+            {% if collection.collaborativecollection and not user == collection.owner %}
+              <li class="ag-c-card__list-item ag-c-card__list-actions">
+                {% include "biblored/includes/collectionsgroup/buttons/collections_dynamic_buttons.html" with collection=collection.collaborativecollection %}
+              </li>
+            {% endif %}
+          </ul>
+        </footer>
+
+    </div>
+  </div>
+</div>

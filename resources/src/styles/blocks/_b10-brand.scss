@@ -1,0 +1,70 @@
+/*------------------------------------*\
+  ID: B10
+  Brand
+  Description: Logos Biblioteca digital de Bogotá y BiblioRed
+\*------------------------------------*/
+
+.ag-brand {
+  @include inline-flex;
+}
+
+.ag-brand__item {
+  position: relative;
+  @include flex(0 1 auto);
+  @include align-self(center);
+}
+
+.ag-brand__img {
+  max-width: 100px;
+}
+
+.ag-brand__link {
+  display: block;
+  @include px-rem(max-height, 70px)
+}
+
+
+.ag-brand__link_border {
+  position: relative;
+  @include px-rem(padding-right, 12px);
+  &:first-child {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: $c-neutro;
+      width: 1px;
+      @include px-rem(width, 1px);
+      @include px-rem(height, 35px);
+    }
+  }
+}
+
+.ag-brand__fill {
+  fill: $c-neutro;
+}
+
+
+.ag-brand__first-vector,
+.ag-brand__second-vector {
+  display: block;
+}
+
+.ag-brand__first-vector {
+  @include px-rem(width, 110px);
+  @include px-rem(margin-right, 12px);
+}
+
+.ag-brand__second-vector {
+  @include px-rem(width, 100px);
+  @include px-rem(max-height, 70px);
+  @include px-rem(margin-left, 13px);
+}
+
+@media only screen and (min-width:920px) {
+  .ag-brand__second-vector {
+    @include px-rem(width, 130px);
+  }
+}

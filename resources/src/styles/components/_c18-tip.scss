@@ -1,0 +1,54 @@
+/*------------------------------------*\
+  Bloque c18_tip
+  Description: Elemento para mostrar información de ayuda al usuario
+  Type: Interactive
+  Path:
+\*------------------------------------*/
+
+/**
+ * Class: .ag-c-tip
+ * @description  recuadro de alerta que muestra al usuario un mensaje de apoyo.
+ * @molecule c18_tip
+ * @section Notificaciones
+ * @markup
+ *  <div style="position:relative; padding: 5px; background: #f15f79; display: inline-block; margin: 0 1em;">
+ *    Para mostrar el tooltip debe agregarle la propiedad `opacity: 1`
+ *    <div style="opacity: 1;" class="ag-c-tip ag-js-tip"> Error </div>
+ *  </div>
+ */
+
+.ag-c-tip {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  text-align: center;
+  background-color: $c-on-tertiary;
+  @include px-rem(border-radius, 2px);
+  color: $c-primary;
+  box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  @include px-rem(padding, 6px);
+  transition: opacity 0.4s ease-in-out;
+  transform: translateY(10px);
+
+  &:before {
+    position: absolute;
+    top: 0;
+    @include px-rem(right, -3px);
+    width: 0;
+    border-bottom: 7px solid $c-on-tertiary;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    content: "";
+    font-size: 0;
+    line-height: 0;
+    transform: translate(-100%, -100%);
+  }
+
+  &.ag-is-show {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+  }
+}
+

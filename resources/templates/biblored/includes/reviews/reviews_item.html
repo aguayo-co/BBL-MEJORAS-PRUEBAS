@@ -1,0 +1,65 @@
+{% load i18n static %}
+
+<div class="ag-l-griddle__item ag-quote i-quote">
+
+  {% if review.title %}
+    <h2 class="ag-quote__title">{{ review.title }}</h2>
+  {% endif %}
+  {% if review.created_at %}
+    <span class="ag-quote__date">{{ review.created_at|date:"DATE_FORMAT" }}</span>
+  {% endif %}
+  <blockquote class="ag-quote__text ag-js-quote">
+    <span class="ag-quote__wrap ag-js-quoteWrap">
+      <span class="ag-js-counterTextSlideUp ag-is-quote__box">{{ review.text }}
+        {% comment %} <span class="ag-quote__ellipsis">(...)</span> {% endcomment %}
+      </span>
+      <button class="ag-quote__btn ag-js-btnCounterText" type="button">
+        
+        <span class="ag-o-link ag-js-linkChangeText">// {% trans 'Ver más' %}</span>
+      </button>
+    </span>
+  </blockquote>
+
+  <div class="ag-chip ag-quote__chip">
+    <figure class="ag-chip__avatar">
+      {% if  review.author.profile.avatar %}
+        <img class="ag-chip__img"
+          src="{{ review.author.profile.avatar.url }}"
+          alt="{% trans 'Avatar creador' %} {{ review.author.full_name }}">
+      {% else %}
+        {{ review.author.initials }}
+      {% endif %}
+    </figure>
+  </div>
+
+  <div class="ag-quote__footer">
+    <div class="ag-quote__editor">
+      <ul class="ag-c-rating">
+        <li class="ag-c-rating__item">
+
+          {% with review.rating|stringformat:'s' as rating %}
+            {% with 'biblored/img/rating/rating-'|add:rating|add:'.svg' as image_static %}
+              <img src="{% static image_static %}" alt="{% trans 'El número de valoración es' %} {{ review.rating }}">
+            {% endwith %}
+          {% endwith %}
+
+        </li>
+      </ul>
+
+      {% if review.author.full_name %}
+        <strong>{{ review.author.full_name }}</strong>
+      {% endif %}
+
+      {% if review.author.country %}
+        <p>{{ review.author.country }}</p>
+      {% endif %}
+
+    </div>
+
+    {% if request.user == review.author and user_has_review_permissions%}
+      {% with request.get_full_path as next_url %}
+        {% include "biblored/includes/reviews/review_actions_buttons.html" with review=review next_url=next_url csrf_token=csrf_token only %}
+      {% endwith %}
+    {% endif %}
+  </div>
+</div>

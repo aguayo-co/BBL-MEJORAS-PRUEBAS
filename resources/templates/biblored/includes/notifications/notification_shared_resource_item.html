@@ -1,0 +1,61 @@
+{% load i18n %}
+{% load static %}
+{% load inspectors %}
+
+<li class="ag-list__item">
+  <div class="ag-list__row ag-list__row_multiline">
+    <div class="ag-list__visual">
+      <figure class="ag-chip__avatar">
+        {% if  shared_resource_notification.shared_resource.owner.profile.avatar %}
+          <img class="ag-chip__img"
+               src="{{ shared_resource_notification.shared_resource.owner.profile.avatar.url }}"
+               alt="{% trans 'Avatar creador' %} {{ shared_resource_notification.shared_resource.owner.full_name }}">
+        {% else %}
+          {{ shared_resource_notification.shared_resource.owner.initials }}
+        {% endif %}
+      </figure>
+    </div>
+
+    <div class="ag-list__content">
+
+      <p class="ag-list__title">
+        {{ shared_resource_notification.shared_resource.owner.full_name }} {% trans 'te ha compartido un recurso' %}
+        <small class="ag-list__meta ag-list__meta_small">
+          {% trans 'Hace' %} {{ shared_resource_notification.shared_resource.created_at|timesince }}
+        </small>
+      </p>
+      <p>
+        <a class=" ag-o-link" href="{{ shared_resource_notification.shared_resource.owner.get_absolute_url }}"
+           title="{% trans 'Ir al perfil de' %} {{ shared_resource_notification.shared_resource.owner.full_name }}">
+          {{ shared_resource_notification.shared_resource.owner.full_name }}
+        </a>
+        {% trans 'te ha compartido un recurso de la biblioteca llamado' %}
+        <a class="ag-o-link" href="{% url 'content_resource' resource.pk %}"
+           title="{% trans 'Ir al detalle del recurso' %} {{ resource.processed_data.title }}">
+          {{ resource.processed_data.title }}
+        </a>
+      </p>
+    </div>
+
+    <div class="ag-list__actions">
+      {% if shared_resource_notification.status == 0 %}
+          <button
+            class="ag-o-btn ag-o-btn_outline ag-js-ignore_shared_resource"
+            data-notification-id="{{ shared_resource_notification.pk }}"
+          >
+            {% trans "Ignorar" %}
+          </button>
+        <a
+          href="{% url 'content_resource' resource.pk %}?notification={{ shared_resource_notification.pk }}"
+          class="ag-o-btn"
+          title="{% trans 'Ir al detalle del recurso' %} {{ resource.processed_data.title }}"
+        >
+          {% trans 'Ir al contenido' %}
+        </a>
+      {% endif %}
+
+
+    </div>
+  </div>
+</li>
+

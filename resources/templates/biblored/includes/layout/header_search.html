@@ -1,0 +1,50 @@
+{% load i18n %}
+<a class="ag-is-link-accesibilityfix ag-js-accesibilityTop" tabindex="0" href="#endcontent" title="{% trans 'Ir al final del buscador' %}">
+  {% trans "Saltar el buscador" %}
+</a>
+
+<button class="ag-l-header__button ag-js-dropdownBtn i-search ag-js-searchBtnMobile" type="button">
+  <span class="ag-is-visuallyhidden">{% trans "Buscar" %}</span>
+</button>
+
+<div class="ag-l-header__search ag-js-dropdownSlide ag-is-hide ag-js-searchDropdownMobile">
+  <form class="ag-c-search ag-js-dropdown" action="{% url 'search' %}" id="search_form">
+    <div class="ag-c-search__select ag-js-contentTypeCheckboxContainer ag-is-visuallyhidden">
+      <button class="ag-c-search__action i-after-arrow-down ag-js-dropdownBtn ag-js-contentTypeBtn"
+        type="button">{{ hero_search.content_type.label }}</button>
+      <fieldset hidden="hidden">
+        <ul class="ag-c-search__select-items ag-js-dropdownSlide ag-is-hide">
+          <li class="ag-form__checkbox">
+            <input class="ag-js-checkAll" type="checkbox" id="all_content" checked>
+            <label class="i-check" for="all_content">{% trans 'Todos' %}</label>
+          </li>
+            {% for type in hero_search.content_type.subwidgets %}
+            <li class="ag-form__checkbox">
+              {{ type.tag }}
+              <label class="i-check" for="{{ type.data.attrs.id }}">{{ type.choice_label }}</label>
+            </li>
+            {% endfor %}
+        </ul>
+      </fieldset>
+    </div>
+
+    <div class="ag-c-search__control">
+      <div class="ag-c-search__input i-exclamation-mark ag-js-searchTextInputContainer">
+        <label for="{{ search_form.search_text.id_for_label }}">
+          <span class="ag-is-visuallyhidden">
+            {{ search_form.search_text.label }}
+          </span>
+        </label>
+        {{ search_form.search_text }}
+        <div class="ag-c-search__suggestions ag-js-searchSuggestion ag-is-hide"></div>
+        <div class="ag-c-tip ag-js-tip" hidden>
+          {% trans 'Ingresa al menos un término para realizar la búsqueda' %}
+        </div>
+      </div>
+      <button class="ag-c-search__button i-search">
+        <span class="ag-is-visuallyhidden">{% trans 'Realizar búsqueda' %}</span>
+      </button>
+    </div>
+  </form>
+</div>
+<h2 class="ag-is-visuallyhidden" id="endcontent" tabindex="0"> Esta ingresando al contenido principal </h2>

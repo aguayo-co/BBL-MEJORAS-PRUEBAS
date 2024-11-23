@@ -1,0 +1,450 @@
+/*------------------------------------*\
+  Transversal Elements
+  #Styles header section
+\*------------------------------------*/
+/**
+ * Class: ag-o-header
+ * @description  Header de secciones con elementos centrados, max-width 700px
+ * @atom 003_header
+ * @section Section > Header
+ * @modifiers
+ *  .ag-o-header_top  Para encabezados que necesiten menos espacio entre el mismo y el bloque anterior, tiene menos margen en el top
+ * @markup
+ *   <header class="ag-o-header">
+ *     <h2 class="ag-o-heading">
+ *       Colecciones
+ *     </h2>
+ *     <p class="ag-o-subheading">
+ *       Explora los contenidos que la Biblioteca Digital de Bogotá ha seleccionado para ti.
+ *     </p>
+ *   </header>
+ */
+
+// Contenedores de títulos
+.ag-o-header {
+  @include px-rem(max-width, 700px);
+  @include px-rem(padding, 40px 0 30px);
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+
+  &.ag-o-header_less-spacing {
+    padding: 0;
+    margin-top: 40px;
+    margin-bottom: 24px;
+  }
+
+  &.ag-o-header_margin-both {
+    padding: 0;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+.ag-o-header_spacing {
+  @include px-rem(padding, 66px 0 20px 0);
+}
+
+.ag-o-header_wrap {
+  width: 100%;
+  @include px-rem(max-width, 400px);
+}
+
+/**
+ * Class: ag-o-header__item
+ * @description  contendor para elementos como tags, enlaces o disclaimer
+ * @atom 003_header + Tag
+ * @section Section > Header
+ * @markup
+ *   <header class="ag-o-header">
+ *     <h1 class="ag-o-heading">
+ *       Epístolas de la memoria y otras experiencias sobre el arte y la fotografía en Colombia
+ *     </h1>
+ *     <div class="ag-o-header__item">
+ *       <p class="ag-tags__ico ag-tags__ico_blue i-sketch">
+ *         <span class="ag-tags__tag ag-tags__tag_dark">
+ *           Exposición
+ *         </span>
+ *       </p>
+ *     </div>
+ *   </header>
+ */
+.ag-o-header__item {
+  @include px-rem(margin-top, 20px);
+}
+
+// Contenedores de títulos Etapa II (Exposiciones)
+.ag-o-main-header {
+  width: 92%;
+  @include px-rem(max-width, 780px);
+  @include px-rem(padding, 40px 0);
+  margin: 0 auto;
+  text-align: center;
+
+  .ag-o-heading {
+    @include font-rem(26px);
+    @include px-rem(padding-bottom, 10px);
+  }
+
+  .ag-o-title {
+    @include font-rem(21px);
+    @include px-rem(padding-bottom, 10px);
+  }
+}
+
+/**
+ * Class: ag-o-header
+ * @description  Header con imagen de página a dos columnas con elementos centrados, maximo ancho de 780
+ * @atom 003_header
+ * @section Section > Header
+ * @modifiers
+ *  .ag-o-header_top  Para encabezados que necesiten menos espacio entre el mismo y el bloque anterior, tiene menos margen en el top
+ * @markup
+ *   <header class="ag-o-main-header">
+ *     <p class="ag-o-main-header__kicker">
+ *       Explora los contenidos que la Biblioteca Digital de Bogotá ha seleccionado para ti.
+ *     </p>
+ *     <h2 class="ag-o-heading">
+ *       Colecciones
+ *     </h2>
+ *     <p class="ag-o-subheading ag-o-subheading_w100">
+ *       Explora los contenidos que la Biblioteca Digital de Bogotá ha seleccionado para ti.
+ *     </p>
+ *     <figure class="ag-o-main-header__figure">
+ *       <img src="" class="ag-o-main-header__img">
+ *     </figure>
+ *   </header>
+ */
+  .ag-o-main-header__kicker {
+    @include px-rem(font-size, 20px);
+  }
+  
+ .ag-o-main-header_gap24 {
+  @include flexbox;
+  @include flex-direction(column);
+  @include px-rem(row-gap, 24px);
+  .ag-o-heading {
+    padding: 0;
+  }
+}
+
+.ag-o-main-header__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/**
+ * Class: ag-o-header_top
+ * @description  Header de secciones
+ * @atom 003_header Top
+ * @section Section > Header
+ * @markup
+ *   <header class="ag-o-header ag-o-header_top">
+ *     <h2 class="ag-o-heading">
+ *       ¡Hola Andrea!
+ *     </h2>
+ *     <p class="ag-o-subheading">
+ *       Recomendados según tus últimas lecturas
+ *     </p>
+ *   </header>
+ */
+
+.ag-o-header_top {
+  @include px-rem(padding-top, 20px);
+}
+
+/**
+ * Class: ag-o-actions
+ * @description Contenedor grupo de botones centrados
+ * @atom 003_header Contenedor actions
+ * @modifiers
+ *    .ag-o-actions_top margin-top 40px
+ *    .ag-o-actions_header contendor para elementos como tags, enlaces o disclaimer
+ * @section Section > Header
+ * @markup
+ *   <div class="ag-o-actions">
+ *     <a class="ag-o-btn ag-o-btn_outline ag-o-actions__item" href="#">
+ *       Crear colección
+ *     </a>
+ *     <a class="ag-o-btn ag-o-actions__item" href="#">
+ *       Ver más colecciones
+ *     </a>
+ *   </div>
+ */
+.ag-o-actions {
+  text-align: center;
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+}
+
+.ag-o-actions_top {
+  @include px-rem(margin-top, 40px);
+}
+.ag-o-actions_sticky {
+  position: sticky;
+  bottom: 0;
+  background-color: $c-neutro;
+  z-index: 999;
+}
+
+/**
+ * Class: ag-o-actions_header
+ * @description  Header de secciones
+ * @atom 003_header + Actions
+ * @section Section > Header
+ * @markup
+ *   <header class="ag-o-header">
+ *     <h2 class="ag-o-heading">
+ *       Colecciones de personas
+ *     </h2>
+ *     <p class="ag-o-subheading">
+ *       Tus colecciones son agrupaciones de contenido externo o creado por ti disponible en la Biblioteca Digital de Bogotá.
+ *     </p>
+ *     <p class="ag-o-actions ag-o-actions_header">
+ *       <a class="ag-o-btn ag-o-actions__item" href="#">
+ *         Crear colección
+ *       </a>
+ *     </p>
+ *   </header>
+ */
+
+.ag-o-actions_header {
+  @include px-rem(padding, 20px 0 0);
+}
+
+.ag-o-actions__item {
+  @include px-rem(margin, 10px);
+}
+
+
+/**
+ * Class: .ag-o-header-wink
+ * @description  contenedor para elementos principales de sección + Tag de color
+ * @atom 003_header con guiño de color
+ * @section Section > Header
+ * @markup
+ *   <section class="ag-l-inner-inside ag-o-header-wink">
+ *     <span class="ag-o-head-tag">
+ *       <strong class="ag-o-head-tag__ico i-biblored">Contexto</strong>
+ *     </span>
+ *     <header class="ag-o-header-wink__inner">
+ *       <h2 class="ag-o-header-wink__title ag-o-subheadwink">"Rock al Parque: la música"</h2>
+ *       <p class="ag-o-header-wink__lead">El recorrido histórico que tuvo que hacer el evento para convertirse en uno de los certámenes musicales al aire libre más grandes del planeta.</p>
+ *     </header>
+ *   </section>
+ */
+
+.ag-o-header-wink {
+  position: relative;
+
+  .ag-o-head-tag {
+    @include px-rem(margin-top, 40px);
+  }
+}
+
+.ag-o-header-wink_inner {
+  width: 92%;
+  @include px-rem(padding-top, 40px);
+  @include px-rem(margin, 0 auto 40px);
+}
+
+.ag-o-header-wink__inner {
+  width: 92%;
+  @include px-rem(padding, 40px 0);
+  @include px-rem(margin, 0 auto);
+}
+
+.ag-o-header-wink_row {
+  @include px-rem(margin, 40px auto 30px);
+}
+
+.ag-o-header-wink_over {
+  @include px-rem(margin-top, 60px);
+}
+
+.ag-o-header-wink__title {
+  @include px-rem(margin-bottom, 20px);
+}
+
+.ag-o-header-wink_left {
+  .ag-o-header-wink__inner {
+    @include px-rem(margin, 40px 0);
+  }
+}
+
+/**
+ * Class: ag-o-subheader
+ * @description  Header para paginas con el contenido alineado a la izquierda y border-bottom
+ * @atom 003_header
+ * @section Section > Subheader
+ * @markup
+ *   <header class="ag-o-subheader">
+ *     <h1 class="ag-o-heading">
+ *        Resultados de Búsqueda para "<strong class="ag-o-mark">Lo que me une a colombianos</strong>"
+ *     </h1>
+ *     <p class="ag-o-subheading"><strong class="ag-o-mark">150</strong> contenidos encontrados</p>
+ *   </header>
+ */
+
+.ag-o-subheader {
+  @include px-rem(margin-top, 40px);
+  @include px-rem(padding-bottom, 40px);
+  border-bottom: 1px solid rgba($c-on-border, 0.8);
+}
+
+/**
+ * Class: ag-o-subheader
+ * @description  Header para paginas con el contenido alineado a la izquierda.  Variación con lista.
+ * @atom 003_header páginas Metabuscador con lista
+ * @section Section > Subheader
+ * @markup
+ *   <header class="ag-o-subheader">
+ *    <h1 class="ag-o-heading">
+ *        Resultados de Búsqueda para <em class="ag-o-mark">"Lo que me une a colombianos"</em>
+ *    </h1>
+ *    <div class="ag-o-header__item">
+ *      <p class="ag-o-subheading ag-o-text_medium">¿Tienes problemas para encontrar lo que buscas?</p>
+ *      <ul class="ag-o-hyphen">
+ *        <li class="ag-o-hyphen__item"> Verifica que la palabra no tenga faltas de ortografía.</li>
+ *        <li class="ag-o-hyphen__item"> Prueba con otra palabra similar. </li>
+ *        <li class="ag-o-hyphen__item"> Intenta con una palabra menos específica.</li>
+ *      </ul>
+ *      <p>o prueba con una combinación diferente de nuestras categorías en la búsqueda avanzada.</p>
+ *    </div>
+ *   </header>
+ */
+
+.ag-o-subheader-ico {
+  @include px-rem(padding, 60px 0);
+  text-align: center;
+
+  &:before {
+    display: inline-block;
+    @include px-rem(padding-bottom, 16px);
+    @include font-rem(40px);
+    color: $c-primary-hover;
+  }
+}
+
+.ag-o-hgroup__bottom {
+  @include px-rem(padding-bottom, 30px);
+}
+
+// medium : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-o-header {
+    @include px-rem(padding, 72px 0 60px);
+    .ag-o-subheading {
+      max-width: 82%;
+      margin: 0 auto;
+    }
+  }
+  .ag-o-header {
+    .ag-o-subheading_w100 {
+      max-width: 100%;
+    }
+  }
+  .ag-o-header_spacing {
+    @include px-rem(padding, 66px 0 20px);
+  }
+
+  .ag-o-header_top {
+    @include px-rem(padding-top, 20px);
+  }
+  .ag-o-header_top-0 {
+    padding-top: 0;
+  }  
+
+  /**
+  * Class: ag-o-hgroup
+  * @description  contenedor borde bottom desde tablet a desktop. Se usa para los resultados de búsqueda.
+  * @atom 003_header páginas Metabuscador
+  * @section Section > Header group
+  * @markup
+  *   <header class="ag-o-hgroup">
+  *     <h1 class="ag-o-heading">
+  *        Resultados de Búsqueda para "<strong class="ag-o-mark">Lo que me une a colombianos</strong>"
+  *     </h1>
+  *     <p class="ag-o-subheading"><strong class="ag-o-mark">150</strong> contenidos encontrados</p>
+  *   </header>
+  */
+  .ag-o-hgroup {
+    border-bottom: 1px solid rgba($c-on-border, 0.8);
+  }
+
+  .ag-o-hgroup__flex {
+    @include flexbox;
+    @include align-items(center);
+
+    .ag-o-btn {
+      @include px-rem(margin-left, 16px);
+    }
+  }
+
+
+  .ag-o-actions_size {
+    @include px-rem(width, 500px);
+  
+    .ag-o-btn_outline {
+      margin-left: 0;
+    }
+  }
+  .ag-o-actions_top {
+    @include px-rem(margin-top, 80px);
+  }
+
+  .ag-o-actions_header {
+    @include px-rem(padding, 20px 0 0);
+  }
+
+  .ag-o-actions__item {
+    @include px-rem(margin, 0 10px);
+  }
+
+  .ag-o-header-wink__title {
+    @include justify-content(center);
+  }
+
+  .ag-o-header-wink__lead {
+    text-align: center;
+  }
+
+  .ag-o-header-wink__inner,
+  .ag-o-header-wink_inner {
+    width: 82%;
+  }
+
+  // Contenedores de títulos Etapa II (Exposiciones)
+  .ag-o-main-header {
+    .ag-o-heading {
+      @include font-rem(32px);
+    }
+
+    .ag-o-title {
+      @include font-rem(24px);
+    }
+  }
+  // Modifier .ag-o-main-header
+  .ag-o-main-header_w100 {
+    padding: 0;
+    @include px-rem(margin-top, 64px);
+    @include px-rem(margin-bottom, 60px);
+  }
+
+  .ag-o-header-wink_left {
+    .ag-o-header-wink__title {
+      @include justify-content(left);
+    }
+  }
+}
+
+// large : $bp-large: 1180px;
+@include media-query(large) {
+  .ag-o-header-wink__inner,
+  .ag-o-header-wink_inner {
+    width: 70%;
+    @include px-rem(max-width, 780px);
+  }
+}

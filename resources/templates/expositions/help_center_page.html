@@ -1,0 +1,119 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {{ page.title }} {% endblock %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %}{% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%}{% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %} 
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {{ page.title }}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  <main>
+
+    <div class="ag-l-page-top ag-l-band-surface">
+      <section class="ag-l-inner-wide">
+
+        {# page title #}
+        <header class="ag-o-header" id="maincontent" tabindex="0">
+            <h2 class="ag-o-heading" tabindex="0">{{ page.title }}</h2>
+            {% if page.description %}
+              <p class="ag-o-subheading" tabindex="0">{{ page.description }}</p>
+            {% endif %}
+        </header>   
+
+        {# dropdown #}
+        <div class="c-dropdown">
+          <ul class="c-dropdown__box js-collapsible" data-js-collapsible-options='{ "firstElemenVisible": false }' tabindex="0">
+
+            
+            {% for object in help_center_themes %}
+             
+              {# list theme #}
+              {% if object.questions_theme %}
+                <li class="c-dropdown__element js-collapsible-item">
+                  <div class="c-plan-card__headline i-arrow-up-thin js-collapsible-control"> 
+                    <div class="c-plan-card__wrap-headline">
+                      <h3 class="c-dropdown__title">{{ object.theme.title }}</h3>
+                      {% if object.theme.specific.description %}
+                        <p class="c-dropdown__paragraph">{{ object.theme.specific.description }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="c-dropdown__content js-collapsible-target">
+                    <div class="js-collapsible-wrapper">
+                      <ul class="c-dropdown__list">
+
+                        {# list questions #}
+                        {% for question_time in object.questions_theme %}
+                          <li class="c-dropdown__item">
+                            <a class="ag-o-link c-dropdown__link" title="{{ question_time.title }}" href="{% pageurl question_time.specific %}">{{ question_time.title }}</a>
+                          </li>
+                        {% endfor %}
+
+                      </ul>
+                      <div class="c-dropdown__footer">
+                        <a class="ag-o-undeline c-dropdown__cta i-arrow-alt-right" title="{% trans "Ver todas las preguntas" %}" href="{% pageurl object.theme.specific %}">{% trans "Ver todas las preguntas" %}</a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {% endif %}
+
+            {% endfor %}
+
+
+          </ul>
+          
+        </div>
+
+      </section>
+    </div>
+
+
+    <div class="ag-u-locator">
+
+      {# button scroll down #}
+      <button class="ag-js-button-scroll-down-static ag-o-button-action ag-o-button-action_center ag-o-button-action_purple i-scroll-down">
+        <span class="ag-is-visuallyhidden">Ir al contenido principal de la página</span>
+      </button>
+
+      {# page components #}
+      <div class="ag-is-button-scroll-stop ag-u-padding-top-43">
+        {% for block in self.content %}
+
+          {% if block.block_type == 'image_gallery' %}
+            <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                {% include "expositions/exposition_image_gallery.html" with imagegallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+            </section>
+          {% elif  block.block_type == 'video_gallery' %}
+            <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                {% include "expositions/exposition_video_gallery.html" with videogallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+            </section>
+          {% else %}
+            {% include_block block with block_id=block.id %}
+          {% endif %}
+
+        {% endfor %}
+        
+      </div>
+
+    </div>
+    
+  </main>
+
+
+
+{% endblock %}

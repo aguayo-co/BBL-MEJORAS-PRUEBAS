@@ -1,0 +1,33 @@
+{% extends "biblored/includes/modals/modal_base_search_select_collections_groups.html" %}
+
+{% load i18n %}
+
+{% block data_modal %}{{ data_modal }}{% endblock %}
+{% block wai_modal %}{{ wai_modal }}{% endblock %}
+
+{% block article_content %}
+  {% include "biblored/includes/collectionsgroup/search_select_fielset_with_create_btn.html" with form=form form_prefix=form_prefix only %}
+{% endblock %}
+
+{% block action_footer %}
+  <div class="ag-c-modal__item-control">
+    <button
+      class="ag-o-btn
+      ag-o-btn_outline
+      ag-js-modalClose"
+      type="button"
+    >
+      {% trans "Cancelar" %}
+    </button>
+  </div>
+  <div class="ag-c-modal__item-control">
+    <button
+      class="ag-o-btn
+      ag-o-actions__item {% if form_button_extra_classes %}{{ form_button_extra_classes }}{% endif %}"
+      type="{{ form_button_type }}"
+      data-collection="{{ collection.pk }}"
+    >
+      {% trans "Aplicar" %}
+    </button>
+  </div>
+{% endblock action_footer %}

@@ -1,0 +1,15 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: B11
+  Chip
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+.ag-chip {
+
+  .ag-chip__avatar_color {
+    border: 2px solid $c-on-secondary;
+  }
+
+}

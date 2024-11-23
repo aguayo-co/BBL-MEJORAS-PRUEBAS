@@ -1,0 +1,83 @@
+// layouts.scss -- Layoutss for the Nucleus style guide and doc pages
+//
+// Edit by Aguayo 2019
+
+/*------------------------------------*\
+    Custom StyleGuide
+\*------------------------------------*/
+
+// Style Guide
+.SG-layout {
+  font-family: 'Open Sans',
+  sans-serif;
+  font-size: inherit;
+}
+
+.SG-component {
+  .SG-component__preview {
+    margin-bottom: 0;
+  }
+}
+
+// Para que el menú no sea fijo
+.SG-component__preview {
+  padding: 20px 0;
+}
+// Grandes espacios
+.SG-component__previewHigh {
+  padding: 60px 0;
+}
+
+// block separación entre bloques
+.SG-component__space {
+  margin: 50px 0;
+}
+
+// block separación entre bloques
+.SG-component__space-bottom {
+  padding-bottom: 250px;
+}
+
+// Fondo gris
+.SG-component__grey-bg {
+  background-color: $bg-grey;
+}
+
+// Fondo oscuro
+.SG-component__dark-bg {
+  padding: 20px;
+  background-color: $color--bg;
+}
+
+
+.SG-component__preview--description,
+.SG-table {
+  font-family: 'Courier New', Courier, monospace;
+  color: $color--brand_project;
+}
+
+.SG-component .SG-component__preview--description {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.SG-gr-0,
+.SG-gr-1,
+.SG-gr-2,
+.SG-gr-3,
+.SG-gr-4,
+.SG-gr-5,
+.SG-gr-6,
+.SG-gr-7,
+.SG-gr-8,
+.SG-gr-9,
+.SG-gr-10,
+.SG-gr-11,
+.SG-gr-12 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.SG-row.SG-table {
+  margin: 0 20px;
+}

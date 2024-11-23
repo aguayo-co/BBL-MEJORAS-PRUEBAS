@@ -1,0 +1,259 @@
+{% extends "iframe/base.html" %}
+{% load static i18n %}
+{% load render_bundle from webpack_loader %}
+
+{% block head_title %}{% trans "Añadir a Colección" %}{% endblock %}
+
+{% block body %}
+  {% if form %}
+    {% with resource=object.processed_data %}
+      {% if form.collections.field.choices|length or form.collaborative_collections.field.choices|length %}
+        <form
+          id="content-resource-collections-edit-form"
+          method="POST"
+          class="ag-iframe-form ag-js-validate"
+          tabindex="0"
+        >
+          {% csrf_token %}
+          <fieldset
+            class="ag-c-filter__item 
+            ag-iframe-form__both-spaces"
+            data-name="collections_select"
+          >
+            <label class="ag-is-visuallyhidden" 
+              for="{{ form.collections_select.id_for_label }}"
+            >
+              <span class="ag-c-filter__label-txt">
+                {{ form.collections_select.label|capfirst }}
+              </span>
+            </label>
+            {% comment %} input {% endcomment %}
+            <div
+              class="ag-iframe-form__filter-search ag-js-choices-collections-select"
+              data-placeholder="{% trans 'Buscar entre mis Colecciones' %}"
+            >
+              {{ form.collections_select|capfirst }}
+            </div>
+          </fieldset>
+
+          <fieldset class="ag-form__fieldset">
+
+            <legend class="ag-iframe-form__legend" 
+              tabindex="0"
+            >
+              {% trans "Mis colecciones" %}
+            </legend>
+
+            <a class="ag-iframe-form__link
+              ag-form__link 
+              i-plus" 
+              title="{% trans 'Ir a crear una nueva colección' %}"
+              href="{% url 'collection_add' %}?{% url_params 'resource' resource.pk %}"
+              target="_parent"
+            >
+              {% trans "Crear nueva" %}
+            </a>
+
+            <ul 
+              class="ag-iframe-form__list
+              ag-u-margin-bottom
+              ag-js-choices-collections-checkboxes"
+            >
+              {% if form.collections.field.choices|length %}
+                {% for add_collection in form.collections %}
+                  <li 
+                    class="ag-iframe-form__item
+                    ag-form__checkbox 
+                    ag-js-formInput" 
+                    data-validate="collection-required"
+                  >
+                    {{ add_collection.tag }}
+                    <label
+                      class="i-check"
+                      for="{{ add_collection.data.attrs.id }}"
+                    >
+                      {{ add_collection.choice_label }}
+                    </label>
+                  </li>
+                {% endfor %}
+                <small 
+                  class="ag-form__error ag-js-msgError" 
+                  data-for="collections" 
+                  hidden=""
+                >
+                </small>
+              {% else %}
+                <li class="ag-iframe-form__item">
+                  <p 
+                    class="ag-o-text 
+                    ag-c-modal__text 
+                    ag-c-modal__row"
+                    tabindex="0"
+                  >
+                    {% trans "No tienes colecciones." %}
+                  </p>
+                </li>
+              {% endif %}
+            </ul>
+          </fieldset>
+
+          <fieldset class="ag-form__fieldset">
+
+              <legend 
+                class="ag-iframe-form__legend" 
+                tabindex="0"
+              >
+                {% trans "Mis colecciones colaborativas" %}
+              </legend>
+
+              <a class="ag-iframe-form__link
+                ag-form__link 
+                i-plus" 
+                title="{% trans 'Ir a crear una nueva colección' %}"
+                href="{% url 'collection_add' %}?{% url_params 'resource' resource.pk %}"
+                target="_parent"
+              >
+                {% trans "Crear nueva" %}
+              </a>
+
+            <ul class="ag-iframe-form__list
+              ag-u-margin-bottom
+              ag-js-choices-collections-checkboxes"
+            >
+              {% if form.collaborative_collections.field.choices|length %}
+                {% for add_collection in form.collaborative_collections %}
+                  <li class="ag-form__checkbox
+                    ag-iframe-form__item" 
+                    tabindex="0"
+                  >
+                    {{ add_collection.tag }}
+                    <label
+                      class="i-check" 
+                      for="{{ add_collection.data.attrs.id }}"
+                      tabindex="0"
+                    >
+                      {{ add_collection.choice_label }}
+                    </label>
+                  </li>
+                {% endfor %}
+              {% else %}
+                <li 
+                  class="ag-iframe-form__item" 
+                  tabindex="0"
+                >
+                  <p 
+                    class="ag-o-text 
+                    ag-c-modal__text 
+                    ag-c-modal__row"
+                    tabindex="0"
+                  >
+                    {% trans "No tienes colecciones colaborativas." %}
+                  </p>
+                </li>
+              {% endif %}
+            </ul>
+          </fieldset>
+
+          {% for error in form.non_field_errors %}
+            <small 
+              class="ag-form__error 
+              ag-js-msgError" 
+              tabindex="0"
+            >
+              {{ error }}
+            </small>
+          {% endfor %}
+          {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+          {% endfor %}
+
+          <footer class="ag-iframe-form__actions ag-o-actions ag-o-actions_sticky">
+            <button 
+              class="ag-o-btn 
+              ag-o-actions__item" 
+              type="submit" 
+              tabindex="0"
+            >
+              {% trans "Guardar" %}
+            </button>
+          </footer>
+
+        </form>
+
+      {% else %}
+        <div class="ag-c-modal__maincontent">
+          <h4 class="ag-c-modal__title" 
+            tabindex="0">
+            {% trans "Aún no has creado colecciones" %}
+          </h4>
+          <p
+            class="ag-o-text 
+            ag-c-modal__text 
+            ag-u-margin-bottom-24"
+            tabindex="0"
+          >
+            {% trans "Agrupa los contenidos de la biblioteca y crea tu primera colección." %}
+          </p>
+          <div class="ag-o-actions">
+            <a
+              class="ag-o-btn"
+              title="{% trans 'Ir a crear una coleccion' %}"
+              href="{% url 'collection_add' %}?{% url_params 'resource' resource.pk %}"
+              target="_parent"
+            >
+              {% trans 'Crear colección' %}
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+  {% else %}
+    {% if messages %}
+      <div 
+        class="ag-o-messages_iframe" 
+        tabindex="0"
+      >
+        {% regroup messages by level_tag as message_levels %}
+        {% for level in message_levels %}
+          <ul 
+            class="ag-o-messages_ico 
+            ag-o-messages__{{ level.grouper }}"
+          >
+            {% for message in level.list %}
+              <li 
+                class="ag-o-messages__content
+                ag-has-messageOpen"
+              >
+                <div class="ag-o-header">
+                  <h2 
+                    class="ag-o-heading
+                    ag-o-messages__ico-lead
+                    ag-u-margin-bottom" 
+                    role="alert" 
+                    tabindex="0"
+                  >
+                    {{ message }}
+                  </h2>
+                  <p>{% trans "Ya puedes encontrar el recurso en la colección correspondiente." %}</p>
+                </div>
+                {# Button for close the modal #}
+                {% comment %} <button class="ag-o-btn
+                  ag-js-modalClose"
+                  type="button"
+                >
+                  {% trans "Volver al contenido" %}
+                </button> {% endcomment %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'content_resource_collections_edit_iframe_search_select_component' 'js' %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load i18n %}
+{% load static %}
+{#Componente: c01_search #}
+
+<div class="ag-hero__text ">
+  <div class="ag-hero__text">
+    <h1 class="ag-hero__headline">
+
+      {{ hero_text.uno.1 }}
+
+      <div class="ag-js-booleanHeadline"></div>
+      <div class="ag-js-booleanHeadlineTexts">
+        {% for text_value, text_id in hero_text.items %}
+        <span class="ag-is-hero__typed">
+          <span class="ag-hero__byline">
+            <strong class="ag-hero__byline_strong"> {{ text_id.2 }}</strong> {{ text_id.3 }}</span>
+        </span>
+        {% endfor %}
+      </div>
+    </h1>
+
+  </div>
+</div>

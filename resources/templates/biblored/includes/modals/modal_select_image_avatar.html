@@ -1,0 +1,23 @@
+{% extends "biblored/includes/modals/modal_base_select_image.html" %}
+{% load i18n %}
+
+{# Title and description for avatar #}
+{% block title_header_select_image %}{% trans "Selecciona una foto para tu perfil" %}{% endblock title_header_select_image %}
+
+{# Items for tabs menu #}
+{% block menu_tabs_select_image %}
+  <div class="ag-c-tooltip-wrapper">
+    <button class="ag-menu-bar__item ag-menu-bar__item_primary ag-menu-bar__item_active"
+      data-button-tabs="cropper" type="button">
+      {% trans "Sube una imagen" %}
+    </button>
+    {# tooltip #}
+    {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="profile_image" only %}
+  </div>
+{% endblock menu_tabs_select_image %}
+
+{# Content for tabs menu #}
+{% block content_tabs_select_image %}
+  {# Component cropper #}
+  {% include "biblored/includes/select_cover/cropper.html" with is_profile=is_profile %}
+{% endblock content_tabs_select_image %}

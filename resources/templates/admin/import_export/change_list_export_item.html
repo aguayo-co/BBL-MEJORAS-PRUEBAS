@@ -1,0 +1,6 @@
+{% load i18n %}
+{% load admin_urls %}
+
+{% if self.show_export_button %}
+    <li><a href="{% url opts|admin_urlname:'export' %}{{cl.get_query_string}}" class="export_link">{% translate "Export" %}</a></li>
+{% endif %}

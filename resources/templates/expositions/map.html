@@ -1,0 +1,53 @@
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+<div class="ag-l-inner-outside">
+  <span class="ag-o-head-tag">
+    <strong class="ag-o-head-tag__ico i-location">{% trans "Cartografía"%}</strong>
+  </span>
+</div>
+
+<section class="ag-l-inner-inside ag-o-header-wink">
+  <header class="ag-o-header-wink__inner">
+    <div class="ag-c-tooltip-wrapper ag-c-tooltip-wrapper_align">
+      <h2 class="ag-o-header-wink__title ag-o-subheadwink">{{ map.title }}</h2>
+      {# tooltip #}
+      {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="exposition_map" only %}
+    </div>
+    <p class="ag-o-header-wink__lead">{{ map.description|striptags }}</p>
+  </header>
+</section>
+
+{# TODO add height with css and remove inline style #}
+<div class="ag-c-map__wrap ag-u-space-bottom ag-js-expositionMapContainer">
+  <div
+      id="map_{{ map.pk }}"
+      class="ag-c-map ag-js-expositionMap"
+      data-center-at-latitude="{{ map.center_at_latitude }}"
+      data-center-at-longitude="{{ map.center_at_longitude }}"
+      data-description="{{ map.description }}"
+      data-image="{{ map.image }}"
+      data-max-zoom-level="{{ map.max_zoom_level }}"
+      data-min-zoom-level="{{ map.min_zoom_level }}"
+      data-title="{{ map.title }}"
+      data-image-url="{{ map.image.file.url }}"
+      data-image-height="{{ map.image.height }}"
+      data-image-width="{{ map.image.width }}"
+      data-image-top-corner-bound-latitude="{{ map.image_top_corner_bound_latitude }}"
+      data-image-top-corner-bound-longitude="{{ map.image_top_corner_bound_longitude }}"
+      data-image-bottom-corner-bound-latitude="{{ map.image_bottom_corner_bound_latitude }}"
+      data-image-bottom-corner-bound-longitude="{{ map.image_bottom_corner_bound_longitude }}"
+  ></div>
+  {% for milestone_block in map.milestones_content %}
+    <div
+        id="milestone_map_{{ milestone_block.id }}"
+        class="ag-js-mapMilestone"
+        data-map-id="map_{{ map.pk }}"
+        data-ping-image-url="{{ milestone_block.value.pin_image.file.url }}"
+        data-latitude="{{ milestone_block.value.latitude }}"
+        data-longitude="{{ milestone_block.value.longitude }}"
+        data-title="{{ milestone_block.value.title }}"
+        data-image-top-corner-bound-latitude="{{ map.image_top_corner_bound_latitude }}"
+    ></div>
+    {% include "biblored/includes/modals/modal_base_expositions.html" with milestone=milestone_block.value map=map milestone_id=milestone_block.id only %}
+  {% endfor %}
+</div>

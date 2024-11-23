@@ -1,0 +1,295 @@
+/*----------------------------------------------*\
+  ID: c15
+  Detalle de recurso
+  Type: Section
+  Description: despliegue de recurso, información en detalle del recurso
+\*----------------------------------------------*/
+
+.ag-c-detail {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+//- The important box that especific the grid
+.ag-c-detail__wrap {
+  @include px-rem(padding, 40px 0);
+}
+
+//- The box that distributed to columns
+.ag-c-detail__actions {
+  text-align: center;
+}
+
+//- The box that distributed to columns
+.ag-c-detail__actions-item {
+  @include px-rem(margin-bottom, 8px);
+
+  .ag-o-btn {
+    @include px-rem(min-width, 150px);
+  }
+}
+
+//- Content with the resource image
+.ag-c-detail__media {
+  position: relative; // imagenes rotas
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(max-width, 257px);
+  @include px-rem(min-height, 150px); // imagenes rotas
+  overflow: hidden;
+  margin: 0 auto;
+  @include px-rem(margin-bottom, 24px);
+}
+
+//modifier
+.ag-c-detail__media_surface {
+  background-color: $c-surface;
+}
+
+// estilos para imagenes rotas detalle de recurso
+.ag-c-detail__img {
+  width: 100%;
+  color: transparent;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: $c-surface url(/static/biblored/img/resource/no-image.svg)
+      no-repeat center center;
+    background-size: cover;
+  }
+}
+
+// modifier
+.ag-c-detail__img_scale-down {
+  object-fit: scale-down;
+}
+
+
+.ag-c-detail__row {
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(margin-top, 10px);
+}
+
+.ag-c-detail__list {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  list-style: none;
+}
+
+.ag-c-detail__list-item {
+  @include px-rem(margin, 6px 0);
+  @include flex(1 0 50%);
+  max-width: 50%;
+
+  &:nth-child(odd) {
+    padding-right: 16px;
+  }
+}
+
+.ag-c-detail__list-full {
+  min-width: 100%;
+  @include px-rem(margin, 10px 0);
+}
+
+.ag-c-detail__info {
+  @include px-rem(margin, 16px 0);
+}
+
+.ag-c-detail__text {
+  @include px-rem(margin-bottom, 16px);
+
+  /* Se agrega para prevenir viñetas desalineadas que puedan llegar */
+  ul {
+    list-style-position: inside;
+  }
+}
+
+.ag-c-detail__byline {
+  @include px-rem(margin-left, 10px);
+}
+
+.ag-c-detail__footer {
+  @include px-rem(padding, 40px 0);
+}
+
+//- Max medium : max-width => 473px
+@media only screen and (max-width: 473px) {
+  .ag-c-detail__actions_right {
+    text-align: center;
+  }
+
+  .ag-o-btn_space-top {
+    @include px-rem(margin-top, 20px);
+  }
+}
+
+//- Max medium : max-width: 767px
+@include media-query(medium-max) {
+  //- The box that distributed to columns
+  .ag-c-detail__actions {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(space-evenly);
+  }
+}
+
+//  small-m   : $bp-small-m: 480px
+@include media-query(small-m) {
+  .ag-c-detail__media {
+    @include px-rem(min-height, 250px); // imagenes rotas
+  }
+
+  .ag-c-detail__actions_right {
+    text-align: right;
+  }
+
+  //- The box that distributed to columns
+  .ag-c-detail__actions-item {
+    .ag-o-btn {
+      @include px-rem(min-width, 160px);
+    }
+  }
+}
+
+// medium : $bp-medium : 768px
+@include media-query(medium) {
+  //- The box that distributed to columns
+  .ag-c-detail__actions-item {
+    .ag-o-btn {
+      @include px-rem(min-width, 257px);
+    }
+  }
+
+  .ag-c-detail__layout-grid {
+    display: grid;
+    display: -ms-grid;
+    grid-template-columns: .5fr 1.5fr;
+    -ms-grid-columns: .5fr 1.5fr;
+    grid-template-areas:
+      "side hero"
+      "side info"
+      "side icocard";
+  }
+
+  .ag-c-detail__hero {
+    position: relative;
+    top: 0;
+    @include px-rem(min-height, 50px);
+    grid-area: hero;
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-row: 1;
+    -ms-grid-row: auto;
+    -ms-grid-row-span: auto;
+  }
+
+  .ag-c-detail__aside {
+    position: sticky;
+    @include px-rem(top, 80px);
+    grid-area: side;
+    grid-column: 1 / 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-row: 1 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+  }
+
+  .ag-c-detail__sticky-side {
+    grid-area: icocard;
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+  }
+
+  .ag-c-detail__content {
+    grid-area: info;
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+  }
+
+  .ag-c-detail__sticky-side,
+  .ag-c-detail__hero,
+  .ag-c-detail__content {
+    @include px-rem(margin-left, 24px);
+  }
+}
+
+// wide    : $bp-wide: 1024px;
+@include media-query(wide) {
+
+  .ag-c-detail__list {
+    @include px-rem(margin-top, 0);
+  }
+
+  .ag-c-detail__footer {
+    @include px-rem(padding, 70px 0);
+  }
+
+  .ag-c-detail__layout-grid {
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    -ms-grid-columns: 0.5fr 1fr 0.5fr;
+
+    grid-template-areas:
+      "side hero ico-card"
+      "side info icocard";
+  }
+
+  .ag-c-detail__hero {
+    position: relative;
+    top: 0;
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-row: 1 / auto;
+    -ms-grid-row: auto;
+    -ms-grid-row-span: auto;
+    @include px-rem(margin-left, 24px);
+    @include px-rem(margin-right, 16px);
+  }
+
+  .ag-c-detail__aside {
+    position: relative;
+    top: 0;
+    grid-row: 1 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    @include px-rem(min-width, 257px);
+  }
+
+  .ag-c-detail__sticky-side {
+    position: sticky;
+    @include px-rem(top, 100px);
+    grid-column: 3 / 4;
+    -ms-grid-column: 3;
+    -ms-grid-column-span: 4;
+    grid-row: 1 / 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    @include px-rem(min-width, 288px);
+    max-width: initial;
+    @include px-rem(max-height, 300px);
+    @include px-rem(margin-left, 16px);
+  }
+
+  .ag-c-detail__content {
+    grid-column: 2 / 3;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 3;
+    grid-row: auto;
+    -ms-grid-row: auto;
+    -ms-grid-row-span: auto;
+    @include px-rem(margin-left, 24px);
+    @include px-rem(margin-right, 16px);
+  }
+}

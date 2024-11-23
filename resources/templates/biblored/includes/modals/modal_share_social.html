@@ -1,0 +1,63 @@
+{% load i18n static %}
+
+<div
+  class="ag-c-modal ag-c-modal_full ag-js-modal"
+  data-modal="share_social_{{ card }}_{{ counter }}"
+  tabindex="0"
+  id="wai-modal_social"
+>
+  <div
+    class="ag-js-modalContent"
+    tabindex="0"
+  >
+    <section class="ag-c-modal__inner-wide
+      ag-u-margin-bottom"
+    >
+      <header
+        class="ag-o-header ag-o-header_less-spacing"
+        id="maincontent"
+        tabindex="0"
+      >
+        <h1 class="ag-o-heading">
+          {% if object|is_collection %}
+            {% trans "Compartir esta colección" %}
+          {% elif object|is_exposition %}
+            {% trans "Compartir esta exposición" %}
+          {% elif object|is_help_center_answer %}
+            {% trans "Compartir este contenido" %}
+          {% else %}
+            {% trans "Compartir este contenido" %}
+          {% endif %}
+        </h1>
+        <p class="ag-o-subheading"> {% firstof title title_set %}</p>
+      </header>
+    </section>
+
+    <div class="ag-c-modal__inner-wide">
+      <header
+        class="ag-o-title-line ag-o-title-line_small ag-o-title-line_bottom"
+      >
+        <h2 class="ag-o-title-line__text">
+          {% trans "Copia el enlace o compártelo en redes sociales" %}
+        </h2>
+      </header>
+      {% if object|is_help_center_answer %}
+        {% include "biblored/includes/share_social_answer_page.html" with request=request title=title card=card counter=counter absolute_url=object.specific classJsCopyUrl=classJsCopyUrl %}
+      {% else %}
+        {% include "biblored/includes/share_social.html" with request=request title=title card=card counter=counter absolute_url=object.get_absolute_url classJsCopyUrl=classJsCopyUrl only %}
+      {% endif %}
+    </div>
+
+    {# Button for close modal #}
+    <button
+      class="ag-o-btn-tooltip ag-c-modal__tooltip-btn i-close ag-js-modalClose"
+      type="button"
+    >
+      <span class="ag-o-btn-tooltip__tooltip">
+        {% trans "Cerrar" %}
+      </span>
+    </button>
+
+  </div>
+</div>
+

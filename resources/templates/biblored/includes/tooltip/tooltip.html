@@ -1,0 +1,34 @@
+{% load i18n wagtailcore_tags %}
+{% load help_center %}
+
+{# Tooltip general #}
+{% spaceless %}
+  {% with type_toolip|get_tooltip as tooltip %}
+
+    {% if tooltip %}
+
+      <div
+        class="
+          ag-c-tooltip
+          {% if tooltip.page == 'login' or tooltip.page == 'collection_groups' %}ag-c-tooltip_margin-top-8 {% endif %}ag-js-tooltip ag-is-tipHidden
+        "
+      >
+
+        {# button #}
+        <button class="ag-o-btn-ico i-question ag-js-tooltipButton" type="button">
+          <span class="ag-is-visuallyhidden"> {{ tooltip.name }}</span>
+        </button>
+
+        {# content #}
+        <div class="ag-c-tooltip__box ag-c-tooltip_right">
+          <div class="ag-c-tooltip__inner ag-s01-rich-text ag-s01-rich-text_tooltip">
+            {{ tooltip.description|richtext }}
+          </div>
+        </div>
+
+      </div>
+
+    {% endif %}
+
+  {% endwith %}
+{% endspaceless %}

@@ -1,0 +1,5 @@
+{% extends 'biblored/includes/custom_user/tab-nav-items/link/base.html' %}
+{% load i18n %}
+{% block anchor_url %}{% url 'profile-shared-resources' %}{% endblock %}
+{% block anchor_title %}{% trans 'Ver recursos compartidos' %}{% endblock %}
+{% block tab_text %}{% trans "Recursos compartidos" %}{% endblock %}

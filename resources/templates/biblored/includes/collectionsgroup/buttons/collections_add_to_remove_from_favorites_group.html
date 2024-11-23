@@ -1,0 +1,36 @@
+{% load i18n static builtins %}
+<button
+        type="button"
+        class="ag-o-btn-svg ag-js-CollectionsGroupAddToFavorites"
+        data-collection="{{ collection.pk }}"
+        data-model-name="{{ collection|get_meta:"model_name" }}"
+        data-in-favorites="{% if favorites_group in collections_groups_initial %}1{% else %}0{% endif %}"
+>
+    {% with "biblored/img/favorites/add-folder_active_"|add:color_icon|add:".svg" as active_icon %}
+        {% with "biblored/img/favorites/add-folder_inactive_"|add:color_icon|add:".svg" as inactive_icon %}
+            {% if favorites_group in collection.groups_list %}
+                <span class="ag-js-btnTextChange">
+                    {% trans "Eliminar de favoritos" %}
+                </span>
+                <img
+                        class="ag-o-btn-svg__img ag-js-btnIconChange"
+                        {# The image button is a variable "color_icon" that come in tne "with" with importing the template #}
+                        src="{% get_static_prefix %}{{ active_icon }}"
+                        alt="{% trans 'Eliminar de favoritos' %}"
+                />
+            {% else %}
+                <span class="ag-js-btnTextChange">
+                    {% trans "Agregar a favoritos" %}
+                </span>
+                <img
+                        class="ag-o-btn-svg__img ag-js-btnIconChange"
+                        {# The image button is a variable "color_icon" that come in tne "with" with importing the template #}
+                        src="{% get_static_prefix %}{{ inactive_icon }}"
+                        alt="{% trans 'Agregar a favoritos' %}"
+                />
+
+            {% endif %}
+        {% endwith %}
+    {% endwith %}
+
+</button>

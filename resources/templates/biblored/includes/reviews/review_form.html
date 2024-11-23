@@ -1,0 +1,85 @@
+{% load i18n static %}
+
+  <fieldset>
+    <legend class="ag-form__header-center">
+      <span class="ag-o-heading">{% trans "Califica y comenta" %}</span>
+    </legend>
+
+    <h1 class="ag-o-subtitle ag-u-center ag-u-margin-bottom-24">{{ review_form.instance.resource.title|cut:"['"|cut:"']"|safe }}</h1>
+    <p
+      class="ag-form__text ag-u-margin-bottom-24"
+    >
+      {% trans "Cuéntale a los demás qué te pareció" %}
+      <strong> "{{ review_form.instance.resource.title|cut:"['"|cut:"']"|safe }}" </strong>
+      {% trans ". ¿Lo recomendarías? ¿Por qué?" %}
+    </p>
+
+    <div class="ag-form__field_top ag-js-form__field">
+      <label class="ag-form__label" for="{{ review_form.title.id_for_label }}">
+        {{ review_form.title.label }}
+        <i class="ag-form__cursive">{% trans "(obligatorio)" %}</i>
+      </label>
+      <div class="ag-form__input ag-js-formInput" data-validate="reviews-title-required">
+        {{ review_form.title }}
+        {{ review_form.title.errors }}
+        <div class="ag-form__hint">
+          <small class="ag-form__error ag-js-msgError" data-for="{{ review_form.title.name }}" hidden></small>
+          <span class="ag-form__helper ag-js-inputCharsCounter" data-for="{{ review_form.title.name }}"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ag-form__field_top ag-u-margin-bottom-24 ag-js-form__field">
+      <label class="ag-form__label" for="{{ review_form.text.id_for_label }}">
+        {{ review_form.text.label }}
+        <i class="ag-form__cursive">
+        {% trans "(obligatorio)" %}</i>
+      </label>
+      <div class="ag-form__input ag-js-formTextarea ag-js-formInput" data-validate="reviews-required|review-text-min-length">
+        {{ review_form.text }}
+        {{ review_form.text.errors }}
+        <div class="ag-form__hint">
+          <small class="ag-form__error ag-js-msgError" data-for="{{ review_form.text.name }}" hidden></small>
+          <span class="ag-form__helper ag-js-inputCharsCounter" data-for="{{ review_form.text.name }}"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ag-c-rating-box ag-js-form__field ag-js-formInput" data-validate='rating-required'>
+      <span class="ag-form__label">
+        {% trans "Pon una calificación" %}
+        <i class="ag-form__cursive">{% trans "(obligatorio)" %}</i>
+      </span>
+
+      <ul class="ag-c-rating ag-c-rating_inline">
+        {% for field_review in review_form.rating.subwidgets %}
+          <li class="ag-c-rating__action ag-js-activeRatings">
+
+            {{ field_review.tag }}
+
+            <label class="ag-c-rating__label"
+                  for="{{ field_review.id_for_label }}">
+              {{ field_review.choice_label }}
+            </label>
+          </li>
+        {% endfor %}
+      </ul>
+      {{ review_form.rating.errors }}
+      <small class="ag-form__error ag-js-msgError" data-for="rating" hidden></small>
+    </div>
+  </fieldset>
+
+  {# Campos ocultos #}
+  {% for hidden in  form.hidden_fields %}
+    {{ hidden }}
+  {% endfor %}
+
+  <ul class="ag-o-actions ag-u-clean-bullets">
+    <li class="ag-o-actions__item">
+      <a class="ag-o-btn ag-o-btn_outline" href="{{ go_back_url }}">{% trans "Cancelar" %}</a>
+    </li>
+    <li class="ag-o-actions__item">
+      <button class="ag-o-btn" type="submit">{% trans "Comentar" %}</button>
+    </li>
+  </ul>
+

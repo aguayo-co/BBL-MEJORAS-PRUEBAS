@@ -1,0 +1,440 @@
+/*------------------------------------*\
+    Patterns Elements
+      #Styles for Titles
+\*------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+/**
+ * Class: ag-o-heading
+ * @description  Roboto Bold 400 | 20px/32px | Encabezado de sección.
+ * @atom Heading
+ * @section 01. Títulos
+ * @markup
+ *    <div class="SG-component__preview">
+ *      <h2 class="ag-o-heading">Encabezado de sección</h2>
+ *    </div>
+ *   <div class="SG-component__dark-bg">
+ *    <h3 class="ag-o-heading ag-o-heading_contrast">Encabezado de sección</h3>
+ *   </div>
+ */
+
+.ag-o-heading {
+  color: $c-primary;
+  line-height: 1.4;
+  @include font-rem(20px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+}
+
+.ag-o-heading_contrast {
+  color: $c-neutro;
+}
+
+/**
+ * Class: ag-o-subheading
+ * @description  Open Sans Regular | 13px/16px | subtítulo.
+ * @atom Subheading
+ * @section 01. Títulos
+ * @markup
+ *    <div class="SG-component__preview">
+ *      <h3 class="ag-o-subheading">Subtitulo de sección</h3>
+ *    </div>
+ *   <div class="SG-component__dark-bg">
+ *    <h3 class="ag-o-subheading ag-o-subheading_contrast">Subtitulo se sección</h3>
+ *   </div>
+ *   <div class="SG-component__preview">
+ *    <h3 class="ag-o-subheading ag-o-subheading_stroke"> <strong class="ag-o-subheading__text">Subtitulo se sección </strong></h3>
+ *   </div>
+ */
+
+.ag-o-subheading {
+  color: $c-primary;
+  @include font-rem(14px);
+  font-family: $f-default;
+}
+
+.ag-o-subheading_contrast {
+  color: $c-neutro;
+}
+
+// Modificador que añade linea decorativa en el texto
+
+.ag-o-subheading_stroke {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid;
+    z-index: -1;
+  }
+}
+// Modifier that add relative in the parent of pseudo element before
+.ag-o-subheading_relative {
+  position: relative;
+}
+
+.ag-o-subheading__text {
+  @include px-rem(padding, 26px);
+  background-color: $c-neutro;
+}
+
+/**
+ * Class: ag-o-head-tag
+ * @description  Roboto Bold 400 | 16px | Tag de sección con tema de color.
+ * @atom ag-o-head-tag
+ * @modifiers
+ *  ag-o-head-tag_big Modifica  font-size
+ * @section 01. Títulos
+ * @markup
+ *   <span class="ag-o-head-tag">
+ *     <strong class="ag-o-head-tag__ico i-biblored">Contexto</strong>
+ *   </span>
+ *   <div class="SG-component__preview">
+ *    <span class="ag-o-head-tag ag-o-head-tag_big">
+ *     <strong class="ag-o-head-tag__ico ag-o-head-tag__ico_big i-terms">Contexto</strong>
+ *    </span>
+ *   </div>
+ */
+
+// Tag división de sección (Exposiciones)
+.ag-o-head-tag {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+
+  &::before,
+  &:after {
+    content: "";
+    width: 100%;
+    @include px-rem(height, 1px);
+    @include px-rem(border-radius, 10px);
+    background-color: $c-primary;
+    z-index: -1;
+  }
+}
+
+.ag-o-head-tag_big {
+  @include font-rem(18px);
+  color: $c-primary;
+
+  &::before,
+  &:after {
+    width: 33%;
+    z-index: 1;
+  }
+}
+
+.ag-o-head-tag_large-title {
+  &:after,
+  &:before {
+    z-index: 0;
+  }
+
+  .ag-o-head-tag__ico {
+    @include flex(1 0 auto);
+    @include px-rem(min-width, 180px);
+
+    &:before {
+      @include flex(1 0 auto);
+      @include px-rem(max-width, 28px);
+      @include px-rem(max-height, 28px);
+      @include font-rem(16px);
+    }
+  }
+}
+
+.ag-o-head-tag__ico {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(margin-right, 6px);
+
+  &:before {
+    @include flex(1 0 0);
+    @include px-rem(width, 28px);
+    @include px-rem(height, 28px);
+    @include px-rem(margin, 0 6px);
+    @include font-rem(18px);
+    @include px-rem(line-height, 28px);
+    color: $c-neutro;
+    text-align: center;
+    border-radius: 50%;
+    background-color: $c-secondary;
+  }
+}
+
+.ag-o-head-tag__ico_big {
+  width: 100%;
+  max-width: max-content;
+  &:before {
+    @include px-rem(width, 30px);
+    @include px-rem(height, 30px);
+    background-color: $c-secondary;
+  }
+}
+
+/**
+ * Class: ag-o-headline
+ * @description  Roboto Bold 400 | 16px/20px | Título separador de contenido.
+ * @atom Headline
+ * @section 01. Títulos
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <h2 class="ag-o-headline">Headline título</h2>
+ *  </div>
+ *  <div class="SG-component__preview">
+ *    <h2 class="ag-o-headline ag-o-headline_primary">Headline título</h2>
+ *  </div>
+ *  <div class="SG-component__preview">
+ *    <h2 class="ag-o-headline ag-o-headline_title">Headline título</h2>
+ *  </div>
+ */
+
+.ag-o-headline {
+  line-height: 1.4;
+  @include font-rem(16px);
+  font-weight: $f-medium;
+  font-family: $f-primary;
+}
+
+.ag-o-headline_primary {
+  color: $c-primary;
+}
+
+.ag-o-headline_title {
+  text-align: center;
+  color: $c-primary;
+}
+
+/**
+ * Class: ag-o-title
+ * @description  Roboto Bold | 24px/28px
+ * @atom Headline
+ * @section 01. Títulos
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <h2 class="ag-o-title">Título página</h2>
+ *  </div>
+ */
+
+.ag-o-title {
+  line-height: 1.4;
+  @include font-rem(24px);
+  color: $c-primary;
+  font-weight: $f-bold;
+  font-family: $f-primary;
+}
+
+/**
+ * Class: ag-o-headwink
+ * @description  Roboto Bold 400 | 26px/32px | Encabezado de principal con tema de color.
+ * @atom Headwink
+ * @section 01. Títulos
+ * @markup
+ *    <div class="SG-component__preview">
+ *      <h2 class="ag-o-headwink">Encabezado principal</h2>
+ *    </div>
+ */
+
+.ag-o-headwink {
+  @include flexbox;
+  @include align-content(stretch);
+  color: $c-primary;
+  line-height: 1.2;
+  @include font-rem(26px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+
+  &:before {
+    content: "";
+    display: block;
+    @include flex(0 0 auto);
+    width: 4px;
+    height: auto;
+    @include px-rem(margin-right, 10px);
+    border-radius: 8px;
+    background-color: $c-secondary;
+  }
+}
+
+/**
+ * Class: ag-o-subheadwink
+ * @description  Roboto Bold 400 | 24px/28px | Encabezado de sección con tema de color.
+ * @atom subHeadwink
+ * @section 01. Títulos
+ * @markup
+ *    <div class="SG-component__preview">
+ *      <h2 class="ag-o-subheadwink">Encabezado de sección</h2>
+ *    </div>
+ */
+
+.ag-o-subheadwink {
+  @include flexbox;
+  @include align-content(stretch);
+  color: $c-primary;
+  line-height: 1.2;
+  @include font-rem(24px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+
+  &:before {
+    content: "";
+    display: block;
+    @include flex(0 0 auto);
+    width: 4px;
+    height: auto;
+    @include px-rem(margin-right, 10px);
+    border-radius: 8px;
+    background-color: $c-secondary;
+  }
+}
+.ag-o-subheadwink_size {
+  @include font-rem(19px);
+}
+
+/**
+ * Class: ag-o-title-line
+ * @description  Título inicio de sección con línea decorativa.
+ * @atom Title line
+ * @section 01. Títulos
+ * @markup
+ *  <div class="SG-component__preview">
+*     <div class="ag-o-title-line">
+*       <h3 class="ag-o-title-line__text">¿Cómo  utilizar los operadores lógicos “AND” y “NOT”?</h3>
+*     </div>
+*  </div>
+*/
+
+.ag-o-title-line {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(margin, 20px 0);
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid $c-on-secondary-hover;
+    z-index: 1;
+  }
+}
+
+.ag-o-title-line_small,
+.ag-o-title-line_center {
+  @include justify-content(center);
+}
+
+.ag-o-title-line_small {
+  .ag-o-title-line__text {
+    @include px-rem(max-width, 260px);
+    text-align: center;
+  }
+
+  .ag-o-title-line_bottom {
+    @include px-rem(margin-bottom, 40px);
+  }
+}
+
+.ag-o-title-line_offline {
+  .ag-o-title-line__text {
+    margin-left: 0;
+  }
+}
+
+.ag-o-title-line__text {
+  position: relative;
+  z-index: 2;
+  @include px-rem(padding, 0 20px);
+  @include px-rem(margin, 0 30px);
+  color: $c-primary;
+  font-weight: $f-bold;
+  @include font-rem(14px);
+  background-color: $c-neutro;
+}
+
+.ag-o-subtitle {
+  line-height: 1.4;
+  @include font-rem(18px);
+  color: $c-primary;
+  font-weight: $f-medium;
+  font-family: $f-primary;
+}
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+  .ag-o-heading {
+    @include font-rem(32px);
+  }
+
+  .ag-o-headline {
+    @include font-rem(19px);
+  }
+
+  .ag-o-subheading {
+    @include font-rem(16px);
+  }
+
+  .ag-o-title-line__text {
+    @include font-rem(18px);
+  }
+
+  .ag-o-title {
+    @include font-rem(28px);
+  }
+
+  .ag-o-headwink {
+    @include font-rem(32px);
+  }
+
+  .ag-o-subheadwink {
+    @include font-rem(28px);
+  }
+  .ag-o-subheadwink_size {
+    @include font-rem(19px);
+  }
+
+  .ag-o-title-line_offline {
+    .ag-o-title-line__text {
+      @include px-rem(margin, 0 30px);
+    }
+  }
+
+  .ag-o-title-line_small {
+    .ag-o-title-line__text {
+      @include px-rem(font-size, 14px);
+      max-width: initial;
+    }
+  }
+}
+
+// max-width 767px
+@include media-query(medium-max) {
+  .ag-o-title-line__text {
+    @include px-rem(padding-left, 5px);
+    @include px-rem(padding-right, 5px);
+  }
+
+  .ag-o-subheading_stroke {
+    &::before {
+      width: 92%;
+    }
+  }
+
+  .ag-o-head-tag__ico_big {
+    @include flex(none);
+    text-align: center;
+  }
+}

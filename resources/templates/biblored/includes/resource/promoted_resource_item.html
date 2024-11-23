@@ -1,0 +1,88 @@
+{% load i18n %}
+{% load static %}
+
+<div class="ag-c-slider__card">
+  <article class="ag-c-card">
+
+    <div class="ag-c-card__border">
+      <a class="ag-c-card__action" href="{{ processed_data.get_absolute_url }}" title="{% trans 'Ver detalle de' %} {{ processed_data.title }}">
+        <div class="ag-c-card__canvas">
+          <div class="ag-c-card__top">
+            <ul class="ag-tags">
+              <li class="ag-tags__ico ag-tags__ico_orange i-like">
+                <span class="ag-tags__tag ag-tags__tag_dark">
+                  {% trans "Contenido recomendado" %}
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="ag-c-card__divider">
+            <div class="ag-c-card__text">
+              <h2 class="ag-c-card__title" tabindex="0">{{ processed_data.title }}</h2>
+
+              {% if processed_data.creator %}
+                <p class="ag-c-card__subtitle"><strong>Por:</strong> {{ processed_data.creator }} </p>
+              {% endif %}
+
+              <div class="ag-c-card__lead">
+                {{ processed_data.description }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <footer class="ag-c-card__footer">
+        <ul class="ag-c-card__list">
+          {% if processed_data.publisher %}
+            <li class="ag-c-card__list-item">
+
+              <strong class="ag-c-card__list-label">{% trans "Publicador" %}</strong>
+              {{ processed_data.publisher }}
+            </li>
+          {% endif %}
+
+          {% if processed_data.formatted_date %}
+            <li class="ag-c-card__list-item">
+              <strong class="ag-c-card__list-label">{% trans "Año de Publicación" %}</strong>
+              {{ processed_data.formatted_date }}
+            </li>
+          {% endif %}
+
+          {% if processed_data.type %}
+            <li class="ag-c-card__list-item">
+              <strong class="ag-c-card__list-label">{% trans "Tipo de Contenido" %}</strong>
+              {{ processed_data.type }}
+            </li>
+          {% endif %}
+
+          {% if  processed_data.language %}
+            <li class="ag-c-card__list-item">
+              <strong class="ag-c-card__list-label">{% trans "Idioma" %}</strong>
+              {{ processed_data.language }}
+            </li>
+          {% endif %}
+
+        </ul>
+        <ul class="ag-c-card__list">
+          <li class="ag-c-card__list-item ag-chip">
+            <a class="ag-chip" href="{{ processed_data.data_source.search_url }}" title="{% trans 'Ver colecciones creadas por' %} {{ processed_data.data_source.name }} ">
+              {% if  processed_data.data_source.logo %}
+              <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+                <img class="ag-chip__img" src="{{ processed_data.data_source.logo.url }}" alt="{% trans 'Logo' %} {{ processed_data.data_source.name }}">
+              </figure>
+              {% endif %}
+              <span class="ag-chip__text">
+                <strong class="ag-chip__label">{% trans "Fuente del Contenido" %}</strong>
+                {{ processed_data.data_source.name }}
+              </span>
+            </a>
+          </li>
+        </ul>
+      </footer>
+
+
+    </div>
+
+  </article>
+</div>

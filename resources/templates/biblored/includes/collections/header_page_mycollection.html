@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<header class="ag-o-header" id="maincontent" tabindex="0">
+  <h1 class="ag-o-heading">
+    {% trans "Mis colecciones" %}
+  </h1>
+  <p class="ag-o-actions ag-o-actions_header">
+    <a class="ag-o-btn ag-o-btn_outline ag-o-actions__item" title="{% trans 'Ir a crear colección' %}" href="{% url 'collection_add' %}">
+      {% trans "Crear colección" %}
+    </a>
+  </p>
+</header>

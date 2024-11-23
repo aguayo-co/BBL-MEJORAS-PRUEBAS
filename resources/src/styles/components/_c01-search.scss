@@ -1,0 +1,413 @@
+/*----------------------------------------------*\
+  ID: C01
+  Search
+  Type: Form - Navigation
+  Description: Componente utilizado para realizar búsquedas en la base de datos con sugerencias.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-c-search
+ * @molecule c01_search
+ * @description  campo de búsqueda con sugerencias.
+ * @section Search
+ * @markup
+ *  <form class="ag-c-search" action="javascript:void(0);" id="search_form">
+ *    <div class="ag-c-search__select">
+ *      <button class="ag-c-search__action i-after-arrow-down ag-js-dropdownBtn" type="button">Todos los contenidos</button>
+ *      <ul class="ag-c-search__select-items ag-js-dropdownSlide ag-is-hide">
+ *        <li class="ag-form__checkbox">
+ *          <input type="checkbox">
+ *          <label class="i-check">Libros</label>
+ *        </li>
+ *        <li class="ag-form__checkbox">
+ *          <input type="checkbox">
+ *          <label class="i-check">Fotografías</label>
+ *        </li>
+ *        <li class="ag-form__checkbox">
+ *          <input type="checkbox">
+ *          <label class="i-check">Audios</label>
+ *        </li>
+ *        <li class="ag-form__checkbox">
+ *          <input type="checkbox">
+ *          <label class="i-check">3D</label>
+ *        </li>
+ *        <li class="ag-form__checkbox">
+ *          <input type="checkbox">
+ *          <label class="i-check">Datos</label>
+ *        </li>
+ *      </ul>
+ *	  </div>
+ *    <div class="ag-c-search__control">
+ *      <div class="ag-c-search__input ag-js-searchTextInputContainer">
+ *	      <input type="text" placeholder="¿Qué estás buscando?" name="search_text" autocomplete="off">
+ *        <div class="ag-c-search__suggestions ag-is-hide">
+ *          <p class="ag-c-search__title">Sugerencias de búsqueda</p>
+ *          <p class="ag-c-search__subtitle">Contenidos</p>
+ *          <ul class="ag-c-search__suggestion">
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El corazón de las tinieblas</a></li>
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El corazón de los tenebrosos</a></li>
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El corazón Cristobal Colón</a></li>
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El corazón roto</a></li>
+ *          </ul>
+ *          <p class="ag-c-search__subtitle">Colecciones</p>
+ *          <ul class="ag-c-search__suggestion">
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El colonizador</a></li>
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">Lisa corazón de león</a></li>
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El corazón del amor</a></li>
+ *          </ul>
+ *          <p class="ag-c-search__subtitle">Exposiciones</p>
+ *          <ul class="ag-c-search__suggestion">
+ *            <li class="ag-c-search__item"><a href="#" title="Ir a resultados de búsqueda">El corazón de Simón</a></li>
+ *          </ul>
+ *        </div>
+ *        <div class="ag-c-tip ag-js-tip" hidden> Error </div>
+ *      </div>
+ *	    <button class="ag-c-search__button i-search">
+ *        <span class="ag-is-visuallyhidden">Realizar búsqueda</span>
+ *      </button>
+ *    </div>
+ *  </form>
+ */
+
+.ag-c-search {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include px-rem(border-radius, 4px);
+}
+
+.ag-c-search__select {
+  background-color: $c-neutro;
+  @include px-rem(border-radius, 4px);
+  @include flexbox;
+  @include flex(1 100%);
+  line-height: 1.6;
+  @include px-rem(margin-bottom, 10px);
+  position: relative;
+  z-index: 9;
+
+  .ag-c-search__action {
+    background-color: transparent;
+    border: 1px solid $c-on-border;
+    @include px-rem(border-radius, 4px);
+    color: $c-on-text;
+    cursor: pointer;
+    display: block;
+    @include flex(1 100%);
+    @include px-rem(padding, 9.5px 34px 9.5px 12px);
+    transition: all .2s ease-in-out;
+    @include px-rem(min-width, 157px);
+
+    &:hover,
+    &:focus {
+      background-color: rgba($c-primary, .08);
+    }
+
+    &::after {
+      display: block;
+      @include font-rem(6px);
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      @include px-rem(right, 18px);
+    }
+  }
+
+  .ag-c-search__select-items {
+    background-color: $c-neutro;
+    color: $c-on-text;
+    @include px-rem(border-radius, 4px);
+    left: 0;
+    @include px-rem(padding, 0 12px);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+
+    .ag-form__checkbox {
+      @include px-rem(margin-bottom, 12px);
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    &.ag-is-dropdownOpen {
+      border: 1px solid $c-on-border;
+      border-top: none;
+      max-height: 165px;
+      overflow-y: auto;
+      @include px-rem(padding, 9.5px 12px);
+    }
+  }
+}
+
+.ag-c-search__control {
+  @include flexbox;
+  @include flex(1 100%);
+  z-index: 8;
+}
+
+.ag-c-search__input {
+  @include flexbox;
+  @include justify-content(space-between);
+  background-color: $c-neutro;
+  @include px-rem(border-radius, 4px);
+  @include flex(1 100%);
+  position: relative;
+
+  input {
+    width: 100%;
+    @include px-rem(padding, 12px 18px);
+    border: 1px solid $c-on-border;
+    border-right: none;
+    @include px-rem(border-radius, 4px 0 0 4px);
+    line-height: 1.6;
+    color: $c-on-text;
+    font-family: $f-primary;
+  }
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    @include px-rem(right, 10px);
+    color: transparent;
+    @include font-rem(20px);
+    transform: translateY(-50%);
+  }
+
+}
+// advanced search
+.ag-c-search__input_full {
+  input {
+    border: 1px solid $c-on-border;
+    @include px-rem(border-radius, 4px);
+    &:hover,
+    &:focus {
+      @include px-rem(border-radius, 4px);
+    }
+  }
+}
+
+.ag-c-search__suggestions {
+  background-color: $c-neutro;
+  @include px-rem(padding, 0 15px);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transition: all 600ms ease-in-out;
+  width: 100%;
+
+  &:not(.ag-is-hide) {
+    border: 1px solid $c-on-border;
+    @include px-rem(border-radius, 4px 0 4px 4px);
+    border-top: none;
+    box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+    @include px-rem(padding, 15px);
+    @include px-rem(max-height, 300px);
+    overflow-y: auto;
+  }
+}
+
+.ag-c-search__title {
+  color: $c-primary;
+  display: none;
+  @include font-rem(14px);
+  font-weight: $f-medium;
+  @include px-rem(margin-bottom, 20px);
+}
+
+.ag-c-search__subtitle {
+  color: $c-primary;
+  font-weight: $f-bold;
+}
+
+.ag-c-search__suggestion {
+  list-style: none;
+  @include px-rem(padding, 12px 0);
+}
+
+.ag-c-search__item {
+  .ag-c-search__link {
+    @include text-ellipsis-multiple(12px, 1.8, 1);
+    &:hover,
+    &:focus {
+      color: $c-secondary;
+    }
+  }
+}
+
+.ag-c-search__button {
+  @include align-items(center);
+  background-color: $c-secondary;
+  border-radius: 0 4px 4px 0;
+  color: $c-neutro;
+  @include flexbox;
+  @include flex(0 0 40px);
+  @include font-rem(26px);
+  @include justify-content(center);
+  transition: all .4s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: $c-neutro;
+    color: $c-secondary;
+    border: 1px solid $c-on-border;
+  }
+}
+
+// Firefox ≥ 29 Hack
+@media all and (min--moz-device-pixel-ratio:0) and (min-resolution: 3e1dpcm) {
+  .ag-c-search__select {
+    .ag-c-search__select-items {
+      .ag-form__checkbox {
+        &:last-of-type {
+          @include px-rem(margin-bottom, 12px);
+        }
+      }
+    }
+  }
+}
+
+// Hack IE 11
+@media screen and (min-width:0\0) {
+  .ag-c-search__select {
+    .ag-c-search__select-items {
+      .ag-form__checkbox {
+        &:last-of-type {
+          @include px-rem(margin-bottom, 12px);
+        }
+      }
+    }
+  }
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-c-search {
+    @include flex-wrap(nowrap);
+  }
+
+  .ag-c-search__select {
+    border-right: none;
+    @include px-rem(border-radius, 4px 0 0 4px);
+    @include flex(0 0 auto);
+    margin-bottom: 0;
+
+    .ag-c-search__action {
+      @include px-rem(border-radius, 4px 0 0 4px);
+      border-right: none;
+    }
+
+    .ag-c-search__select-items {
+      @include px-rem(border-radius, 4px 0 4px 4px);
+    }
+
+    &::after {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .ag-c-search__input {
+    border-radius: 0;
+
+    input {
+      border-radius: 0;
+      @include px-rem(padding, 10px 15px);
+
+      &:hover,
+      &:focus {
+        border-radius: 0;
+        box-shadow: inset 0 5px 10px -2px $c-on-border;
+
+        &::placeholder {
+          opacity: .5;
+        }
+      }
+    }
+
+    .twitter-typeahead .tt-menu {
+      .ag-list__actions {
+        .ag-o-btn {
+          @include px-rem(padding, 8px 18px);
+        }
+      }
+
+      .tt-dataset.tt-dataset-states {
+        box-shadow: none;
+      }
+    }
+  }
+
+  .ag-is-warning {
+    border: 1px solid $c-is-error;
+
+    &::before {
+      color: $c-on-tertiary;
+    }
+
+  }
+
+  .ag-is-default.ag-is-warning {
+    border-color: $c-on-border;
+
+    .ag-is-reset-off {
+      input {
+        border: none;
+      }
+    }
+  }
+
+  .ag-c-search__title {
+    display: block;
+  }
+
+  .ag-c-search__subtitle {
+    border-bottom: 1px solid $c-on-border;
+    @include px-rem(padding-bottom, 7px);
+  }
+
+  .ag-c-search__suggestions {
+    &.ag-is-dropdownOpen {
+      @include px-rem(border-radius, 0 0 4px 4px);
+    }
+  }
+
+  .ag-c-search__suggestion {
+    @include px-rem(padding, 16px);
+  }
+
+}
+
+// Hack IE 11
+@media screen and (min-width:0\0) and (min-width: $bp-medium) {
+  .ag-c-search__input {
+    input {
+      @include px-rem(padding, 12px 15px);
+      line-height: 1;
+    }
+  }
+
+  .ag-c-search__select-items {
+    overflow: visible;
+  }
+
+  .ag-c-search__select {
+    @include px-rem(width, 161px);
+  }
+}
+
+//  large     : $bp-large  : 1180px;
+@include media-query(large) {
+  .ag-c-search__select-items {
+    overflow-y: visible;
+  }
+}
+
+//  big       : $bp-big    : 1280px;
+@include media-query(big) {
+  .ag-c-search__title {
+    @include font-rem(18px);
+  }
+}

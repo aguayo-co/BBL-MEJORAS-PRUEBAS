@@ -1,0 +1,113 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+
+{% block title %} {% trans "Perfil" %} {{ profile.user.full_name }} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %}
+  {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  {% if user.pk == profile.pk %}
+    <dd class="ag-breadcrumbs__item">
+      {% trans 'Mi perfil' %}
+    </dd>
+  {% else %}
+    <dd class="ag-breadcrumbs__item">
+      {% trans 'Perfil' %}
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      {{ profile.user.full_name }}
+    </dd>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+  <main class="ag-l-page">
+    {# TODO: breadcrumb #}
+    <section class="ag-l-inner-wide">
+      <div class="ag-box" tabindex="0">
+        <div class="ag-box__avatar">
+          <figure class="ag-chip__avatar ag-chip__avatar_box">
+            {% if profile.avatar %}
+              <img class="ag-chip__img" src="{{ profile.avatar.url }}" alt="{% trans "Avatar de usuario" %}">
+            {% else %}
+              {{ profile.user.initials }}
+            {% endif %}
+          </figure>
+        </div>
+        <div class="ag-box__wrap">
+          <div class="ag-box__info {% if user != profile.user %} ag-box__info_top {% endif %}">
+            <h1 class="ag-box__title">{{ profile.user.full_name }}</h1>
+            <ul class="ag-box__list">
+              {% for social_network, social_network_data in profile.social_networks_data.items %}
+                {% if social_network_data.url %}
+                  <li class="ag-box__list-item">
+                    <a class="ag-box__link i-{{ social_network }}" href="{{ social_network_data.url }}"
+                       title="{% trans 'Visitar el perfil de' %} {{ profile.user.full_name }} {% trans 'en' %} {{ social_network_data.name }}"
+                       target="_blank">
+                  <span class="ag-is-visuallyhidden">
+                    {% trans "Visitar el perfil de" %}{{ profile.user.full_name }} {% trans "en" %} {{ social_network_data.name }}
+                  </span>
+                    </a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% if  profile.user.country %}
+              <p class="ag-box__meta">{{ profile.user.country }}</p>
+            {% endif %}
+
+          </div>
+          {% if user == profile.user %}
+            <div class="ag-box__actions">
+              <a class="ag-o-btn ag-o-btn_small" href="{% url 'profile-edit' %}"
+                 title="{% trans "Editar mi perfil" %}">{% trans 'Editar' %}</a>
+            </div>
+          {% endif %}
+          {% if profile.biography %}
+            <div class="ag-box__text">
+              <p>{{ profile.biography }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {% block profile_content %}
+        {% if user == profile.user %}
+          <header class="ag-o-header" tabindex="0">
+            <a
+              class="ag-o-btn ag-o-btn_outline"
+              href="{% url 'my_collections' %}"
+            >
+              {% trans "Mis Colecciones" %}
+            </a>
+          </header>
+          {% block notifications %}{% endblock notifications %}
+        {% endif %}
+      {% endblock %}
+
+      {% include "biblored/includes/paginator.html" %}
+      {% include "biblored/includes/messages/messages_templates.html" %}
+      {# ENDTODO FRONT #}
+    </section>
+  </main>
+
+  {% include "biblored/includes/modals/modal_delete_colaborate_collection.html" %}
+
+{% endblock %}
+

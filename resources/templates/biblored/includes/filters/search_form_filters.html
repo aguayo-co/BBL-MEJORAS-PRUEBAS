@@ -1,0 +1,145 @@
+{% load i18n %}
+
+{# FILTROS #}
+
+{# Título Seleccionar Content model #}
+<h2 class="ag-c-filter__title" tabindex="0">{% trans "Seleccionar" %}</h2>
+
+{# Grupos de contenidos #}
+<fieldset class="ag-c-filter__item" data-name="content_model">
+  <legend class="ag-c-filter__label">
+    <span class="ag-c-filter__label-txt">{{ search_form.content_model.label|capfirst }}</span>
+  </legend>
+
+  <div class="ag-c-filter__group ag-js-dropdownSlide ag-is-dropdownOpen">
+    {% if content_model_resources_only %}
+      <div class="ag-form__radio">
+        {% with search_form.content_model.subwidgets.0 as field_contentresource %}
+          {{ field_contentresource.tag }}
+          <label class="i-check"
+                 for="{{ field_contentresource.data.attrs.id }}">{{ field_contentresource.choice_label|capfirst }}</label>
+          {% for error in field_contentresource.errors %}
+            <small class="ag-form__error">{{ error }}</small>
+          {% endfor %}
+        {% endwith %}
+      </div>
+    {% else %}
+      {% for field_content_model in search_form.content_model.subwidgets %}
+        <div class="ag-form__radio">
+          {{ field_content_model.tag }}
+          <label class="i-check"
+                 for="{{ field_content_model.data.attrs.id }}">{{ field_content_model.choice_label|capfirst }}</label>
+          {% for error in field_content_model.errors %}
+            <small class="ag-form__error">{{ error }}</small>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</fieldset>
+
+
+{# Titulo Filtrar #}
+<h2 class="ag-c-filter__title ag-js-filter-side-title" tabindex="0">{% trans "Filtrar" %}</h2>
+
+{# Tipo de colección #}
+<fieldset class="ag-c-filter__item ag-js-filterItem" data-name="collection_type">
+  <legend class="ag-c-filter__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-up">
+    <span class="ag-c-filter__label-txt">{{ search_form.collection_type.label|capfirst }}</span>
+  </legend>
+  <div class="ag-c-filter__group ag-js-dropdownSlide ag-is-dropdownOpen">
+    {% for field_type in search_form.collection_type.subwidgets %}
+      <div class="ag-form__checkbox">
+        {{ field_type.tag }}
+        <label class="i-check" for="{{ field_type.data.attrs.id }}">{{ field_type.choice_label }}</label>
+        {% for error in field_type.errors %}
+          <small class="ag-form__error">{{ error }}</small>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</fieldset>
+
+{# Tipo de contenido #}
+<fieldset class="ag-c-filter__item ag-js-filterItem" data-name="content_type">
+  <legend class="ag-c-filter__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-up">
+    <span class="ag-c-filter__label-txt">{{ search_form.content_type.label|capfirst }}</span>
+  </legend>
+  <div class="ag-c-filter__group ag-js-dropdownSlide ag-is-dropdownOpen">
+    {% for field_type in search_form.content_type.subwidgets %}
+      <div class="ag-form__checkbox">
+        {{ field_type.tag }}
+        <label class="i-check" for="{{ field_type.data.attrs.id }}">{{ field_type.choice_label }}</label>
+        {% for error in field_type.errors %}
+          <small class="ag-form__error">{{ error }}</small>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</fieldset>
+
+{# Idioma #}
+<fieldset class="ag-c-filter__item ag-js-filterItem" data-name="language">
+  <legend class="ag-c-filter__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-up">
+    <span class="ag-c-filter__label-txt">{{ search_form.language.label|capfirst }}</span>
+  </legend>
+  <div class="ag-c-filter__group ag-js-dropdownSlide ag-is-dropdownOpen">
+    {% for field_language in search_form.language %}
+      <div class="ag-form__checkbox">
+        {{ field_language.tag }}
+        <label class="i-check"
+               for="{{ field_language.data.attrs.id }}">{{ field_language.choice_label|capfirst }}</label>
+        {% for error in field_language.errors %}
+          <small class="ag-form__error">{{ error }}</small>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</fieldset>
+
+{# Select Fuentes #}
+<fieldset class="ag-c-filter__item ag-js-filterItem" data-name="data_sources">
+  <label class="ag-c-filter__label" for="{{ search_form.data_sources.id_for_label }}">
+    <span class="ag-c-filter__label-txt">{{ search_form.data_sources.label|capfirst }}</span>
+  </label>
+  <div class="ag-c-filter__set ag-js-choices"
+       data-placeholder="{% trans 'Buscar por' %} {{ search_form.data_sources.label }}">
+    {{ search_form.data_sources|capfirst }}
+  </div>
+  {% if  search_form.data_sources.errors %}
+    <small class="ag-form__error">{{ search_form.data_sources.errors }}</small>
+  {% endif %}
+</fieldset>
+
+{# Derechos = licencia en administrador #}
+<fieldset class="ag-c-filter__item ag-js-filterItem" data-name="rights">
+  <legend class="ag-c-filter__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-up">
+    <span class="ag-c-filter__label-txt">{{ search_form.rights.label|capfirst }}</span>
+  </legend>
+
+  <div class="ag-c-filter__group ag-js-dropdownSlide ag-is-dropdownOpen">
+    {% for field_right in search_form.rights.subwidgets %}
+      <div class="ag-form__checkbox">
+        {{ field_right.tag }}
+        <label class="i-check" for="{{ field_right.data.attrs.id }}">{{ field_right.choice_label|capfirst }}</label>
+        {% for error in field_right.errors %}
+          <small class="ag-form__error">{{ error }}</small>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</fieldset>
+
+{# Select Tema #}
+<fieldset class="ag-c-filter__item ag-js-filterItem" data-name="subject">
+  <label class="ag-c-filter__label" for="{{ search_form.subject.id_for_label }}">
+    <span class="ag-c-filter__label-txt">{{ search_form.subject.label|capfirst }}</span>
+  </label>
+  <div class="ag-c-filter__set ag-js-choices"
+       data-placeholder="{% trans 'Buscar por' %} {{ search_form.subject.label }}">
+    {{ search_form.subject }}
+  </div>
+  {% if  search_form.subject.errors %}
+    <small class="ag-form__error">{{ search_form.subject.errors }}</small>
+  {% endif %}
+</fieldset>

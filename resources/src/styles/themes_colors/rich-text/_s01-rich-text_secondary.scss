@@ -1,0 +1,33 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  Scope Class
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+
+.ag-s01-rich-text {
+  a {
+    color: $c-on-secondary;
+  }
+
+  ul {
+    li {
+      &:before {
+        background-color: $c-on-secondary;
+      }
+    }
+  }
+
+  blockquote {
+
+    &:before {
+      background-color: $c-on-secondary;
+    }
+
+    &:after {
+      color: $c-on-secondary;
+    }
+
+  }
+}

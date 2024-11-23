@@ -1,0 +1,5 @@
+{% extends "custom_user/profile_detail_base.html" %}
+
+{% block notifications %}
+    {% include "biblored/includes/custom_user/profile_detail_notifications_requests.html" with request_user=request.user requests=requests csrf_token=csrf_token only %}
+{% endblock %}

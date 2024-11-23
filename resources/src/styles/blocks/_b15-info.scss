@@ -1,0 +1,133 @@
+/*----------------------------------------------*\
+  ID: b15
+  b15-info
+  Type: Section
+  Description: estilos Editar perfil
+\*----------------------------------------------*/
+
+.ag-info__panel {
+  @include px-rem(padding, 20px);
+  @include px-rem(margin-bottom, 30px);
+  background-color: $c-surface-box-bg;
+}
+
+.ag-info__title {
+  display: block;
+  color: $c-primary;
+  @include font-rem(15px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+}
+
+.ag-info__figure {
+  @include px-rem(margin-left, 20px);
+}
+.ag-info__caption {
+  @include px-rem(margin-top, 10px);
+}
+
+.ag-info__header {
+  text-align: center;
+}
+
+.ag-info__data {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.ag-info__btn {
+  min-width: initial;
+  @include px-rem(padding, 10px 18px);
+
+  &:hover {
+    background-color: $c-primary-hover;
+    border: 2px solid $c-primary-hover;
+  }
+  &:focus,
+  &:active {
+    color: $c-neutro;
+  }
+
+  &:disabled {
+    color: $c-secondary-disabled;
+    background-color: $c-neutro;
+    border: 2px solid $c-secondary-disabled;
+  }
+}
+.ag-info__actions {
+  @include px-rem(margin-top, 40px);
+}
+
+@media screen and (max-width:369px) {
+  .ag-info__panel {
+    text-align: center;
+  }
+  .ag-info__figure {
+    @include px-rem(margin-top, 20px);
+  }
+}
+
+@media screen and (min-width:370px) {
+  .ag-info__flex {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+  .ag-info__data {
+    max-width: 70%;
+  }
+  .ag-info__figure {
+    text-align: center;
+    @include px-rem(margin-left, 20px);
+  }
+}
+
+@media screen and (min-width:640px) {
+  .ag-info__panel {
+    @include px-rem(padding, 20px 30px);
+  }
+
+  .ag-info__footer {
+    @include inline-flex;
+    @include flex-wrap(nowrap);
+    @include px-rem(margin-bottom, 20px);
+  }
+
+  .ag-info__footer_side {
+    @include justify-content(flex-end);
+
+    .ag-info__item-control {
+      @include flex(0 0 auto);
+    }
+  }
+
+  .ag-info__item-control {
+    @include flex(1 0 auto);
+
+    &:nth-child(1) {
+      text-align: right;
+    }
+
+    &:nth-child(2) {
+      @include px-rem(margin-left, 10px);
+      text-align: left;
+    }
+  }
+
+  .ag-info__btn {
+    @include px-rem(margin, 0);
+  }
+}
+
+@include media-query(medium) {
+  .ag-info__title {
+    @include font-rem(19px);
+    line-height: 1.6;
+  }
+  .ag-info__actions {
+    @include px-rem(margin-top, 50px);
+  }
+
+}

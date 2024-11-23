@@ -1,0 +1,25 @@
+{% load i18n %}
+{% load static %}
+
+<div class="ag-c-modal ag-c-modal_mediumSize" id="wai-modal-register">
+  <div class="ag-c-modal__content ag-js-modalContent" tabindex="0">
+    <div class="ag-c-modal__setting">
+      <article class="ag-c-modal__inner">
+        <h3 class="ag-o-heading ag-c-modal__row" tabindex="0">{% trans "¡Registrarte en BibloRed es gratis!" %}</h3>
+        <p class="ag-o-text ag-c-modal__row" tabindex="0">{% trans "La Biblioteca Digital de Bogotá hace parte de Bibliored, La Red Distrital de Bibliotecas Públicas." %}</p>
+        <p class="ag-o-text ag-c-modal__row" tabindex="0">{% trans "Al registrarte podrás:" %} </p>
+        <ul class="ag-o-list" tabindex="0">
+          <li class="ag-o-list__item" tabindex="0">{% trans "Llevar libros, películas y música a casa al acercarte a una biblioteca registrada." %}</li>
+          <li  class="ag-o-list__item" tabindex="0">{% trans "Acceso al contenido de la Biblioteca Digital De Bogotá para guardar y compartir contenidos con otras personas." %}</li>
+        </ul>
+        <footer class="ag-c-modal__footer">
+          <a href="{% url 'login' %}" title="{% trans 'Regístrese en'%} BibloRed" class="ag-c-modal__btn ag-o-btn">{% trans "Registrarse" %}</a>
+        </footer>
+
+      </article>
+      <button class="ag-is-modal__close i-close ag-js-modalClose">
+        <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {% trans 'Colecciones' %} {% endblock %}
+
+{% comment %} Template parent: base.html {% endcomment %}
+{% block description %} {% trans "Las colecciones de la Biblioteca Digital de Bogotá reúnen contenidos producidos y preservados por ciudadanos, bibliotecas, museos, archivos y bases de datos" %} {% endblock %}
+{% block keywords %} {% trans 'Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{{ user.get_absolute_url }}" >{% trans 'Mi perfil' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Mis colecciones' %}
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Colecciones de usuario' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page">
+    <section class="ag-l-inner-wide">
+
+      {% include "biblored/includes/collections/header_page_mycollection.html" %}
+
+      <nav class="ag-menu-bar" id="content" tabindex="0">
+        <span class="ag-menu-bar__item ag-menu-bar__item_active">{% trans "Colecciones de usuario" %}</span>
+        <a class="ag-menu-bar__item" href="{% url 'my_collaborative_collections' %}" title="{% trans 'Ir a colecciones colaborativas' %}">{% trans "Colecciones colaborativas" %}</a>
+        <a class="ag-menu-bar__item" href="{% url 'collectionsgroups' %}" title="{% trans 'Ir a grupos de colecciones' %}">{% trans 'Mis "Grupos de Colecciones"' %}</a>
+      </nav>
+
+      {% if collection_list %}
+        {# filter-band #}
+        <div class="ag-c-filter-band ag-c-filter-band_end" tabindex="0">
+          {% include "biblored/includes/blocks/order_by.html" %}
+        </div>
+      {% endif %}
+
+      <div class="ag-c-card-grid">
+        {% for collection in collection_list %}
+          {% include "biblored/includes/collections/collection_card.html" with counter=forloop.counter0 collection=collection favorites_group=collections_favorites_group color_icon='blue' user=user only %}
+          {% if request.user.is_authenticated %}
+            {% include "biblored/includes/collectionsgroup/search_select_list_page_component.html" with counter=forloop.counter0 formset=collections_formset collection=collection favorites_group=collections_favorites_group csrf_token=csrf_token only %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {# Paginador lista #}
+      {% include "biblored/includes/paginator.html" %}
+
+    </section>
+  {% include "biblored/includes/messages/messages_templates.html" %}
+  </main>
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+    {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+    {% render_bundle 'collection_groups_card_component_form' 'js' %}
+    {% render_bundle 'collections_add_to_groups_api' 'js' %}
+    {% render_bundle 'collections_group_favorites_api' 'js' %}
+{% endblock %}

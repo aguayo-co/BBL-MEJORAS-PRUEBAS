@@ -1,0 +1,28 @@
+{% load i18n %}
+{% load static %}
+{# TODO FRONT: modal confirm deletion #}
+{# Suggestion: make base modal and extends #}
+<div class="ag-c-modal ag-c-modal_smallSize ag-js-modal" data-modal="delete_review" id="wai-modal-review">
+  <div class="ag-c-modal__content ag-js-modalContent" tabindex="0">
+    <div class="ag-c-modal__setting">
+      <article class="ag-c-modal__inner">
+        <h3 class="ag-c-modal__title ag-c-modal__row" tabindex="0">{% trans "¿Eliminar esta reseña?" %}</h3>
+        <div class="ag-c-modal__footer">
+          <div class="ag-c-modal__item-control" tabindex="0">
+            <button class="ag-c-modal__btn ag-o-btn ag-o-btn_outline ag-js-modalClose" type="button">{% trans "Cancelar" %}</button>
+          </div>
+          <div class="ag-c-modal__item-control" tabindex="0">
+            <form method="post">
+              {% csrf_token %}
+              <button class="ag-c-modal__btn ag-o-btn ag-js-deleteReview" value="" name="remove_review">Eliminar</button>
+            </form>
+          </div>
+        </div>
+      </article>
+      <button class="ag-is-modal__close i-close ag-js-modalClose">
+        <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+      </button>
+    </div>
+  </div>
+</div>
+{# ENDTODO FRONT: modal confirm deletion #}

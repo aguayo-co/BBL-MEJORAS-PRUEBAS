@@ -1,0 +1,13 @@
+/*------------------------------------*\
+  Helps Elements for accesibility
+    #Styles clases  de estados
+\*------------------------------------*/
+.ag-c-menu__item,
+.ag-brand,
+.ag-c-menu__sublist-item,
+.ag-c-menu-chip,
+.ag-c-menu-chip__btn {
+  :focus {
+    box-shadow: 0 0 3px 3px $c-on-hover;
+  }
+}

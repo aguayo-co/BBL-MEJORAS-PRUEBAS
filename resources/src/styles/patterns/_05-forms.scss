@@ -1,0 +1,1496 @@
+/*------------------------------------*\
+  Patterns Elements
+    #Styles for Forms
+\*------------------------------------*/
+
+input,
+select,
+textarea {
+  outline: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/**
+ * Class: .ag-form | formulario contenedor max-width: 345px.
+ * @atom Form
+ * @modifiers
+ *  ag-form_broad max-width 492px.
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *     <form class="ag-form">
+ *         <label class="ag-form__label">Etiqueta</label>
+ *         <div class="ag-form__input">
+ *             <input type="text" placeholder="Input">
+ *         </div>
+ *     </form>
+ */
+
+.ag-form {
+  margin: 0 auto;
+  @include px-rem(max-width, 345px);
+}
+
+.ag-form_broad {
+  @include px-rem(max-width, 492px);
+}
+
+.ag-form__centerbox {
+  .ag-form__title,
+  .ag-form__text {
+    text-align: center;
+  }
+}
+
+/**
+ * .ag-form ag-form__actions | contenedor de botones flexbox, justify-content: Mobile (center), Desktop (start).
+ * @atom Contenedor botones.
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *      <div class="ag-form__actions">
+ *        <button class="ag-o-btn" type="submit">Enviar</button>
+ *      </div>
+ */
+
+.ag-form__actions {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+}
+
+/**
+ * Class: .ag-form__body | contenedor cuerpo formulario. Mobile: margin 30px auto 40px, Desktop: margin 40px auto 50px.
+ * @atom Form Body
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *     <form class="ag-form">
+ *       <div class="ag-form__body">
+ *         <label class="ag-form__label">Etiqueta</label>
+ *         <div class="ag-form__input">
+ *             <input type="text" placeholder="Input">
+ *         </div>
+ *       </div>
+ *     </form>
+ */
+
+.ag-form__body {
+  margin: 20px auto 40px;
+}
+
+/**
+ * .ag-form__footer | centra elementos, fondo #F7F7F7
+ * @atom Footer formularios
+ * @modifiers
+ *  ag-form__footer_bottom padding-bottom, 70px
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *      <div class="ag-form__footer">
+ *        <button class="ag-o-btn" type="submit">Enviar</button>
+ *        <button class="ag-o-btn"type="reset">Eliminar</button>
+ *      </div>
+ */
+
+.ag-form__footer {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include px-rem(padding, 32px 16px);
+  background-color: $c-surface;
+  .ag-o-btn {
+    margin: 8px 14px;
+    min-width: 160px;
+  }
+}
+
+.ag-form__footer_bottom {
+  @include px-rem(padding-bottom, 70px);
+}
+
+/**
+ * Class: .ag-form__row | Fila de formulario margin: 5px 0.
+ * @atom Row
+ * @modifiers
+ *  ag-form__row_flex Flexbox, align-items(center), margin-left 40px
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *     <form class="ag-form">
+ *       <div class="ag-form__row">
+ *         <label class="ag-form__label">Etiqueta</label>
+ *         <div class="ag-form__input">
+ *             <input type="text" placeholder="Input">
+ *         </div>
+ *       </div>
+ *     </form>
+ */
+
+.ag-form__row {
+  @include px-rem(margin, 5px 0);
+}
+
+.ag-form__row_flex {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(margin-left, 40px);
+}
+
+/**
+ * Class: .ag-form__field | Fila de formulario margin bottom 20px.
+ * @atom Field
+ * @modifiers
+ *  ag-form__field_bottom Margin bottom 40px
+ *  ag-form__field_top Margin top 20px
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *     <form class="ag-form">
+ *       <div class="ag-form__field">
+ *         <label class="ag-form__label">Etiqueta</label>
+ *         <div class="ag-form__input">
+ *             <input type="text" placeholder="Input">
+ *         </div>
+ *       </div>
+ *     </form>
+ */
+
+.ag-form__field {
+  position: relative;
+  @include px-rem(margin-bottom, 20px);
+}
+
+.ag-form__field_bottom {
+  @include px-rem(margin-bottom, 40px);
+}
+
+.ag-form__field_top {
+  @include px-rem(margin-top, 20px);
+}
+.ag-form__field_full {
+  width: 100%;
+}
+
+/**
+ * Class: .ag-form__flex | contenedor flexbox: space-between, aling center
+ * @atom Flexbox
+ * @modifiers
+ *  ag-form__flex_end justify-content, align-self: flex-end
+ *  ag-form__flex_space justify-content space-between
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *  <form class="ag-form">
+ *     <div class="ag-form__flex">
+ *         <label class="ag-form__label">Etiqueta</label>
+ *         <div class="ag-form__input">
+ *             <input type="text" placeholder="Input">
+ *         </div>
+ *     </div>
+ *  </form>
+ */
+
+.ag-form__flex {
+  @include flexbox;
+  @include align-items(center);
+  .ag-form__label {
+    @include px-rem(margin-top, 10px);
+    @include px-rem(margin-right, 10px);
+  }
+}
+
+.ag-form__flex_space {
+  @include justify-content(space-between);
+}
+
+.ag-form__flex_end {
+  @include justify-content(flex-end);
+  @include align-self(flex-end);
+}
+
+/**
+  * Class: ag-form__gutter
+  * @atom Gutter
+  * @description  espacio entre elementos margin-right 18px.
+  * @section 05. Formularios  >   Contenedores
+  * @markup
+  *   <span class="ag-form__gutter"> Elemento 1 </span>
+  *   <span class="ag-form__gutter"> Elemento 2 </span>
+  *   <span class="ag-form__gutter"> Elemento 3 </span>
+  */
+
+.ag-form__gutter {
+  @include px-rem(margin-right, 18px);
+}
+
+// ancho del margen entre campos y border-left
+$related-with: 30px;
+// padding entre el texto y las líneas ej: - Texto -----
+$related-gutter: 10px;
+/**
+  * Class: .ag-form__inner > .ag-form-related
+  * @atom Related
+  * @description  Contenedor indentado para relacionar elementos y separar funcionalidades
+  * @section 05. Formularios  >   Contenedores
+  * @markup
+  *    <div class="ag-form__inner">
+  *     <div class="ag-form-related">
+  *       <div class="ag-form-related__break ag-form-related__break_top">
+  *         <p class="ag-form-related__label">
+  *           Label related top
+  *         </p>
+  *       </div>
+  *       <p>Elemento 1</p>
+  *       <div class="ag-form-related__break">
+  *         <p class="ag-form-related__label">
+  *           Label related
+  *         </p>
+  *       </div>
+  *       <p>Elemento 2</p>
+  *     </div>
+  *    </div>
+  */
+
+// Advanced search Mobile
+.ag-form__inner {
+  @include px-rem(margin, 0 0 40px 10px);
+}
+
+.ag-form-related {
+  position: relative;
+  @include px-rem(margin, 0 18px 18px 6px);
+  @include px-rem(padding, 0 0 12px $related-with);
+  &::before {
+    content: "";
+    position: absolute;
+    @include px-rem(top, -38px);
+    left: 0;
+    height: 106%;
+    border-left: 1px solid $c-on-border;
+  }
+}
+
+.ag-form-related__break {
+  position: relative;
+  @include px-rem(margin-top, 30px);
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    border-top: 1px solid $c-on-border;
+  }
+  &::before {
+    @include px-rem(width, $related-with - $related-gutter);
+    @include px-rem(left, -$related-with);
+  }
+  &::after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.ag-form-related__break_top {
+  @include px-rem(margin-top, 20px);
+}
+
+.ag-form-related__label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  @include px-rem(padding-right, $related-gutter);
+  color: $c-primary;
+  font-weight: $f-bold;
+  background-color: $c-neutro;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+/**
+  * Class: .ag-form-related__note > .ag-form-related
+  * @atom Related Note
+  * @description  Estilos para textos de apoyo del componente related
+  * @section 05. Formularios  >   Textos formulario
+  * @markup
+  *    <p class="ag-form-related__note">
+  *     Al añadir otro grupo puedes buscar coincidencias que contengan una, cualquiera o todas las condiciones “AND” y “NOT” que agregues en el grupo.
+  *    </p>
+  */
+.ag-form-related__note {
+  @include px-rem(margin-left, 4px);
+  color: $c-on-text-light;
+}
+
+/**
+ * Class: .ag-form-group.ag-form-grid
+ * @atom Grid flexbox
+ * @modifiers
+ *  ag-form-group_middle Modificador align-items center
+ *  ag-form-group__col Elemento columna
+ *  ag-form-group__col_1 Modificador  elemento columna
+ *  ag-form-group__out-of Columna para botón
+ *  ag-form-grid__left Mobile Elemento columna top left
+ * @description  Cuadrícula de elementos. Desktop: Flexbox, Mobile: Grid CSS
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *    <div class="ag-form-group ag-form-grid">
+ *      <div class="ag-form-group__col ag-form-grid__left">
+ *        <label class="ag-form__label ag-form__label_light" for="id_advance-search-0-operator">
+ *        Operador
+ *        </label>
+ *        <div class="ag-form__select i-after-arrow-down">
+ *          <select name="advance-search-0-operator" id="id_advance-search-0-operator">
+ *          <option value="and">Y</option>
+ *          <option value="not">Y SIN</option>
+ *          </select>
+ *        </div>
+ *      </div>
+ *      <div class="ag-form-group__col">
+ *        <label class="ag-form__label ag-form__label_light" for="id_advance-search-0-field">
+ *        Selecciona por
+ *        </label>
+ *        <div class="ag-form__select i-after-arrow-down">
+ *          <select name="advance-search-0-field" id="id_advance-search-0-field">
+ *            <option value="creator">Autor</option>
+ *            <option value="title">Título</option>
+ *            <option value="publisher">Publicador</option>
+ *            <option value="subject">Tema</option>
+ *            <option value="description">Descripción</option>
+ *          </select>
+ *        </div>
+ *      </div>
+ *      <div class="ag-form-group__col ag-form-group__col_1">
+ *        <label class="ag-form__label ag-form__label_light" for="id_advance-search-0-q">
+ *        Actualmente estás buscando
+ *        </label>
+ *        <div class="ag-form__input ag-form__input_unflex">
+ *          <input type="text" name="advance-search-0-q" autocomplete="off" placeholder="¿Qué estás buscando?" minlength="3" id="id_advance-search-0-q">
+ *        </div>
+ *      </div>
+ *      <div class="ag-form-group__out-of">
+ *        <button class="ag-o-btn-delete i-delete" type="button" data-modal="delete_operator">Eliminar</button>
+ *      </div>
+ *    </div>
+ */
+
+.ag-form-group {
+  position: relative;
+}
+
+.ag-form-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+}
+
+.ag-form-grid__left {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.ag-form-group__col {
+  @include px-rem(margin-top, 10px);
+}
+
+.ag-form-group__col_1 {
+  grid-area: auto / 1 / auto / 3;
+  @include px-rem(margin-bottom, 10px);
+}
+
+.ag-form-group__out-of {
+  text-align: right;
+  grid-area: auto / 2 / auto / 3;
+  .ag-o-btn-delete {
+    margin-left: auto;
+  }
+}
+
+/**
+ * Class: .ag-form__header | Encabezado formulario margin bottom 24px.
+ * @modifiers
+ *  .ag-form__header_center Titulo centrado
+ * @atom Legend header
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <form>
+ *       <fieldset>
+ *         <legend class="ag-form__header">
+ *           <h2 class="ag-o-heading">Título de formulario</h2>
+ *         </legend>
+ *       </fieldset>
+ *     </form>
+ *   </div>
+ */
+
+.ag-form__header {
+  @include px-rem(margin-bottom, 20px);
+}
+
+.ag-form__header-center {
+  @include px-rem(padding, 40px 0 24px);
+  text-align: center;
+  margin: 0 auto;
+}
+
+/**
+ * Class: .ag-form__header_center  | Encabezado formulario centrado
+ * @atom Legend header center
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <form>
+ *       <fieldset>
+ *         <legend class="ag-form__header ag-form__header_center">
+ *           <h2 class="ag-o-heading">Título de formulario</h2>
+ *         </legend>
+ *       </fieldset>
+ *     </form>
+ *   </div>
+ */
+
+.ag-form__header_center {
+  text-align: center;
+}
+/**
+ * Class: .ag-form__title | Legend tipo título.
+ * @atom Legend título
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <form>
+ *       <fieldset>
+ *         <legend class="ag-form__title">
+ *           Título de formulario
+ *         </legend>
+ *       </fieldset>
+ *     </form>
+ *   </div>
+ */
+
+.ag-form__title {
+  font-family: $f-primary;
+  font-weight: $f-medium;
+  color: $c-primary;
+  @include font-rem(16px);
+}
+
+/**
+ * Class: .ag-form__text | Texto font-size 14px.
+ * @atom Texto
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <form>
+ *         <p class="ag-form__text">
+ *           Texto formulario
+ *         </p>
+ *     </form>
+ *   </div>
+ */
+
+.ag-form__text {
+  @include font-rem(14px);
+}
+
+/**
+ * Class: .ag-form__label
+ * @atom Label
+ * @modifiers
+ *  .ag-form__label_light
+ *  .ag-form__label_border
+ *  .ag-form__label_line
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *       <label class="ag-form__label">Label<label>
+ *   </div>
+ */
+
+.ag-form__label {
+  color: $c-primary;
+  display: block;
+  font-weight: $f-bold;
+  @include px-rem(margin-bottom, 10px);
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.ag-form__cursive {
+  font-family: $f-primary;
+  font-weight: $f-thin;
+  font-style: italic;
+}
+
+/**
+ * Class: .ag-form__label_light
+ * @atom Label light
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *       <label class="ag-form__label ag-form__label_light">Label light<label>
+ *   </div>
+ */
+
+.ag-form__label_light {
+  font-weight: normal;
+}
+
+/**
+ * Class:  .ag-form__label_border
+ * @atom Label border
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *       <label class="ag-form__label  ag-form__label_border">Label border<label>
+ *   </div>
+ */
+
+.ag-form__label_border {
+  @include px-rem(padding-bottom, 10px);
+  @include px-rem(margin-bottom, 20px);
+  border-bottom: 1px solid $c-on-border;
+}
+
+/**
+ * Class:  .ag-form__label_line
+ * @atom Label line
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *       <label class="ag-form__label  ag-form__label_line">Label line<label>
+ *   </div>
+ */
+
+.ag-form__label_line {
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(margin-bottom, 20px);
+  &:after {
+    content: "";
+    position: relative;
+    top: 2px;
+    @include flex(1);
+    @include px-rem(margin-left, 10px);
+    border-bottom: 1px solid $c-on-border;
+  }
+}
+
+/**
+ * Class: .ag-form__note | Texto de soporte: comentario, explicación o advertencia.
+ * @atom Nota
+ * @section 05. Formularios  >   Textos formulario
+ * @markup
+ *   <div class="SG-component__preview">
+ *    <small class="ag-form__note">La foto que selecciones aparecerá como imagen principal en tu colección.</small>
+ *   </div>
+ */
+
+.ag-form__note {
+  display: block;
+  font-size: 100%;
+  color: $c-on-text;
+  font-weight: $f-regular;
+}
+
+/**
+ * Class: .ag-form__input | Clase que da los estilos a los tag html que contenga.
+ * @atom Input y Textarea
+ * @modifiers
+ *    .ag-form__input_small max-width 120px
+ * @section 05. Formularios  > Controles
+ * @markup
+ *   <form class="ag-form">
+ *    <div class="ag-form__field">
+ *      <div class="ag-form__input">
+ *        <input type="text" placeholder="Input">
+ *      </div>
+ *    </div>
+ *    <div class="ag-form__field">
+ *      <div class="ag-form__input">
+ *         <textarea name="biography" cols="40" rows="10" maxlength="800" required="" id="id_biography"></textarea>
+ *      </div>
+ *    </div>
+ *  </form>
+ */
+
+.ag-form__input {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  position: relative;
+  transition: all 500ms ease-in-out;
+
+  input {
+    @include flex(1 1 100%);
+    border: 1px solid $c-on-border;
+    @include px-rem(border-radius, 4px);
+    display: block;
+    line-height: 1.6;
+    @include px-rem(padding, 7px 28px 7px 15px);
+    width: 100%;
+    font-family: $f-default;
+    color: $c-on-text;
+
+    &:focus,
+    &:active {
+      border: 1px solid $c-primary;
+    }
+  }
+
+  input[type="number"] {
+    @include px-rem(padding, 7px 7px 7px 15px);
+  }
+
+  textarea {
+    display: block;
+    @include flex(1 1 100%);
+    width: 100%;
+    @include px-rem(padding, 10px 15px);
+    resize: none;
+    line-height: 1.6;
+    font-family: $f-default;
+    border: 1px solid $c-on-border;
+    @include px-rem(border-radius, 4px);
+    color: $c-on-text;
+
+    &:focus {
+      border: 1px solid $c-primary;
+    }
+  }
+}
+
+.ag-form__input_small {
+  max-width: 120px;
+  input {
+    flex: auto;
+  }
+}
+
+.ag-form__input_unflex {
+  input {
+    flex: auto;
+  }
+}
+
+/**
+ * Class: ag-form__select i-after-arrow-down |  Elemento de entrada de opciones.
+ * @atom Select
+ * @section 05. Formularios  > Controles
+ * @markup
+ *  <form class="ag-form">
+ *    <div class="ag-form__field">
+ *      <div class="ag-form__select i-after-arrow-down">
+ *        <select>
+ *          <option>Opción 1</option>
+ *          <option>Opción 2</option>
+ *          <option>Opción 3</option>
+ *        </select>
+ *      </div>
+ *    </div>
+ *  </form>
+ */
+
+.ag-form__select {
+  position: relative;
+
+  select {
+    background-color: transparent;
+    border: 1px solid $c-on-border;
+    color: $c-on-text;
+    cursor: pointer;
+    display: block;
+    line-height: 1.6;
+    @include px-rem(padding, 7px 28px 7px 15px);
+    width: 100%;
+
+    &:focus {
+      border: 1px solid $c-primary;
+    }
+  }
+
+  &::after {
+    color: $c-secondary;
+    @include font-rem(6px);
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    right: 0;
+  }
+}
+
+/**
+ * Class: ag-form__social | Input con icono.
+ * @atom Input icono
+ * @modifiers
+ *  ag-form__social-label.i-twitter Icono Twitter
+ *  ag-form__social-label.i-instagram Icono Instagram
+ *  ag-form__social-label.i-youtube Icono Youtube
+ * @section 05. Formularios  > Controles
+ * @markup
+ *     <div class="ag-form__social">
+ *       <div class="ag-form__row ag-form__row_flex">
+ *         <label class="ag-form__social-label i-facebook" for="id_facebook">
+ *           <span class="ag-is-visuallyhidden">Facebook</span>
+ *         </label>
+ *         <div class="ag-form__input ag-js-form__field ">
+ *           <input type="url" name="facebook" placeholder="Ingresa la URL de tu Facebook" id="id_facebook">
+ *
+ *           <small class="ag-form__error ag-js-msgError" data-for="facebook" hidden=""></small>
+ *         </div>
+ *       </div>
+ *     </div>
+ */
+
+.ag-form__social {
+  .ag-form__input {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+.ag-form__social-label {
+  position: absolute;
+  @include px-rem(top, 7px);
+  @include px-rem(left, -40px);
+  @include px-rem(margin-right, 14px);
+  &:before {
+    @include font-rem(20px);
+    color: $c-primary;
+  }
+}
+
+/**
+ * Class: ag-form__file |  Input file personalizado
+ * @atom Input file
+ * @section 05. Formularios  > Controles
+ * @markup
+ *    <form class="ag-form">
+ *        <fieldset class="ag-form__field ag-js-form__field ag-js-formfieldUploadImg">
+ *          <legend class="ag-form__label">Imagen de perfil</legend>
+ *          <div class="ag-form__file ag-js-fileParent">
+ *            <div class="ag-form__file-hidden">
+ *               <input type="file" name="avatar" accept="image/*" id="id_avatar">
+ *            </div>
+ *            <button type="button" class="ag-o-btn ag-info__btn ag-js-fileBtn" tabindex="-1">
+ *                Subir foto
+ *            </button>
+ *            <label class="ag-form__file-label ag-js-fileInputInfo" for="id_avatar">
+ *              <span class="ag-is-visuallyhidden">
+ *                  Subir foto
+ *              </span>
+ *              <span class="ag-form__file-txt">Formato: .jpg, .jpeg o .png, tamaño máximo: 1MB</span>
+ *            </label>
+ *          </div>
+ *          <div class="ag-form__file-upload ag-js-fileUpload">
+ *            <div class="ag-chip__avatar ag-form__crop">
+ *              <img class="ag-chip__img ag-js-imageUploaded">
+ *            </div>
+ *            <span class="ag-form__label ag-form__file-name ag-js-imageUploadedName"></span>
+ *          </div>
+ *        </fieldset>
+ *    </form>
+ */
+
+.ag-form__file {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  input {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    cursor: pointer;
+  }
+  .ag-info__btn {
+    @include flex(0 0 auto);
+    cursor: pointer;
+    @include px-rem(margin, 0 14px 0 0);
+  }
+  &:hover {
+    .ag-info__btn {
+      background-color: $c-primary-hover;
+      border: 2px solid $c-primary-hover;
+    }
+  }
+  &:focus,
+  &:active {
+    .ag-info__btn {
+      color: $c-neutro;
+    }
+  }
+}
+
+.ag-form__file-name {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+.ag-form__file-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.ag-form__file-upload {
+  @include flexbox;
+  @include align-items(center);
+  @include flex-wrap(wrap);
+  @include px-rem(margin-top, 14px);
+  display: none;
+}
+.ag-form__file-upload_centered {
+  @include justify-content(center);
+  text-align: center;
+}
+
+.ag-form__field_flexbox {
+  @include flexbox;
+  @include justify-content(space-between);
+  flex-wrap: wrap;
+
+  .ag-form__checkbox {
+    @include flex(1 2 100%);
+  }
+
+  .ag-form__info {
+    @include flex(1 1 100%);
+    @include px-rem(margin-top, 10px);
+  }
+}
+
+.ag-form__crop {
+  &.ag-chip__avatar {
+    @include px-rem(min-width, 130px);
+    @include px-rem(max-width, 130px);
+    @include px-rem(height, 130px);
+    @include px-rem(margin-right, 20px);
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
+.ag-form__crop_large {
+  @include flex(1 1 100%);
+  @include px-rem(margin-top, 40px);
+  text-align: center;
+
+  .ag-form__crop-img {
+    @include px-rem(max-height, 260px);
+    max-width: 100%;
+  }
+}
+
+/**
+ * .ag-form__checkbox | Contenedor de elemento de entrada tipo checkbox con etiqueta.
+ * @atom Input checkbox
+ * @section 05. Formularios  > Controles
+ * @markup
+ *      <div class="ag-form__checkbox">
+ *        <input type="checkbox" name="remember" id="remember" checked>
+ *        <label class="i-check" for="1">Recordarme</label>
+ *      </div>
+ */
+
+.ag-form__checkbox {
+  position: relative;
+  @include flexbox;
+  @include flex-wrap(wrap);
+
+  label {
+    @include flexbox;
+    @include align-items(center);
+    @include flex(1 1 100%);
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+
+    &:before {
+      @include align-items(center);
+      background-color: $c-neutro;
+      border: 1px solid $c-primary-hover;
+      border-radius: 4px;
+      color: $c-neutro;
+      content: "";
+      @include flexbox;
+      @include justify-content(center);
+      width: 17px;
+      height: 17px;
+      min-width: 17px;
+      max-width: 17px;
+      min-height: 17px;
+      margin-right: 10px;
+      @include font-rem(9px);
+      text-align: center;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + .i-check {
+      &:before {
+        content: $i-check;
+        background-color: $c-primary-hover;
+      }
+    }
+  }
+  .ag-o-link {
+    position: relative;
+    z-index: 2;
+    @include px-rem(padding, 0 5px);
+  }
+}
+
+/**
+ * .ag-form__checkbox_button Checkbox tipo botón, cambia el texto según el estado.
+ * @atom Input checkbox tipo botón
+ * @section 05. Formularios  > Controles
+ * @markup
+ *      <div class="ag-form__checkbox_button">
+ *        <input type="checkbox" name="remember" id="delete" checked>
+ *        <label class="ag-o-btn ag-o-btn_outline" for="delete">
+ *          <span class="ag-checked">Eliminar</span>
+ *          <span class="ag-unchecked">Eliminado</span>
+ *        </label>
+ *      </div>
+ */
+
+.ag-form__checkbox_button {
+  input[type="checkbox"] {
+    display: none;
+
+    &:checked {
+      + label {
+        &.ag-o-btn_outline {
+          color: $c-primary;
+        }
+
+        .ag-checked {
+          display: block;
+        }
+
+        .ag-unchecked {
+          display: none;
+        }
+      }
+    }
+  }
+
+  label {
+    &.ag-o-btn_outline {
+      color: $c-on-border-secondary;
+      border: 2px solid;
+    }
+  }
+
+  .ag-checked {
+    display: none;
+  }
+
+  .ag-unchecked {
+    display: block;
+  }
+}
+
+.ag-is-error {
+  .ag-form__checkbox {
+    input[type="checkbox"] {
+      &:checked + label {
+        &:before {
+          border-color: $c-primary-hover;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * .ag-form__radio, contenedor de elemento de entrada tipo radio con etiqueta.
+ * @atom Input radio
+ * @section 05. Formularios  > Controles
+ * @markup
+ *       <div class="ag-form__radio">
+ *         <input type="radio" name="remember" id="remember" checked>
+ *         <label class="i-check" for="1">Recordarme</label>
+ *       </div>
+ */
+
+.ag-form__radio {
+  position: relative;
+
+  label {
+    @include flexbox;
+    @include align-items(center);
+
+    &:before {
+      @include align-items(center);
+      @include flex(0 0 17px);
+      background-color: $c-neutro;
+      border: 1px solid $c-primary-hover;
+      border-radius: 50%;
+      color: $c-neutro;
+      content: "";
+      @include flexbox;
+      @include font-rem(9px);
+      min-height: 17px;
+      @include justify-content(center);
+      margin-right: 10px;
+      pointer-events: none;
+      text-align: center;
+      transition: all 0.2s ease;
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  input[type="radio"] {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + .i-check {
+      &:before {
+        content: $i-check;
+        background-color: $c-primary-hover;
+      }
+    }
+  }
+}
+
+/**
+ * .ag-form__fieldset , contenedor de elementos checkbox.
+ * @atom fieldset checkbox.
+ * @section 05. Formularios  >   Contenedores
+ * @markup
+ *    <fieldset class="ag-form__fieldset">
+ *      <div class="ag-form__legend">
+ *        <legend class="ag-form__subtitle">Mis colecciones</legend>
+ *        <a class="ag-form__link i-plus" href="#">Crear nueva</a>
+ *      </div>
+ *      <div class="ag-form__checkbox">
+ *        <input type="checkbox">
+ *        <label class="i-check">Bicicletas para todos</label>
+ *      </div>
+ *    </fieldset>
+ */
+
+.ag-form__fieldset {
+  border-bottom: 1px solid $c-on-border;
+  @include px-rem(margin, 22px 0);
+
+  .ag-form__checkbox {
+    @include px-rem(margin, 12px 0);
+  }
+}
+
+.ag-form__legend {
+  @include align-items(center);
+  @include flexbox;
+  @include justify-content(space-between);
+  @include px-rem(margin-bottom, 10px);
+}
+
+.ag-form__subtitle {
+  @include font-rem(19px);
+  font-family: $f-primary;
+  font-weight: $f-medium;
+  color: $c-primary;
+  line-height: 1.2;
+}
+
+/**
+ * .ag-form__link | Enlace tipo texto con icono
+ * @atom fieldset checkbox.
+ * @section 05. Formularios  > Enlaces
+ * @markup
+ *    <a class="ag-form__link i-plus" title="Ir a crear una nueva colección" href="">Crear nueva</a>
+ */
+
+.ag-form__link {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  @include flex(0 0 auto);
+  padding: 0;
+  color: $c-on-secondary;
+  &::before {
+    @include px-rem(left, -34px);
+    @include px-rem(margin-right, 7px);
+  }
+  &:hover {
+    color: $c-primary-hover;
+  }
+}
+
+/**
+ * Class: ag-is-error i-close |  Error de formulario
+ * @atom Error de campo
+ * @section 05. Formularios  > Errores
+ * @markup
+ *  <form class="ag-form">
+ *    <div class="ag-form__field">
+ *      <div class="ag-form__input ag-is-error i-close">
+ *        <input type="text" placeholder="Elemento de formulario">
+ *      </div>
+ *      <small class="ag-form__error">Error de formulario</small>
+ *    </div>
+ *
+ *    <div class="ag-form__field ag-is-error">
+ *      <div class="ag-form__select i-after-arrow-down">
+ *        <select>
+ *          <option>Opción 1</option>
+ *          <option>Opción 2</option>
+ *          <option>Opción 3</option>
+ *        </select>
+ *      </div>
+ *      <small class="ag-form__error">Error de formulario</small>
+ *     </div>
+ *  </form>
+ */
+
+.ag-is-error {
+  input,
+  textarea {
+    border: 1px solid $c-is-error;
+
+    &:focus {
+      border: 1px solid $c-is-error;
+    }
+  }
+
+  .ag-form__select {
+    select {
+      border: 1px solid $c-is-error;
+
+      &:focus {
+        border: 1px solid $c-is-error;
+      }
+    }
+  }
+
+  &::before {
+    position: absolute;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(width, 14px);
+    @include px-rem(height, 14px);
+    @include px-rem(top, 10px);
+    @include px-rem(right, 10px);
+    color: $c-neutro;
+    @include px-rem(font-size, 6px);
+    border-radius: 50%;
+    background-color: $c-is-error;
+  }
+
+  .ag-form__helper {
+    width: auto;
+    color: $c-is-error;
+  }
+
+  .ag-form__checkbox {
+    .ag-form__error {
+      @include px-rem(margin-left, 28px);
+    }
+
+    label {
+      &:before {
+        border-color: $c-is-error;
+      }
+    }
+  }
+}
+
+.ag-form__error {
+  @include flex(1 1 100%);
+  @include order(1);
+  line-height: 1.8;
+  color: $c-is-error;
+  @include font-rem(12px);
+
+  &:not([hidden]) {
+    display: block;
+  }
+
+  &::before {
+    content: "*";
+    display: inline;
+    @include px-rem(margin-right, 2px);
+  }
+}
+
+//lsita de imprime los errores de un campo de formulario enviados desde backend
+.errorlist {
+  @include flex(1 1 100%);
+  @include order(1);
+  display: block;
+  width: 100%;
+  list-style: none;
+
+  li {
+    color: $c-is-error;
+  }
+
+  & ~ input,
+  textarea {
+    border: 1px solid $c-is-error;
+  }
+}
+
+/**
+ * Class: .ag-form__helper | Texto de soporte
+ * @atom Helper
+ * @section 05. Formularios  > Errores
+ * @markup
+ *    <div class="ag-form__hint">
+ *      <span class="ag-form__helper ag-js-inputCharsCounter" data-for=""></span>
+ *    </div>
+ */
+
+.ag-form__helper {
+  position: relative;
+  right: 0;
+  width: 100%;
+  display: block;
+  text-align: right;
+}
+
+.ag-form__hint {
+  @include flexbox;
+  @include justify-content(space-between);
+  width: 100%;
+
+  .ag-form__error {
+    order: inherit;
+  }
+}
+
+// Input Reset search
+.ag-form__input_reset,
+.ag-c-search__input .ag-form__input_reset {
+  position: relative;
+  width: 100%;
+  input {
+    @include px-rem(padding, 10px 15px 10px 34px);
+  }
+}
+
+.ag-form__btn-reset {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  left: 8px;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 20px);
+  @include px-rem(height, 20px);
+  padding: 0;
+  text-align: center;
+  line-height: 20px;
+  color: $c-neutro;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: $c-on-border;
+  transition: all 500ms ease-in-out;
+
+  &:before {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    @include px-rem(height, 19px);
+    @include px-rem(line-height, 20px);
+    color: $c-neutro;
+    @include font-rem(8px);
+  }
+}
+//Hack para safari 10+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .ag-form__btn-reset {
+      &:before {
+        transform: none;
+      }
+    }
+  }
+}
+
+// Reset apagado
+/*----------------
+  Revove class .ag-is-reset-off of .ag-js-inputReset
+  Btn: .ag-js-inputResetBtn
+  .ag-is-reset-off: esta clase al estar aplicada restaura el padding-left y oculta el btn
+----------------*/
+.ag-is-reset-off,
+.ag-c-search__input .ag-is-reset-off {
+  input {
+    @include px-rem(padding-left, 15px);
+  }
+  .ag-form__btn-reset {
+    display: none;
+  }
+}
+
+.ag-form__box-flex {
+  @include px-rem(margin-top, 14px);
+
+  .ag-form__field {
+    margin-bottom: 0;
+  }
+
+  .ag-o-btn {
+    width: 100%;
+    @include px-rem(margin-top, 14px);
+  }
+}
+
+// Hack IE 11
+@media screen and (min-width: 0\0) {
+  .ag-form__select {
+    &::after {
+      content: "";
+    }
+  }
+
+  .ag-form__checkbox {
+    width: 100%;
+  }
+
+  .ag-form__file-hidden {
+    input {
+      font-size: 0;
+      @include px-rem(padding, 20px);
+    }
+  }
+
+  .ag-form__file-name {
+    word-break: break-all;
+  }
+}
+
+
+//  small-m   : $bp-small-m: 480px
+@include media-query(small-m) {
+  .ag-form__field_flexbox {
+    flex-wrap: nowrap;
+
+    .ag-form__info {
+      text-align: right;
+      margin-top: 0;
+    }
+  }
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-form__body {
+    margin: 30px auto 40px;
+  }
+
+  .ag-form__actions {
+    @include justify-content(flex-start);
+    @include px-rem(margin-bottom, 40px);
+  }
+
+  .ag-form__title {
+    @include font-rem(19px);
+  }
+
+  .ag-form__text {
+    font-size: initial;
+  }
+
+  //advanced search Medium - desktop
+
+  .ag-form-group {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include px-rem(margin, 20px 0);
+  }
+
+  .ag-form__input_full {
+    @include flex(1);
+    @include px-rem(margin-right, 20px);
+  }
+  .ag-form-group_middle {
+    @include align-items(center);
+  }
+
+  .ag-form-group__col {
+    margin-top: 0;
+    @include px-rem(margin-right, 18px);
+  }
+  .ag-form-group__col_1 {
+    @include flex(1);
+    margin-top: 0;
+  }
+  .ag-form-group__out-of {
+    @include align-self(center);
+    @include px-rem(padding-top, 37px);
+  }
+
+  .ag-form-related {
+    &::before {
+      @include px-rem(top, -20px);
+    }
+  }
+}
+
+@include media-query(wide) {
+  .ag-form__box-flex {
+    @include flexbox;
+    @include align-items(flex-end);
+
+    .ag-form__field {
+      @include flex(0 1 74%);
+    }
+
+    .ag-o-btn {
+      @include px-rem(max-width, 126px);
+      margin-top: 0;
+      @include px-rem(margin-left, 20px);
+    }
+  }
+}

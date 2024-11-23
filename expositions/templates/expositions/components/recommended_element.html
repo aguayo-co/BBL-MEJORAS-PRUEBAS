@@ -1,0 +1,37 @@
+{% load wagtailcore_tags i18n static %}
+{% load render_bundle from webpack_loader %}
+
+{# Bloque elemento recomendado #}
+  {% if promoted_resources %}
+
+        <div class="ag-l-inner-huge" id="{{ id_section }}">
+          <div class="ag-c-slider ag-c-slider_box">
+            <div class="swiper-container ag-js-slider-home">
+
+              <div class="swiper-wrapper">
+              {% for promoted_resource in promoted_resources %}
+                <div class="swiper-slide">
+                  <div class="ag-c-slider__item">
+                    {% if promoted_resource.image %}
+                      <figure class="ag-c-slider__mask">
+                        <img class="ag-c-slider__img" src="{{ promoted_resource.image.url }}" alt="{% trans 'Imagen destacada de' %} {{ promoted_resource.resource.processed_data.title }}">
+                      </figure>
+                    {% endif %}
+
+                    {% include "biblored/includes/resource/promoted_resource_item.html" with request=request processed_data=promoted_resource.resource.processed_data %}
+
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
+              <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left ag-has-slider_box_prev" type="button">
+                  <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+              </button>
+              <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right ag-has-slider_box_next" type="button">
+                  <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+              </button>
+              <div class="ag-c-slider__dots ag-has-slider_box__dots"></div>
+            </div>
+          </div>
+        </div>
+  {% endif %}

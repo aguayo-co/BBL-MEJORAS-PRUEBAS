@@ -1,0 +1,200 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+<body style="margin: 0;padding: 0;font-family: Arial, sans-serif;color: #575757;">
+  <!-- Contenido principal -->
+  <table class="ag-table__main ag-table" style="border: none;border-collapse: collapse;border-spacing: 0;width: 100%;">
+    <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+      <td class="ag-column" align="center" style="padding: 0;margin: 0;">
+        <!-- Tabla con ancho de 600px -->
+        <table class="ag-table ag-table_wrapper" bgcolor="#ffffff" 
+                style="border: none;border-collapse: collapse;border-spacing: 0;width: 600px;border: 1px solid #b5b5b5;">
+          <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+            <td class="ag-column" style="padding: 0;margin: 0;">
+              <!--Body -->
+              <table class="ag-table ag-content" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" 
+                      style="border: none;border-collapse: collapse;border-spacing: 0;width: 100%;">
+                <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+                  <td class="ag-column" style="padding: 0;margin: 0;">
+                    <table class="ag-table" width="100%" style="border: none;border-collapse: collapse;border-spacing: 0;">
+                      <tr>
+                        <td width="44" height="44">&nbsp;</td>
+                        <td width="79%">&nbsp;</td>
+                        <td width="44">&nbsp;</td>
+                      </tr>
+                      <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+                        <td>&nbsp;</td>
+                        <td class="ag-column" style="padding: 0;margin: 0;">
+                          <table width="100%" class="ag-table" style="border: none;border-collapse: collapse;border-spacing: 0;">
+                            <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+                              <td class="ag-column ag-column_center" style="height: 70px;padding: 0;margin: 0;text-align: center;">
+                                <span class="ag-headline" style="color: #16223f;font-size: 28px;">Te han compartido</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="ag-column ag-column_center" style="padding: 0;margin: 0;text-align: center;">
+                                <span class="ag-subheadline" style="color: #16223f;font-size: 16px;font-weight: 500;">
+                                  {{ resource.processed_data.title }}</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="26">&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <!-- Imagen del recurso -->
+                              <td style="text-align: center;">
+                                {% if resource.processed_data.image %}
+                                  <img style="width:100%; height: auto;"
+                                        alt="Imagen de referencia de {{ resource.processed_data.title }}" 
+                                        src="{{ resource.processed_data.image }}"
+                                  >
+                                {% endif %}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td>
+                            </tr>
+                            <!--Imagen del Avatar-->
+                            <tr class="ag-column_center" style="text-align: center;">
+                              {% if request.user.profile.avatar %}
+                                <td class="ag-column_center ag-chip__avatar_box" 
+                                    style="text-align: center;margin: 0 auto;height: 115px;width: 115px;max-width: 115px;min-width: 115px;font-size: 24px;padding: 0;display: inline-block;overflow: hidden;color: #fff;text-transform: uppercase;font-weight: 700;border-radius: 87%;background-color: #16223F;transition: all .2s;">
+                                  <img class="ag-chip__img" 
+                                      style="width: 100%;vertical-align: bottom;"
+                                      src="{% build_absolute_uri request.user.profile.avatar.url %}" 
+                                      alt="Avatar de usuario {{ request.user.full_name }}" 
+                                  >
+                                </td>
+                              {% else %}
+                                <td style="display: inline-block;height: 115px;width: 115px;max-width: 115px;min-width: 115px;font-size: 52px;padding: 0;overflow: hidden;color: #fff;text-transform: uppercase;font-weight: 700;border-radius: 87%;background-color: #16223F;transition: all .2s;">
+                                  <p style="line-height: 1;margin-top:31px; margin-bottom:31px;">
+                                    {{ request.user.initials }}
+                                  </p>
+                                </td>
+                              {% endif %}
+                            </tr>
+                            <tr>
+                              <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td class="ag-box__text"
+                                  style="margin-top: 1.375rem;margin-left: -133px;line-height: 1.6;overflow-wrap: break-word;word-wrap: break-word;font-size: 14px;" 
+                              >
+                                <p style="margin-bottom: 30px;margin-top: 30px;">
+                                  <a class="ag-link" 
+                                      style="color: #442686;text-decoration: underline;cursor: pointer;transition: all .2s;"
+                                      href="{% build_absolute_uri request.user.profile.get_absolute_url %}" 
+                                  >
+                                    {{ request.user.full_name }} 
+                                  </a>
+                                    ha estado usando la Biblioteca Digital de Bogotá para descubrir y guardar contenidos y te ha compartido 
+                                  <a class="ag-link"
+                                      style="color: #442686;text-decoration: underline;cursor: pointer;transition: all .2s;" 
+                                      href="{% build_absolute_uri resource.processed_data.get_absolute_url %}">{{ resource.processed_data.title }}
+                                  </a>.
+                                </p>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="ag-column_center" style="text-align: center;">
+                                <a class="ag-btn" 
+                                    style="display: inline-block;min-width: 214px;padding: 14px 18px;margin-top: 45px;margin-bottom: 40px;vertical-align: middle;cursor: pointer;text-align: center;text-decoration: none;line-height: 1;color: #fff;font-size: 16px;font-weight: 500;border-radius: 8px;border: 2px solid #16223f;background-color: #16223f;transition: all 0.3s;"
+                                    href="{% build_absolute_uri resource.processed_data.get_absolute_url %}"
+                                >
+                                  Ir al contenido
+                                </a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="ag-box__border" height="38" style="border-bottom: 1px solid #d8d8d8;">
+                                &nbsp;
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="26">&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td class="ag-box__text" 
+                                  style="margin-top: 22px;margin-top: 1.375rem;margin-left: -133px;line-height: 1.6;overflow-wrap: break-word;word-wrap: break-word;font-size: 14px;">
+                                <h2 class="ag-subheadline" style="color: #16223f;font-size: 18px;font-weight: 500;">
+                                  ¿Eres nuevo en la Biblioteca Digital de Bogotá?
+                                </h2>
+                                <p tabindex="0">
+                                  La Biblioteca Digital de Bogotá es un proyecto público que consolida el contenido físico y digital de más de 23 bibliotecas de la ciudad y otras instituciones con el propósito de conectar y compartir conocimiento generando valor cultural para la ciudadanía, Colombia y el mundo.
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+            <td class="ag-column" style="padding: 0;margin: 0;">
+              <table class="ag-table ag-footer" bgcolor="#469fc5" style="border: none;border-collapse: collapse;border-spacing: 0;width: 100%;background-color: #16223f;">
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr class="ag-column" align="center" style="padding: 0;margin: 0;">
+                  <!-- Logo Biblioteca  -->
+                  <td>&nbsp;</td>
+                  <td width="19%">
+                    <img src="https://bbl-bdb.s3.amazonaws.com/constance/uploads/BDB.png" alt="Biblioteca digital" width="91" class="ag-img ag-footer__img" style="display: block;height: auto;width: 103px;margin-right: 5px;">
+                  </td>
+                  <td class="ag-column ag-footer__list" width="65%" style="padding: 0;margin: 0;padding-bottom: 6px;font-size: 12px;color: white;">
+                    <table class="ag-table ag-footer__list_border" style="border: none;border-collapse: collapse;border-spacing: 0;border-left: 1px solid #fff;padding-left: 5px;">
+                      <tr class="ag-row" style="padding: 0;margin: 0;width: 100%;">
+                        <td class="ag-column ag-footer__list_padding" style="padding: 0;margin: 0;padding-left: 20px;">
+                          <a href="http://www.culturarecreacionydeporte.gov.co/es/politica-de-privacidad" 
+                              style="color: #fff;text-decoration: none;">&bull; Política de privacidad</a>
+                          <a href="https://coleccionesdigitales.biblored.gov.co/wiki/index.php/Pol%C3%ADticas_de_la_Biblioteca_Digital_de_Bogot%C3%A1" 
+                              style="color: #fff;text-decoration: none;"> &bull; Términos y condiciones</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="ag-footer__list_padding" style="padding-left: 20px;">
+                          &bull; Dejar de recibir mensajes de este correo
+                          mailusuario@gmail.com
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
+
+
+

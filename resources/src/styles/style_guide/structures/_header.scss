@@ -1,0 +1,40 @@
+// header.scss -- Header bar styles
+//
+// Edit by Aguayo 2019
+
+.SG-header {
+  @include flexbox;
+  @include flex-wrap(wrap);
+
+  .SG-nav {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .SG-nav-icons {
+    float: none;
+    margin: 0 0 0 auto;
+  }
+}
+
+
+//- Max-width: 768px
+@include media-query(medium-max) {
+  .SG-header {
+
+    .SG-logo {
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    .SG-logo__icon {
+      padding: 0 20px;
+    }
+
+    .SG-logo__name {
+      margin-left: 0;
+      display: inline-block;
+    }
+  }
+}

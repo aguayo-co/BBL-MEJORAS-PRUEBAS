@@ -1,0 +1,98 @@
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+
+{% spaceless %}
+
+  <section
+    class="
+      ag-u-space-both-32
+      {% if self.type == "text" %}ag-u-space-both{% else %} ag-l-band-surface{% endif %}
+    "
+  >
+
+    <div
+      class="
+        ag-l-inner-bothside
+        ag-o-header-wink
+        ag-u-sides-padding-min-1280
+      "
+    >
+
+      <div class="ag-l-inner-inside ag-o-header-wink">
+        <header class="ag-o-header-wink__inner">
+          <h2 class="ag-o-header-wink__title ag-o-subheadwink">
+            {{ self.title }}
+          </h2>
+        </header>
+      </div>
+
+    </div>
+
+    <div class="ag-l-inner-bothside ag-u-space-bottom-24">
+
+      <ul
+        class="
+          ag-c-avatars-list
+          {% if self.type == "text" %}ag-c-avatars-list_group-list{% else %} ag-c-avatars-list_gallery{% endif %}
+          ag-u-sides-padding-min-1280
+        "
+      >
+
+        {% for avatar_item in self.avatar_list %}
+
+          <li class="ag-c-avatars-list__item">
+
+            {% if avatar_item.value.user.profile.pk or avatar_item.value.url %}
+            
+              <a
+                class="
+                  {% if self.type == "text" %}ag-c-avatars-list__group-text
+                  {% else %} ag-c-avatars-list__avatar{% endif %}
+                  ag-c-avatars-list__anchor
+                "
+                {% if avatar_item.value.user.profile.pk %}
+                  href="{% url 'user-profile' avatar_item.value.user.profile.pk %}"
+                {% elif avatar_item.value.url %}
+                  href="{{ avatar_item.value.url }}" target="_blank"
+                {% endif %}
+                title="{% trans 'Ver el perfil de ' %} {{ avatar_item.value.user.full_name }}"
+              >
+
+                {% include "expositions/avatar_content.html" %}
+              
+              </a>
+            
+            {% else %}
+
+              <div
+                class="
+                  {% if self.type == "text" %}ag-c-avatars-list__group-text
+                  {% else %} ag-c-avatars-list__avatar{% endif %}
+                "
+              >
+
+                {% include "expositions/avatar_content.html" %}
+            
+              </div>
+
+            {% endif %}
+
+          </li>
+        
+        {% endfor %}
+
+      </ul>
+
+    </div>
+
+    {% if self.info %}
+      <div class="ag-l-inner-bothside">
+        <div class="ag-s01-rich-text ag-u-sides-padding-min-1280">
+          <div class="ag-speaker">{{ self.info }}</div>
+        </div>
+      </div>
+    {% endif %}
+
+  </section>
+
+{% endspaceless %}

@@ -1,0 +1,148 @@
+/*------------------------------------*
+  Transversal Elements
+  #Styles for layout theme,
+  Specifically : Aside layout
+/*------------------------------------*/
+.ag-l-aside {
+  .ag-o-btn-close {
+    position: absolute;
+    @include px-rem(top, 20px);
+    @include px-rem(right, 20px);
+    z-index: 4;
+  }
+}
+
+// State Class
+.ag-is-aside_depth {
+  z-index: -1;
+}
+
+//  Max wide: $bp-wide   : Max width 1023px
+@include media-query(wide-max) {
+  .ag-l-aside {
+    position: absolute;
+    @include px-rem(top, -20px);
+    left: -108%;
+    z-index: 9;
+    width: 100%;
+    @include px-rem(max-width, 340px);
+    background-color: $c-neutro;
+    transition: all 0.3s ease-in-out;
+
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -100%;
+      z-index: 2;
+      pointer-events: none;
+      background-color: rgba($c-neutro, 0);
+      transition: background-color 0.2s ease-in-out;
+    }
+  }
+
+  .ag-is-aside_open {
+    left: -4%;
+    border-bottom: 1px solid #797979;
+
+    &:before {
+      left: 0;
+      right: 0;
+      pointer-events: auto;
+      background-color: rgba($c-neutro, 0.8);
+    }
+
+  }
+
+  .ag-l-aside_band {
+    @include px-rem(top, 70px);
+
+    &.ag-is-aside_open {
+      left: 0;
+    }
+  }
+
+  .ag-l-aside_fix {
+    @include px-rem(top, 70px);
+
+    &.ag-is-aside_open {
+      left: 0;
+    }
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-l-aside_band {
+    position: static;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  .ag-l-aside_band {
+    &.ag-is-aside_open {
+      border-bottom: none;
+    }
+  }
+}
+
+//  wide: $bp-wide   : 1024px
+@include media-query(wide) {
+  .ag-l-aside {
+    @include px-rem(max-width, 280px);
+    @include px-rem(min-width, 280px);
+    @include px-rem(margin-right, 40px);
+
+    .ag-o-btn-close {
+      display: none;
+    }
+  }
+
+  .ag-l-aside_band {
+    max-width: initial;
+  }
+
+  .ag-l-aside_fix {
+    position: absolute;
+    @include px-rem(top, 70px);
+    left: -100%;
+    z-index: 9;
+    width: 100%;
+    @include px-rem(max-width, 340px);
+    @include px-rem(padding-left, 50px);
+    border-bottom: 1px solid #797979;
+    background-color: $c-neutro;
+    transition: all 0.3s ease-in-out;
+
+    &:before {
+      content: "";
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -100%;
+      z-index: 2;
+      pointer-events: none;
+      background-color: rgba($c-neutro, 0);
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    &.ag-is-aside_open {
+      left: 0;
+
+      &:before {
+        left: 0;
+        right: 0;
+        pointer-events: auto;
+        background-color: rgba($c-neutro, 0.8);
+      }
+    }
+
+    .ag-o-btn-close {
+      display: initial;
+    }
+  }
+
+}

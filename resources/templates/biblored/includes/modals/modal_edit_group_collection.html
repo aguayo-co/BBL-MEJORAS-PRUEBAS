@@ -1,0 +1,62 @@
+{% load i18n %}
+
+<dialog 
+  class="ag-c-modal ag-c-modal_smallSize ag-c-modal_cover-mb ag-js-modal"
+  data-modal="edit_collections_group"
+>
+  <div class="ag-c-modal__content">
+    <div class="ag-c-modal__setting">
+      <article class="ag-c-modal__inner">
+        <h3 
+          class="ag-c-modal__title ag-u-margin-bottom ag-u-margin-top-24"
+        >
+          {% trans "Editar nombre del “Grupo de Colecciones” " %}
+        </h3>
+        <div 
+          class="ag-form__field ag-form__field_full ag-form__field_bottom"
+        >
+          <label 
+            for="name_group" 
+            class="ag-form__label"
+          > 
+            {% trans 'Nombre del "Grupo de Colecciones"' %}
+          </label>
+          <div 
+            class="ag-form__input ag-form__input_icon ag-js-formInput "
+          >
+            <input 
+              id="name_group" 
+              type="text" 
+              class="ag-form__input ag-js-newCollectionsGroupName"
+              placeholder="{% trans 'Mi Grupo de Colecciones' %}"
+            />
+          </div>
+        </div>
+        <footer class="ag-c-modal__footer ag-c-modal__footer_none-margin">
+          <div class="ag-o-actions">
+            <button 
+              class="ag-o-btn ag-o-btn_outline ag-o-btn_order ag-o-btn_full ag-o-actions__item" 
+              type="button"
+            >
+              {% trans "Cancelar" %}
+            </button>
+            <button 
+              class="ag-o-btn ag-o-btn_full ag-o-actions__item" 
+              type="submit"
+            >
+              {% trans "Aceptar" %}
+            </button>
+          </div>
+        </footer>
+      </article>
+      <button class="ag-c-modal__tooltip-btn-24
+          ag-o-btn-tooltip
+          i-close
+          ag-js-modalClose" type="button">
+          <span class="ag-o-btn-tooltip__tooltip">
+            Cerrar
+          </span>
+        </button>
+    </div>
+  </div>
+</dialog>

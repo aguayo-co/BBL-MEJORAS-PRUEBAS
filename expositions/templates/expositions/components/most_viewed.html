@@ -1,0 +1,20 @@
+{% load wagtailcore_tags i18n static %}
+{% load render_bundle from webpack_loader %}
+
+<section id="{{ id_section }}" class="o-section {{ class_section }}">
+    <div class="ag-l-inner-wide">
+
+      <header class="ag-o-header ag-o-header_top-0">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Lo más visto" %}
+        </h2>
+      </header>
+      {% if most_read %}
+      <div class="ag-c-card-grid ag-c-card-grid_grid">
+        {% for resource in most_read %}
+          {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user counter=forloop.counter0 %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>

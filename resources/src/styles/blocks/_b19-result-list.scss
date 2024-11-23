@@ -1,0 +1,7 @@
+.ag-result-list {
+  @include px-rem(margin-bottom, 20px);
+}
+
+.ag-result-list__inline {
+  display: inline-block;
+}

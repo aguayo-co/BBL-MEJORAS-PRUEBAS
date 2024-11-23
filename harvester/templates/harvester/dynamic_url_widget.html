@@ -1,0 +1,31 @@
+{% load i18n %}
+{% block extrahead %}
+  {{ widget.media }}
+{% endblock %}
+
+<table id="table_for_{{ widget.attrs.id }}">
+    {% for subwidget in widget.subwidgets %}
+        <tr id="subwidget_{{ subwidget.attrs.id }}">
+            {% if subwidget.attrs.data_label %}
+                <td {% if subwidget.attrs.help_text %}class="has-help-text"{% endif %}>
+                    <label {% if subwidget.attrs.required %}class="required"{% endif %} for="{{ subwidget.attrs.id }}">{{ subwidget.attrs.data_label }}</label>
+                </td>
+            {% endif %}
+            <td {% if subwidget.attrs.help_text %}class="has-help-text"{% endif %}>
+                {% include subwidget.template_name with widget=subwidget%}
+            </td>
+        </tr>
+        {% if subwidget.attrs.help_text %}
+            <tr class="help"><td colspan="2">{{ subwidget.attrs.help_text|safe }}</td></tr>
+        {% endif %}
+    {% endfor %}
+        <tr id="button_row_{{ widget.attrs.id }}">
+            <td colspan="2"><input class="default dynamic_url_widget_button" type="button" value="Probar Patrón"></td>
+        </tr>
+        <tr id="result_header_{{ widget.attrs.id }}">
+            <th id="field_header_{{ widget.attrs.id }}">campo:pos</th>
+            <th>URL de Imagen</th>
+        </tr>
+</table>
+{% url 'admin:dynamic_url_regex_sample' 0 as regex_url %}
+{{ regex_url|json_script:"regex_url" }}

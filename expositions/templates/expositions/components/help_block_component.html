@@ -1,0 +1,51 @@
+{% load wagtailcore_tags i18n %}
+
+{% spaceless %}
+  <section id="{{ id_section }}" class="o-section {{ class_section }}">
+    <div class="ag-l-inner-inside-huge ">
+
+      {# Header component #}
+      <header class="ag-o-header ag-o-header_top-0">
+        <h2 class="ag-o-heading">{{ self.title }}</h2>
+        {% if self.subtitle %}
+          <p class="ag-o-subheading">{{ self.subtitle }}</p>
+        {% endif %}
+      </header>
+
+      {# Featured cards #}
+      <nav class="c-featured-list">
+        {% for card in self.cards %}
+
+          <a
+            href="{{ card.url.specific.url }}"
+            title="{% trans 'Ir a ' %} {{ card.title }}"
+            class="
+              c-featured__card
+              {% if not card.description %} c-featured__card_short{% endif  %}
+            "
+          >
+
+            <span class="c-featured__icon i-{{ card.logo }}">
+              <span class="ag-is-visuallyhidden">Icono card</span>
+            </span>
+
+            <header class="c-featured__header">
+
+              <h3 class="c-featured__title">{{ card.title }}</h3>
+              {% if card.description %}
+                <div>{{ card.description|richtext }}</div>
+              {% endif %}
+              <span class="c-featured__action i-arrow-alt-right">
+                <span class="ag-is-visuallyhidden">Icono flecha</span>
+              </span>
+
+            </header>
+
+          </a>
+
+        {% endfor %}
+      </nav>
+
+    </div>
+  </section>
+{% endspaceless %}

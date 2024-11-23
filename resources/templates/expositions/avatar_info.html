@@ -1,0 +1,17 @@
+{% load i18n static %}
+
+    {% if avatar_item.value.user.full_name %}
+      <h3 class="ag-c-avatars-list__title">{{ avatar_item.value.user.full_name }}</h3>
+    {% elif avatar_item.value.title %}
+      <h3 class="ag-c-avatars-list__title">{{ avatar_item.value.title }}</h3>
+    {% endif %}
+
+    {% if avatar_item.value.subtitle %}
+      <h4 class="ag-c-avatars-list__subtitle">{{ avatar_item.value.subtitle }}</h4>
+    {% endif %}
+    {% if avatar_item.value.extra_info %}
+      <span class="ag-c-avatars-list__text">{{ avatar_item.value.extra_info }}</span>
+    {% endif %}
+
+
+

@@ -1,0 +1,116 @@
+{% extends "biblored/base.html" %}
+
+{% load render_bundle from webpack_loader %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "Invitar a colección" %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  {% comment %} If for view 'invite to collection' {% endcomment %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link"
+       href="{% url 'collaborative_collections' %}">{% trans 'Colecciones colaborativas' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link"
+       href="{{ form.collaborative_collection.get_absolute_url }}">{% trans "Detalle de colección" %} </a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link"
+       href="{{ form.collaborative_collection.get_absolute_url }}">{{ form.collaborative_collection.title }}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Invitar' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+  <main class="ag-l-page">
+    <div class="ag-l-inner-wide">
+      <header class="ag-o-header" id="maincontent" tabindex="0">
+        <h1 class="ag-o-heading">{% trans "Invita personas a unirse a tu colección" %}</h1>
+        <p>{% trans "Las personas que invitas pueden agregar y eliminar contenido según los privilegios que les brindes." %}</p>
+      </header>
+      <form id="invite-form" method="post">
+        {% csrf_token %}
+        <div class="ag-list__grid" id="content" tabindex="0">
+          <div class="ag-list__grid-item">
+            <label
+              class="ag-form__label"
+              for="invite-collaborators"
+              tabindex="0"
+            >
+              {% trans "Busca por nombre o por correo" %}
+            </label>
+            <div class="ag-s-search ag-c-search__control">
+              <div class="ag-c-search__input ag-js-searchCollaboratorInput" tabindex="0">
+                <input type="text" id="invite-collaborators" placeholder="{% trans 'Buscar por nombre o correo' %}"/>
+                <div class="ag-c-tip ag-js-tip" hidden>
+                  {% trans 'Debes ingresar más de 3 letras para realizar la búsqueda' %}
+                </div>
+
+                {# TODO FRONT: Submit with empty users list #}
+                <div class="ag-c-tip ag-js-tip-submit" hidden>
+                  {% trans 'Debes elegir al menos una persona para realizar la invitación' %}
+                </div>
+                {# ENDTODO FRONT: Submit with empty users list #}
+
+                <button class="ag-c-search__button i-search ag-js-searchCollaboratorBtn" tabindex="0" type="button">
+                  <span class="ag-is-visuallyhidden">{% trans 'Realizar búsqueda' %}</span>
+                </button>
+              </div>
+            </div>
+            {% for error in form.collaborators.errors %}
+              <small
+                class="ag-form__error ag-js-msgError"
+                data-for="{{ form.country.name }}"
+                role="alert"
+              >
+                {{ error }}
+              </small>
+            {% endfor %}
+          </div>
+        </div>
+
+        {# Errores del formulario #}
+        {% for error in form.non_field_errors %}
+          <small class="ag-form__error ag-js-msgError">{{ error }}</small>
+        {% endfor %}
+
+        {# Campos ocultos #}
+        {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+        {% endfor %}
+
+        <fieldset hidden>
+          <label for="{{ form.collaborators.id_for_label }}">{{ form.collaborators.label }}</label>
+          {{ form.collaborators }}
+        </fieldset>
+
+        <div class="ag-o-actions ag-o-actions_sticky">
+          <a class="ag-o-btn ag-o-btn_outline ag-o-actions__item"
+             href="{{ collaborativecollection.get_absolute_url }}">{% trans "Cancelar" %}</a>
+          <button class="ag-o-btn ag-o-actions__item" type="submit">{% trans "Invitar" %}</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'inviteCollaborators' 'js' %}
+{% endblock %}

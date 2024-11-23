@@ -1,0 +1,81 @@
+/*----------------------------------------------*\
+  ID: b24
+  Arrow breadcrumbs
+  Type: block list
+  Description: Description: List with anchor links, seen with a breadcrumb
+\*----------------------------------------------*/
+.ag-arrow-breadcrumb {
+  @include flexbox;
+  list-style: none;
+  overflow: hidden;
+}
+
+.ag-arrow-breadcrumb__item {
+  position: relative;
+  @include flexbox;
+  @include flex(0 1 auto);
+  @include align-items(center);
+  @include justify-content(center);
+  background-color: $c-surface;
+  @include px-rem(padding, 14px 24px 14px 8px);
+  overflow: hidden;
+
+  &:first-child {
+    @include px-rem(border-top-left-radius, 8px);
+    @include px-rem(border-bottom-left-radius, 8px);
+  }
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    @include px-rem(border-width, 42px 0 42px 40px);
+    -webkit-transform: rotate(360deg);
+    transform: translateY(-50%);
+  }
+
+  &:after {
+    @include px-rem(right, 6px);
+    border-color: transparent transparent transparent $c-surface;
+  }
+
+  &:before {
+    right: 0;
+    border-color: transparent transparent transparent $c-neutro;
+  }
+
+  &:last-child {
+    &:before {
+      @include px-rem(border-width, 40px);
+      border-color: $c-neutro;
+      @include px-rem(right, -34px);
+    }
+  }
+}
+
+.ag-arrow-breadcrumb__link {
+  z-index: 1;
+  @include text-ellipsis-multiple(10px, 1.8, 1);
+}
+
+// small-m : $bp-small-m : 480px
+// @include media-query(small-m) {
+//   .ag-arrow-breadcrumb {
+//     overflow: initial;
+//     padding-bottom: 0;
+//   }
+// }
+
+@media all and (min-width: 520px){
+
+  .ag-arrow-breadcrumb__link {
+    z-index: 1;
+    @include text-ellipsis-multiple(12px, 1.8, 1);
+  }
+
+}

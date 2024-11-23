@@ -1,0 +1,505 @@
+/*------------------------------------*\
+  ID: B03
+  Tag
+  Description: Nube de tags
+\*------------------------------------*/
+
+/**
+ * Class: ag-tags
+ * @description  Grupo de tags.
+ * @molecule b03_tags
+ * @section Tags
+ * @markup
+ *  <ul class="ag-tags">
+ *    <li class="ag-tags__item">
+ *      <a class=" ag-tags__ico ag-tags__ico_orange i-like" href="#">
+ *        <span class="ag-tags__tag ag-tags__tag_dark">
+ *          Contenido recomendado
+ *        </span>
+ *      </a>
+ *    </li>
+ *    <li class="ag-tags__item">
+ *      <span class="ag-tags__tag ag-tags__tag_outline">
+ *        Libro digital
+ *      </span>
+ *    </li>
+ *    <li class="ag-tags__item">
+ *      <span class="ag-tags__tag">
+ *        Cultura
+ *      </span>
+ *    </li>
+ *  </ul>
+ *  <ul class="ag-tags">
+ *    <li class="ag-tags__item">
+ *      <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *        Educación
+ *      </a>
+ *    </li>
+ *    <li class="ag-tags__item">
+ *      <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *        Conferencia
+ *      </a>
+ *    </li>
+ *    <li class="ag-tags__item">
+ *      <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *        Fantasía
+ *      </a>
+ *    </li>
+ *  </ul>
+*/
+.ag-tags {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include px-rem(margin, 0 -8px);
+  list-style: none;
+}
+
+.ag-tags_column {
+  /* Se aplica para que los tags estén en columnas */
+  flex-direction: column;
+  align-items: start;
+}
+
+.ag-tags_press {
+  @include px-rem(margin-bottom, 8px);
+
+  .ag-tags__item {
+    @include align-self(flex-end);
+    @include px-rem(margin, 4px);
+  }
+}
+.ag-tags_margin-none {
+
+  .ag-tags__item {
+    margin-right: 0;
+
+    &:not(:first-of-type) {
+      margin-left: 0;
+    }
+
+  }
+
+}
+
+.ag-tags__item {
+  @include px-rem(margin, 8px);
+  font-weight: $f-bold;
+}
+
+.ag-tags__bullet {
+  margin-left: 0;
+
+  &::before {
+    content: "";
+    position: relative;
+    top: -2px;
+    left: 2px;
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 50%;
+    background: $c-secondary;
+  }
+
+  .ag-banner &,
+  .ag-c-cover__fill & {
+    &::before {
+      background: $c-neutro;
+    }
+  }
+}
+
+.ag-tags__bullet_first {
+  &::before {
+    @include px-rem(margin-right, 6px)
+  }
+  &:first-of-type {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.ag-tags__byline {
+  display: inline-block;
+  @include px-rem(width, 150px);
+  vertical-align: text-bottom;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 100%;
+  @include px-rem(margin-left, 8px);
+}
+
+/**
+ * Class: ag-tags__tag
+ * @description  palabras claves que se encuentran asociadas a un contenido
+ * @molecule Tag
+ * @modifiers
+ *  ag-tags__tag_outline Modifica  border-color
+ *  ag-tags__tag_transparent Modifica  border-color
+ *  ag-tags__tag_dark Modifica Background-color, border-color, border-radius, texto: uppercase, color, font-family/weight, font-size.
+ *  ag-tags__tag_neutro Modifica Background-color, border-color, border-radius, texto: uppercase, color, font-family/weight, font-size.
+ *  ag-tags__tag_link Modifica Background-color, border-color, border-radius, texto: color.
+ * @section Tags > Elementos
+ * @markup
+ *  <div class="SG-break">
+ *    <span class="ag-tags__tag">
+ *    	Fotografías
+ *    </span>
+ *  </div>
+ *  <div class="SG-break">
+ *    <span class="ag-tags__tag ag-tags__tag_outline">
+ *  	  Video
+ *    </span>
+ *  </div>
+ *  <div class="SG-break">
+ *    <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	  Contenido recomendado
+ *    </span>
+ *  </div>
+ *  <div class="SG-break">
+ *    <span class="ag-tags__tag ag-tags__tag_neutro">
+ *  	  Contenido recomendado
+ *    </span>
+ *  </div>
+ *  <div class="SG-break">
+ *    <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *  	  Contenido recomendado
+ *    </a>
+ *  <div class="SG-break">
+ *    <span class="ag-tags__tag ag-tags__tag_color">
+ *  	  Tag de tema cambio de color
+ *    </span>
+ *  </div>
+ *  </div>
+ *  <div class="SG-break">
+ *    <span class="ag-tags__tag ag-tags__tag_transparent">
+ *  	  Tag de tema cambio de color
+ *    </span>
+ *  </div>
+*/
+.ag-tags__tag {
+  @include inline-flex;
+  @include align-items(center);
+  border: 1px solid transparent;
+  @include px-rem(padding, 4px 0);
+  @include font-rem(10px);
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: $c-primary;
+  transition: all 0.5s ease-in-out;
+}
+.ag-tags__tag_outline {
+  @include px-rem(padding, 4px 10px);
+  border-color: $c-on-secondary-hover;
+  color: $c-on-text;
+}
+.ag-tags__tag_dark {
+  border-radius: 3px;
+  @include px-rem(padding, 5px 8px 6px);
+  text-transform: uppercase;
+  color: $c-primary;
+  font-weight: $f-bold;
+  font-family: $f-primary;
+}
+.ag-tags__tag_light {
+  @include px-rem(padding, 5px 10px 6px);
+  color: $c-neutro;
+}
+.ag-tags__tag_size10 {
+  @include px-rem(font-size, 10px);
+}
+.ag-tags__tag_color {
+  @include align-self(stretch);
+  @include px-rem(padding, 5px 10px 6px);
+  text-transform: uppercase;
+  color: $c-neutro;
+  @include font-rem(10px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+  border-radius: 3px;
+  border: 1px solid $c-secondary;
+  background-color: $c-secondary;
+}
+.ag-tags__tag_neutro {
+  @include px-rem(padding, 5px 10px 6px);
+  text-transform: uppercase;
+  color: $c-primary;
+  @include font-rem(10px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+  border-radius: 3px;
+  border-color: $c-neutro;
+  background-color: $c-neutro;
+}
+.ag-tags__tag_transparent {
+  @include px-rem(padding, 5px 10px 6px);
+  text-transform: uppercase;
+  color: $c-neutro;
+  @include font-rem(10px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+  border-radius: 3px;
+  border-color: $c-neutro;
+  background-color: rgba($c-neutro, 0.1);
+}
+.ag-tags__tag_link {
+  @include px-rem(padding, 4px 18px);
+  color: $c-primary;
+  border-radius: 3px;
+  border-color: $c-primary-disabled;
+  background-color: $c-primary-disabled;
+  &:hover {
+    color: $c-neutro;
+    border-color: $c-primary-hover;
+    background-color: $c-primary-hover;
+  }
+}
+.ag-tags__tag_bold {
+  font-weight: $f-bold;
+  @include font-rem(14px);
+  text-transform: capitalize;
+}
+.ag-tags__tag_bold-pipe {
+  &::after {
+    content: "";
+    position: absolute;
+    @include px-rem(right, -2px);
+    @include px-rem(top, 4px);
+    @include px-rem(width, 1px);
+    @include px-rem(height, 20px);
+    background-color: $c-primary;
+  }
+}
+.ag-tags__tag_bold-ico {
+  position: relative;
+  @include px-rem(padding-right, 14px);
+
+  &::before {
+    @include px-rem(margin-right, 8px);
+    font-weight: $f-bold;
+    @include font-rem(14px);
+  }
+}
+.ag-tags__tag_absolute {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  margin-right: 24px;
+}
+/**
+ * Class: ag-tags__ico
+ * @description  palabras claves que se encuentran asociadas a un contenido
+ * @molecule Tags Ico
+ * @modifiers
+ *  ag-tags__ico_orange Modifica color del fondo del icono
+ *  ag-tags__ico_green Modifica color del fondo del icono
+ *  ag-tags__ico_purple Modifica color del fondo del icono
+ *  ag-tags__ico_pink Modifica color del fondo del icono
+ *  ag-tags__ico_red Modifica color del fondo del icono
+ *  ag-tags__ico_blue Modifica color del fondo del icono
+ * @section Tags > Elementos
+ * @markup
+ *  <div class="SG-break">
+ *    <p class="ag-tags__ico ag-tags__ico_green i-star">
+ *      <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	    Contenido Sugerido
+ *      </span>
+ *    </p>
+ *  </div>
+ *  <div class="SG-break">
+ *    <p class="ag-tags__ico ag-tags__ico_purple i-collective">
+ *      <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	    Colección colaborativa
+ *      </span>
+ *    </p>
+ *  </div>
+ *  <div class="SG-break">
+ *    <p class="ag-tags__ico ag-tags__ico_pink i-personal">
+ *      <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	    Colección individual
+ *      </span>
+ *    </p>
+ *  </div>
+ *  <div class="SG-break">
+ *    <p class="ag-tags__ico ag-tags__ico_orange i-like">
+ *      <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	    Contenido recomendado
+ *      </span>
+ *    </p>
+ *  </div>
+ *  <div class="SG-break">
+ *    <p class="ag-tags__ico ag-tags__ico_red i-exclusive">
+ *      <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	    Exclusivo de Biblored
+ *      </span>
+ *    </p>
+ *  </div>
+ *  <div class="SG-break">
+ *    <p class="ag-tags__ico ag-tags__ico_blue i-sketch">
+ *      <span class="ag-tags__tag ag-tags__tag_dark">
+ *  	    Exposición
+ *      </span>
+ *    </p>
+ *  </div>
+*/
+
+.ag-tags__ico {
+  @include inline-flex;
+  @include align-items(center);
+  transition: all 0.2s ease-in-out;
+
+  &:before {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(min-width, 24px);
+    @include px-rem(min-height, 24px);
+    @include px-rem(max-width, 24px);
+    @include px-rem(max-height, 24px);
+    overflow: hidden;
+    line-height: 1;
+    color: $c-neutro;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+  }
+  &_orange {
+    &:before {
+      border-color: $c-on-tertiary;
+      background-color: $c-on-tertiary;
+    }
+  }
+  &_green {
+    &:before {
+      border-color: $c-on-primary;
+      background-color: $c-on-primary;
+    }
+  }
+  &_purple {
+    &:before {
+      border-color: $c-on-link;
+      background-color: $c-on-link;
+    }
+  }
+  &_pink {
+    &:before {
+      border-color: $c-on-hover;
+      background-color: $c-on-hover;
+    }
+  }
+  &_red {
+    &:before {
+      border-color: $c-is-error;
+      background-color: $c-is-error;
+    }
+  }
+  &_blue {
+    &:before {
+      border-color: $c-on-secondary;
+      background-color: $c-on-secondary;
+    }
+  }
+  &_theme {
+    &:before {
+      border-color: $c-secondary;
+      background-color: $c-secondary;
+    }
+  }
+}
+
+// Tag type ico is link
+a.ag-tags__ico {
+  &:hover {
+    &:before {
+      @include font-rem(14px);
+    }
+  }
+  &_orange {
+    &:hover {
+      .ag-tags__tag {
+        border-color: $c-on-tertiary;
+        background-color: $c-on-tertiary;
+      }
+    }
+  }
+  &_green {
+    &:hover {
+      .ag-tags__tag {
+        border-color: $c-on-primary;
+        background-color: $c-on-primary;
+      }
+    }
+  }
+  &_purple {
+    &:hover {
+      .ag-tags__tag {
+        border-color: $c-on-link;
+        background-color: $c-on-link;
+      }
+    }
+  }
+  &_pink {
+    &:hover {
+      .ag-tags__tag {
+        border-color: $c-on-hover;
+        background-color: $c-on-hover;
+      }
+    }
+  }
+  &_red {
+    &:hover {
+      .ag-tags__tag {
+        border-color: $c-is-error;
+        background-color: $c-is-error;
+      }
+    }
+  }
+  &_blue {
+    &:hover {
+      .ag-tags__tag {
+        border-color: $c-on-secondary;
+        background-color: $c-on-secondary;
+      }
+    }
+  }
+}
+
+// Hack IE 11
+@media screen and(min-width:0\0) {
+  .ag-tags__ico {
+    display: table;
+    text-align: center;
+
+    &:before {
+      display: table-cell;
+    }
+
+    .ag-tags__tag {
+      @include px-rem(margin-left, 6px);
+    }
+  }
+}
+
+@include media-query(wide) {
+  .ag-tags__tag_size10 {
+    .ag-c-card__top & {
+      @include px-rem(font-size, 12px);
+    }
+  }
+}
+
+@include media-query(wide-max) {
+  .ag-c-cover__head {
+    .ag-tags__tag_light {
+      color: $c-primary;
+    }
+
+    .ag-tags__bullet {
+      &::before {
+        background-color: $c-primary;
+      }
+    }
+  }
+}

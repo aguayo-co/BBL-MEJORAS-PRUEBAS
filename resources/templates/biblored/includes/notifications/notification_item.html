@@ -1,0 +1,72 @@
+{% load i18n %}
+
+{% with collection=notification.collaborativecollection %}
+  <li class="ag-list__item">
+    <div class="ag-list__row ag-list__row_multiline">
+      <div class="ag-list__visual">
+        <figure class="ag-chip__avatar">
+          {% if  user.profile.avatar %}
+            <img
+              class="ag-chip__img"
+              src="{{ user.profile.avatar.url }}"
+              alt="{% trans 'Avatar creador' %} {{ user.full_name }}"
+            >
+          {% else %}
+            {{ user.initials }}
+          {% endif %}
+        </figure>
+      </div>
+
+      <div class="ag-list__content">
+        <p class="ag-list__title">
+          {{ user.full_name }} {% trans 'desea colaborar' %}
+          <small class="ag-list__meta ag-list__meta_small">
+            {% trans 'Hace' %} {{ notification.updated_at|timesince }}
+          </small>
+        </p>
+        <div>
+          <a
+            class=" ag-o-link"
+            href="{{ user.get_absolute_url }}"
+            title="{% trans 'Ir al perfil de' %} {{ request_user.full_name }}"
+          >
+            {{ user.full_name }}
+          </a>
+          {% block content_text %}{% endblock %}
+          <a
+            class=" ag-o-link"
+            href="{% url 'collection' collection.pk %}"
+            title="{% trans 'Ir al detalle de la colección' %} {{ collection.title }}"
+          >
+            {{ collection.title }}
+          </a>
+          {% trans '¿Aceptas?' %}
+        </div>
+      </div>
+
+      <div class="ag-list__actions">
+        <form method="post" id="notification-form-{{ notification.id }}">
+          {% csrf_token %}
+          <button
+            class="ag-list__actions-btn
+            ag-o-btn
+            ag-o-btn_outline"
+            type="submit"
+            name="reject"
+            value="{{ notification.id }}"
+          >
+            {% trans 'Rechazar' %}
+          </button>
+          <button
+            class="ag-list__actions-btn ag-o-btn"
+            type="submit"
+            name="accept"
+            value="{{ notification.id }}"
+          >
+            {% trans 'Aceptar' %}
+          </button>
+        </form>
+      </div>
+    </div>
+  </li>
+{% endwith %}

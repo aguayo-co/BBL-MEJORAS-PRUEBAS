@@ -1,0 +1,72 @@
+{% load i18n static %}
+
+{# TODO FRONT: Style and unify share social options -> resources/templates/biblored/includes/modals/modal_share_social.html #}
+<div class="ag-u-margin-both-32">
+  <ul class="ag-ico-list">
+    {% with url_encode='Encuentra este contenido en la Biblioteca Digital de Bogotá ' %}
+      <li class="ag-ico-list__item">
+        <a href="https://api.whatsapp.com/send?text={{ url_encode|urlencode }}{% build_absolute_uri absolute_url.url request %}{% if card == 'milestone' %}?milestone={{ card }}_{{ counter }}{% endif %}"
+          data-text="{{ contentresource.processed_data.title }}"
+          title="{% trans 'Compartir link whatsapp' %}"
+          data-href="{% build_absolute_uri absolute_url.url %}"
+          class="ag-ico-list__anchor i-link-whatsapp"
+          target="_blank"
+        >
+          <span class="ag-ico-list__link ag-o-link">
+            {% trans "Comparte en Whatsapp" %}
+          </span>
+        </a>
+      </li>
+
+      <li class="ag-ico-list__item">
+        <a href="http://www.facebook.com/sharer.php?u={% build_absolute_uri absolute_url.url request %}{% if card == 'milestone' %}?milestone={{ card }}_{{ counter }}{% endif %}"
+          title="{% trans 'Compartir link facebook' %}"
+          target="_blank"
+          class="ag-ico-list__anchor
+          i-link-facebook"
+        >
+          <span class="ag-ico-list__link ag-o-link">
+            {% trans "Comparte en Facebook" %}
+          </span>
+        </a>
+      </li>
+
+      <li class="ag-ico-list__item">
+        <a href="https://twitter.com/intent/tweet?&text={{ url_encode|urlencode }}&url={% build_absolute_uri absolute_url.url request %}{% if card == 'milestone' %}?milestone={{ card }}_{{ counter }}{% endif %}"
+          title="{% trans 'Compartir link twitter' %}"
+          class="ag-ico-list__anchor
+          i-twitter"
+          target="_blank"
+        >
+          <span class="ag-ico-list__link
+            ag-o-link"
+          >
+            {% trans "Comparte en Twitter" %}
+          </span>
+        </a>
+
+      </li>
+
+      <li class="ag-ico-list__item">
+        <button
+          class="ag-ico-list__anchor
+          ag-has-ico-list__wink
+          i-copy
+          {{ classJsCopyUrl }}"
+          type="button"
+        >
+          <span class="ag-ico-list__link
+            ag-o-link"
+          >
+            {% trans "Copia el enlace" %}
+          </span>
+          <small class="ag-js-copyUriMsg
+            ag-has-ico-list__text"
+          >
+            {% trans '¡Link copiado!' %}
+          </small>
+        </button>
+      </li>
+    {% endwith %}
+  </ul>
+</div>

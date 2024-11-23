@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if page.exposition %}
+  <button class="ag-js-button-scroll-down-static ag-o-button-action ag-o-button-action_center i-scroll-down">
+    <span class="ag-is-visuallyhidden">{% trans "Ir al contenido principal de la página" %}</span>
+  </button>
+
+{% else %}
+  <button class="ag-js-button-scroll-down ag-o-button-action ag-o-button-action_fixed i-scroll-down">
+    <span class="ag-is-visuallyhidden">{% trans "Ir al contenido principal de la página" %}</span>
+  </button>
+
+{% endif %}

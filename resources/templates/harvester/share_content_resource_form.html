@@ -1,0 +1,219 @@
+{% extends "biblored/base.html" %}
+
+{% load render_bundle from webpack_loader %}
+{% load i18n static resources%}
+
+{% block title %} {% trans "Compartir Recurso" %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+
+{% block breadcrumbs_items %}
+  {% with request.GET.next as previous_url %}
+    {% with processed_data=object.processed_data %}
+      <dd class="ag-breadcrumbs__item">
+        <a
+          href="{% get_cancel_invitation_url previous_url %}"
+          class="ag-breadcrumbs__link"
+          title="{% trans 'Volver al recurso: ' %}{{ processed_data.title }}"
+        >
+        {{ processed_data.title }}
+        </a>
+      </dd>
+    {% endwith %}
+  {% endwith %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans "Compartir este contenido" %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  {% with request.GET.next as previous_url %}
+    <main class="ag-l-page">
+      <section class="ag-l-inner-wide">
+        <header class="ag-o-header
+          ag-o-header_less-spacing"
+          id="maincontent"
+          tabindex="0"
+        >
+          <h1 class="ag-o-heading">
+            {% trans "Compartir este contenido" %}
+          </h1>
+          <p class="ag-o-subheading">{{ contentresource.processed_data.title }}</p>
+        </header>
+      </section>
+
+      <section class="ag-l-inner-wide">
+        <header class="ag-o-title-line
+          ag-o-title-line_small
+          ag-o-title-line_bottom"
+        >
+          <h2 class="ag-o-title-line__text">
+            {% trans "Copia el enlace o compártelo en redes sociales" %}
+          </h2>
+        </header>
+        {% include "biblored/includes/share_social.html" with title=contentresource.processed_data.title absolute_url=contentresource.get_absolute_url %}
+      </section>
+
+      <section class="ag-u-margin-bottom">
+
+        <div class="ag-l-inner-wide">
+          <header class="ag-o-title-line
+            ag-o-title-line_small
+            ag-o-title-line_bottom
+            "
+          >
+            <h2 class="ag-o-title-line__text">
+              {% trans "O comparte con usuarios de la Biblioteca Digital de Bogotá" %}
+            </h2>
+          </header>
+
+          <div class="ag-o-header
+            ag-o-header_margin-both"
+          >
+            <p>{% trans "Ten en cuenta que no puedes compartir el recurso con la misma persona en las siguientes 24 horas" %}</p>
+          </div>
+        </div>
+
+        <form id="share-resource-form"
+          class="ag-form-invited"
+          method="post"
+        >
+          <fieldset class="ag-form-invited_wrap">
+            {% csrf_token %}
+            <div class="ag-s-search"
+              id="content"
+              tabindex="0"
+            >
+              <label
+                class="ag-is-visuallyhidden"
+                for="invite-users"
+                tabindex="0"
+              >
+                {% trans "Escribe el nombre o el correo" %}
+              </label>
+              <div class="ag-c-search__control">
+                <div class="ag-c-search__input
+                  ag-js-searchUserInput"
+                  tabindex="0"
+                >
+                  <input type="text"
+                    id="invite-users"
+                    placeholder="{% trans 'Escribe el nombre o el correo' %}"
+                  />
+                  <div class="ag-c-tip
+                    ag-js-tip"
+                    hidden
+                  >
+                    {% trans 'Debes ingresar más de 3 letras para realizar la búsqueda' %}
+                  </div>
+
+                  {# TODO FRONT: Submit with empty users list #}
+                  <div class="ag-c-tip
+                    ag-js-tip-submit" hidden>
+                    {% trans 'Debes elegir al menos una persona para realizar la invitación' %}
+                  </div>
+                  {# ENDTODO FRONT: Submit with empty users list #}
+
+                  <button class="ag-c-search__button
+                    i-search
+                    ag-js-searchUserBtn"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <span class="ag-is-visuallyhidden">
+                      {% trans 'Realizar búsqueda' %}
+                    </span>
+                  </button>
+                </div>
+              </div>
+              {% for error in form.users.errors %}
+                <small
+                  class="ag-form__error
+                  ag-js-msgError"
+                  data-for="{{ form.country.name }}"
+                  role="alert"
+                >
+                  {{ error }}
+                </small>
+              {% endfor %}
+            </div>
+            {# Errores del formulario #}
+            {% for error in form.non_field_errors %}
+              <small class="ag-form__error
+                ag-js-msgError"
+              >
+                {{ error }}
+              </small>
+            {% endfor %}
+          </fieldset>
+
+          {# Campos ocultos #}
+          {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+          {% endfor %}
+
+          <fieldset hidden>
+            <label for="{{ form.users.id_for_label }}">{{ form.users.label }}</label>
+            {{ form.users }}
+          </fieldset>
+
+          <fieldset class="ag-form-invited_wrap
+            ag-u-margin-both-40
+            ag-js-postCard
+            ag-is-parentPostCard_hide"
+          >
+            {# Postcard => when there is nobody to invite #}
+            <figure class="ag-post-card
+              ag-post-card_wrap"
+            >
+              <img class="ag-post-card__image"
+                src="{% static 'biblored/img/message/not-found.svg' %}"
+                alt="No se encontraron personas sugeridas"
+              >
+              <figcaption class="ag-post-card__caption">
+                {% trans "Tu búsqueda no obtuvo ningún resultado. Intenta de nuevo con otro nombre, apellido o correo electrónico." %}
+              </figcaption>
+            </figure>
+          </fieldset>
+
+          <ul class="ag-form-invited__actions
+            ag-u-margin-top-64"
+          >
+            <li class="ag-form-invited__item">
+              <button class="ag-form-invited__buttons
+              ag-o-btn"
+              type="submit"
+              >
+                {% trans "Compartir" %}
+              </button>
+            </li>
+
+            {% if previous_url %}
+              <li class="ag-form-invited__item">
+                <a href="{% get_cancel_invitation_url previous_url%}"
+                  class="ag-form-invited__buttons
+                  ag-o-btn
+                  ag-o-btn_outline"
+                >
+                  {% trans "Volver" %}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </form>
+
+      </section>
+
+    </main>
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'shareResource' 'js' %}
+{% endblock %}
+

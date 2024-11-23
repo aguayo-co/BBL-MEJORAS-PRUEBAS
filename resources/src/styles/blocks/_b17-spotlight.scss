@@ -1,0 +1,75 @@
+/*----------------------------------------------*\
+  ID: b17_spotlight
+  Spotlight
+  Type: Information
+  Description: Contenedor de caracterizticas para mostrar información.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-spotlight
+ * @description  Contenedor de caracterizticas para mostrar información.
+ * @molecule b17_spotlight
+ * @section Information
+ * @markup
+ *  <ul class="ag-spotlight">
+ *    <li class="ag-spotlight__item">
+ *      <h4 class="ag-spotlight__title">AND</h4>
+ *      <p class="ag-spotlight__body">Úsalo para buscar incluyendo  <strong>todas las palabras.</strong></p>
+ *    </li>
+ *    <li class="ag-spotlight__item">
+ *      <h4 class="ag-spotlight__title">NOT</h4>
+ *      <p class="ag-spotlight__body">Úsalo para buscar incluyendo <strong>todas las palabras.</strong></p>
+ *    </li>
+ *    <li class="ag-spotlight__item">
+ *      <h4 class="ag-spotlight__title">OR</h4>
+ *      <p class="ag-spotlight__body">Úsalo para buscar incluyendo <strong>todas las palabras.</strong></p>
+ *    </li>
+ *  </ul>
+ */
+ .ag-spotlight {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(baseline);
+  @include px-rem(margin-bottom, 20px);
+  list-style: none;
+  background-color: $c-neutro;
+}
+
+.ag-spotlight__item {
+  @include px-rem(margin, 0 20px);
+  @include px-rem(max-width, 238px);
+
+  &:first-of-type {
+    margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.ag-spotlight__title {
+  border-bottom: 2px solid;
+  @include px-rem(padding-bottom, 14px);
+  font-weight: $f-bold;
+  text-align: center;
+  color: $c-secondary;
+}
+
+.ag-spotlight__body {
+  @include px-rem(padding, 10px 18px);
+  text-align: left;
+  color: $c-primary;
+}
+
+// max-width 768px
+@include media-query(medium-max) {
+  .ag-spotlight {
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  .ag-spotlight__item {
+    @include px-rem(margin, 10px 0);
+  }
+}

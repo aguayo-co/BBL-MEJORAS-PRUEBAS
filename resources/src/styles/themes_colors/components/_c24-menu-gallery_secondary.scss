@@ -1,0 +1,58 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C24 Menu Gallery
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+.ag-c-menu-gallery {
+
+  .ag-c-menu-gallery__link {
+    &:hover {
+      background-color: $c-on-secondary;
+      box-shadow: inset 0px 4px 4px #027591;
+    }
+  }
+
+  .ag-c-menu-gallery__caption {
+    &::after {
+      color: $c-on-secondary;
+    }
+  }
+}
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+
+  .ag-c-menu-gallery {
+    .ag-c-menu-gallery__link {
+      &:hover {
+        background-color: transparent;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+
+        .ag-c-menu-gallery__btn {
+          border: 1px solid $c-on-secondary;
+          color: $c-on-secondary;
+        }
+
+        .ag-c-menu-gallery__mask {
+          &:after {
+            transition: all 500ms linear;
+            background-color: rgba($c-on-secondary, .7);
+          }
+        }
+
+      }
+    }
+
+    .ag-c-menu-gallery__wink-text {
+      &:before {
+        background-color: $c-on-secondary;
+      }
+    }
+
+    .ag-c-menu-gallery__btn {
+      background-color: $c-on-secondary;
+      border: 1px solid $c-on-secondary;
+    }
+  }
+}

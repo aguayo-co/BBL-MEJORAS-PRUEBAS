@@ -1,0 +1,117 @@
+{% load i18n wagtailimages_tags inspector %}
+
+<article class="ag-c-card ag-t-cards{% if exposition_card.theme == 'purple' %}_purple{% endif %}{% if exposition_card.theme == 'blue' %}_blue{% endif %}">
+  <div class="ag-c-card_top-shadow">
+
+    {# wrap: indenta los contenidos #}
+    <div class="ag-c-card__border">
+
+      <a
+        class="ag-c-card__action"
+        href="{{ exposition_card.url }}"
+        title="{% trans 'Ir al detalle de' %} {{ exposition_card.title }}"
+      >
+
+        {# Media #}
+        {% if exposition_card.image %}
+          <figure class="ag-c-card__media ag-c-card__color">
+            {% image exposition_card.image max-480x260 class="ag-c-card__img" %}
+          </figure>
+        {% endif %}
+
+        <div class="ag-c-card__canvas ag-u-locator">
+
+          {% if exposition_card.subject.name %}
+            <span class="ag-tags__tag ag-tags__tag_absolute ag-tags__tag_color">
+              {{ exposition_card.subject.name }}
+            </span>
+          {% endif %}
+
+          <div class="ag-c-card__top">
+            {# Exposition type tag #}
+            <ul class="ag-tags ag-tags_press ag-tags_margin-none">
+
+              <li class="ag-tags__item">
+                <span class="ag-tags__ico ag-tags__ico_theme i-sketch">
+                  <span class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+                    {% trans "Exposición" %}
+                  </span>
+                </span>
+              </li>
+
+              {% if  exposition_card.exposition_type %}
+                <li class="ag-tags__item ag-tags__bullet">
+                  <span class="ag-tags__ico">
+                    <span class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+                        {{  exposition_card.exposition_type }}
+                      </span>
+                    </span>
+                </li>
+              {% endif %}
+
+            </ul>
+          </div>
+
+          {% if exposition_card.title %}
+            <h2 
+              class="ag-c-card__headline" 
+              tabindex="0"
+            > 
+              {{ exposition_card.title }} 
+            </h2>
+          {% endif %}
+
+          {% if  exposition_card.description %}
+            <div class="ag-c-card__lead">
+              {{ exposition_card.description|striptags }}
+            </div>
+          {% endif %}
+
+        </div>
+
+      </a>
+
+      <footer class="ag-c-card__footer">
+        <ul class="ag-c-card__list">
+          {# Avatar chip #}
+          <li class="ag-chip">
+
+            <a
+              class="ag-chip" href="{{ exposition_card.author.get_absolute_url }}"
+              title="{% trans 'Ver el perfil de' %} {{ exposition_card.author.full_name }}"
+            >
+              <figure class="ag-chip__avatar ag-chip__avatar_color">
+                {% if  exposition_card.author.profile.avatar %}
+                  <img
+                    class="ag-chip__img"
+                    src="{{ exposition_card.author.profile.avatar.url }}"
+                    alt="{% trans 'Avatar creador' %} {{ exposition_card.author.full_name }}"
+                  >
+                {% else %}
+                  {{ exposition_card.author.initials }}
+                {% endif %}
+              </figure>
+              <span class="ag-chip__text">
+                <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+                {{ exposition_card.author.full_name }}
+              </span>
+            </a>
+
+          </li>
+        </ul>
+
+        {# Social share options #}
+        {% if is_list == "true" %}
+          {% include "biblored/includes/options_menu/options_menu_for_collection_item.html" with counter=counter collection=exposition_card user=user card="collection" align="right" only %}
+        {% endif %}
+      </footer>
+
+    </div>
+  </div>
+
+</article>
+
+{# Modal social share #}
+{% if is_list == "true" %}
+  {% include "biblored/includes/modals/modal_share_social.html" with object=exposition_card title=exposition_card.title counter=counter card="collection" classJsCopyUrl="ag-js-copyUrlAnotherPage" only %}
+{% endif %}

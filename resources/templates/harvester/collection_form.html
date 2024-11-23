@@ -1,0 +1,330 @@
+{% extends "biblored/base.html" %}
+{% load render_bundle from webpack_loader %}
+{% load i18n %}
+{% load builtins %}
+{% load static %}
+
+{% block title %}
+  {% if form.instance.collaborativecollection and form.initial.description != '' %}
+    {% trans "Editar colección" %} {{ form.initial.title }}
+  {% elif form.initial.description == '' %}
+    {% trans "Crear Colección" %}
+  {% else %}
+    {% trans "Editar colección" %} {{ form.initial.title }}
+  {% endif %}
+{% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  {% if form.instance.collaborativecollection and form.initial.description != '' %}
+    {% comment %} Elif for view 'edit to collection collaborative' {% endcomment %}
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link"
+        href="{% url 'collaborative_collections' %}">{% trans 'Colecciones colaborativas' %}</a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link"
+        href="{{ form.instance.collaborativecollection.get_absolute_url }}">{% trans "Detalle de colección" %} </a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link"
+        href="{{ form.instance.collaborativecollection.get_absolute_url }}">{{ form.initial.title }}</a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      {% trans 'Editar colección' %}
+    </dd>
+  {% elif form.initial.description == '' %}
+    {% comment %} Elif for view 'create to collection' {% endcomment %}
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link" href="{{ user.get_absolute_url }}">{% trans "Mi perfil" %} </a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link" href="{% url 'my_collections' %}">{% trans "Mis colecciones" %} </a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      {% trans 'Crear colección' %}
+    </dd>
+  {% else %}
+    {% comment %} Else for view 'edit to collection customized' {% endcomment %}
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link" href="{{ user.get_absolute_url }}">{% trans 'Mi perfil' %}</a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link" href="{{ user.get_absolute_url }}">{% trans 'Mis colecciones' %} </a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link" href="{% url 'collection' collection.id %}">{{ form.initial.title }} </a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+      {% trans 'Editar' %}
+    </dd>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page">
+    <div class="ag-l-inner-wide">
+      <div class="ag-l-form" id="content" tabindex="0">
+        <header class="ag-o-header" id="maincontent" tabindex="0">
+          
+          {% if collection or collaborativecollection %}
+            <h1 class="ag-o-heading">{% trans "Editar Colección" %}</h1>
+          {% else %}
+
+            <div class="ag-c-tooltip-wrapper">
+
+              <h1 class="ag-o-heading">{% trans "Crear colección" %}</h1>
+
+              {# tooltip #}
+              {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="collection_creation" only %}
+            </div>
+          {% endif %}
+     
+          
+       
+
+          <p tabindex="0">{% trans "Te permitirá agrupar contenidos, libros, vídeos, fotografías y mucho más." %}</p>
+          {% if collection or collaborativecollection %}
+            <div class="ag-o-actions ag-o-actions_header">
+              <button class="ag-o-btn ag-o-btn_outline"
+                type="button"
+                data-modal="delete_collection"
+              >
+                {% trans "Eliminar esta Colección" %}
+              </button>
+            </div>
+          {% endif %}
+
+        </header>
+        <form id="collection-form" method="post" enctype="multipart/form-data" class="ag-js-validate">
+          {% csrf_token %}
+          <div class="ag-form__field ag-js-form__field ">
+            <label class="ag-form__label" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+            <div class="ag-form__input ag-form__input_icon ag-js-formInput" data-validate="title-required">
+              {{ form.title }}
+              <small class="ag-form__error ag-js-msgError" data-for="{{ form.title.name }}" hidden></small>
+              {% for error in form.title.errors %}
+                <small class="ag-form__error ag-js-msgError">{{ error }}</small>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="ag-form__field ag-js-form__field">
+            <label class="ag-form__label" for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            <div class="ag-form__input ag-js-formTextarea ag-js-formInput" data-validate="description-required">
+              {{ form.description }}
+              <div class="ag-form__hint">
+                <small class="ag-form__error ag-js-msgError" data-for="{{ form.description.name }}" hidden></small>
+                {% for error in form.description.errors %}
+                  <small class="ag-form__error ag-js-msgError">{{ error }}</small>
+                {% endfor %}
+                <span class="ag-form__helper ag-js-inputCharsCounter" data-for="{{ form.description.name }}"></span>
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="ag-form__field ag-js-form__field ag-js-formfieldUploadImg">
+            <span class="ag-form__label">{% trans "Foto de portada" %}</span>
+
+            <small class="ag-form__note">
+              {% trans "La foto que subas aparecerá como imagen principal en tu colección. Si no seleccionas una foto, asignaremos una imagen por ti." %}
+            </small>
+
+            <div class="ag-form__file-hidden">{{ form.cropped_image }}</div>
+            <div class="ag-form__file-upload ag-form__file-upload_centered ag-js-fileUpload">
+              <div class="ag-form__crop_large ag-js-img-croped"></div>
+              <span class="ag-form__file-name ag-u-margin-top-8 ag-js-imageUploadedName"></span>
+            </div>
+          </fieldset>
+
+          <div class="ag-u-center">
+            <button
+              type="button"
+              class="ag-o-btn ag-o-btn_small ag-info__btn"
+              data-modal="show_select_image"
+            >
+              {# TODO: Copy if current cover image exists #}
+              {% if form.image.initial %}{% trans "Cambiar la portada" %}{% else %}{% trans "Seleccionar una portada" %}{% endif %}
+            </button>
+            <p class="ag-form__file-txt ag-u-margin-top-8">.jpg, .jpeg o .png. Tamaño máximo : 1 MB</p>
+          </div>
+
+          <fieldset
+            class="ag-form__field ag-u-margin-top-64 ag-js-form__field"
+          >
+
+            <span
+              class="ag-form__label"
+            >
+              {% trans "Incluye tu colección en un “Grupo de Colecciones” " %}
+            </span>
+
+            <small class="ag-form__note ag-u-margin-bottom-24">
+              {% trans "Si quieres, puedes incluir tu colección en uno o varios Grupos de colecciones que ya tengas creados o puedes crear uno nuevo." %}
+            </small>
+
+            {% include "biblored/includes/collections/collections_group_chips.html" %}
+
+            <div class="ag-u-center">
+              <button
+                class="ag-o-btn ag-o-btn_small"
+                type="button"
+                data-modal="search_select_collections_groups"
+              >
+                {% trans 'Seleccionar un "Grupo de Colecciones"' %}
+              </button>
+            </div>
+
+            {% include "biblored/includes/modals/modal_search_select_collections_groups_in_collection_form.html" with form=form only %}
+
+            {% if  form.collections_groups.errors %}
+              <small class="ag-form__error">{{ form.collections_groups.errors }}</small>
+            {% endif %}
+          </fieldset>
+
+          {# TODO: Collection's type radio buttons #}
+          <fieldset class="ag-form__field ag-u-margin-top-64 ag-js-form__field">
+            <span class="ag-form__label">{% trans "Configura la privacidad de tu colección" %}</span>
+
+            <small class="ag-form__note ag-u-margin-bottom-24">
+              {% trans "Puedes publicar una colección pública o privada y configurarla como colaborativa, para que otras personas añadan contenidos." %}
+            </small>
+
+            <div class="ag-radio-group ag-u-margin-top-64">
+              {% for radio_input in form.collection_type %}
+                <div class="ag-form__radio ag-radio-group__item">
+                  <input
+                    type="{{ radio_input.data.type }}"
+                    name="{{ radio_input.data.name }}"
+                    value="{{ radio_input.data.value }}"
+                    {% if radio_input.data.attrs.required %} required {% endif %}
+                    id="{{ radio_input.id_for_label }}"
+                    {% if radio_input.data.selected %} checked {% endif %}
+                  >
+                  <label
+                    class="ag-radio-group__label i-check" 
+                    for="{{ radio_input.id_for_label }}"
+                  >
+                    {{ radio_input.choice_label }}
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <small class="ag-form__error ag-js-msgError" data-for="{{ form.collection_type.name }}" hidden></small>
+            {% for error in form.collection_type.errors %}
+              <small class="ag-form__error">{{ error }}</small>
+            {% endfor %}
+          </fieldset>
+
+          {% if collaborativecollection and form.collaborators.subwidgets %}
+            <div class="ag-form__field">
+              <label class="ag-form__label" for="{{ form.collaborators.name }}">{{ form.collaborators.label }}</label>
+              <ul class="ag-list ag-list_border">
+                {% for collaborator in form.collaborators.initial %}
+                  <li class="ag-list__item" tabindex="0">
+                    <div class="ag-list__row ag-list__row_small">
+                      <div class="ag-list__visual">
+                        <figure class="ag-chip__avatar">
+                          {% if collaborator.profile.avatar %}
+                            <img class="ag-chip__img" src="{{ collaborator.profile.avatar.url }}"
+                              alt="{% trans 'Avatar del usuario' %} {{ collaborator.full_name }}">
+                          {% else %}
+                            {{ collaborator.initials }}
+                          {% endif %}
+                        </figure>
+                      </div>
+                      <div class="ag-list__content" tabindex="0">
+                        {{ collaborator.full_name }}
+                      </div>
+                      <div class="ag-list__actions">
+                        {% for collaborator_input in form.collaborators.subwidgets %}
+                          {% if collaborator_input.data.value == collaborator.pk %}
+                            <div class="ag-form__checkbox_button">
+                              {{ collaborator_input.tag }}
+                              <label class="ag-o-btn ag-o-btn_outline" for="{{ collaborator_input.id_for_label }}">
+                                <span class="ag-checked" tabindex="0">{% trans "Eliminar" %}</span>
+                                <span class="ag-unchecked" tabindex="0">{% trans "Eliminado" %}</span>
+                              </label>
+                            </div>
+                            </label>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+              {% for field_error in form.collaborators.errors %}
+                <small class="ag-form__error ag-js-msgError" role="alert">{{ field_error }}</small>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {# Errores del formulario #}
+          {% for error in form.non_field_errors %}
+            <small class="ag-form__error ag-js-msgError">{{ error }}</small>
+          {% endfor %}
+
+          {# Campos ocultos #}
+          {% for hidden in  form.hidden_fields %}
+            {{ hidden }}
+          {% endfor %}
+
+          {% if collection or collaborativecollection %}
+            <label class="ag-is-visuallyhidden" for="wai_hidden">{% trans "Colaborar Colección" %}</label>
+            <input class="ag-is-visuallyhidden ag-js-delete" type="text" hidden value="delete" id="wai_hidden">
+          {% endif %}
+
+          <div class="ag-o-actions ag-u-margin-top-64">
+            {% if collection %}
+              <a
+                class="ag-o-btn ag-o-btn_outline ag-o-actions__item"
+                href="{{ collection.get_absolute_url }}"
+              >
+                {% trans "Cancelar" %}
+              </a>
+              <button class="ag-o-btn ag-o-actions__item" type="submit">{% trans "Editar Colección" %}</button>
+            {% elif collaborativecollection %}
+              <a
+                class="ag-o-btn ag-o-btn_outline ag-o-actions__item"
+                href="{{ collaborativecollection.get_absolute_url }}"
+              >
+                {% trans "Cancelar" %}
+              </a>
+              <button class="ag-o-btn ag-o-actions__item" type="submit">{% trans "Editar Colección" %}</button>
+            {% else %}
+              <a
+                class="ag-o-btn ag-o-btn_outline ag-o-actions__item"
+                href="{{ user.get_absolute_url }}"
+              >
+                {% trans "Cancelar" %}
+              </a>
+              <button class="ag-o-btn ag-o-actions__item" type="submit">{% trans "Crear colección" %}</button>
+            {% endif %}
+          </div>
+
+          {% include "biblored/includes/modals/modal_select_image_collection.html" %}
+
+        </form>
+      </div>
+    </div>
+  </main>
+
+  {% include "biblored/includes/modals/modal_delete_collection.html" %}
+
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'collection_groups_edit_page_form' 'js' %}
+  {% render_bundle 'prevent_enter_keydown_Event' 'js' %}
+{% endblock %}
+

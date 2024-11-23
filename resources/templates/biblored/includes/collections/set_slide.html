@@ -1,0 +1,90 @@
+{% load i18n static %}
+
+
+<article class="swiper-slide ag-c-card ag-c-card_aside">
+  <a href="{{ collection.get_absolute_url }}" title="{% trans 'Ir al detalle de' %} {{ collection.name }}" 
+      class="ag-c-card__action ag-c-card__action_set ag-c-card__wrap">
+    {% if collection.image %}
+    <figure class="ag-c-card__media">
+      <img class="ag-c-card__img" src="{{ collection.image.url }}"
+        alt=" {% trans 'Imagen de referencia' %} {{ collection.name }}">
+    </figure>
+    {% endif %}
+    <div class="ag-c-card__side">
+      <div class="ag-c-card__canvas">
+        <div>
+          {% if  collection.name %}
+          <h2 class="ag-c-card__title" tabindex="0"> {{ collection.name }} </h2>
+          {% endif %}
+          {% if  collection.description %}
+          <div class="ag-c-card__lead">
+            {{ collection.description|striptags }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="ag-c-card__footer">
+        <ul class="ag-c-card__bar">
+          {% if collection.resources_by_type_count %}
+          <li class="ag-c-card__bar-item">
+            <strong class="ag-c-card__bar-label">{% trans "Encuentra en esta colección" %}</strong>
+            <ul class="ag-c-card__bar-sublist">
+              {% for resource_type, count in collection.resources_by_type_count.items %}
+              <li class="ag-c-card__bar-subitem">{% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+          {% if  collection.created_at %}
+          <li class="ag-c-card__bar-item">
+            <strong class="ag-c-card__bar-label">{% trans "Actualizada el" %}:</strong>
+            <ul class="ag-c-card__bar-sublist">
+              <li class="ag-c-card__bar-subitem"> {{ collection.updated_at|date:"DATE_FORMAT" }} </li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </a>
+  <div class="ag-c-card__divider ag-c-card__wide-box">
+    {% if collection.data_source_url %}
+      <div class="ag-chip">
+        {% if  collection.data_source.logo %}
+        <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+          <img class="ag-chip__img" src="{{ collection.data_source.logo.url }}"
+            alt="{% trans 'Logo' %} {{ collection.data_source.name }}">
+        </figure>
+        {% endif %}
+        {% if  collection.data_source.name %}
+        <span class="ag-chip__text">
+          <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+          {{ collection.data_source.name }}
+        </span>
+        {% endif %}
+      </div>
+      <a class="ag-o-btn ag-o-btn_outline ag-o-link_external i-after-external-link" 
+        rel="noreferrer" target="_blank" href="{% url 'login' %}?next={{ collection.data_source_url }}"
+        title="Ir a {{ collection.data_source.name }}"> 
+          <span class="ag-o-btn__txt">
+          {% trans 'Ir a' %} {{ collection.data_source.name }}
+          </span>
+      </a>
+    {% else %}
+      <div class="ag-chip">
+        {% if  collection.data_source.logo %}
+        <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+          <img class="ag-chip__img" src="{{ collection.data_source.logo.url }}"
+            alt="{% trans 'Logo' %} {{ collection.data_source.name }}">
+        </figure>
+        {% endif %}
+        {% if  collection.data_source.name %}
+        <span class="ag-chip__text">
+          <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+          {{ collection.data_source.name }}
+        </span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</article>

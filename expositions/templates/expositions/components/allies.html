@@ -1,0 +1,22 @@
+{% load wagtailcore_tags i18n static %}
+{% load render_bundle from webpack_loader %}
+
+{# Bloque Aliados#}
+  {% if allies %}
+    <section id="{{ id_section }}" class="ag-l-band-surface o-section-surface {{ class_section }}">
+      <div class="ag-l-inner-wide">
+
+        <header class="ag-o-header ag-o-header_top-0">
+          <h2 class="ag-o-heading" tabindex="0">
+            {% trans "Aliados" %}
+          </h2>
+        </header>
+        {% include "biblored/includes/sliders/allies_slider.html" with allies=allies only %}
+
+      </div>
+    </section>
+  {% endif %}
+
+  {% include "biblored/includes/messages/messages_templates.html" %}
+  {% include "biblored/includes/modals/modal_register.html" only %}
+  {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}

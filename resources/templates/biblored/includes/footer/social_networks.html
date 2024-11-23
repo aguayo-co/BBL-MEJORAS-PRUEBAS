@@ -1,0 +1,57 @@
+{% load i18n %}
+
+<div class="ag-l-footer__set-item">
+
+  <h3 class="ag-l-footer__title">{% trans "Síguenos" %}</h3>
+
+  <div class="ag-l-footer__row">
+    <a
+      class="ag-l-footer__link i-facebook"
+      title="{% trans 'Enlace a' %} BibloRed en Facebook"
+      href="https://www.facebook.com/BibloRedBogota" 
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="ag-is-visuallyhidden">{% trans "BibloRed en Facebook" %}</span>
+    </a>
+    <a
+      class="ag-l-footer__link i-instagram"
+      title="{% trans 'Enlace a' %} BibloRed en Instagram"
+      href="https://www.instagram.com/bibloredbogota/"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="ag-is-visuallyhidden">{% trans "BibloRed en Instagram" %}</span>
+    </a>
+    <a
+      class="ag-l-footer__link i-twitter"
+      title="{% trans 'Enlace a' %} BibloRed en Twitter"
+      href="https://twitter.com/BibloRedBogota"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="ag-is-visuallyhidden">{% trans "BibloRed en Twitter" %}</span>
+    </a>
+    <a
+      class="ag-l-footer__link i-youtube"
+      title="{% trans 'Enlace a' %} BibloRed en Youtube"
+      href="https://www.youtube.com/user/BibloRedBog"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="ag-is-visuallyhidden">{% trans "BibloRed en Youtube" %}</span>
+    </a>
+  </div>
+
+  <div class="ag-l-footer__row ag-l-footer__row_center">
+    <a
+      class="ag-o-btn ag-o-btn_on ag-l-footer__btn"
+      href="{{ registration_url }}"
+      target="_blank"
+      rel="noopener"
+    >
+      {% trans "Afíliate a BibloRed" %}
+    </a>
+  </div>
+
+</div>

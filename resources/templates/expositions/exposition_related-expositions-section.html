@@ -1,0 +1,86 @@
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+<section class="ag-l-band-surface ag-u-space-both ag-u-margin-top">
+
+  {% if parent_exposition %}
+    <span class="ag-o-head-tag ag-o-head-tag_large-title ag-u-space-bottom">
+      <strong class="ag-o-head-tag__ico i-sketch">{% trans 'Exposiciones recomendadas' %}</strong>
+    </span>
+  {% endif %}
+
+  <header class="ag-l-inner-inside ag-u-margin-bottom-24 {% if not parent_exposition %}ag-u-sides-padding{% endif %}{% if parent_exposition %}ag-has-related-cards_parent-exposition{% endif %}">
+    <h2 class="ag-o-title">{% trans 'Te sugerimos' %}</h2>
+    <p 
+      class="ag-o-headline_primary"
+    >
+      {% trans "Descubre diversos temas y contenidos en otra" %}{{related_expositions|pluralize:"s"}} {% trans "exposición" %}{{related_expositions|pluralize:"es"}}:
+    </p>
+  </header>
+
+  <div class="ag-c-related-cards ag-l-inner-outside {% if parent_exposition %}ag-has-related-cards_parent-exposition{% endif %}">
+    <div class="{% if not parent_exposition %}ag-has-related-cards_wrap{% endif %} js-wrapSliderRelatedCard">
+      <div class="swiper-container ag-c-related-cards__wrap js-sliderRelatedCard">
+          <ul class="swiper-wrapper ag-c-related-cards__list">
+            {% for related_exposition in related_expositions %}
+              {% with related_exposition.value as exposition %}
+                <li class="swiper-slide ag-c-related-cards__item ag-js-relatedCardItem {% if exposition.theme == 'magenta' %}ag-s-related-cards_magenta{% endif %}" tabindex="-1">
+                  <div class="ag-c-related-cards__card">
+                    <article class="ag-c-card ag-t-cards{% if exposition.theme == 'purple' %}_purple{% endif %}{% if exposition.theme == 'blue' %}_blue{% endif %}">
+
+                        <div class="ag-c-card__border">
+
+                          <a class="ag-c-card__action" href="{{ exposition.url }}" title="{% trans 'Ir al detalle de' %} {{ exposition.title }}">
+
+                            {% if exposition.image %}
+                              <figure class="ag-c-card__media ag-c-card__color">
+                                {% image exposition.image width-480 class="ag-c-card__img" %}
+                              </figure>
+                            {% endif %}
+
+                            <div class="ag-c-card__canvas">
+                              <div class="ag-c-card__top">
+
+                                <ul class="ag-tags ag-tags_press">
+
+                                  <li class="ag-tags__item">
+                                    <span class="ag-tags__ico ag-tags__ico_theme i-sketch">
+                                      <span class="ag-tags__tag ag-tags__tag_dark">
+                                        {% trans "Exposición" %}
+                                      </span>
+                                    </span>
+                                  </li>
+                                  {% if exposition.subject.name %}
+                                    <li class="ag-tags__item">
+                                      <span class="ag-tags__tag ag-tags__tag_color">
+                                        {{ exposition.subject.name }}
+                                      </span>
+                                    </li>
+                                  {% endif %}
+                                </ul>
+                              </div>
+
+                              {% if exposition.title %}
+                                <h2 class="ag-c-card__headline" tabindex="0"> {{ exposition.title }} </h2>
+                              {% endif %}
+
+                            </div>
+                          </a>
+
+                      </div>
+
+                    </article>
+                  </div>
+
+                </li>
+              {% endwith %}
+            {% endfor %}
+          </ul>
+      </div>
+
+      <div class="ag-c-related-cards__button-next swiper-button-next"></div>
+      <div class="ag-c-related-cards__button-prev swiper-button-prev"></div>
+
+      <div class="ag-has-related-cards__counter"></div>
+    </div>
+  </div>
+</section>

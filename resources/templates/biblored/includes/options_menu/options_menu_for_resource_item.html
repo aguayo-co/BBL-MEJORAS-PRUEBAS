@@ -1,0 +1,55 @@
+{% extends "biblored/includes/options_menu/options_base.html" %}
+{% load i18n inspectors %}
+
+{% block options_item_list %}
+
+  {% if user.is_authenticated %}
+    {# Button for add to modal of collection group #}
+    <li class="ag-list-button__item">
+      <button
+        class="ag-list-button__button
+        i-texts
+        ag-js-collection_iframe_open_btn"
+        type="button"
+        data-modal="add_collection"
+        data-iframe-src="{% url 'content_resource_collections_edit' processed_data.pk %}"
+        data-for='iframeCollections'
+      >
+        {% trans "Añadir a colección" %}
+      </button>
+    </li>
+
+    {# TODO: Button to share collection, should be asked to UX  #}
+    <li class="ag-list-button__item">
+      <a
+        href="{% url 'share_resource' processed_data.pk %}?next={{ request.get_full_path }}"
+        class="ag-list-button__button
+        i-share"
+      >
+        {% trans "Compartir" %}
+      </a>
+    </li>   
+  {% endif %}
+
+  {# Button to delete #}
+  {% with active_collaborator=collection.collaborativecollection.active_collaborators %}
+    {% if user == collection.owner or user in active_collaborator %}
+      <li class="ag-list-button__item"> 
+        <button
+          class="ag-list-button__button
+          i-delete
+          ag-js-deleteResourcePk"
+          type="button"
+          value="{{ processed_data.pk }}"
+          data-modal="delete_resource"
+        >
+          {% trans 'Eliminar' %}
+        </button>
+      </li>
+    {% endif %}
+  {% endwith %}
+
+{% endblock %}
+
+{% block option_modal %}
+{% endblock %}

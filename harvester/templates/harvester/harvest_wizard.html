@@ -1,0 +1,37 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block head %}
+{{ wizard.form.media }}
+{% endblock %}
+<!-- Content -->
+<div id="content" class="{% block coltype %}colM{% endblock %}">
+    {% block pretitle %}{% endblock %}
+    {% block content_title %}{% if title %}<h1>{% trans title %}</h1>{% endif %}{% endblock %}
+    {% block object-tools %}{% endblock %}
+    {% block sidebar %}{% endblock %}
+    {% block content %}
+        <p>{% trans "Step" %} {{ wizard.steps.step1 }} {% trans "Of" %} {{ wizard.steps.count }}</p>
+        <form method="POST" enctype=multipart/form-data id="harvest_wizard">{% csrf_token %}
+            <table>
+            {{ wizard.management_form }}
+                {% if wizard.form.forms %}
+                    {{ wizard.form.management_form }}
+                    {% for form in wizard.form.forms %}
+                        {{ form.media }}
+                        {{ form }}
+                    {% endfor %}
+                {% else %}
+                    {{ wizard.form.media }}
+                    {{ wizard.form }}
+                {% endif %}
+            </table>
+        </form>
+        {% if wizard.steps.prev %}
+            <button name="wizard_goto_step" class="button" value="{{ wizard.steps.prev }}" form="harvest_wizard">{% trans "Previous" %}</button>
+        {% endif %}
+            <button type="submit" class="button" value="{% trans "Next" %}" form="harvest_wizard">{% trans "Next" %}</button>
+    {% endblock %}
+    <br class="clear">
+</div>
+<!-- END Content -->

@@ -1,0 +1,69 @@
+{% load i18n %}
+
+{# Dynamic buttons to collaborate or stop collaborating #}
+{% if forms.content_resources_actions.collaborate.value %}
+  <button
+    class="ag-o-btn ag-o-btn_outline ag-o-btn_small"
+    type="button"
+    data-modal="left_collection"
+  >
+    {% trans 'Dejar de colaborar' %}
+  </button>
+{% elif request.user in collection.requested_collaborators %}
+  <button
+    class="ag-o-btn ag-o-btn_outline ag-o-btn_small"
+    type="button"
+    disabled
+  >
+    {% trans 'Solicitud de colaboración pendiente' %}
+  </button>
+{% elif request.user in collection.invited_collaborators %}
+  {# TODO FRONT: mensaje y botón cuando ya te han invitado a colaborar con una colección  #}
+  {% trans 'Te han invitado a colaborar en esta colección' %}
+  {% with request.get_full_path as next_url %}
+    <a
+        class="ag-o-btn ag-o-btn_small ag-o-btn_space8"
+        href="{% url "notifications" %}?collection={{ collection.pk }}&next={{ next_url }}"
+      >
+        {% trans "Ver invitación" %}
+      </a>
+  {% endwith %}
+  {# ENDTODO FRONT: mensaje y botón cuando ya te han invitado a colaborar con una colección  #}
+{% else %}
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden"
+    name="form_name"
+    value="{{ forms.content_resources_actions.initial.form_name }}"
+    />
+    <div class="ag-c-card__tooltip">
+      <button
+        class="ag-o-btn ag-o-btn_small"
+        value="true"
+        name="{{ forms.content_resources_actions.collaborate.name }}"
+      >
+        {% trans "Colaborar en esta colección" %}
+      </button>
+
+      {# Tooltip with the button to collaborate in this collection #}
+      <div class="ag-c-tooltip ag-js-tooltip ag-is-tipHidden"
+      >
+        <button class="ag-o-btn-ico i-question ag-js-tooltipButton"
+          type="button"
+        >
+          <span class="ag-is-visuallyhidden">{% trans "Ayuda" %}</span>
+        </button>
+        <div class="ag-c-tooltip__box
+          ag-c-tooltip_right"
+        >
+          <div class="ag-c-tooltip__inner">
+            <p class="ag-c-tooltip__text">
+              {% trans "Una colección colaborativa permite a usuarios registrados solicitar autorización para sumar títulos a colecciones existentes" %}.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endif %}
+

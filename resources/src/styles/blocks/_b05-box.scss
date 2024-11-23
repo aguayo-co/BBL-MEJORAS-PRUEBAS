@@ -1,0 +1,161 @@
+/*----------------------------------------------*\
+  ID: b05_box
+  Box
+  Type: Information
+  Description: Contenedor de elementos para mostrar información de usuario.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-box
+ * @description  Contenedor de elementos para mostrar información de usuario
+ * @molecule b05_box
+ * @section User
+ * @markup
+ *  <div class="ag-box">
+ *    <div class="ag-box__avatar">
+ *      <figure class="ag-chip__avatar ag-chip__avatar_box">
+ *        <img class="ag-chip__img" src="../biblored/img/demo/avatar-6.jpg" alt="Avatar de usuario">
+ *      </figure>
+ *    </div>
+ *    <div class="ag-box__wrap">
+ *      <div class="ag-box__info">
+ *        <h1 class="ag-box__title">María Torres</h1>
+ *        <ul class="ag-box__list">
+ *          <li class="ag-box__list-item">
+ *            <a class="ag-box__link i-facebook" href="#" target="_blank">
+ *              <span class="ag-is-visuallyhidden">{% trans "Enlace de Biblored a Facebook" %}</span>
+ *            </a>
+ *          </li>
+ *          <li class="ag-box__list-item">
+ *            <a class="ag-box__link i-twitter" href="#" target="_blank">
+ *              <span class="ag-is-visuallyhidden">{% trans "Enlace de Biblored a Twitter" %}</span>
+ *            </a>
+ *          </li>
+ *          <li class="ag-box__list-item">
+ *            <a class="ag-box__link i-instagram" href="#" target="_blank">
+ *              <span class="ag-is-visuallyhidden">{% trans "Enlace de Biblored a Instagram" %}</span>
+ *            </a>
+ *          </li>
+ *          <li class="ag-box__list-item">
+ *            <a class="ag-box__link i-youtube" href="#" target="_blank">
+ *              <span class="ag-is-visuallyhidden">{% trans "Enlace de Biblored a Youtube" %}</span>
+ *          </a>
+ *          </li>
+ *        </ul>
+ *        <p class="ag-box__meta">Bogotá, Colombia</p>
+ *      </div>
+ *      <div class="ag-box__actions">
+ *        <button class="ag-o-btn" type="button">Editar</button>
+ *      </div>
+ *      <div class="ag-box__text">
+ *        <p>Soy estudiante de sociología, me gusta la lectura y salir con mis amigos. en mis ratos libres me gusta leer libros de fantasía y mundos fantásticos donde me pueda meter en el papel de mis personajes favoritos</p>
+ *      </div>
+ *  </div>
+ */
+
+.ag-box {
+  @include flexbox;
+  @include px-rem(padding, 38px 0 15px);
+  border-bottom: 1px solid $c-on-border;
+}
+.ag-box__wrap {
+  width: 100%;
+  max-width: calc(100% - 133px);
+}
+
+// ver estilos de avatar en chips
+.ag-box__title {
+  color: $c-primary;
+  @include font-rem(18px);
+  font-family: $f-primary;
+  font-weight: $f-medium;
+}
+
+.ag-box__info {
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(center);
+  @include px-rem(min-height, 64px);
+  @include px-rem(margin-bottom, 10px);
+}
+.ag-box__info_top {
+  @include px-rem(min-height, 115px);
+}
+
+.ag-box__list {
+  list-style: none;
+}
+
+.ag-box__list-item {
+  @include inline-flex;
+  @include px-rem(margin-right, 10px);
+}
+
+.ag-box__link {
+  color: $c-primary;
+
+  &:before {
+    line-height: 1.4;
+    @include font-rem(16px);
+    transition: all .2s;
+  }
+  &:hover {
+    color: $c-primary-hover
+  }
+}
+
+.ag-box__text {
+  @include px-rem(margin-top, 22px);
+  @include px-rem(margin-left, -133px);
+  line-height: 1.5;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  @include font-rem(16px);
+}
+
+
+.ag-box__actions {
+  @include px-rem(margin-bottom, 22px);
+}
+//  small-m   : $bp-small-m: 480px
+@include media-query(medium) {
+  .ag-box__text {
+    text-align: left;
+  }
+}
+@include media-query(medium) {
+  .ag-box {
+    @include px-rem(padding, 70px 0 30px);
+  }
+  .ag-box__info {
+    min-height: initial;
+  }
+  .ag-box__text {
+    @include px-rem(margin-left, 0);
+  }
+}
+@include media-query(wide) {
+  .ag-box {
+    @include px-rem(padding, 70px 0 30px);
+  }
+  .ag-box__wrap {
+    position: relative;
+    @include px-rem(padding-right, 204px);
+  }
+  .ag-box__text {
+    @include px-rem(margin-top, 0);
+  }
+
+  .ag-box__actions {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    @include px-rem(max-width, 194px);
+    margin-bottom: 0;
+    transform: translateY(-50%);
+    .ag-o-btn {
+      @include px-rem(padding, 14px 18px);
+    }
+  }
+}

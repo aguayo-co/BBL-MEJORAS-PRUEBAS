@@ -1,0 +1,40 @@
+{% extends "biblored/base_error.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title  %} {% trans 'Error 404' %} {% endblock  %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base_error.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Error 404' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{block.super}}
+
+  <div class="ag-l-canvas">
+    <!-- Block: b13_message-->
+    <div class="ag-message">
+      <figure>
+        <img class="ag-message__img" src="{% static 'biblored/img/message/error-404.svg' %}" alt="Error 404">
+      </figure>
+      <p class="ag-o-subheading">{% trans '¡Lo sentimos! La página que buscas no se encuentra. Intenta nuevamente.' %}.</p>
+      <a class="ag-o-btn" title="{% trans 'Volver a los resultados de búsqueda' %}" href="{% url 'search' %}">{% trans 'Volver a resultados de búsqueda' %}</a>
+    </div>
+  </div>
+
+{% endblock  %}

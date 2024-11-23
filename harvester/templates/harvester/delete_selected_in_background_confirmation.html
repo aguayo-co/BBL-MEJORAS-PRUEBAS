@@ -1,0 +1,20 @@
+{% extends "admin/delete_selected_confirmation.html" %}
+{% load i18n l10n admin_urls static %}
+
+{% block content %}
+    <p>{% blocktrans %}Está usted seguro que quiere eliminar <b>{{ count_message }}</b>?{% endblocktrans %}</p>
+    <p>{% blocktrans %}Todos los objetos y sus elementos relacionados serán borrados, esta acción se ejecutará en segundo plano.{% endblocktrans %}</p>
+    <form method="post">{% csrf_token %}
+    <div>
+    <input type="hidden" name="action" value="mark_for_delete_in_background">
+    <input type="hidden" name="post" value="yes">
+    <input type="hidden" name="select_across" value="{{ select_across }}">
+    <input type="hidden" name="index" value="{{ index }}">
+    {% for obj in selected_items %}
+        <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj|unlocalize }}">
+    {% endfor %}
+    <input type="submit" value="{% trans "Si, estoy seguro" %}">
+    <a href="#" class="button cancel-link">{% trans "No, llévame atrás" %}</a>
+    </div>
+    </form>
+{% endblock %}

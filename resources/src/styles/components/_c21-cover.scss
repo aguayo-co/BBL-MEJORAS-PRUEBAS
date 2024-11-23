@@ -1,0 +1,306 @@
+/*------------------------------------*\
+  Bloque c19_cover
+  Description: Banner principal e información en formato card
+\*------------------------------------*/
+
+/**
+ * Class: .ag-c-cover
+ * @description  Portada  de exposiciones y subtemas
+ * @molecule c19_cover
+ * @section Cover
+ * @markup
+ *  <header class="ag-l-inner ag-c-cover ag-c-cover_float" id="content" tabindex="0">
+ *    <figure class="ag-c-cover__figure">
+ *      <img class="ag-c-cover__image" src="../biblored/img/demo/resource-004.jpg" alt="Imagen de referencia de Historia de Rock al Parque">
+ *    </figure>
+ *
+ *
+ *    <article class="ag-c-cover__card">
+ *
+ *    <ul class="ag-tags ag-tags_press">
+ *        <li class="ag-tags__item">
+ *          <p class="ag-tags__ico ag-tags__ico_pink i-sketch">
+ *            <span class="ag-tags__tag ag-tags__tag_dark">
+ *              Exposición
+ *            </span>
+ *          </p>
+ *        </li>
+ *        <li class="ag-tags__item">
+ *          <p class="ag-tags__tag ag-tags__tag_color">
+ *            Música
+ *          </p>
+ *        </li>
+ *      </ul>
+ *
+ *      <h1 class="ag-c-cover__title ag-o-headwink">
+ *        Historia de Rock al Parque
+ *      </h1>
+ *
+ *      <small class="ag-c-cover__row">Publicada el: 20 de Febrero de 2020</small>
+ *
+ *      <p class="ag-c-cover__row">
+ *        Colección sobre la historia del festival Rock al Parque, evento que desde 1995 es un referente cultural de los bogotanos. Desde sus inicios, la historia del festival ha acompañado de cerca las dinámicas de la escena cultural de la ciudad.
+ *      </p>
+ *
+ *      <div class="ag-chip">
+ *        <figure class="ag-chip__avatar ag-chip__avatar_color">
+ *
+ *          <img class="ag-chip__img" src="../biblored/img/demo/avatar-3.jpg" alt="Avatar creador ">
+ *
+ *        </figure>
+ *        <span class="ag-chip__text">
+ *          <strong class="ag-chip__label">Curador</strong>
+ *          Andrés Tafur
+ *        </span>
+ *      </div>
+ *    </article>
+ *
+ *   </header>
+ */
+
+.ag-c-cover {
+  padding: 0;
+  background-color: $c-neutro;
+
+  .ag-c-card_entry__lead {
+    margin: 0;
+    color: $c-primary;
+  }
+}
+
+.ag-c-cover__figure {
+  overflow: hidden;
+  @include px-rem(margin-top, 70px);
+  @include px-rem(max-height, 562px);
+}
+
+.ag-c-cover__figure_small {
+  @include px-rem(max-height, 380px);
+}
+
+.ag-c-cover__image {
+  width: 100%;
+  height: auto;
+}
+
+.ag-c-cover__title {
+  @include px-rem(max-width, 632px);
+  line-height: 1.2;
+}
+
+.ag-c-cover__link {
+  color: $c-primary;
+}
+
+.ag-c-cover__tags {
+  @include px-rem(margin-bottom, 10px);
+  .ag-tags__item {
+    @include px-rem(margin-right, 4px);
+    @include px-rem(margin-left, 4px);
+  }
+}
+
+.ag-c-cover__fill,
+.ag-c-cover__card,
+.ag-c-cover__card-medium {
+  position: relative;
+  width: 92%;
+  @include px-rem(max-width, $canvas-large);
+  margin: 0 auto;
+  @include px-rem(border-top-left-radius, 8px);
+  @include px-rem(border-top-right-radius, 8px);
+  @include px-rem(padding, 20px);
+  background-color: $c-neutro;
+}
+
+.ag-c-cover__card-medium {
+  color: $c-primary;
+}
+
+.ag-c-cover__full {
+  width: 84%;
+  @include px-rem(margin, 70px auto 0);
+}
+
+.ag-c-cover__fill {
+  padding-bottom: 0;
+}
+
+.ag-c-cover__action {
+  display: inline-block;
+  @include px-rem(margin-bottom, 10px);
+}
+
+.ag-c-cover__row {
+  display: inline-block;
+  @include px-rem(margin-bottom, 20px);
+}
+
+.ag-c-cover__extract {
+  @include font-rem(14px);
+}
+
+.ag-c-cover__text {
+  @include px-rem(margin, 10px 0 40px);
+}
+
+.ag-c-cover__small-text {
+  @include font-rem(12px);
+}
+
+.ag-c-cover__block {
+  line-height: 1.4;
+}
+
+.ag-c-cover__lead {
+  display: inline-block;
+  @include font-rem(16px);
+  font-weight: $f-bold;
+  color: $c-primary;
+  @include px-rem(margin, 20px 0 10px);
+}
+
+@include media-query(small-m) {
+  .ag-c-cover__figure_small {
+    max-height: inherit;
+    height: 0;
+    padding-bottom: 70%;
+  }
+
+  .ag-c-cover__full {
+    width: 86%;
+  }
+}
+
+//  wide: $bp-medium   : 768px
+@include media-query(medium) {
+  .ag-c-cover__figure {
+    @include px-rem(margin-top, 20px);
+  }
+
+  .ag-c-cover__full {
+    width: 100%;
+    @include px-rem(margin-top, 20px);
+  }
+
+  .ag-c-cover__figure_small {
+    height: auto;
+    padding-bottom: 0;
+  }
+
+  //- Only modal's styles
+  .ag-c-cover_float-medium {
+    @include flexbox;
+    @include align-items(flex-start);
+    max-width: 92%;
+    @include px-rem(margin, 60px auto 0);
+
+    .ag-c-cover__figure {
+      width: 60%;
+    }
+  }
+
+  //- Only modal's styles
+  .ag-c-cover__card-medium {
+    @include align-self(flex-end);
+    @include px-rem(width, 380px);
+    margin-left: -10%;
+    @include px-rem(margin-bottom, -20px);
+    @include px-rem(border-radius, 8px);
+    @include px-rem(padding, 30px 20px);
+    color: $c-primary;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1), 0px 3px 4px rgba(0, 0, 0, 0.08),
+      0px 4px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .ag-c-cover__title {
+    &.ag-o-title {
+      @include px-rem(font-size, 24px);
+    }
+  }
+
+  .ag-c-cover_wrap {
+    @include px-rem(margin-left, 20px);
+    @include px-rem(margin-right, 20px);
+  }
+}
+
+//  wide: $bp-wide   : 1024px
+@include media-query(wide-max) {
+  .ag-c-cover__card {
+    top: -32px
+  }
+}
+
+@include media-query(wide) {
+  .ag-c-cover__head {
+    @include px-rem(padding, 20px);
+    background-color: rgba($c-primary, 0.8);
+  }
+
+  .ag-c-cover__text {
+    @include font-rem(16px);
+    @include px-rem(margin, 10px 20px 50px);
+  }
+
+  .ag-c-cover__lead {
+    @include font-rem(18px);
+    @include px-rem(margin, 20px 20px 10px);
+  }
+
+  .ag-c-cover_float {
+    @include flexbox;
+    @include align-items(flex-start);
+    .ag-c-cover__figure {
+      width: 86%;
+    }
+  }
+
+  .ag-c-cover__card {
+    @include align-self(flex-end);
+    @include px-rem(width, 422px);
+    margin-left: -28%;
+    margin-top: 10%;
+    @include px-rem(padding, 30px);
+    border-radius: 0;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1), 0px 3px 4px rgba(0, 0, 0, 0.08),
+      0px 4px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .ag-c-cover__card_radius {
+    width: 52%;
+    margin-top: 18%;
+    margin-left: -8%;
+    @include px-rem(border-radius, 8px);
+  }
+
+  .ag-c-cover__fill {
+    width: 92%;
+    border-radius: 0;
+    @include px-rem(margin-top, -140px);
+    padding: 0;
+    background-color: transparent;
+
+    .ag-c-cover__link,
+    .ag-c-cover__action,
+    .ag-c-cover__title {
+      color: $c-neutro;
+    }
+
+    .ag-tags__tag_dark {
+      border: 1px solid $c-neutro;
+    }
+  }
+
+  .ag-c-cover_wrap {
+    @include px-rem(margin-left, 40px);
+    @include px-rem(margin-right, 40px);
+  }
+}
+
+//  wide: $bp-large   : 1180px
+@include media-query(large) {
+  .ag-c-cover__fill {
+    width: 100%;
+  }
+}

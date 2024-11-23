@@ -1,0 +1,23 @@
+.ag-has-capitalize {
+  text-transform: lowercase;
+}
+
+.ag-has-accesibilityopen {
+  &.ag-c-menu__item.ag-is-menu__current {
+    .ag-c-menu__sublist {
+      max-height: initial;
+      overflow-y: visible;
+    }
+  }
+  &.ag-is-menu-chip__current {
+    .ag-c-menu-chip__list {
+      max-height: 100vh;
+    }
+  }
+}
+
+.ag-has-accesibilitytop {
+  &.ag-is-menu_fixed {
+  @include px-rem(top, 46px);
+  }
+}

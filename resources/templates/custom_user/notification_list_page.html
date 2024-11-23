@@ -1,0 +1,42 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "Notificaciones" %} {{ user.full_name }} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Notificaciones' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+  <main class="ag-l-page">
+    {% include "custom_user/../biblored/includes/custom_user/notification_list.html" with requests=requests invitations=invitations csrf_token=csrf_token only %}
+
+    <div class="ag-o-actions ag-u-margin-top-64">
+      {% with request.GET.next as previous_url %}
+        <a
+          class="ag-o-btn ag-o-btn_outline"
+          href="{{ previous_url }}"
+        >
+          {% trans 'Volver' %}
+        </a>
+      {% endwith %}
+    </div>
+  </main>
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% load i18n %}
+
+
+{% if user.is_authenticated %}
+  <section id="{{ id_section }}" class="o-section {{ class_section }}">
+    <div class="ag-l-inner-wide">
+
+      <header class="ag-o-header ag-o-header_top">
+        <h2 class="ag-o-heading" tabindex="0">
+          ¡{% trans "Hola" %} {{ user.full_name }}!
+        </h2>
+        <p class="ag-o-subheading">
+          {% trans "Recomendados según tus últimas búsquedas" %}
+        </p>
+      </header>
+
+      {% if based_on_reads %}
+      <div class="ag-c-card-grid ag-c-card-grid__grid">
+        {% for resource in based_on_reads %}
+          {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data processed_data=resource.processed_data user=user counter=forloop.counter0 only %}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+  </section>
+{% endif %}

@@ -1,0 +1,1339 @@
+/*------------------------------------*\
+  ID: C11
+  Modal
+  Description: Modal transversal
+\*------------------------------------*/
+
+/**
+ * Class: .ag-c-modal
+ * @description Modal transversal | ag-c-modal_highSize (Max-width: 880px)
+ * @modifiers
+ *  .ag-is-modal_visible  Acciona la modal
+ *  .ag-c-modal_highSize  Modal grande
+ * @molecule Modal de tamaño Grande
+ * @section Modal
+ * @markup
+ *   <div class="SG-is-changes">
+ *      <div class="ag-c-modal ag-c-modal_highSize ag-is-modal_visible">
+ *        <div class="ag-c-modal__content">
+ *          <div class="ag-c-modal__setting">
+ *            <article class="ag-c-modal__inner">
+ *              <h3 class="ag-o-heading ag-c-modal__row">Invita personas a unirse a tu colección</h3>
+ *              <p class="ag-o-text ag-c-modal__row">Las personas que invitas pueden agregar y eliminar contenido según los privilegios que les brindes.</p>
+ *              <footer class="ag-c-modal__footer ag-c-modal__footer_side">
+ *                <div class="ag-c-modal__item-control">
+ *                  <button class="ag-c-modal__btn ag-o-btn ag-o-btn_outline" type="button">Cancelar</button>
+ *                </div>
+ *                <div class="ag-c-modal__item-control">
+ *                  <button class="ag-c-modal__btn ag-o-btn" type="button">Hecho</button>
+ *                </div>
+ *              </footer>
+ *
+ *            </article>
+ *            <button class="ag-is-modal__close i-close ag-js-modalClose">
+ *              <span class="ag-is-visuallyhidden">Cerrar Modal</span>
+ *            </button>
+ *          </div>
+ *        </div>
+ *      </div>
+ *   </div>
+*/
+
+.ag-c-modal {
+  position: fixed;
+  top: -100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  height: 0;
+  background: rgba($c-dark, 0.7);
+  transition: all 200ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 15;
+}
+
+.ag-c-modal_full {
+  background-color: $c-neutro;
+  @include align-items(flex-start);
+  @include px-rem(padding-top, 120px);
+}
+
+.ag-c-modal__inner-wide {
+  width: $canvas-w;
+  @include px-rem(max-width, $canvas-wide-mw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ag-c-modal__wrap {
+  max-width: 92%;
+  margin: 0 auto;
+}
+
+.ag-c-modal__headfix {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  @include px-rem(padding, 10px 0);
+  margin: 0 auto;
+  background-color: $c-neutro;
+  border-bottom: 1px solid $c-secondary-disabled;
+  z-index: 2;
+}
+
+.ag-c-modal__headfix_spacing {
+  right: 0;
+  left: 0;
+  @include px-rem(max-width, 766px);
+  @include px-rem(padding, 26px 0);
+}
+
+.ag-c-modal_cover {
+  .ag-c-modal__headfix_spacing {
+    .ag-is-modal__close {
+      margin-right: 0;
+    }
+  }
+}
+
+.ag-c-modal__header {
+  @include px-rem(margin-top, 80px);
+}
+
+.ag-c-modal_highSize {
+  .ag-c-modal__content {
+    @include px-rem(max-width, 880px);
+  }
+}
+
+.ag-c-modal__paragraph {
+  @include px-rem(margin-bottom, 24px);
+}
+
+//* Modificador para la modal de las galerías
+.ag-c-modal_custom-gallery {
+  .ag-c-modal__header {
+    width: 90%;
+    @include px-rem(max-width, 640px);
+    @include px-rem(margin-bottom, 20px);
+    @include px-rem(padding-left, 4px);
+  }
+}
+
+/**
+ * Class: .ag-c-modal
+ * @description Modal transversal | ag-c-modal_mediumSize (Max-width: 690px)
+ * @modifiers
+ *  .ag-is-modal_visible  Acciona la modal
+ *  .ag-c-modal_mediumSize Modal media
+ * @molecule Modal de tamaño medio
+ * @section Modal
+ * @markup
+ *   <div class="SG-is-changes">
+ *      <div class="ag-c-modal ag-c-modal_mediumSize ag-is-modal_visible">
+ *        <div class="ag-c-modal__content">
+ *          <div class="ag-c-modal__setting">
+ *            <article class="ag-c-modal__inner">
+ *              <h3 class="ag-o-heading ag-c-modal__row">¡Registrarte en Biblored es gratis!</h3>
+ *              <p class="ag-o-text ag-c-modal__row">La Biblioteca Digital de Bogotá hace parte de Bibliored, La Red Distrital de Bibliotecas Públicas.</p>
+ *              <p class="ag-o-text ag-c-modal__row">Al registrarte podrás:</p>
+ *              <ul class="ag-o-list">
+ *                <li class="ag-o-list__item">Llevar libros, películas y música a casa al acercarte a una biblioteca registrada.</li>
+ *                <li  class="ag-o-list__item">Acceso al contenido de la Biblioteca Digital De Bogotá para guardar y compartir contenidos con otras personas.</li>
+ *              </ul>
+ *              <footer class="ag-c-modal__footer">
+ *                <a href="url 'login'" title="Regístrese en Biblored" class="ag-c-modal__btn ag-o-btn">Registrarse</a>
+ *              </footer>
+ *
+ *            </article>
+ *            <button class="ag-is-modal__close i-close ag-js-modalClose">
+ *              <span class="ag-is-visuallyhidden">Cerrar Modal</span>
+ *            </button>
+ *          </div>
+ *        </div>
+ *   </div>
+*/
+.ag-c-modal_mediumSize {
+  .ag-c-modal__content {
+    @include px-rem(max-width, 690px);
+  }
+
+  .ag-c-modal__title {
+    text-align: left;
+  }
+}
+
+/**
+ * Class: .ag-c-modal
+ * @description Modal transversal | .ag-c-modal_smallSize (Max-width: 575px)
+ * @modifiers
+ *  .ag-is-modal_visible  Acciona la modal
+ *  .ag-c-modal_smallSize  Modal pequeña
+ * @molecule Modal de tamaño pequeño
+ * @section Modal
+ * @markup
+ *   <div class="SG-is-changes">
+ *    <div class="ag-c-modal ag-c-modal_smallSize ag-is-modal_visible">
+ *      <div class="ag-c-modal__content">
+ *        <div class="ag-c-modal__setting">
+ *          <article class="ag-c-modal__inner">
+ *            <h3 class="ag-c-modal__title">¿Estas seguro que quieres eliminar esta colección?</h3>
+ *            <p class="ag-o-text ag-c-modal__text ag-c-modal__row">Recuerda que cuando se elimina una colección y todos sus contenidos, la acción no se puede deshacer.</p>
+ *            <footer class="ag-c-modal__footer">
+ *              <div class="ag-c-modal__item-control">
+ *                <button class="ag-c-modal__btn ag-o-btn ag-o-btn_outline" type="button">Cancelar</button>
+ *              </div>
+ *              <div class="ag-c-modal__item-control">
+ *                <button class="ag-c-modal__btn ag-o-btn" type="submit">Eliminar para siempre</button>
+ *              </div>
+ *            </footer>
+ *          </article>
+ *          <button class="ag-is-modal__close i-close ag-js-modalClose">
+ *            <span class="ag-is-visuallyhidden">Cerrar Modal</span>
+ *          </button>
+ *        </div>
+ *      </div>
+ *    </div>
+ *
+ *   </div>
+*/
+.ag-c-modal_smallSize {
+  .ag-c-modal__content {
+    @include px-rem(max-width, 575px);
+  }
+}
+
+/**
+ * Class: .ag-c-modal
+ * @description Modal transversal | .ag-c-modal-social (Max-width: 250px)
+ * @modifiers
+ *  .ag-is-modal_visible  Acciona la modal
+ *  .ag-c-modal_social  Modal pequeña
+ * @molecule Modal de menor tamaño exclusiva para redes sociales
+ * @section Modal
+ * @markup
+ *   <div class="SG-is-changes">
+ *     <div class="ag-c-modal ag-c-modal_social ag-is-modal_visible">
+ *       <div class="ag-c-modal__content">
+ *         <div class="ag-c-modal__setting">
+ *
+ *           <div class="ag-c-modal__inner">
+ *             <ul class="ag-c-modal__list-ico">
+ *               <li class="ag-c-modal__item-ico">
+ *                 <a href="#" class="ag-c-modal-social i-link-whatsapp">
+ *                   <span class="ag-is-visuallyhidden">Copiar link de Twitter</span>
+ *                 </a>
+ *               </li>
+ *               <li class="ag-c-modal__item-ico">
+ *                 <a href="#" class="ag-c-modal-social i-link-facebook">
+ *                   <span class="ag-is-visuallyhidden">Copiar link de facebook</span>
+ *                 </a>
+ *               </li>
+ *               <li class="ag-c-modal__item-ico">
+ *                 <a href="#" class="ag-c-modal-social i-twitter">
+ *                   <span class="ag-is-visuallyhidden">Copiar link de Twitter</span>
+ *                 </a>
+ *               </li>
+ *             </ul>
+ *             <div class="ag-c-modal__footer">
+ *               <button class="ag-c-modal__btn ag-o-btn ag-o-btn_outline" type="button">Copiar link</button>
+ *             </div>
+ *             <a class="ag-o-link" href="#">Cancelar</a>
+ *           </div>
+ *
+ *           <button class="ag-is-modal__close i-close ag-js-modalClose">
+ *             <span class="ag-is-visuallyhidden">Cerrar Modal</span>
+ *           </button>
+ *         </div>
+ *       </div>
+ *     </div>
+ *
+ *   </div>
+*/
+.ag-c-modal_social {
+  text-align: center;
+
+  .ag-c-modal__content {
+    @include px-rem(max-width, 250px);
+  }
+}
+
+.ag-c-modal__content {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 90%;
+  height: auto;
+  margin: 0;
+  background-color: $c-neutro;
+  border: 1px solid $c-on-border-secondary;
+}
+.ag-c-modal__content_740 {
+  @include px-rem(max-width, 740px);
+  border: none;
+  margin: 0 auto;
+}
+
+.ag-c-modal__setting {
+  position: relative;
+  width: 100%;
+}
+
+.ag-c-modal__inner {
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 10px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include px-rem(padding, 40px 20px 20px);
+
+  .ag-c-modal__band {
+    padding: 0;
+  }
+
+  &.ag-c-modal__inner_brimless {
+    padding: 0;
+    @include px-rem(padding-bottom, 100px);
+  }
+}
+
+.ag-c-modal__inner_630 {
+  @include px-rem(max-width, 630px);
+  margin: 0 auto;
+}
+
+.ag-c-modal__box {
+  width: 100%;
+  @include px-rem(padding, 0 20px 20px);
+}
+
+.ag-c-modal__inner_small {
+  @include px-rem(max-width, 768px);
+  border: 1px solid rgba($c-on-border, 0.8);
+  background-color: $c-neutro;
+}
+
+.ag-c-modal__rich-text {
+  width: 84%;
+  @include px-rem(margin, 20px auto 40px);
+}
+
+.ag-c-modal__share {
+  width: 84%;
+  @include px-rem(margin, 0 auto 40px);
+  border-bottom: none;
+  padding: 0;
+  text-align: right;
+}
+
+.ag-c-modal__row {
+  @include px-rem(padding-bottom, 16px);
+}
+
+.ag-c-modal__footer {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  text-align: center;
+  @include px-rem(margin, 10px auto 0 auto);
+
+  .ag-o-actions {
+    width: 100%;
+    padding-bottom: 0;
+  }
+}
+
+.ag-c-modal__band {
+  width: 100%;
+  @include px-rem(margin-bottom, 40px);
+
+  &.ag-c-modal__inner {
+    padding: 0;
+  }
+}
+
+.ag-c-modal__footer_fixed {
+  margin-top: calc(40px - 12px);
+  @include px-rem(padding, 40px 20px 0 20px);
+  border-top: 1px solid $c-on-secondary-hover;
+  background-color: $c-neutro;
+  z-index: 999;
+
+  .ag-o-btn {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/**
+ * Class: .ag-c-modal
+ * @description Modal transversal | Con cabecera de borde inferior rojo
+ * @modifiers
+ *  .ag-is-modal_visible  Acciona la modal
+ *  .ag-c-modal__head  Cabecera con borde rojo inferior
+ * @molecule Modal con cabecera y borde inferior
+ * @section Modal
+ * @markup
+ *   <div class="SG-is-changes">
+ *     <div class="ag-c-modal ag-c-modal_smallSize  ag-is-modal_visible">
+ *       <div class="ag-c-modal__content">
+ *         <div class="ag-c-modal__setting">
+ *           <article class="ag-c-modal__band">
+ *             <header class="ag-c-modal__head">
+ *               <h3 class="ag-c-modal__title">Añadir contenido en:</h3>
+ *             </header>
+ *             <form class="ag-c-modal__formlist">
+ *               <footer class="ag-c-modal__footer">
+ *                 <div class="ag-c-modal__item-control">
+ *                   <button class="ag-c-modal__btn ag-o-btn ag-o-btn_outline" type="button">Cancelar</button>
+ *                 </div>
+ *                 <div class="ag-c-modal__item-control">
+ *                   <button class="ag-c-modal__btn ag-o-btn" type="submit">Guardar</button>
+ *                 </div>
+ *               </footer>
+ *             </form>
+ *           </article>
+ *           <button class="ag-is-modal__close i-close ag-js-modalClose">
+ *             <span class="ag-is-visuallyhidden">Cerrar Modal</span>
+ *           </button>
+ *         </div>
+ *       </div>
+ *     </div>
+ *
+ *   </div>
+ *
+*/
+
+.ag-c-modal__head {
+  @include px-rem(padding, 20px 0);
+  border-bottom: 1px solid $c-secondary;
+}
+
+.ag-c-modal__masthead {
+  .ag-c-modal__title {
+    text-align: center;
+  }
+
+  @include px-rem(padding, 40px 0);
+  border-bottom: 1px solid $c-on-border-secondary;
+}
+
+.ag-c-modal__subheading {
+  font-weight: $f-bold;
+  @include font-rem(12px);
+}
+
+.ag-c-modal__maincontent {
+  @include px-rem(padding, 40px 40px 10px);
+}
+
+.ag-c-modal__data {
+  @include order(2);
+}
+
+.ag-c-modal__backout {
+  @include order(1);
+}
+
+.ag-c-modal__btn {
+  @include px-rem(margin, 0 auto 16px auto);
+  @include px-rem(max-width, 220px);
+}
+
+.ag-c-modal__btn-close {
+  position: absolute;
+  @include px-rem(top, 6px);
+  @include px-rem(right, 6px);
+  z-index: 2;
+}
+
+.ag-c-modal__tooltip-btn,
+.ag-c-modal__tooltip-btn-24 {
+  position: absolute;
+}
+
+.ag-c-modal__tooltip-btn {
+  @include px-rem(top, 90px);
+  @include px-rem(right, 8px);
+}
+
+.ag-c-modal__tooltip-btn-24 {
+  @include px-rem(top, 24px);
+  @include px-rem(right, 24px);
+}
+
+.ag-is-modal__close {
+  position: absolute;
+  @include px-rem(top, 6px);
+  @include px-rem(right, 6px);
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  background-color: $c-on-border;
+  @include px-rem(width, 30px);
+  @include px-rem(height, 30px);
+  @include px-rem(padding, 6px);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 500ms ease-in-out;
+
+  &:before {
+    color: $c-neutro;
+    // transform: rotate(0);
+    // transition: all 500ms ease-in-out;
+  }
+
+  &:hover {
+    background-color: $c-on-link;
+
+    &:before {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.ag-c-modal__item-control {
+  @include flex(1 0 100%);
+}
+
+.ag-c-modal__title,
+.ag-c-modal__text {
+  width: 100%;
+  text-align: center;
+}
+
+.ag-c-modal__title,
+.ag-c-modal__headline,
+.ag-c-modal__text-small {
+  display: block;
+  color: $c-primary;
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  line-height: 1.4;
+}
+
+.ag-c-modal__title {
+  @include font-rem(16px);
+}
+
+.ag-c-modal__text-small {
+  text-align: center;
+  @include font-rem(14px);
+}
+
+.ag-c-modal__headline {
+  @include font-rem(20px);
+  text-align: center;
+}
+
+.ag-c-modal__lead {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(padding, 10px);
+  text-align: center;
+  background-color: $c-surface-box-bg;
+
+  .ag-c-modal__title {
+    @include px-rem(margin-bottom, 20px);
+  }
+
+  .ag-c-modal__title,
+  .ag-c-modal__data,
+  .ag-c-modal__backout {
+    @include flex(1 0 100%);
+  }
+}
+
+.ag-c-modal__scroll {
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100vh;
+  max-height: calc(100vh - 150px);
+}
+
+.ag-c-modal__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  @include px-rem(max-width, 65px);
+  @include px-rem(margin, 0 auto);
+}
+
+.ag-c-modal__form {
+  .ag-c-modal__title {
+    @include px-rem(margin, 20px auto);
+  }
+}
+
+.ag-c-modal__list {
+  margin: 0 auto;
+  @include px-rem(max-width, 400px);
+  width: 100%;
+  list-style: none;
+  @include px-rem(margin-bottom, 20px);
+
+  .ag-list__row.ag-list__row_small {
+    padding: 10px 0;
+  }
+}
+
+.ag-c-modal__list-ico {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  list-style: none;
+  @include px-rem(margin, 20px auto 0);
+}
+
+.ag-c-modal__item {
+  @include flex(0 0 auto);
+  height: 100%;
+  @include px-rem(margin, 0 10px);
+}
+
+.ag-c-modal__item-ico {
+  @include flex(1 0 auto);
+  height: 100%;
+  @include px-rem(margin, 20px 6px);
+}
+
+.ag-c-modal-social {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 45px);
+  @include px-rem(height, 45px);
+  border: 1px solid $c-on-text;
+  border-radius: 50%;
+
+  &:before {
+    @include font-rem(20px);
+  }
+
+  &.i-twitter {
+    color: $c-on-twitter;
+  }
+
+  &.i-link-facebook {
+    color: $c-on-facebook;
+  }
+
+  &.i-link-whatsapp {
+    color: $c-on-whatsapp;
+  }
+}
+
+.ag-c-modal__iframe {
+  width: 100%;
+  height: 100vh;
+  max-height: 50vh;
+  display: block;
+}
+
+/**
+ * Class: .ag-c-modal
+ * @description Modal transversal | Con ancho y alto del total de la pantalla
+ * @modifiers
+ *  .ag-is-modal_visible  Acciona la modal
+ *  .ag-c-modal_cover  Ajusta el alto y ancho a toda la pantalla
+ * @molecule Modal con ancho y alto del total de la pantalla
+ * @section Modal
+ * @markup
+ *   <div class="SG-is-changes">
+ *    <div class="ag-c-modal ag-c-modal_cover ag-js-modal ag-is-modal_visible" data-modal="modal_cover" tabindex="0" id="wai-modal">
+ *      <div class="ag-c-modal_cover__content  ag-js-modalContent" tabindex="0">
+ *        <header class="ag-o-header">
+ *          <h2 class="ag-o-heading" tabindex="0">
+ *            ¿Cómo funcionan los operadores booleanos?
+ *          </h2>
+ *          <p class="ag-o-subheading">
+ *           Los operadores booleanos o lógicos, te ayudan a obtener resultados mucho más precisos.
+ *          </p>
+ *        </header>
+ *        <ul class="ag-spotlight">
+ *          <li class="ag-spotlight__item">
+ *            <h3 class="ag-spotlight__title">AND</h3>
+ *            <p class="ag-spotlight__body">Úsalo para buscar incluyendo <strong>todas las palabras</strong>.</p>
+ *          </li>
+ *          <li class="ag-spotlight__item">
+ *            <h3 class="ag-spotlight__title">NOT</h3>
+ *            <p class="ag-spotlight__body">Úsalo para buscar <strong>excluyendo palabras</strong>.</p>
+ *          </li>
+ *          <li class="ag-spotlight__item">
+ *            <h3 class="ag-spotlight__title">OR</h3>
+ *            <p class="ag-spotlight__body">Úsalo para buscar incluyendo <strong>cualquiera de las palabras</strong>.</p>
+ *          </li>
+ *        </ul>
+ *        <div class="ag-o-title-line">
+ *          <h3 class="ag-o-title-line__text">¿Cómo utilizar los operadores lógicos “AND” y “NOT”?</h3>
+ *        </div>
+ *        <div class="ag-c-modal_cover__summary">
+ *          <p>Los operadores <strong>“AND”</strong> y <strong>“NOT”</strong> mantienen una
+ *            relación directa con los términos de la
+ *            búsqueda básica, al incluir el operador <strong>“AND”</strong>, se hará una búsqueda con todas las palabras.
+ *          </p>
+ *          <p>Por ejemplo, si en el campo inicial esta la frase <strong>cuentos
+ *              infantiles</strong> y al operador le indicamos
+ *            los términos <strong>autor:Jacob Grimm</strong>, el sistema buscará: <strong>cuentos infantiles</strong> y
+ *            <strong>autor:Jacob Grimm</strong> (Ambos términos),
+ *            pero si por el contrario seleccionamos el operador <strong>“NOT”</strong>, el sistema buscará todos los términos
+ *            con <strong>cuentos
+ *              infantiles</strong> excepto los que tengan el <strong>autor:Jacob Grimm</strong>.
+ *          </p>
+ *        </div>
+ *        <div class="ag-o-title-line">
+ *          <h3 class="ag-o-title-line__text">¿Cómo utilizar el operador lógico "OR"?</h3>
+ *        </div>
+ *        <div class="ag-c-modal_cover__summary">
+ *          <p>El operador <strong>“OR”</strong> mantiene del mismo modo que los operadores
+ *             anteriores una relación directa con los términos
+ *             de la búsqueda básica, en el momento de añadirse está por defecto el operador <strong>“AND”;</strong> ¿que
+ *             significa? el operador <strong>“OR”</strong>
+ *             te va permitir crear un grupo de palabras con los operadores <strong>“AND”</strong> y <strong>“NOT”</strong>,
+ *             esto con el fin de ampliar la búsqueda.
+ *             Lo que permite añadir o excluir términos que preceden la búsqueda básica.</p>
+ *          <p>Por ejemplo, si en el campo inicial esta la frase <strong>cuentos infantiles</strong> y al operador
+ *          <strong>“OR”</strong> le indicamos los términos <strong>AND autor:Jacob Grimm</strong> el sistema buscará: <strong>cuentos             infantiles</strong> y/o con <strong>autor:Jacob Grimm</strong> (cualquiera de los términos), por el contrario si seleccionamos el
+ *           operador <strong>“NOT”</strong>,
+ *           se buscaría: <strong>cuentos infantiles</strong> sin <strong>autor:Jacob Grimm.</strong>
+ *         </p>
+ *        </div>
+ *        <button class="ag-is-modal__close i-close ag-js-modalClose">
+ *          <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+ *        </button>
+ *      </div>
+ *    </div>
+ *   </div>
+*/
+.ag-c-modal_cover {
+  width: 100%;
+  @include px-rem(margin-top, 70px);
+  background-color: $c-neutro;
+}
+
+.ag-has-modal_opacity {
+  background-color: rgba($c-neutro, 0.95);
+
+  .ag-c-modal__content {
+    background-color: transparent;
+  }
+}
+
+.ag-c-modal_cover__content {
+  @include px-rem(max-width, 980px);
+  margin: 0 auto;
+  border: none;
+
+  &.ag-u-space-bottom-80 {
+    padding-bottom: 0;
+  }
+}
+
+.ag-c-modal__box-center {
+  @include px-rem(max-width, 340px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Estado Modal open
+.ag-is-modal_visible {
+  top: 0;
+  height: 100%;
+  visibility: visible;
+  opacity: 1;
+
+  &.ag-c-modal[data-modal="add_collection"] {
+    // top: 5%;
+    .ag-c-modal__footer {
+      display: none;
+    }
+  }
+
+  &.ag-c-modal_cover {
+    height: calc(100vh - 60px);
+  }
+}
+
+/*------------------------------------*\
+  Theme´s colors class: Only Timeline view
+  Theme-blue: $c-on-secondary #1AAACC
+\*------------------------------------*/
+.ag-is-modal__category_blue {
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-on-secondary;
+    }
+  }
+
+  .ag-c-card-column__btn {
+    border-color: $c-on-secondary;
+    background-color: $c-on-secondary;
+
+    &:hover {
+      border-color: $c-on-secondary;
+      color: $c-on-secondary;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-tags__tag_transparent {
+    color: $c-on-secondary;
+    border-color: $c-on-secondary;
+  }
+
+  .ag-c-modal__btn-pass {
+    color: $c-on-secondary;
+    border: 1px solid $c-on-secondary;
+  
+    &:hover {
+      border: 1px solid $c-on-secondary;
+    }
+  
+    &.ag-c-slider__control_prev {
+      left: -25%;
+    }
+  
+    &.ag-c-slider__control_next {
+      right: -25%;
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-magenta: $c-secondary #E81744
+\*------------------------------------*/
+.ag-is-modal__category_magenta {
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-secondary;
+    }
+  }
+
+  .ag-c-card-column__btn {
+    border-color: $c-secondary;
+    background-color: $c-secondary;
+
+    &:hover {
+      border-color: $c-secondary;
+      color: $c-secondary;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-tags__tag_transparent {
+    color: $c-secondary;
+    border-color: $c-secondary;
+  }
+
+  .ag-c-modal__btn-pass {
+    color: $c-secondary;
+    border: 1px solid $c-secondary;
+  
+    &:hover {
+      border: 1px solid $c-secondary;
+    }
+  
+    &.ag-c-slider__control_prev {
+      left: -25%;
+    }
+  
+    &.ag-c-slider__control_next {
+      right: -25%;
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-green: $c-on-primary #9EB923
+\*------------------------------------*/
+.ag-is-modal__category_green {
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-on-primary;
+    }
+  }
+
+  .ag-c-card-column__btn {
+    border-color: $c-on-primary;
+    background-color: $c-on-primary;
+
+    &:hover {
+      border-color: $c-on-primary;
+      color: $c-on-primary;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-tags__tag_transparent {
+    color: $c-on-primary;
+    border-color: $c-on-primary;
+  }
+
+  .ag-c-modal__btn-pass {
+    color: $c-on-primary;
+    border: 1px solid $c-on-primary;
+  
+    &:hover {
+      border: 1px solid $c-on-primary;
+    }
+  
+    &.ag-c-slider__control_prev {
+      left: -25%;
+    }
+  
+    &.ag-c-slider__control_next {
+      right: -25%;
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-purple: $c-primary-hover #442686
+\*------------------------------------*/
+.ag-is-modal__category_purple {
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-primary-hover;
+    }
+  }
+
+  .ag-c-card-column__btn {
+    border-color: $c-primary-hover;
+    background-color: $c-primary-hover;
+
+    &:hover {
+      border-color: $c-primary-hover;
+      color: $c-primary-hover;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-tags__tag_transparent {
+    color: $c-primary-hover;
+    border-color: $c-primary-hover;
+  }
+
+
+  .ag-c-modal__btn-pass {
+    color: $c-primary-hover;
+    border: 1px solid $c-primary-hover;
+  
+    &:hover {
+      border: 1px solid $c-primary-hover;
+    }
+  
+    &.ag-c-slider__control_prev {
+      left: -25%;
+    }
+  
+    &.ag-c-slider__control_next {
+      right: -25%;
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-yellow: $c-on-tertiary #FFAF14
+\*------------------------------------*/
+.ag-is-modal__category_yellow {
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-on-tertiary;
+    }
+  }
+
+  .ag-c-card-column__btn {
+    border-color: $c-on-tertiary;
+    background-color: $c-on-tertiary;
+
+    &:hover {
+      border-color: $c-on-tertiary;
+      color: $c-on-tertiary;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-tags__tag_transparent {
+    color: $c-on-tertiary;
+    border-color: $c-on-tertiary;
+  }
+
+  .ag-c-modal__btn-pass {
+    color: $c-on-tertiary;
+    border: 1px solid $c-on-tertiary;
+  
+    &:hover {
+      border: 1px solid $c-on-tertiary;
+    }
+  
+    &.ag-c-slider__control_prev {
+      left: -25%;
+    }
+  
+    &.ag-c-slider__control_next {
+      right: -25%;
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-red: $c-is-error #EC0B04
+\*------------------------------------*/
+.ag-is-modal__category_red {
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-is-error;
+    }
+  }
+
+  .ag-c-card-column__btn {
+    border-color: $c-is-error;
+    background-color: $c-is-error;
+
+    &:hover {
+      border-color: $c-is-error;
+      color: $c-is-error;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-tags__tag_transparent {
+    color: $c-is-error;
+    border-color: $c-is-error;
+  }
+
+  .ag-c-modal__btn-pass {
+    color: $c-is-error;
+    border: 1px solid $c-is-error;
+  
+    &:hover {
+      border: 1px solid $c-is-error;
+    }
+  
+    &.ag-c-slider__control_prev {
+      left: -25%;
+    }
+  
+    &.ag-c-slider__control_next {
+      right: -25%;
+    }
+  }
+}
+
+.ag-c-modal__btn-pass {
+  position: relative;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 40px);
+  @include px-rem(height, 32px);
+  @include px-rem(margin, 0 16px);
+  border-radius: 50%;
+  background-color: $c-neutro;
+
+  &.ag-c-slider__control_prev {
+    left: -25%;
+  }
+
+  &.ag-c-slider__control_next {
+    right: -25%;
+  }
+}
+
+@media screen and (min-width: 380px) {
+  .ag-c-modal__img {
+    @include px-rem(margin, 0 0 6px auto);
+  }
+
+  .ag-c-modal__lead {
+    @include align-items(flex-end);
+    @include justify-content(space-between);
+
+    .ag-c-modal__data {
+      text-align: initial;
+      @include order(initial);
+      @include flex(0 1 56%);
+    }
+
+    .ag-c-modal__backout {
+      @include order(initial);
+      @include flex(0 1 35%);
+      text-align: right;
+
+      .ag-o-link {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .ag-c-modal__lead {
+    @include px-rem(padding, 20px);
+  }
+
+  .ag-c-modal__rich-text,
+  .ag-c-modal__share {
+    width: 86%;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .ag-c-modal__footer {
+    @include inline-flex;
+    @include flex-wrap(nowrap);
+    @include px-rem(margin-bottom, 20px);
+  }
+
+  .ag-c-modal__footer_side {
+    @include justify-content(flex-end);
+
+    .ag-c-modal__item-control {
+      @include flex(0 0 auto);
+    }
+  }
+  .ag-c-modal__footer_none-margin {
+    margin-bottom: 0;
+  }
+
+  .ag-c-modal__item-control {
+    @include flex(1 0 auto);
+
+    &:nth-child(1) {
+      text-align: right;
+    }
+
+    &:nth-child(2) {
+      @include px-rem(margin-left, 10px);
+      text-align: left;
+    }
+  }
+
+  .ag-c-modal__btn {
+    min-width: auto;
+    @include px-rem(margin, 0);
+  }
+
+  .ag-c-modal_smallSize {
+    .ag-c-modal__inner {
+      @include flexbox;
+      @include flex-direction(column);
+      @include justify-content(center);
+      @include align-items(center);
+      @include px-rem(padding, 70px 40px);
+
+      &.ag-c-modal__band {
+        display: block;
+        padding: 0;
+      }
+    }
+  }
+
+  .ag-c-modal_social {
+    .ag-c-modal__inner {
+      @include px-rem(padding, 40px);
+    }
+  }
+
+  .ag-c-modal__img {
+    @include px-rem(max-width, 75px);
+  }
+
+  .ag-c-modal__wrapper {
+    max-width: 78%;
+    margin: 0 auto;
+  }
+
+  //* Modificador para la modal de las galerías
+  .ag-c-modal_custom-gallery {
+    .ag-c-modal__header {
+      @include px-rem(padding-left, 60px);
+    }
+  }
+}
+
+@include media-query(medium) {
+  .ag-is-modal__close {
+    @include px-rem(top, 10px);
+    @include px-rem(right, 10px);
+  }
+
+  .ag-c-modal__inner {
+    @include px-rem(padding, 40px);
+  }
+
+  .ag-c-modal__title {
+    @include font-rem(19px);
+    line-height: 1.6;
+  }
+
+  .ag-c-modal__text_left {
+    text-align: left;
+  }
+
+  .ag-c-modal__headline {
+    @include font-rem(22px);
+  }
+
+  .ag-c-modal__lead {
+    .ag-c-modal__title {
+      text-align: left;
+    }
+
+    &.ag-c-modal__lead_center {
+      @include align-items(center);
+
+      .ag-c-modal__backout {
+        text-align: center;
+        @include px-rem(margin-top, 0);
+      }
+
+      .ag-c-modal__img {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .ag-c-modal__backout {
+    @include px-rem(margin-top, -50px);
+  }
+
+  .ag-c-modal__rich-text {
+    &.ag-s01-rich-text {
+      width: 92%;
+      @include px-rem(margin, 40px auto);
+    }
+  }
+
+  .ag-c-modal__share {
+    width: 92%;
+  }
+
+  .ag-c-modal__paragraph {
+    @include px-rem(margin-bottom, 16px);
+  }
+
+  //* Modificador para la modal de las galerías
+  .ag-c-modal_custom-gallery {
+    .ag-c-modal__header {
+      @include px-rem(padding-top, 20px);
+      @include px-rem(margin-top, 56px);
+    }
+
+    //- Slider LightBox OnlyClass
+    .ag-c-slider-grid__inline {
+      .ag-c-slider-grid__crop {
+        height: 100vw;
+      }
+    }
+
+    .ag-o-header-wink__title {
+      @include justify-content(flex-start);
+    }
+  }
+
+  .ag-c-modal__btn-pass {
+    @include px-rem(height, 40px);
+  }
+}
+
+@include media-query(medium-max) {
+  .ag-c-modal_cover-mb {
+    padding: 0;
+    border: none;
+
+    .ag-c-modal__content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ag-c-modal__setting {
+      position: static;
+    }
+
+    .ag-c-modal__tooltip-btn-24 {
+      top: 70px;
+    }
+  }
+
+  .ag-c-modal__title_top {
+    @include px-rem(padding-top, 40px);
+  }
+}
+
+@media (min-width: 860px) {
+
+  //* Modificador para la modal de las galerías
+  .ag-c-modal_custom-gallery {
+    .ag-c-slider-grid_wrap {
+
+      //- Slider LightBox OnlyClass
+      .ag-c-slider-grid__inline {
+        .ag-c-slider-grid__crop {
+          max-height: 40vw;
+        }
+      }
+    }
+  }
+}
+
+@include media-query(wide) {
+  .ag-c-modal_cover {
+    .ag-is-modal__close {
+      @include px-rem(margin-right, 40px);
+    }
+  }
+
+  .ag-c-modal_cover__content {
+    &.ag-u-space-bottom-80 {
+      padding-bottom: 80px;
+    }
+  }
+
+  //* Modificador para la modal de las galerías
+  .ag-c-modal_custom-gallery {
+    .ag-c-modal__header {
+      padding-left: 0;
+    }
+  }
+
+  .ag-c-modal__footer_fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    @include px-rem(padding, 30px 64px 10px 0);
+
+    .ag-c-modal__item-control {
+      flex: initial;
+    }
+  }
+}
+
+//BP: min-width: 1180px
+@include media-query(large) {
+
+  //* Modificador para la modal de las galerías
+  .ag-c-modal_custom-gallery {
+    .ag-c-slider-grid_wrap {
+
+      //- Slider LightBox OnlyClass
+      .ag-c-slider-grid__inline {
+        .ag-c-slider-grid__crop {
+          max-height: 35vw;
+        }
+      }
+    }
+  }
+}

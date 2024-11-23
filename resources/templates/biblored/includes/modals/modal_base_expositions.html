@@ -1,0 +1,217 @@
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+
+{% if timeline %}
+  <div
+    id="{{ card }}_{{ counter }}"
+    class="ag-c-modal ag-c-modal_cover ag-has-modal_opacity ag-js-modal ag-js-modal-milestone ag-is-modal__{{ milestone.category }}"
+    data-modal="modal-timeline_milestone_{% firstof milestone.pk milestone_id %}"
+    tabindex="0"
+  >
+{% endif %}
+
+{# Button prev only for modals of timeline #}
+{% if timeline %}
+  <button class="ag-c-modal__btn-pass js-pass-milestone-timeline-prev i-arrow-left">
+    <span class="ag-is-visuallyhidden">prev</span>
+  </button>
+{% endif %}
+
+{% if map %}
+  <div class="ag-c-modal ag-c-modal_cover ag-has-modal_opacity ag-js-modal" tabindex="0" data-modal="modal-milestone_map_{% firstof milestone.pk milestone_id %}">
+{% endif %}
+
+  <div class="ag-c-modal__inner ag-c-modal__inner_small ag-c-modal__inner_brimless ag-js-modalContent" tabindex="0">
+
+    <header class="ag-c-cover ag-c-cover_float-medium">
+
+      {% if milestone.image %}
+
+        <figure class="ag-c-cover__figure ag-c-cover__figure_small">
+          {% image milestone.image fill-380x380 class="ag-c-cover__image" %}
+        </figure>
+
+        <div class="ag-c-cover__card-medium">
+
+          <article class="ag-c-cover__row">
+
+            {% if milestone.category %}
+              <span class="ag-c-cover__tags ag-tags__tag ag-tags__tag_transparent" tabindex="0">
+                {% if milestone.category == "category_blue" %}
+                  {{ timeline.category_blue }}
+                {% elif milestone.category == "category_magenta" %}
+                  {{ timeline.category_magenta }}
+                {% elif milestone.category == "category_green" %}
+                  {{ timeline.category_green }}
+                {% elif milestone.category == "category_purple" %}
+                  {{ timeline.category_purple }}
+                {% elif milestone.category == "category_yellow" %}
+                  {{ timeline.category_yellow }}
+                {% elif milestone.category == "category_red" %}
+                  {{ timeline.category_red }}
+                {% endif %}
+              </span>
+            {% endif %}
+
+            {% if milestone.title %}
+              <h2 class="ag-c-cover__title ag-o-title" tabindex="0">
+                {{ milestone.title }}
+              </h2>
+            {% endif %}
+
+            {% if milestone.subtitle_1 %}
+              <h3 class="ag-c-timeline__subtitle ag-js-firstSubtitle"> {{ milestone.subtitle_1 }} </h3>
+            {% endif %}
+
+            {% if milestone.subtitle_2 %}
+              <span class="ag-c-timeline__lead ag-js-secondSubtitle">{{ milestone.subtitle_2 }} </span>
+            {% endif %}
+
+            {% comment %} Modal Cloud {% endcomment %}
+            {% if milestone.place %}
+              <span class="ag-o-text_bold"> {{ milestone.place }} </span>
+            {% endif %}
+
+            {% comment %} Modal Timeline => Start date {% endcomment %}
+            {% if milestone.start_date_title %}
+              <p class="ag-u-block ag-c-cover__block">
+                <span class="ag-c-cover__small-text"> {{ milestone.start_date_title }} </span>
+                <span class="ag-c-cover__small-text"> {{ milestone.start_place }}</span>
+              </p>
+            {% endif %}
+
+            {% comment %} Modal Timeline => End date {% endcomment %}
+            {% if milestone.end_date_title %}
+              <p class="ag-u-block ag-c-cover__block">
+                <span class="ag-c-cover__small-text"> {{ milestone.end_date_title }} </span>
+                <span class="ag-c-cover__small-text"> {{ milestone.end_place }}</span>
+              </p>
+            {% endif %}
+
+          </article>
+
+          {% if milestone.short_description %}
+            <p class="ag-c-cover__extract" tabindex="0">
+              {{ milestone.short_description|striptags }}
+            </p>
+          {% endif %}
+
+        </div>
+
+      {% else %}
+
+        <div class="ag-c-cover__full">
+          <article class="ag-c-cover__row">
+            {% if milestone.category %}
+              <span class="ag-c-cover__tags ag-tags__tag ag-tags__tag_transparent">
+                {% if milestone.category == "category_blue" %}
+                  {{ timeline.category_blue }}
+                {% elif milestone.category == "category_magenta" %}
+                  {{ timeline.category_magenta }}
+                {% elif milestone.category == "category_green" %}
+                  {{ timeline.category_green }}
+                {% elif milestone.category == "category_purple" %}
+                  {{ timeline.category_purple }}
+                {% elif milestone.category == "category_yellow" %}
+                  {{ timeline.category_yellow }}
+                {% elif milestone.category == "category_red" %}
+                  {{ timeline.category_red }}
+                {% endif %}
+              </span>
+            {% endif %}
+
+            {% if milestone.title %}
+              <h2 class="ag-c-cover__title ag-o-title" tabindex="0">
+                {{ milestone.title }}
+              </h2>
+            {% endif %}
+
+            {% comment %} Modal Cloud {% endcomment %}
+            {% if milestone.place %}
+              <span class="ag-o-text_bold"> {{ milestone.place }} </span>
+            {% endif %}
+
+            {% comment %} Modal Timeline => Start date {% endcomment %}
+            {% if milestone.start_date_title %}
+              <p class="ag-u-block">
+                <span class="ag-o-text_bold"> {{ milestone.start_date_title }} </span>
+                <span class="ag-o-text_bold"> {{ milestone.start_place }}</span>
+              </p>
+            {% endif %}
+
+            {% comment %} Modal Timeline => End date {% endcomment %}
+            {% if milestone.end_date_title %}
+              <p class="ag-u-block">
+                <span class="ag-o-text_bold"> {{ milestone.end_date_title }} </span>
+                <span class="ag-o-text_bold"> {{ milestone.end_place }}</span>
+              </p>
+            {% endif %}
+          </article>
+
+          <p class="ag-c-cover__extract" tabindex="0">
+            {{ milestone.short_description|striptags }}
+          </p>
+
+        </div>
+
+      {% endif %}
+
+    </header>
+
+    <div class="ag-c-modal__rich-text ag-s01-rich-text" tabindex="0">
+      {{ milestone.long_description|richtext }}
+    </div>
+
+    {% if timeline %}
+      <button
+        data-modal="share_social_{{ card }}_{{ counter }}"
+        class="ag-c-modal__share ag-list-button__button i-share"
+      >
+        {% trans 'Compartir contenido' %}
+      </button>
+    {% endif %}
+
+    {% if milestone.resources|length > 0  %}
+      
+      <span class="ag-o-head-tag ag-o-head-tag_big">
+        <strong
+          class="ag-o-head-tag__ico ag-o-head-tag__ico_big i-contents-related"
+          tabindex="0"
+        >
+          {% trans "Recursos relacionados" %}
+        </strong>
+      </span>
+
+      <strong class="ag-c-modal__counter">
+        {{ milestone.resources | length }} Recurso{{milestone.resources | length | pluralize }}
+      </strong>
+  
+      <div class="ag-c-card-column__flex ag-c-card-column__grid">
+  
+        {% for resource_block in milestone.resources %}
+          {% include "expositions/milestone_resource.html" with processed_data=resource_block only %}
+        {% endfor %}
+  
+      </div>
+      
+    {% endif %}
+
+    <div class="ag-c-modal__headfix ag-c-modal__headfix_spacing">
+      <button class="ag-o-btn-tooltip ag-c-modal__btn-close ag-js-modalClose i-close">
+        <span class="ag-o-btn-tooltip__tooltip">{% trans "Cerrar" %}</span>
+      </button>
+    </div>
+
+  </div>
+
+  {# Button next only for modals of timeline #}
+  {% if timeline %}
+    <button class="ag-c-modal__btn-pass js-pass-milestone-timeline-next i-arrow-right">
+      <span class="ag-is-visuallyhidden">next</span>
+    </button>
+  {% endif %}
+
+  {% if timeline %}
+    {% include "biblored/includes/modals/modal_share_social.html" with object=timeline title=milestone.title counter=counter card=card classJsCopyUrl="ag-js-copyUriTimeline" only %}
+  {% endif %}
+    
+</div>

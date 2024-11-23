@@ -1,0 +1,147 @@
+/*------------------------------------*\
+  Estilos theme: BBL
+  2019
+  Autor: Aguayo
+\*------------------------------------*/
+
+@import
+  'utils/variables/var-path',
+  'utils/variables/var-color',
+  'utils/variables/var-typo',
+  'utils/variables/var-gutter',
+  'utils/variables/var-canvas',
+  'utils/variables/var-breakpoint';
+
+@import
+  'utils/mix/mix-aspect-ratio',
+  'utils/mix/mix-flex',
+  'utils/mix/mix-font-family',
+  'utils/mix/mix-font-to-rem',
+  'utils/mix/mix-px-to-rem',
+  'utils/mix/mix-text-ellipsis',
+  'utils/mix/mix-keyframes',
+  'utils/mix/mix-mediaquery';
+
+@import
+  'utils/helpers/help-center',
+  'utils/helpers/help-clearfix',
+  'utils/helpers/help-offset';
+
+
+@import
+  'generic/normalize',
+  'generic/font-face',
+  'generic/cropper';
+
+
+@import
+  'patterns/00_sections',
+  'patterns/layout',
+  'patterns/layout-griddle',
+  'patterns/layout-aside',
+  'patterns/utils',
+  'patterns/01-titles',
+  'patterns/02-type',
+  'patterns/03-header',
+  'patterns/04-buttons',
+  'patterns/05-forms',
+  'patterns/06-lists',
+  'patterns/07-media';
+
+@import
+  'layout/l01-header',
+  'layout/l02_footer';
+
+@import
+  'blocks/b02-banner',
+  'blocks/b03-tags',
+  'blocks/b04-list',
+  'blocks/b05-box',
+  'blocks/b06-menu-bar',
+  'blocks/b07-alert',
+  'blocks/b08-breadcrumbs',
+  'blocks/b09-zig-zag',
+  'blocks/b10-brand',
+  'blocks/b11-chip',
+  'blocks/b12-skydrop',
+  'blocks/b13-table',
+  'blocks/b13-message',
+  'blocks/b14-quote',
+  'blocks/b15-info',
+  'blocks/b16-switch',
+  'blocks/b17-spotlight',
+  'blocks/b18-zig-cards',
+  'blocks/b19-result-list',
+  'blocks/b20-speaker',
+  'blocks/b21-section-list',
+  'blocks/b22-message-alert',
+  'blocks/b23-headicon-card',
+  'blocks/b24-arrow-breadcrumb',
+  'blocks/b25-ico-list',
+  'blocks/b26-post-card',
+  'blocks/b27-form-invited',
+  'blocks/b28-list-button',
+  'blocks/b29-banner-card',
+  'blocks/b30-spinner';
+
+@import
+  'components/c01-search',
+  'components/c02-paginator',
+  'components/c03-card',
+  'components/c03-card-column',
+  'components/c03-card-grid',
+  'components/c05-filter',
+  'components/c05-filter-band',
+  'components/c07-slider',
+  'components/c08-slider-gallery',
+  'components/c09-menu',
+  'components/c10-menu-chip',
+  'components/c11-modal',
+  'components/c12-login',
+  'components/c14-rating',
+  'components/c15-detail',
+  'components/c17-select-search',
+  'components/c18-tip',
+  'components/c19-tooltip',
+  'components/c20-filter-chip',
+  'components/c21-cover',
+  'components/c22-slider-grid',
+  'components/c23-menu-aside',
+  'components/c24-cloud-terms',
+  'components/c25-georeference-map',
+  'components/c26-filter-aside',
+  'components/c27-menu-gallery',
+  'components/c28-timeline',
+  'components/c29-cropper',
+  'components/c30-related-cards',
+  'components/c31-avatars-list',
+  'components/c32-radio-group',
+  'components/c33-choice-image',
+  'components/c34-card-group-collection',
+  'components/c35-iframe-form',
+  'components/c36_hero',
+  'components/c37-featured-list',
+  'components/c38_link_list_pages',
+  'components/c39_dropdown',
+  'components/c40-aside',
+  'components/c42-landscape-card';
+
+//- Scope: Sólo para alterar las clases del CMS
+@import
+  'rich-text/s01-rich-text';
+
+//- -theme: Sólo para alterar los colores del tema de exposiciones a manera global
+@import
+  'themes_colors/t-01-global-primary_color',
+  'themes_colors/t-02-global-secondary_color',
+  // color de cards de contenido sugerido verde
+  'themes_colors/t-03-global-tertiary';
+
+@import
+  'vendor/scope_typeahead';
+
+//- Se necesita acá para que sobrescriba siempre cualquier estilo
+@import
+  'patterns/has',
+  'patterns/is';
+

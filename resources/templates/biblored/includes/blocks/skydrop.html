@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<div class="swiper-container js-sliderTablet">
+  <div class="swiper-wrapper ag-skydrop">
+    <a class="swiper-slide ag-skydrop__item i-consult-contents" href="{% url 'search' %}" title="{% trans 'Ir a resultados de búsqueda' %}">
+      <article class="ag-skydrop__item-content">
+        <h3 class="ag-skydrop__title">{% trans "Consulta" %}</h3>
+        <p class="ag-o-text">{% trans "contenidos disponibles en BibloRed y otros espacios culturales" %}</p>
+      </article>
+    </a>
+    <a class="swiper-slide ag-skydrop__item i-create" 
+    href="{% if user_authenticated %} {% url 'collection_add' %} {% else %} {% url 'login' %}?next={% url 'collection_add' %} {% endif %}" 
+    title="{% if user_authenticated %} {% trans 'Ir a crear colección' %} {% else %} {% trans 'Inicia sesión para crear colecciones' %} {% endif %}">
+      <article class="ag-skydrop__item-content">
+        <h3 class="ag-skydrop__title">{% trans "Crea" %}</h3>
+        <p class="ag-o-text">{% trans "colecciones de tu interés y compártelas" %}</p>
+      </article>
+    </a>
+    <a class="swiper-slide ag-skydrop__item i-collaborate" href="{% url 'collections' %}" title="{% trans 'Ir a Colecciones de usuario' %}">
+      <article class="ag-skydrop__item-content">
+        <h3 class="ag-skydrop__title">{% trans "Participa" %}</h3>
+        <p class="ag-o-text">{% trans "sumando contenidos a una colección existente" %}</p>
+      </article>
+    </a>
+  </div>
+</div>

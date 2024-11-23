@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C03
+  Card
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+//- Color theme
+.ag-c-card__color {
+  border-bottom: 3px solid $c-on-secondary;
+}
+
+.ag-c-card-column {
+  .ag-c-card-column__btn {
+    border-color: $c-on-secondary;
+    background-color: $c-on-secondary;
+
+    &:hover {
+      border-color: $c-on-secondary;
+      color: $c-on-secondary;
+      background-color: transparent;
+    }
+  }
+}

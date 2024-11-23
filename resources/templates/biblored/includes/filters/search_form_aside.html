@@ -1,0 +1,206 @@
+{% load i18n %}
+
+{# Aside Filtros form #}
+
+<div class="ag-l-aside ag-js-aside">
+
+  <div class="ag-c-filter ag-js-asideContent">
+    <form class="ag-c-filter__form"
+      method="get"
+      id="search_form"
+    >
+      <input type="hidden"
+        id="submit_on_clear_tag"
+        value="1"
+      >
+
+      {% comment 'Search engine component' %}
+      This component is located outside the context of the aside,
+      is located in the main part of the page. {% endcomment %}
+      {% comment Add Class %} `ag-is-filter_height` this class affects directly the context that envolve at search with its height,
+      this block anything actions in the page {% endcomment %}
+      <fieldset class="ag-c-filter__fixed
+        ag-js-suggestedSearchList"
+      >
+        <legend class="ag-c-filter__headline
+          ag-o-subtitle">
+            {% trans "¿Qué estás buscando?" %}
+        </legend>
+        <div class="ag-c-filter__bar">
+          <div class="ag-c-filter__search">
+            <div class="ag-c-search__control">
+              <div class="ag-c-search__input
+                ag-c-filter__search-input
+                ag-js-searchTextInputContainer"
+              >
+                <label for="{{ search_form.search_text.id_for_label }}">
+                  <span class="ag-is-visuallyhidden">
+                    {{ search_form.search_text.label }}
+                  </span>
+                </label>
+                {% comment 'TODO Reset input' %}
+                  Remove class  .ag-is-reset-off of .ag-js-inputReset
+                  Btn: .ag-js-inputResetBtn
+                  .ag-is-reset-off: esta clase al estar aplicada restaura el padding-left y oculta el btn
+                {% endcomment %}
+                <div class="ag-form__input_reset
+                  ag-js-inputReset
+                  ag-is-reset-off"
+                >
+                  {{ search_form.search_text }}
+                  <button type="button"
+                    class="ag-form__btn-reset
+                    i-close
+                    ag-js-inputResetBtn"
+                  >
+                    <span class="ag-is-visuallyhidden">
+                      {% trans "Limpiar input" %}
+                    </span>
+                  </button>
+                </div>
+
+                <div class="ag-c-search__suggestions
+                  ag-js-searchSuggestion
+                  ag-is-hide"
+                >
+                </div>
+
+              </div>
+              <button class="ag-c-search__button i-search">
+                <span class="ag-is-visuallyhidden">{% trans 'Realizar búsqueda' %}</span>
+              </button>
+            </div>
+            <div class="ag-c-filter__open-button">
+              {# The button that open filters #}
+              <button class="ag-o-btn
+                ag-o-btn_small
+                ag-o-btn_outline
+                ag-js-asideOpen"
+                type="button"
+                tabindex="0"
+              >
+                {% trans "Filtros" %}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {# Exact search and Advanced search #}
+        <ul class="ag-c-filter__inline-box">
+          <li class="ag-c-filter__box">
+            <div class="ag-form__checkbox">
+              {{ search_form.exact_search }}
+              <label class="i-check"
+                for="{{ search_form.exact_search.auto_id }}"
+              >
+                {{ search_form.exact_search.label }}
+              </label>
+            </div>
+            {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="advanced_search" only %}
+          </li>
+          <li class="ag-c-filter__box">
+            <a class="ag-c-filter__link
+              ag-o-link"
+              href="{% url 'advanced_search' %}?{% url_params %}"
+            >
+              {% trans 'Búsqueda avanzada' %}
+            </a>
+          </li>
+        </ul>
+
+      </fieldset>
+
+      {% include "biblored/includes/filters/search_form_filters.html" with search_form=search_form only %}
+
+      {# Field error #}
+      {% for error in search_form.none_field_errors %}
+        <ul class="ag-form-list_error">
+          <li>{{ error }}</li>
+        </ul>
+      {% endfor %}
+
+      {% for hidden in search_form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+
+      <div class="ag-is-display-none
+        ag-js-asideFormAdvancedSearch"
+      >
+        {% if boolean_operator_formset %}
+          <input type="hidden"
+            class="ag-js-formset_prefix"
+            value="{{ boolean_operator_formset.prefix }}"
+          >
+          {{ boolean_operator_formset.management_form }}
+          {% for boolean_operator_form in boolean_operator_formset %}
+            {% if boolean_operator_form.is_or.value %}
+              {# form OR #}
+              {% include "biblored/includes/search/boolean_operator_form_group_separator.html" with form=boolean_operator_form only %}
+            {% else %}
+              {# form AND/NOT #}
+              {% include "biblored/includes/search/boolean_operator_form.html" with form=boolean_operator_form only %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        <div class="ag-form__flex
+          ag-js-year_filter"
+        >
+          <div class="ag-form__flex
+            ag-form__gutter"
+          >
+            <label class="ag-form__label
+              ag-form__label_light"
+              for="{{ search_form.from_publish_year.id_for_label }}"
+            >
+              {{ search_form.from_publish_year.label }}
+            </label>
+            <div class="ag-form__input
+              ag-form__input_small"
+            >
+              {{ search_form.from_publish_year }}
+            </div>
+          </div>
+          <div class="ag-form__flex
+            ag-form__gutter"
+          >
+            <label class="ag-form__label
+              ag-form__label_light"
+              for="{{ search_form.to_publish_year.id_for_label }}"
+            >
+              {{ search_form.to_publish_year.label }}
+            </label>
+            <div class="ag-form__input
+              ag-form__input_small"
+            >
+              {{ search_form.to_publish_year }}
+            </div>
+          </div>
+        </div>
+        {# TODO: FRONT  #}
+        {# HIDDEN FIELD WITH COLLECTION FILTER VALUE  #}
+{#        {{ search_form.collection_set }}#}
+        {# ENDTODO: FRONT  #}
+      </div>
+
+      <div class="ag-c-filter__button_sticky">
+        <button class="ag-o-btn
+          ag-js-filterSubmit"
+          type="submit"
+        >
+          {% trans 'Agregar filtros' %}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <button class="ag-c-filter__btn-close
+    ag-o-btn-tooltip
+    i-close
+    ag-js-asideClose"
+    type="button"
+  >
+    <span class="ag-o-btn-tooltip__tooltip">
+      {% trans "Cerrar" %}
+    </span>
+  </button>
+</div>

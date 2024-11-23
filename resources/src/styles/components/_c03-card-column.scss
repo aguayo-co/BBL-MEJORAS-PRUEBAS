@@ -1,0 +1,101 @@
+/*------------------------------------*\
+  ID: C03
+  Card Column
+  Description: The cards grid.
+\*------------------------------------*/
+
+.ag-c-card-column__grid {
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  @include px-rem(margin, 40px 0);
+}
+
+.ag-c-card-column_flex {
+  @include flexbox;
+}
+
+.ag-c-card-column {
+  width: 90%;
+  @include px-rem(margin, 10px);
+
+  .ag-c-card__canvas {
+    @include px-rem(padding, 24px 26px);
+  }
+
+  .ag-tags__item {
+    margin-top: 0;
+  }
+
+  .ag-o-mark {
+    color: $c-primary;
+  }
+}
+
+.ag-card-column_max-content {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-self(stretch);
+  @include justify-content(space-between);
+  height: 100%;
+}
+
+.ag-c-card-column__border {
+  height: 100%;
+  border: 1px solid rgba($c-on-border, 0.8);
+  z-index: 2;
+  background-color: $c-neutro;
+}
+
+.ag-c-card-column__flex {
+  @include flexbox;
+}
+
+.ag-c-card-column__media {
+  @include px-rem(width, 82px);
+  @include px-rem(min-width, 82px);
+  @include px-rem(height, 82px);
+  @include px-rem(margin-right, 20px);
+  overflow: hidden;
+}
+
+.ag-c-card-column__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.ag-c-card-column__content {
+  @include px-rem(margin, 20px 0);
+}
+
+.ag-c-card-column__line-break {
+  display: block;
+}
+
+.ag-c-card-column__footer {
+  @include flex-direction(column);
+}
+
+.ag-c-card-column__btn {
+  @include align-self(flex-end);
+  @include px-rem(margin-top, 20px);
+  border-color: $c-secondary;
+  background-color: $c-secondary;
+
+  &:hover {
+    border-color: $c-secondary;
+    color: $c-secondary;
+    background-color: transparent;
+  }
+}
+
+// Medium  : 768px
+@include media-query(medium) {
+  .ag-c-card-column {
+    @include align-self(stretch);
+    width: 46%;
+  }
+}

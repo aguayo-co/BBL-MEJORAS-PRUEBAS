@@ -1,0 +1,293 @@
+/*------------------------------------*\
+  ID: C23
+  Menu Aside
+  Description: Menú aside oculto sólo para páginas internas de Exposiciones
+\*------------------------------------*/
+.ag-c-menu-aside {
+  width: 100%;
+}
+
+.ag-c-menu-aside__nav {
+  position: fixed;
+  top: 4.3rem;
+  width: 100%;
+  right: 0;
+  z-index: 5;
+  background-color: $c-neutro;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.12),
+    0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: right 500ms ease-out;
+}
+
+.ag-c-menu-aside__inner {
+  width: 100%;
+  height: calc(100vh - 50px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 999;
+  background-color: $c-neutro;
+}
+
+.ag-is-menu-aside__close {
+  position: absolute;
+  top: 13%;
+  right: 0;
+  @include px-rem(margin-right, -10px);
+}
+
+.ag-c-menu-aside__head {
+  position: relative;
+  @include px-rem(padding, 70px 0 20px);
+}
+
+.ag-c-menu-aside__title,
+.ag-c-menu-aside__title-link {
+  font-family: $f-primary;
+  @include font-rem(14px);
+  line-height: 1.2;
+  color: $c-primary;
+}
+
+.ag-c-menu-aside__title-link {
+  font-weight: $f-bold;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.ag-c-menu-aside__wrap {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.ag-c-menu-aside__list {
+  margin-top: calc(32px - 20px);
+  @include px-rem(padding-bottom, 40px);
+  list-style: none;
+}
+
+.ag-c-menu-aside__anchor {
+  @include flexbox;
+  @include align-items(center);
+  border: 1px solid $c-on-border;
+  border-radius: 4px;
+  @include px-rem(min-height, 100px);
+  @include px-rem(margin-bottom, 14px);
+  transition: all 500ms linear;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $c-secondary;
+
+    .ag-c-menu-aside__anchor-mask {
+      &::before {
+        background-color: rgba($c-secondary, 0.8);
+      }
+    }
+
+    .ag-c-menu-aside__anchor-title {
+      color: $c-secondary;
+    }
+  }
+
+  &:active,
+  &.ag-has-menu-aside__current {
+    background-color: rgba($c-primary-disabled, 0.8);
+    cursor: not-allowed;
+
+    .ag-c-menu-aside__anchor-caption {
+      opacity: 0.4;
+    }
+
+    .ag-c-menu-aside__anchor-mask {
+      &::before {
+        background-color: rgba($c-primary-disabled, 0.8);
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: rgba($c-primary-disabled, 0.5);
+      .ag-c-menu-aside__anchor-mask {
+        &::before {
+          background-color: rgba($c-primary-disabled, 0.8);
+        }
+      }
+
+      .ag-c-menu-aside__anchor-title {
+        color: rgba($c-primary, 0.8);
+      }
+    }
+
+  }
+}
+
+.ag-c-menu-aside__anchor-mask {
+  position: relative;
+  @include align-self(stretch);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+    transition: all 300ms linear;
+  }
+}
+
+.ag-c-menu-aside__anchor-img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ag-c-menu-aside__anchor-caption {
+  @include px-rem(padding, 10px);
+}
+
+.ag-c-menu-aside__anchor-title {
+  @include px-rem(margin-bottom, 8px);
+  font-weight: $f-bold;
+  @include text-ellipsis-multiple(16px, 1.2, 2);
+  // @include px-rem(font-size, 16px);
+  // line-height: 1.2;
+  color: $c-primary;
+}
+
+// Max 84 characters
+.ag-c-menu-aside__anchor-description {
+  @include text-ellipsis-multiple(12px, 1.4, 2);
+}
+
+.ag-c-menu-aside__text-button {
+  position: relative;
+  display: inline-flex;
+  @include align-items(center);
+  @include px-rem(padding, 12px 0 12px 12px);
+  font-family: $f-primary;
+  font-weight: $f-regular;
+  @include font-rem(16px);
+  color: $c-neutro;
+  line-height: 1.5;
+  cursor: pointer;
+
+  &::after {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(width, 14px);
+    @include px-rem(height, 14px);
+    @include px-rem(margin-left, 8px);
+    @include font-rem(20px);
+    border-radius: 50%;
+  }
+}
+
+.ag-c-menu-aside__main-button {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(flex-end);
+  width: 100%;
+  background-color: rgba($c-secondary, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 300ms linear;
+  box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: rgba($c-secondary, 1);
+  }
+
+  .ag-c-menu-aside__wrap {
+    width: 100%;
+    text-align: right;
+
+    .ag-c-menu-aside__text-button {
+      &:before {
+        content: "";
+        position: absolute;
+        @include px-rem(left, -2px);
+        z-index: -1;
+        display: block;
+        width: 110%;
+        height: 100%;
+        @include px-rem(border-radius, 4px);
+        transform: scale(0);
+        transition: transform 400ms ease-in-out;
+        background-color: transparent;
+      }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      .ag-c-menu-aside__text-button {
+        &:before {
+          transform: scale(1);
+          background-color: rgba($c-secondary_dark, 0.8);
+        }
+      }
+    }
+  }
+}
+
+//* Action Class
+.ag-is-menu-aside-close {
+  right: -120%;
+  transition: right 500ms ease-out;
+}
+
+//* Action Class
+.ag-is-menu-aside-open {
+  top: 4.3rem;
+}
+
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+  .ag-c-menu-aside__head {
+    padding-top: 40px;
+  }
+
+  .ag-c-menu-aside__list {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    // @include justify-content(center);
+    // @include align-items(center);
+  }
+
+  .ag-c-menu-aside__item {
+    @include flex(1 1 42%);
+    @include px-rem(max-width, 345px);
+    @include px-rem(margin-left, 16px);
+  }
+
+  .ag-c-menu-aside__nav {
+    top: 4.3rem;
+    transition: top 500ms ease-out;
+  }
+
+  .ag-c-menu-aside__inner {
+    height: max-content;
+  }
+
+  .ag-is-menu-aside-close {
+    top: -100%;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .ag-c-menu-aside__wrap {
+    max-width: $canvas-huge;
+  }
+}

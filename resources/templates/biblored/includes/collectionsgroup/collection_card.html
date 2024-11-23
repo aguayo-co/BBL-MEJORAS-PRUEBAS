@@ -1,0 +1,135 @@
+{% load i18n %}
+{% load static %}
+
+<article class="ag-c-card ag-s-card_position">
+  <div class="ag-c-card_top-shadow">
+    {# wrap: indenta los contenidos #}
+    <div class="ag-c-card__border">
+      <a 
+        class="ag-c-card__action" 
+        href="{{ collection.get_absolute_url }}"
+        title="{% trans 'Ir al listado de recursos de' %} {{ collection.title }}"
+      >
+
+        {% if collection.image %}
+          <figure class="ag-c-card__media">
+            <img 
+              class="ag-c-card__img" 
+              src="{% if collection.image %}{{ collection.image.url }}{% else %}
+              {% static collection.default_cover_image|get_static_rel_path %}{% endif %}" 
+              alt="{% trans 'Imagen de referencia de' %} {{ collection.title }}"
+            />
+          </figure>
+        {% endif %}
+
+        <ul class="ag-c-card__bar ag-c-card__bar_bg">
+          {% if collection.resources_by_type_count %}
+          <li class="ag-c-card__bar-item">
+            <strong class="ag-c-card__bar-label">{% trans "Encuentra en esta colección" %}:</strong>
+            <ul class="ag-c-card__bar-sublist">
+              {% for resource_type, count in collection.resources_by_type_count.items %}
+                <li class="ag-c-card__bar-subitem">{% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endif %}
+          {% if  collection.updated_at %}
+          <li class="ag-c-card__bar-item ag-c-card__bar-item_last">
+            <strong class="ag-c-card__bar-label">{% trans "Publicada el" %}:</strong>
+            <ul class="ag-c-card__bar-sublist">
+              <li class="ag-c-card__bar-subitem"> {{ collection.updated_at|date:"DATE_FORMAT" }} </li>
+            </ul>
+          </li>
+          {% endif %}
+        </ul>
+
+        <div class="ag-c-card__canvas">
+
+          <div class="ag-c-card__top">
+            <ul class="ag-tags">
+              <li class="ag-tags__item">
+                {% if  collection.collaborativecollection %}
+                  <span class="ag-tags__ico ag-tags__ico_purple i-collective">
+                    <span class="ag-tags__tag ag-tags__tag_dark">
+                      {% trans "Colección colaborativa" %}
+                    </span>
+                  </span>
+                {% else %}
+                  <span class="ag-tags__ico ag-tags__ico_pink i-personal">
+                    <span class="ag-tags__tag ag-tags__tag_dark">
+                      {% trans "Colección individual" %}
+                    </span>
+                  </span>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+
+          <div class="ag-c-card__divider">
+            {% if collection.title %}
+            <h2 class="ag-c-card__title" tabindex="0"> {{ collection.title }} </h2>
+            {% endif %}
+            {% if collection.description %}
+            <div class="ag-c-card__lead">
+              {{ collection.description }}
+            </div>
+            {% endif %}
+          </div>
+
+        </div>
+      </a>
+
+      <footer class="ag-c-card__footer">
+        <ul class="ag-c-card__list ag-c-card__list_end">
+          <li class="ag-c-card__list-item">
+            <a class="ag-chip" href="{{ collection.owner.get_absolute_url }}" title="{% trans 'Ver el perfil de' %} {{ collection.owner.full_name }}">
+              <figure class="ag-chip__avatar">
+                {% if  collection.owner.profile.avatar %}
+                  <img class="ag-chip__img" src="{{ collection.owner.profile.avatar.url }}" alt="{% trans 'Avatar creador' %} {{ collection.owner.full_name }}">
+                {% else %}
+                  {{ collection.owner.initials }}
+                {% endif %}
+              </figure>
+              {% if collection.owner.full_name %}
+              <span class="ag-chip__text">
+                <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+                {{ collection.owner.full_name }}
+              </span>
+              {% endif %}
+            </a>
+          </li>
+
+          {% if  collection.active_collaborators %}
+            <li class="ag-c-card__list-item">
+              <strong class="ag-c-card__list-label">{% trans "Colaboradores" %}</strong>
+              <ul class="ag-chip ag-chip_set i-after-plus">
+                {% for collaborator in collection.active_collaborators|slice:":6" %}
+                  <li class="ag-chip_set">
+                    <a class="ag-chip__avatar ag-chip__avatar_set" href="{{ collaborator.get_absolute_url }}" title="{% trans 'Ver el perfil de' %} {{ collaborator.full_name }}">
+                    {% if collaborator.profile.avatar %}
+                      <img class="ag-chip__img ag-chip__img_set" src="{{ collaborator.profile.avatar.url }}" alt="{% trans 'Avatar colaborador' %} {{ collaborator.full_name }}">
+                    {% else %}
+                      {{ collaborator.initials }}
+                    {% endif %}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endif %}
+        </ul>
+        <div
+          class="ag-c-card__footer-flex {% if title_group == 'favoritos' %}ag-c-card__footer-flex_end{% endif %}"
+        >
+          {{ form }}
+          {% if title_group != 'favoritos' %}
+          {% include "biblored/includes/collectionsgroup/buttons/collections_add_to_remove_from_favorites_group.html" with collection=collection favorites_group=collections_favorites_group collections_groups_initial=collection.groups_list color_icon=color_icon only %}
+          {% endif %}
+          {% include "biblored/includes/options_menu/options_menu_for_card_group_collections.html" with counter=counter card="collection" %}
+        </div>
+      </footer>
+    </div>
+  </div>
+</article>
+
+{% include "biblored/includes/modals/modal_share_social.html" with object=collection title=collection.title counter=counter card="collection" classJsCopyUrl="ag-js-copyUrlAnotherPage" %}

@@ -1,0 +1,65 @@
+{% load i18n %}
+{% load static %}
+
+<article class="ag-c-card-column" tabindex="0">
+  <div class="ag-c-card-column__border">
+      <div class="ag-c-card__canvas ag-card-column_max-content">
+
+        <div class="ag-c-card-column__flex">
+          {% if processed_data.image %}
+          <figure class="ag-c-card-column__media">
+          <img class="ag-c-card-column__img" src="{% firstof processed_data.image.file.url processed_data.image %}" alt="{{ processed_data.title }}">
+          </figure>
+          {% endif %}
+          <div>
+            {% if processed_data.is_exclusive %}
+              <ul class="ag-tags">
+                <li class="ag-tags__item">
+                  <span class="ag-tags__ico ag-tags__ico_red i-exclusive">
+                    <span class="ag-tags__tag ag-tags__tag_dark" tabindex="0">
+                      {% trans "Exclusivo BibloRed" %}
+                    </span>
+                  </span>
+                </li>
+              </ul>
+            {% endif %}
+            <h2 class="ag-c-card__title" tabindex="0">{{ processed_data.title }}</h2>
+          </div>
+        </div>
+
+        <div class="ag-c-card-column__content">
+          {% if  processed_data.data_source %}
+            <p class="ag-c-card-column__content_txt">
+              {% if processed_data.type %}
+                <span class="ag-o-mark">
+                  {{ processed_data.type }}
+                </span>
+              {% endif %}
+            </p>
+          {% endif %}
+          {% if processed_data.formatted_date %}
+          <p>
+            {% trans "Publicado" %}:
+            <span class="ag-o-mark">{{ processed_data.date|date:"Y" }}</span>
+          </p>
+          {% endif %}
+
+          <div class="ag-c-card__text">
+            <div class="ag-c-card__lead ag-o-mark">
+              {{ processed_data.description | striptags }}
+            </div>
+          </div>
+        </div>
+
+        <footer class="ag-c-card-column__footer ag-c-card-column__flex">
+          {% if processed_data.creator %}
+            <p>Autor: <strong class="ag-c-card-column__line-break ag-o-mark">{{ processed_data.creator }}</strong> </p>
+          {% endif %}
+          <a class="ag-o-btn ag-o-btn_small ag-c-card-column__btn" href="{{ processed_data.get_absolute_url }}">{% trans "Ver recurso" %}</a>
+        </footer>
+
+      </div>
+
+  </div>
+
+</article>

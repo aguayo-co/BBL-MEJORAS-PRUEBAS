@@ -1,0 +1,51 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C22 Slider Grid
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+.ag-c-slider-grid {
+
+  .ag-c-slider-grid__control_next,
+  .ag-c-slider-grid__control_prev {
+    border: 1px solid $c-on-secondary;
+
+    &:before {
+      color: $c-on-secondary;
+    }
+  }
+
+
+  .ag-c-slider-grid__bullet {
+    background-color: $c-on-secondary;
+  }
+
+
+  .ag-has-slider-grid__counter {
+    color: $c-on-secondary;
+  }
+
+  //- SliderGrid OnlyClass for Video Gallery
+  .ag-has-slider-grid__item {
+
+    &:hover {
+      &:before {
+        background-color: rgba($c-on-secondary, .6);
+      }
+    }
+
+  }
+
+  .ag-c-slider-grid__button {
+
+    &:hover {
+      border: 3px solid $c-on-secondary;
+
+      .ag-c-slider-grid__caption {
+        background-color: rgba($c-on-secondary, .8);
+      }
+    }
+  }
+
+}

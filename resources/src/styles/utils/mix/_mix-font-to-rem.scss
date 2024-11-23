@@ -1,0 +1,40 @@
+//*----------------------------------------------------*\
+    // Converter pixels (px) to (rem) with Fallback
+//*----------------------------------------------------*/
+
+@function calculateRem($size) {
+  $remSize: $size /  $font-size-base;
+  @return #{$remSize}rem;
+}
+
+/**
+ * Font-size: Convierte el valor de px a rem de la propiedad font-size, agrega fallback en px para navegadores antiguos.
+ *
+ * @mixin
+ * @section Convertir valor de (px) a (rem)
+ * @param $size Valor del font-size en px
+ * @example
+ *  .foo {
+ *     @include font-rem(32px);
+ *  }
+ */
+@mixin font-rem($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+
+/**
+ * letter-spacing: Convierte el valor de px a rem de la propiedad letter-spacing, agrega fallback en px para navegadores antiguos.
+ *
+ * @mixin
+ * @section Convertir valor de (px) a (rem)
+ * @param $size Valor de line-he en px
+ * @example
+ *  .foo {
+ *     @include letter-spacing(32px);
+ *  }
+ */
+@mixin letter-spacing($size)  {
+  letter-spacing: $size; //Fallback in px
+  letter-spacing: calculateRem($size);
+}

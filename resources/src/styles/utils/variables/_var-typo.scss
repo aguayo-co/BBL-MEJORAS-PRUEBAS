@@ -1,0 +1,194 @@
+//*------------------------------------*\
+// Variables Typo font
+// ruta variable pata fuentes var-path
+// $font-path: "../fonts" !default;
+//*------------------------------------*/
+
+/**
+ * Font size: 16px valor en pixeles
+ * @nuclide Font Styles
+ * @section Variables Typo > Font Size base HTML
+ */
+$font-size-base: 16px;
+
+/**
+  * Font family: 'Open Sans'
+  * @nuclide Font Styles
+  * @section Variables Typo > Font Styles
+  */
+$f-default: 'Open Sans',
+sans-serif;
+
+/**
+   * Font family: 'Roboto'
+   * @nuclide Font Styles
+   * @section Variables Typo > Font Styles
+   */
+$f-primary: 'Roboto',
+sans-serif;
+
+/**
+   * font-weight | Font family: Roboto - Thin
+   * @nuclide Font Styles
+   * @section Variables Typo > Font Styles
+ */
+$f-thin: 300;
+
+/**
+   * font-weight | Font family: Roboto/Open Sans - Regular
+   * @nuclide Font Styles
+   * @section Variables Typo > Font Styles
+ */
+$f-regular: 400;
+
+/**
+   * font-weight | Font family: Roboto - Medium
+   * @nuclide Font Styles
+   * @section Variables Typo > Font Styles
+   */
+$f-medium: 500;
+
+/**
+   * font-weight | Font family: Roboto - SemiBold
+   * @nuclide Font Styles
+   * @section Variables Typo > Font Styles
+   */
+$f-semibold: 600;
+
+/**
+   * font-weight | Font family: Roboto - Bold
+   * @nuclide Font Styles
+   * @section Variables Typo > Font Styles
+   */
+$f-bold: 700;
+
+
+// fuentes de ícono
+/**
+   * La ruta relativa a la carpeta de fuentes
+   * @nuclide icomoon font-family
+   * @section Variables Typo > Config
+   */
+$ico-font-family: "bdb-ico" !default;
+
+// Variables icomoon v8.1 BD3
+$i-arrow-up-thin: "\e955";
+
+// Variables icomoon v8.0 BD3
+$i-digital: "\e94e";
+$i-menu: "\e94f";
+$i-share: "\e950";
+$i-copy: "\e951";
+$i-pen: "\e952";
+$i-compass: "\e953";
+$i-person-following: "\e954";
+
+// Variables icomoon v7.8 BD3
+$i-arrow-alt-down: "\e948";
+$i-arrow-alt-left: "\e949";
+$i-arrow-alt-right: "\e94a";
+$i-arrow-alt-up: "\e94b";
+$i-rotate-left: "\e94c";
+$i-rotate-right: "\e94d";
+
+// Variables icomoon v7.7 BD3
+$i-square: "\e947";
+
+// Variables icomoon v7.6 BD2
+$i-add_right: "\e945";
+$i-add_left: "\e946";
+$i-zoom-out: "\e943";
+$i-zoom-in: "\e944";
+
+// Variables icomoon v7.5 BD2
+$i-travel:"\e93b";
+$i-filter: "\e93a";
+$i-contents-related:"\e939";
+$i-history:"\e93c";
+$i-location:"\e93d";
+$i-narrative:"\e93e";
+$i-pushpin:"\e93f";
+$i-scroll-down:"\e940";
+$i-story:"\e941";
+$i-terms:"\e942";
+
+// Variables icomoon v7.4 BD2
+$i-delete: "\e938";
+
+// Variables icomoon v7.3 BD2
+$i-question: "\e937";
+$i-redirection: "\e936";
+
+
+// Variables icomoon v7.2
+$i-external-link: "\e935";
+
+//Variables icomoon v7.1
+$i-check-circle: "\e934";
+
+//Variables icomoon v7.0
+$i-brochure: "\e931";
+$i-music-sheet: "\e932";
+$i-texts: "\e933";
+
+//Variables icomoon v6.0
+$i-exclamation-mark: "\e930";
+
+//Variables icomoon v5.0
+$i-quote: "\e92f";
+
+//Variables icomoon v4.0
+$i-link-facebook: "\e92c";
+$i-secure: "\e92d";
+$i-link-whatsapp: "\e92e";
+
+//Variables icomoon v3.0
+$i-plus: "\e92b";
+
+//Variables icomoon v2.0
+$i-thesis: "\e925";
+$i-bulletin: "\e926";
+$i-newspaper: "\e927";
+$i-guide: "\e928";
+$i-series: "\e929";
+$i-map: "\e92a";
+$i-burguer: "\e924";
+$i-sketch: "\e923";
+
+
+//Variables icomoon v1.0
+$i-3d: "\e900";
+$i-arrow-down: "\e901";
+$i-arrow-left: "\e902";
+$i-arrow-right: "\e903";
+$i-arrow-up: "\e904";
+$i-audio: "\e905";
+$i-bdb: "\e906";
+$i-biblored: "\e907";
+$i-book: "\e908";
+$i-check: "\e909";
+$i-close: "\e90a";
+$i-collaborate: "\e90b";
+$i-collective: "\e90c";
+$i-consult-contents: "\e90d";
+$i-create: "\e90e";
+$i-data: "\e90f";
+$i-article: "\e910";
+$i-exclusive: "\e911";
+$i-facebook: "\e912";
+$i-instagram: "\e913";
+$i-interactive: "\e914";
+$i-like: "\e915";
+$i-megaphone: "\e916";
+$i-not-available: "\e917";
+$i-notify: "\e918";
+$i-personal: "\e919";
+$i-picture: "\e91a";
+$i-objects: "\e91b";
+$i-search: "\e91c";
+$i-software: "\e91d";
+$i-star: "\e91e";
+$i-twitter: "\e91f";
+$i-user: "\e920";
+$i-video: "\e921";
+$i-youtube: "\e922";

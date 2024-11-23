@@ -1,0 +1,33 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  Scope Class
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+
+.ag-s01-rich-text {
+  a {
+    color: $c-primary-hover;
+  }
+
+  ul {
+    li {
+      &:before {
+        background-color: $c-primary-hover;
+      }
+    }
+  }
+
+  blockquote {
+
+    &:before {
+      background-color: $c-primary-hover;
+    }
+
+    &:after {
+      color: $c-primary-hover;
+    }
+
+  }
+}

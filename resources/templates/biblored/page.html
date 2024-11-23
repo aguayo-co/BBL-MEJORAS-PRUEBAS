@@ -1,0 +1,14 @@
+{% extends "biblored/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+
+  <h1>{{ title }}</h1>
+  <p>{{ content }}</p>
+
+{% endblock %}

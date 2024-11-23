@@ -1,0 +1,138 @@
+/*----------------------------------------------*\
+  ID: C02
+  Paginator
+  Type: Navigation
+  Description: Componente utilizado para separar
+  bloques de elementos en páginas.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-c-paginator
+ * @description  Componente utilizado para separar bloques de elementos en páginas.
+ * @molecule b01_Paginator
+ * @section Navegación
+ * @markup
+ *    <!-- #1 Paginator Component -->
+ *    <div class="ag-c-paginator">
+ *
+ *      <!-- #2 Paginator Control Element Previous -->
+ *      <button class="ag-c-paginator__control i-arrow-left" type="button">
+ *        <span class="ag-is-visuallyhidden">Anterior</span></button>
+ *
+ *      <!-- #3 Paginator List Element -->
+ *      <ul class="ag-c-paginator__list">
+ *
+ *        <!-- #4 Paginator List Item Element -->
+ *        <!-- #5 Paginator List Item Current Modifier -->
+ *        <li class="ag-c-paginator__item ag-is-paginator__item_current">
+ *          <a href="#" class="ag-c-paginator__link">1</a>
+ *        </li>
+ *
+ *        <!-- #4 Paginator List Item Element -->
+ *        <li class="ag-c-paginator__item">
+ *          <a href="#" class="ag-c-paginator__link">2</a>
+ *        </li>
+ *
+ *        <!-- #4 Paginator List Item Element -->
+ *        <li class="ag-c-paginator__item">
+ *          <a href="#" class="ag-c-paginator__link">3</a>
+ *        </li>
+ *
+ *        <!-- #5 Numbers pages Element -->
+ *        <li class="ag-c-paginator__item ag-c-paginator__item_counter">
+ *          99
+ *        </li>
+ *      </ul>
+ *
+ *      <!-- #6 Paginator Control Element Next -->
+ *      <button class="ag-c-paginator__control i-arrow-right" type="button">
+ *        <span class="ag-is-visuallyhidden">Siguiente</span></button>
+ *
+ *    </div>
+ *    <p class="ag-c-paginator__alert">Mensaje que aparece por si hay mas de 500 páginas</p>
+*/
+
+.ag-c-paginator {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(margin-top, 40px);
+  text-align: center;
+  font-weight: $f-bold;
+}
+
+.ag-c-paginator__control {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(height, 34px);
+  @include px-rem(margin, 0 8px);
+  color: $c-on-link;
+  @include font-rem(14px);
+  font-weight: $f-regular;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    color: $c-secondary;
+  }
+}
+
+.ag-c-paginator__list {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  list-style: none;
+  @include font-rem(14px);
+}
+
+.ag-c-paginator__item {
+  @include px-rem(margin, 0 2px);
+}
+
+.ag-c-paginator__link {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 34px);
+  @include px-rem(height, 34px);
+  color: $c-primary;
+  border-radius: 50%;
+  background-color: transparent;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: $c-neutro;
+    background-color: $c-on-link;
+  }
+}
+
+.ag-c-paginator__link_current {
+  color: $c-neutro;
+  background-color: $c-on-over;
+}
+
+.ag-c-paginator__item_counter {
+  @include inline-flex;
+  @include align-items(baseline);
+  @include px-rem(margin-left, 20px);
+  @include px-rem(margin-right, 8px);
+
+  &:before {
+    content: '...';
+    @include px-rem(margin-left, -20px);
+    @include px-rem(padding-right, 4px);
+  }
+}
+
+.ag-c-paginator__alert {
+  width: 54%;
+  @include px-rem(margin, 20px auto);
+  font-weight: $f-bold;
+  text-align: center;
+}
+
+@include media-query(medium) {
+  .ag-c-paginator {
+    @include px-rem(margin-top, 70px);
+  }
+}

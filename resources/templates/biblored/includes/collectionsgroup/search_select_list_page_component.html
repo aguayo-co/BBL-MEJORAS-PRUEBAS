@@ -1,0 +1,7 @@
+{% with form_index=counter form_extra_classes="ag-js-cardCollectionAddToGroupsForm" %}
+  {% with form=formset.initial_forms|index:form_index form_index=form_index|stringformat:"i" is_favorites=view.favorites %}
+    {% with form_prefix=form.prefix show_favorites_button=is_favorites|negate %}
+      {% include "biblored/includes/collectionsgroup/search_select_component.html" with collection=collection form=form form_prefix=form_prefix data_modal="search_select_collections_groups_"|add:form_index form_id=form_prefix|add:"-form" form_extra_classes=form_extra_classes form_name=None form_button_extra_classes="ag-js-collectionAddToGroupsFormSubmit" form_button_type="button" show_favorites_button=show_favorites_button favorites_group=favorites_group csrf_token=csrf_token only %}
+    {% endwith %}
+  {% endwith %}
+{% endwith %}

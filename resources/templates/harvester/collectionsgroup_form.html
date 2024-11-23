@@ -1,0 +1,175 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  {% if collectionsgroup %}
+   {% trans "Editar Grupo de Colección" %} {{ collectionsgroup.title }}
+ {% else %}
+   {% trans "Crear Grupo de Colección" %}
+ {% endif %}
+{% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{{ user.get_absolute_url }}" >{% trans 'Mi perfil' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{% url 'my_collections' %}" >{% trans 'Mis colecciones' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{% url 'collectionsgroups' %}" >{% trans 'Mis grupos de colecciones' %}</a>
+  </dd>
+  {% if collectionsgroup %}
+    <dd class="ag-breadcrumbs__item">
+      <a
+        class="ag-breadcrumbs__link" 
+        href="{{ collectionsgroup.get_absolute_url }}" 
+      >
+        {% trans 'Detalle de: ' %} {{ form.initial.title }}
+      </a>
+    </dd>
+  {% endif %}
+  <dd class="ag-breadcrumbs__item">
+    {% if collectionsgroup %}
+      {% trans "Editar Grupo de Colecciones" %}
+    {% else %}
+      {% trans "Crear Grupo de Colecciones" %}
+    {% endif %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+  <main class="ag-l-page">
+    <div class="ag-l-inner-wide">
+      <div class="ag-l-form" id="content" tabindex="0">
+
+        <header class="ag-o-header" id="maincontent" tabindex="0">
+
+          {% if collectionsgroup %}
+            <h1 class="ag-o-heading"> {% trans "Editar Grupo de Colecciones" %}</h1>
+          {% else %}
+            <div class="ag-c-tooltip-wrapper">
+              
+              <h1 class="ag-o-heading">
+                {% trans "Crear grupo de colecciones" %}
+              </h1>
+            
+              {# tooltip #}
+              {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="collection_groups_creation" only %}
+            </div>
+          {% endif %}
+          
+          <p 
+            tabindex="0"
+          >
+            {% trans "Te permitirá agrupar contenidos, libros, vídeos, fotografías y mucho más." %}
+          </p>
+        </header>
+
+        <form id="collectionsgroup-form" method="post" class="ag-js-validate">
+          {% csrf_token %}
+          <div class="ag-form__field ag-js-form__field ">
+            <label 
+              class="ag-form__label" 
+              for="{{ form.title.id_for_label }}"
+            >
+              {{ form.title.label }}
+            </label>
+            <div 
+              class="ag-form__input ag-form__input_icon ag-js-formInput" 
+              data-validate="title-required"
+            >
+              {{ form.title }}
+              <small
+               class="ag-form__error ag-js-msgError"
+               data-for="{{ form.title.name }}"
+               hidden>
+              </small>
+              {% for key, key_errors in form.errors.as_data.items %}
+                {% if key == "title" %}
+                  {% for error in key_errors %}
+                    <small class="ag-form__error ag-js-msgError">{{ error.message }}{% if error.code == "favorites" %} <a href="{% url 'collectionsgroup_favorites' %}">aquí</a> {% endif %}</small>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          {# Errores del formulario #}
+          {% for error in form.non_field_errors %}
+            <small class="ag-form__error ag-js-msgError">{{ error }}</small>
+          {% endfor %}
+
+          {# Campos ocultos #}
+          {% for hidden in  form.hidden_fields %}
+            {{ hidden }}
+          {% endfor %}
+
+          {% if collectionsgroup %}
+            <input class="ag-is-visuallyhidden ag-js-delete" type="text" hidden value="delete" id="wai_hidden">
+          {% endif %}
+
+          <div class="ag-o-actions ag-o-actions_size ag-u-margin-top-64">
+              <a
+                class="ag-o-btn ag-o-btn_outline ag-o-actions__item"  
+                href="{% url 'collectionsgroups' %}"
+              >
+                {% trans "Cancelar" %}
+              </a>
+              <button
+                class="ag-o-btn ag-o-actions__item"
+                type="submit"
+              >
+                {% if collectionsgroup %}
+                {% trans 'Editar "Grupo de colecciones"' %}
+                {% else %}
+                {% trans 'Crear "Grupo de colecciones"' %}
+                {% endif %}
+              </button>
+          </div>
+
+        </form>
+
+        {% if collectionsgroup %}
+          <div class="ag-o-title-line ag-o-title-line_center">
+            <h3 class="ag-o-title-line__text">Ó</h3>
+          </div>
+          <header
+            class="ag-o-header"
+            id="delete"
+            tabindex="0"
+          >
+            <h2 class="ag-o-heading">
+              {% trans "Eliminar Grupo de Colecciones" %}
+            </h2>
+          </header>
+
+          <div class="ag-o-actions ag-o-actions_header">
+            <button 
+              class="ag-o-btn ag-o-btn_outline"
+              type="button"
+              data-modal="delete_collections_group"
+            >
+              {% trans 'Eliminar este "Grupo de Colecciones"' %}
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+
+  {% include "biblored/includes/modals/modal_delete_group_collection.html" with collectionsgroup=collectionsgroup list_collection=collectionsgroup.collections.all only %}
+
+{% endblock %}
+

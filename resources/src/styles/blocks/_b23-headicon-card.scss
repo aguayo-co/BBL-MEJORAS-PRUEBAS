@@ -1,0 +1,100 @@
+/*----------------------------------------------*\
+  ID: b23
+  Head icon card
+  Type: block in itself context
+  Description: Card with information that depend to profile access
+\*----------------------------------------------*/
+
+.ag-headicon-card {
+  border: 1px solid $c-on-border;
+  @include px-rem(padding, 24px 16px);
+}
+
+.ag-headicon-card__ico-title {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  font-family: $f-primary;
+  font-weight: $f-medium;
+  @include font-rem(10px);
+  color: $c-primary;
+
+  &:before {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    @include px-rem(width, 26px);
+    @include px-rem(height, 26px);
+    @include px-rem(margin-right, 8px);
+    @include font-rem(14px);
+    border-radius: 50%;
+    color: $c-neutro;
+    font-family: "#{$ico-font-family}";
+    src: url("#{$font-path}/#{$ico-font-family}.eot?");
+    src: url("#{$font-path}/#{$ico-font-family}.eot?#iefix")
+        format("embedded-opentype"),
+      url("#{$font-path}/#{$ico-font-family}.ttf?") format("truetype"),
+      url("#{$font-path}/#{$ico-font-family}.woff?") format("woff"),
+      url("#{$font-path}/#{$ico-font-family}.svg?##{$ico-font-family}")
+        format("svg");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+//- Class with change of color
+.ag-headicon-card_blue {
+  &:before {
+    content: $i-personal;
+    background-color: $c-on-secondary;
+  }
+}
+
+//- Class with change of color
+.ag-headicon-card_purple {
+  &:before {
+    content: $i-history;
+    background-color: $c-primary-hover;
+  }
+}
+
+//- Class with change of color
+.ag-headicon-card_red {
+  &:before {
+    content: $i-exclusive;
+    background-color: $c-secondary;
+  }
+}
+
+.ag-headicon-card__btn {
+  display: block;
+}
+
+// medium : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-headicon-card__btn {
+    @include px-rem(max-width, 256px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ag-headicon-card__text {
+    text-align: center;
+  }
+}
+
+// wide : $bp-wide : 1024px
+@include media-query(wide) {
+  .ag-headicon-card_small {
+    @include px-rem(max-width, 343px);
+    margin: 0 auto;
+  }
+
+  .ag-headicon-card__btn {
+    max-width: inherit;
+  }
+
+  .ag-headicon-card__text {
+    text-align: inherit;
+  }
+}

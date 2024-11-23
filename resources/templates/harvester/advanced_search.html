@@ -1,0 +1,224 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
+
+
+{% block title %} {% trans "Búsqueda avanzada" %} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  {% render_bundle 'search' 'css' %}
+{% endblock %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{% url 'search' %}" title="{% trans 'Ir a Resultados de búsqueda' %}">{% trans 'Resultado de búsqueda' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Búsqueda Avanzada' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page-top" id="maincontent">
+    <form method="get" id="search_form">
+      <input type="hidden" id="submit_on_clear_tag" value="0">
+
+      <div class="ag-l-canvas">
+        {# Resumen filtros #}
+        {% include "biblored/includes/filters/advanced_search_filters_summary.html" with add_filter=True %}
+      </div>
+      {# Búqueda avanzada #}
+      <div class="ag-l-inner-small">
+        <div class="ag-form__header ag-o-center-mobile">
+          <h1 class="ag-o-title" id="content">
+            {% trans "Búsqueda avanzada" %}
+          </h1>
+        </div>
+
+          <div class="ag-form__body">
+
+            {# Fila Frase - búsqueda exacta #}
+            <div class="ag-form-group">
+              {# Búsqueda frase #}
+              <div class="ag-form__input_full ag-is-unique-element ag-js-searchTextInputContainer">
+                <label class="ag-form__label" for="{{ search_form.search_text.id_for_label }}">
+                  {{ search_form.search_text.label }}
+                </label>
+                {% comment 'TODO Reset input' %}
+                  Revove class  ag-is-reset-off of ag-js-inputReset
+                  Btn: ag-js-inputResetBtn
+                  .ag-is-reset-off: esta clase al estar aplicada restaura el padding-left y oculta el btn
+                {% endcomment %}
+                <div class="ag-form__input ag-form__input_reset ag-js-inputReset ag-is-reset-off">
+                  {{ search_form.search_text }}
+                  <button type="button" class="ag-form__btn-reset ag-js-inputResetBtn i-close">
+                    <span class="ag-is-visuallyhidden">
+                      {% trans "Limpiar input" %}
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="ag-form__row ag-form__flex ag-form__flex_end">
+                {# Búsqueda exacta #}
+                <div class="ag-form__checkbox">
+                  {{ search_form.exact_search }}
+                  <label class="i-check" for="{{ search_form.exact_search.auto_id }}">
+                    {{ search_form.exact_search.label }}
+                  </label>
+                  {% for error in search_form.exact_search.errors %}
+                    <small class="ag-form__error">{{ error }}</small>
+                  {% endfor %}
+                </div>
+
+                {# Tooltip Búsqueda exacta #}
+                {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="simple_search" only %}
+              </div>
+            </div>
+
+            {# Filtros operadores  #}
+            <div class="ag-form__inner">
+              <div class="ag-form-related">
+
+                {# Starter formset #}
+                {% if boolean_operator_formset %}
+
+                  <input type="hidden" class="ag-js-formset_prefix" value="{{ boolean_operator_formset.prefix }}">
+                  {{ boolean_operator_formset.management_form }}
+
+                  <div class="ag-js-formset">
+                    {% for boolean_operator_form in boolean_operator_formset %}
+
+                      {% if boolean_operator_form.is_or.value %}
+                        {# Btn add form AND/NOT #}
+                        {% include "biblored/includes/search/boolean_operator_btn_add.html" %}
+                        {# form OR #}
+                        {% include "biblored/includes/search/boolean_operator_form_group_separator.html" with form=boolean_operator_form only %}
+                      {% else %}
+                        {# form AND/NOT #}
+                        {% include "biblored/includes/search/boolean_operator_form.html" with form=boolean_operator_form only %}
+                      {% endif %}
+
+                    {% endfor %}
+
+                    {# Btn add form AND/NOT --> loop end #}
+                    {% include "biblored/includes/search/boolean_operator_btn_add.html" %}
+
+                  </div>
+
+                  {# Template used empty form AND/NOT #}
+                  <template id="boolean_form_template">
+                    {# Tempty form AND/NOT #}
+                    {% include "biblored/includes/search/boolean_operator_form.html" with form=boolean_operator_formset.empty_form only %}
+
+                  </template>
+
+                  {# Template used form OR #}
+                  <template id="boolean_form_group_separator_template">
+
+                    {# form OR #}
+                    {% include "biblored/includes/search/boolean_operator_form_group_separator.html" with form=boolean_operator_formset.empty_form only %}
+
+                  </template>
+
+                  {# Template used Btn add form AND/NOT #}
+                  <template id="formset_btn_add_template">
+
+                    {# Btn add form AND/NOT #}
+                    {% include "biblored/includes/search/boolean_operator_btn_add.html" %}
+
+                  </template>
+
+                {% endif %}
+
+              </div>
+
+              <button class="ag-form__link i-plus ag-js-addGroup" type="button">
+                {% trans "Añade otro grupo" %}
+              </button>
+
+              <p class="ag-form-related__note">
+                {% blocktrans %}
+                  Al añadir otro grupo puedes buscar coincidencias que contengan una, cualquiera o todas las condiciones <strong>“Y”</strong>  e <strong>“Y SIN”</strong> que agregues en el grupo.
+                {% endblocktrans %}
+                <button class="ag-o-btn-ico i-question" type="button" data-modal="help_operators">
+                  <span class="ag-is-visuallyhidden">{% trans "¿Cómo funcionan los operadores lógicos?" %} </span>
+                </button>
+              </p>
+
+
+            </div>
+            {# Filtros fecha de publicación #}
+            <p class="ag-form__label ag-form__label_line">{% trans "Filtra por año o rango de publicación" %}</p>
+            <div class="ag-form__flex">
+              <div class="ag-form__flex ag-form__gutter">
+                <label class="ag-form__label ag-form__label_light" for="{{ search_form.from_publish_year.id_for_label }}">
+                  {{ search_form.from_publish_year.label }}
+                </label>
+                <div class="ag-form__input  ag-form__input_small">
+                  {{ search_form.from_publish_year }}
+                </div>
+              </div>
+              <div class="ag-form__flex ag-form__gutter">
+                <label class="ag-form__label ag-form__label_light" for="{{ search_form.to_publish_year.id_for_label }}">
+                  {{ search_form.to_publish_year.label }}
+                </label>
+                <div class="ag-form__input ag-form__input_small">
+                  {{ search_form.to_publish_year }}
+                </div>
+              </div>
+            </div>
+
+            {# Field error #}
+            {% for error in search_form.none_field_errors %}
+              <ul class="ag-form-list_error">
+                <li>{{ error }}</li>
+              </ul>
+            {% endfor %}
+
+            {# Field hidden #}
+            {% for hidden in search_form.hidden_fields %}
+              {{ hidden }}
+            {% endfor %}
+          </div>
+        </div>
+        <div class="ag-form__footer ag-form__footer_bottom">
+          <input type="hidden" name="done">
+          <button class="ag-o-btn  ag-o-btn_outline ag-js-cleanAdvancedSearchForm" type="button">{% trans "Limpiar búsqueda" %}</button>
+          <button class="ag-o-btn" type="submit">{% trans "Buscar" %}</button>
+        </div>
+
+      {# Aside Agregar Filtros search_form #}
+      <div class="ag-l-aside ag-l-aside_fix ag-js-aside">
+        <div class="ag-c-filter ag-js-asideContent">
+          {% include "biblored/includes/filters/search_form_filters.html" with search_form=search_form content_model_resources_only=True only %}
+        </div>
+
+        <button class="ag-o-btn-close i-close ag-js-asideClose" type="button">
+          <span class="ag-is-visuallyhidden">{% trans "Cerrar" %} </span>
+        </button>
+      </div>
+
+    </form>
+  </main>
+  {# Modal ayuda operadores booleanos #}
+  {% include "biblored/includes/modals/modal_help_operators.html" only %}
+
+  {# Modal eliminar operador booleano #}
+  {% include "biblored/includes/modals/modal_delete_operator.html" only %}
+
+{% endblock %}
+
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'search' 'js' %}
+{% endblock %}

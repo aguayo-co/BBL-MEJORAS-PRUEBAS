@@ -1,0 +1,36 @@
+/*------------------------------------*\
+  Estilos theme: Styleguide BBL
+  2019
+  Autor: Aguayo
+\*------------------------------------*/
+
+@import
+  '../utils/variables/var-typo',
+  '../utils/variables/var-breakpoint';
+
+@import
+  '../utils/mix/mix-flex',
+  '../utils/mix/mix-font-to-rem',
+  '../utils/mix/mix-mediaquery';
+
+@import
+  'utils/states';
+
+@import
+  'nuclides/colors.scss';
+
+@import
+  'atoms/page.scss',
+  'atoms/typography.scss';
+
+@import
+  'molecules/logo.scss',
+  'molecules/buttons.scss',
+  'molecules/slider.scss',
+  'molecules/navigation.scss';
+
+@import
+  'structures/component.scss',
+  'structures/header.scss',
+  'structures/icon-preview.scss',
+  'structures/layouts.scss';

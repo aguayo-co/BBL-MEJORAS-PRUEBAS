@@ -1,0 +1,149 @@
+﻿# The humans responsible & technology colophon
+
+# Secretaría de Cultura, Recreación y Deporte - BibloRed, Red Distrital de Bibliotecas Públicas | Coordinación, diseño e implementación de la Biblioteca Digital de Bogotá (https://www.bibliotecadigitaldebogota.gov.co/)
+
+María Claudia López -- Secretaria de Cultura, Recreación y Deporte 2016 - 2020
+
+Nicolás Montero Domínguez -- Secretario de Cultura, Recreación y Deporte 2020 - 2024
+
+Ana Roda Fornaguera -- Directora de Lectura y Bibliotecas 2016 - 2019
+
+Carolina Martínez Santos -- Directora de Lectura y Bibliotecas 2019 - 2020
+
+Consuelo Gaitán Gaitán -- Directora de Lectura y Bibliotecas 2020 - Actualmente
+
+María Camila Amado Rivera -- Profesional especializado Dirección de Lectura y Bibliotecas
+
+Tatiana Duplat Ayala -- Gerente operativa BibloRed, 2018-2019
+
+Rafael Tamayo -- Gerente operativo BibloRed, 2020 - Actualmente
+
+Juan Pablo Angarita Bernal -- Profesional líder
+
+Daniela Camacho Bernal -- Profesional senior
+
+Leonardo Ramírez Ordóñez -- Profesional senior
+
+Javier León García -- Profesional senior
+
+Stella Carreño -- Profesional senior (2017 - 2018)
+
+#SPECIAL THANKS
+
+Investigación “Pasos para una futura Biblioteca Digital de Bogota”, 2016
+
+Germán Rey
+Sandra Angulo
+María Alejandra Pautassi
+Juan Saab
+Andrés Echeverry – Mákina editorial
+Catalina Holguín – Mákina editorial
+
+
+Taller intersectorial – 20 diciembre de 2016
+
+Líder y facilitador
+Elkin Garavito – Sikuani.net
+
+Asistentes
+Catalina Holguín – Mákina editorial
+Andrés Echeverry – Mákina editorial
+
+Logística
+Gaelle Alcántara
+
+Entidades asistentes
+BibloRed, Secretaría de Cultura, Recreación y Deporte, Secretaría de Educación, Centro de Memoria Histórica, Universidad de los Andes, Archivo Distrital de Bogotá, Biblioteca Luis Ángel Arango, Red de Bibliotecas del Banco de la República, Red de Humanidades Digitales, Alta Consejería TIC de Bogotá, Museo del Oro, Oficina de Apropiación y Tecnología de la Secretaría de Educación de Bogotá
+
+Talleres 2017 - 2018
+
+Coordinación: Catalina Holguín, María Camila Amado, Juan Pablo Angarita Bernal
+
+    Entidades asistentes:
+    SCRD
+    BibloRed
+    Universidad Externado
+    Biblioteca Nacional de Colombia
+    Biteca Ltda
+    IDRD
+    Universidad Distrital – Sistema de bibliotecas
+    RENATA
+    INCI
+    Universidad de los Andes – Humanidades Digitales
+    Secretaría Distrital de Salud – Grupo de investigaciones
+    Hackbo
+    IDARTES
+    MinTIC – Dirección de apropiación
+    Biblioteca Luis Ángel Arango del Banco de la República
+    Ministerio de Educación
+    Colciencias
+    Orquesta Filarmónica de Bogotá
+    Centro de Memoria, Paz y Reconciliación
+    Señal Cumbia (RTVC)
+    Canal Trece
+    CERLALC
+    Cámara Colombiana del Libro
+    Alianza Educativa
+    Gimnasio Campestre
+    Cámara de Comercio de Bogotá
+    Museo de Bogotá
+    IDPAE
+    ViveLab de la Universidad Nacional
+    Red Colombiana de Humanidades Digitales – Universidad de la Sabana
+    Fundación Histórica Neogranadina
+    Laboratorio de Cartografía Histórica e Historia Digital – UNAL
+    Universidad Pedagógica
+    La silueta ediciones
+    Colciencias
+    SCyP, Sog de Bogotá,
+    Instituto Caro y Cuervo
+    Bibliotecas comunitarias
+    Instituto Distrital de la Participación y Acción Comunal
+    Fundación Karisma
+    Investigadores y desarrolladores independientes.
+    Archivo de Bogotá
+    Secretaría Distrital de Educación
+    Alta Consejería para las TIC
+
+
+
+# AGUAYO | Diseño UX + Technología (https://aguayo.co/)
+
+    Juan Manuel Aguayo - Digital Director & UX, GUI Designer
+    
+    Carolina Becerra -- Project Manager
+
+    Juan David Saab -- UX Architect
+    Alejandra Torres -- UX Research
+    
+    Paula Lozano -- UI Designer
+    Jose Mancera -- UI Designer
+
+    Andrea Acosta Becerra -- FrontEnd Director
+    Yehimy Rincón -- FrontEnd Developer 
+    Geraldine Diaz -- FrontEnd Developer 
+    Alejandro Gonzalez -- FrontEnd Developer  
+    Alexander Sandoval -- FrontEnd Developer 
+    Andres Tafur -- FrontEnd Developer 
+
+    Federico Jaramillo -- BackEnd Director
+    Ramiro Álvarez -- BackEnd Developer
+    David Granados -- BackEnd Developer
+
+    Site: contacto@aguayo.co, https://aguayo.co/
+    
+    Facebook: https://www.facebook.com/aguayo.co/
+
+    Location: 100% Online Company
+
+# SPECIAL THANKS
+
+    Esta es una oportunidad que nos llena de satisfacción y alegría. Nuestro agradecimiento sincero a la Biblioteca Digital de Bogotá  por permitirnos desarrollar este proyecto ( https://www.bibliotecadigitaldebogota.gov.co/ ).
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, jQuery, Javascript, Normalize.css
+    Django, Wagtail CMS, Postgresql, ElasticSearch, Heroku, AmazonS3, Gunicorn
+
+
+UX, Diseño y Desarrollo por AGUAYO

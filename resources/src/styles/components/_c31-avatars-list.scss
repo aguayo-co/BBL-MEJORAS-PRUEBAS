@@ -1,0 +1,175 @@
+/*------------------------------------*\
+  ID: C31
+  Avatars list
+  Description: component with grid avatars text and avatars image in expositions
+\*------------------------------------*/
+.ag-c-avatars-list {
+  position: relative;
+  font-family: $f-primary;
+  list-style: none;
+}
+
+//- Modifier: it changes the numbers items and it aspect is a gallery
+.ag-c-avatars-list_gallery {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  text-align: center;
+
+  .ag-c-avatars-list__item {
+    @include flex(1 0 50%);
+    max-width: 50%;
+  }
+}
+
+.ag-c-avatars-list__avatar {
+  display: block;
+  width: 100%;
+  max-width: 92%;
+  margin: 0 auto;
+}
+
+.ag-c-avatars-list__group-text {
+  display: block;
+  width: 100%;
+  color: $c-primary;
+}
+
+.ag-c-avatars-list__item {
+  @include px-rem(margin-bottom, 16px);
+}
+
+.ag-c-avatars-list__title {
+  font-weight: $f-bold;
+  @include px-rem(font-size, 16px);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.ag-c-avatars-list__subtitle {
+  font-weight: $f-regular;
+  line-height: 1.2;
+  @include px-rem(margin-bottom, 4px);
+}
+
+.ag-c-avatars-list__text {
+  display: inherit;
+  font-weight: $f-regular;
+  @include px-rem(font-size, 14px);
+  line-height: 1.2;
+  color: $c-on-text-light;
+}
+
+.ag-c-avatars-list__anchor {
+  &:hover,
+  &:active {
+    .ag-c-avatars-list__chip {
+      border: 4px solid $c-secondary_light;
+      box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .ag-c-avatars-list__title {
+      text-decoration: underline;
+    }
+  }
+}
+
+.ag-c-avatars-list__chip {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  @include px-rem(width, 94px);
+  @include px-rem(height, 94px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  @include px-rem(margin-bottom, 16px);
+  transition: all 500ms ease-in-out;
+}
+
+//- Modifier: it changes the border color at avatar with theme color
+.ag-c-avatars-list_color {
+  background-color: $c-secondary;
+  border: 4px solid $c-secondary;
+}
+
+.ag-c-avatars-list__img {
+  width: 100%;
+  height: auto;
+}
+
+.ag-c-avatars-list__initials {
+  color: $c-neutro;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: $f-bold;
+  @include px-rem(font-size, 32px);
+  letter-spacing: 2px;
+}
+
+//- BP Min-with: 768px
+@include media-query(medium) {
+  //- Modifier: it changes the numbers items and it aspect is a text group list
+  .ag-c-avatars-list_group-list {
+    @include flexbox;
+    @include flex-wrap(wrap);
+  }
+
+  .ag-c-avatars-list_group-list {
+    .ag-c-avatars-list__item {
+      @include flex(1 0 50%);
+      max-width: 50%;
+    }
+  }
+
+  .ag-c-avatars-list_gallery {
+    .ag-c-avatars-list__item {
+      @include flex(1 0 33.333333%);
+      max-width: 33.333333%;
+    }
+  }
+
+  .ag-c-avatars-list__item {
+    @include px-rem(margin-bottom, 24px);
+  }
+
+  .ag-c-avatars-list__group-text {
+    @include px-rem(padding-right, 8px);
+  }
+}
+
+//- BP Min-with: 1024px
+@include media-query(wide) {
+  .ag-c-avatars-list__subtitle {
+    @include px-rem(font-size, 16px);
+  }
+
+  .ag-c-avatars-list_group-list {
+    .ag-c-avatars-list__item {
+      @include flex(1 0 33.33333%);
+      max-width: 33.3333%;
+    }
+  }
+
+  .ag-c-avatars-list_gallery {
+    .ag-c-avatars-list__item {
+      @include flex(1 0 25%);
+      max-width: 25%;
+    }
+  }
+}
+
+//- BP Max-with: 1279px
+@include media-query(big-max) {
+  .ag-c-avatars-list_group-list {
+    @include px-rem(margin-left, 16px);
+  }
+}
+
+//- BP Min-with: 1280px
+@include media-query(big) {
+  .ag-c-avatars-list_group-list {
+    @include px-rem(max-width, 980px);
+    margin: 0 auto;
+  }
+}

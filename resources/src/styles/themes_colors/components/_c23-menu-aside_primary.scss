@@ -1,0 +1,62 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C23 Menu Aside
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+.ag-c-menu-aside {
+  .ag-c-menu-aside__link {
+    &:active,
+    &.ag-has-menu-aside__current {
+      .ag-c-menu-aside__text {
+        color: $c-primary-hover;
+      }
+    }
+
+    &:hover {
+      background-color: $c-primary-hover;
+      box-shadow: inset 0px 4px 4px #30156a;
+
+      .ag-c-menu-aside__text {
+        color: $c-neutro;
+      }
+    }
+  }
+
+  .ag-c-menu-aside__main-button {
+    background-color: rgba($c-primary-hover, 0.95);
+
+    &:hover {
+      background-color: rgba($c-primary-hover, 1);
+    }
+
+    .ag-c-menu-aside__wrap {
+      &:hover,
+      &:active,
+      &:focus {
+        .ag-c-menu-aside__text-button {
+          &:before {
+            background-color: rgba($c-primary-hover_dark, 0.5);
+          }
+        }
+      }
+    }
+  }
+
+  .ag-c-menu-aside__anchor {
+    &:hover {
+      border-color: $c-primary-hover;
+
+      .ag-c-menu-aside__anchor-mask {
+        &::before {
+          background-color: rgba($c-primary-hover, 0.8);
+        }
+      }
+
+      .ag-c-menu-aside__anchor-title {
+        color: $c-primary-hover;
+      }
+    }
+  }
+}

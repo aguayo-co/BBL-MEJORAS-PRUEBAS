@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C31
+  Chip
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+.ag-c-avatars-list__chip {
+
+  &.ag-c-avatars-list_color {
+    background-color: $c-primary-hover;
+    border: 4px solid $c-primary-hover;
+  }
+
+}
+
+.ag-c-avatars-list__anchor {
+  &:hover,
+  &:active {
+    .ag-c-avatars-list__chip.ag-c-avatars-list_color {
+      border: 4px solid $c-primary-hover_light;
+    }
+  }
+}

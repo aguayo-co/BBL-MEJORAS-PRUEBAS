@@ -1,0 +1,39 @@
+//-
+ * header.pug -- Render the style guide header
+ *
+ * Copyright (C) 2016 Michael Seibt
+ *
+ * With contributions from: -
+ *
+ * This software may be modified and distributed under the terms
+ * of the MIT license. See the LICENSE file for details.
+
+block nav
+  -var selected = 'nuclides'; //default
+
+-var menu = {'Nuclides': 'nuclides.html', 'Atoms': 'atoms.html', 'Molecules': 'molecules.html', 'Structures' : 'structures.html' };
+
+.SG-header
+  a(href="index.html").SG-logo
+    span.SG-logo__icon
+      svg.SG-logo__svg(viewbox='0 0 112 112', version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink')
+        g(stroke='none', stroke-width='1', fill='none', fill-rule='evenodd')
+          g(transform='translate(-881.000000, -6830.000000)', fill-rule='nonzero')
+            g(transform='translate(881.000000, 6830.000000)')
+              path(d='M56.0344615,112 C25.1569231,112 0,86.9655172 0,56 C0,25.0344828 25.088,0 55.9655385,0 C86.8430769,0 112,25.0344828 112,56 C112,86.9655172 86.912,112 56.0344615,112 Z', fill='#F71444')
+              path(d='M77,63.4285714 C77,59.4995005 76.244898,56.3976024 74.7346939,54.2607393 C73.7736549,52.8131868 72.4693878,51.6413586 70.8218924,50.6763237 C73.9795918,48.1948052 75.5584416,44.0589411 75.5584416,38.5444555 C75.5584416,33.1678322 73.9109462,29.3076923 70.7532468,27.1018981 C67.7328386,25.033966 63.7513915,24 58.8089054,24 L45.0797774,24 C43.8441558,24 42.67718,24.3446553 41.716141,24.965035 C40.6178108,25.7232767 40,26.8261738 40,28.1358641 L40.0686456,90.1738262 C40.0686456,91.3456543 40.755102,92.3106893 41.7847866,92.7932068 C42.1280148,92.9310689 42.471243,93 42.8831169,93 L42.8831169,93 C43.6382189,93 44.3246753,92.7242757 44.8738404,92.1728272 L54.690167,82.2467532 L60.3877551,82.2467532 C65.3302412,82.2467532 69.380334,80.7992008 72.3320965,78.041958 C75.3525046,75.2157842 76.8627087,70.8041958 76.8627087,64.8071928 L77,63.4285714 Z M58.877551,26.5504496 L58.877551,27.032967 C63.1335807,27.032967 66.5658627,27.9290709 69.0371058,29.6523477 C71.3710575,31.2377622 72.5380334,34.2707293 72.5380334,38.6133866 C72.5380334,44.2657343 70.7532468,47.8501499 67.0463822,49.5044955 L63.7513915,51.020979 L67.1150278,52.3306693 C69.380334,53.2267732 71.096475,54.4675325 72.1948052,56.1218781 C73.2931354,57.7762238 73.9109462,60.2577423 73.9109462,63.5664336 L73.9109462,65.013986 C73.9109462,70.1148851 72.7439703,73.7682318 70.3413729,75.974026 C67.9387755,78.2487512 64.5751391,79.3516484 60.4564007,79.3516484 L53.4545455,79.3516484 L43.0890538,89.7602398 L43.0204082,28.2737263 C43.0204082,27.998002 43.0890538,27.8601399 43.432282,27.5844156 C43.9128015,27.3086913 44.393321,27.1018981 45.0797774,27.1018981 L58.8089054,27.1018981 L58.877551,26.5504496 Z', fill='#FFFFFF')
+    span.SG-logo__name #{meta.title}
+  ul.SG-nav
+    each link, title in menu
+      li
+        if selected === title
+          a.SG-nav__item.SG-nav__item--active(href=link)= title
+        else
+          a.SG-nav__item(href=link)= title
+  ul.SG-nav-icons
+    li
+      a.SG-nav-icons__item(title="Search for components",href='javascript:void(0)',data-d-search-box-trigger)
+        i.SG-ico.SG-ico--seach
+    li
+      a.SG-nav-icons__item(href="https://holidaypirates.github.com/nucleus", title="Help and Documentation", target="_blank")
+        i.SG-ico.SG-ico--question

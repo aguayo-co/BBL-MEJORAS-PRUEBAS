@@ -1,0 +1,57 @@
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+
+{% spaceless %}
+  <section id="{{ id_section }}" class="o-section {{ class_section }}">
+    <div class="ag-l-inner-inside-huge ">
+
+      {# Header component #}
+      <header class="ag-o-header ag-o-header_top-0" tabindex="0">
+        <h2 class="ag-o-heading">{{ self.title }}</h2>
+        {% if self.subtitle %}
+          <p class="ag-o-subheading">{{ self.subtitle }}</p>
+        {% endif %}
+      </header>
+
+      <nav class="c-link-list" tabindex="0">
+      
+        {% for page in self.links %}
+
+          <a
+            class="c-link-list__item"
+            href="{% pageurl page.specific %}"
+            title="{% trans 'Ir a' %} {% firstof page.title page.seo_title %}"
+          >
+
+            {# image #}
+            {% if page.specific.search_image  %}
+              <figure class="c-link-list__figure">
+                {% image page.specific.search_image original class="c-link-list__img" %}
+              </figure>
+            {% endif %}
+
+            {# text content #}
+            <div class="c-link-list__content">
+
+              <header class="c-link-list__header">
+                
+                <h3 class="c-link-list__title ag-o-text_bold">
+                  {% firstof page.specific.title page.specific.seo_title  %}
+                </h3>
+
+              </header>
+
+              {% if page.specific.search_description %}
+                <p class="c-link-list__text">{{ page.specific.search_description }}</p>
+              {% endif %}
+
+            </div>
+
+          </a>
+        
+        {% endfor %}
+
+      </nav>
+  
+    </div>
+  </section>
+{% endspaceless %}

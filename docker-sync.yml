@@ -1,0 +1,18 @@
+version: "2"
+syncs:
+  bbl_bdb_sync:
+    src: './'
+    host_disk_mount_mode: 'cached' # see https://docs.docker.com/docker-for-mac/osxfs-caching/#cached
+
+    # optional, a list of excludes. These patterns will not be synced
+    # see http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#ignore for the possible syntax and see sync_excludes_type below
+    sync_excludes: ['.git', 'node_modules', 'docker', '.mypy_cache', '.venv', '.dev', '__pycache__']
+
+    # use this to change the exclude syntax.
+    # Path: you match the exact path ( nesting problem )
+    # Name: If a file or a folder does match this string ( solves nesting problem )
+    # Regex: Define a regular expression
+    # none: You can define a type for each sync exclude, so sync_excludes: ['Name .git', 'Path Gemlock']
+    #
+    # for more see http://www.cis.upenn.edu/~bcpierce/unison/download/releases/stable/unison-manual.html#pathspec
+    sync_excludes_type: 'Name'

@@ -1,0 +1,67 @@
+{% load i18n %}
+
+<div
+  class="ag-c-modal
+    ag-c-modal_cover
+    ag-js-modal"
+  data-modal="{% block data_modal %}search_select_collections_groups{% endblock %}"
+  id="{% block wai_modal %}wai-modal{% endblock %}"
+>
+  <article class="ag-c-modal__box ag-c-modal__scroll">
+    <div
+      class="ag-c-modal_cover__content
+      ag-u-space-bottom-80
+      ag-js-modalContent"
+      tabindex="0"
+    >
+        <header class="ag-o-header">
+          <h2 class="ag-o-heading
+            ag-u-margin-bottom"
+            tabindex="0"
+          >
+            {% block title %}{% trans 'Selecciona los "Grupos de Colecciones"' %}{% endblock %}
+          </h2>
+          <p
+            class="ag-o-text
+            ag-c-modal__text
+            ag-c-modal__text_left
+            ag-c-modal__row"
+          >
+            {% block paragraph %}{% trans "Los grupos de colecciones te permiten organizar colecciones en espacios personalizados. No son visibles para otros usuarios ni en los resultados de búsqueda." %}{% endblock %}
+          </p>
+        </header>
+
+        <h3 class="ag-o-subheading
+          ag-o-subheading_stroke
+          ag-o-subheading_relative"
+        >
+          <strong class="ag-o-subheading__text">
+            {% block subtitle %}{% trans 'Mis "Grupos de colecciones"' %}{% endblock %}
+          </strong>
+        </h3>
+      
+
+      {% block article_content %}{% endblock %}
+    </div>
+
+    <footer
+      class="ag-c-modal__footer
+      ag-c-modal__footer_fixed"
+    >
+      {% block action_footer %}{% endblock action_footer %}
+    </footer>
+
+  </article>
+
+  {# Button for close the modal #}
+  <button class="ag-c-modal__tooltip-btn-24
+    ag-o-btn-tooltip
+    i-close
+    ag-js-modalClose"
+    type="button"
+  >
+    <span class="ag-o-btn-tooltip__tooltip">
+      {% trans "Cerrar" %}
+    </span>
+  </button>
+</div>

@@ -1,0 +1,25 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C03
+  Card
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+//- Color theme
+.ag-c-card__color {
+  border-bottom: 3px solid $c-primary-hover;
+}
+
+.ag-c-card-column {
+  .ag-c-card-column__btn {
+    border-color: $c-primary-hover;
+    background-color: $c-primary-hover;
+
+    &:hover {
+      border-color: $c-primary-hover;
+      color: $c-primary-hover;
+      background-color: transparent;
+    }
+  }
+}

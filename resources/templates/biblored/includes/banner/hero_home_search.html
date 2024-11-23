@@ -1,0 +1,62 @@
+{% load i18n static %}
+{#Componente: c01_search #}
+
+<div class="ag-hero__action" tabindex="0">
+  <a class="ag-is-link-accesibilityjump" tabindex="0" href="#endcontent"
+    title="{% trans 'Ir al final del buscador' %}">
+    {% trans "Saltar el buscador" %}
+  </a>
+  <form class="ag-c-search ag-js-dropdown" action="{% url 'search' %}" id="search_form">
+    <div class="ag-c-search__select ag-js-contentTypeCheckboxContainer ag-is-visuallyhidden">
+      <button class="ag-c-search__action i-after-arrow-down ag-js-dropdownBtn ag-js-contentTypeBtn"
+        type="button">{{ hero_search.content_type.label }}</button>
+      <fieldset hidden="hidden">
+        <ul class="ag-c-search__select-items ag-js-dropdownSlide ag-is-hide">
+          <li class="ag-form__checkbox">
+            <input class="ag-js-checkAll" type="checkbox" id="all_content" checked>
+            <label class="i-check" for="all_content">{% trans 'Todos' %}</label>
+          </li>
+          {% for type in hero_search.content_type.subwidgets %}
+          <li class="ag-form__checkbox">
+            {{ type.tag }}
+            <label class="i-check" for="{{ type.data.attrs.id }}">{{ type.choice_label }}</label>
+          </li>
+          {% endfor %}
+        </ul>
+      </fieldset>
+    </div>
+
+    {# Grupos de contenidos : Esta información esta oculta para el front #}
+    <div class="ag-c-filter__item ag-is-display-none" data-name="content_model">
+      <div class="ag-c-filter__label">
+        <span class="ag-c-filter__label-txt">{{ hero_search.content_model.label }}</span>
+      </div>
+
+      <div class="ag-c-filter__group ag-js-dropdownSlide ag-is-dropdownOpen">
+        {% if content_model_resources_only %}
+          <div class="ag-form__radio">
+            {% with hero_search.content_model.subwidgets.0 as field_contentresource %}
+              {{ field_contentresource.tag }}
+              <label class="i-check" for="{{ field_contentresource.data.attrs.id }}">{{ field_contentresource.choice_label }}</label>
+              {% for error in field_contentresource.errors %}
+                <small class="ag-form__error">{{ error }}</small>
+              {% endfor %}
+            {% endwith %}
+          </div>
+        {% else %}
+          {% for field_content_model in hero_search.content_model.subwidgets %}
+            <div class="ag-form__radio">
+              {{ field_content_model.tag }}
+              <label class="i-check" for="{{ field_content_model.data.attrs.id }}">{{ field_content_model.choice_label }}</label>
+              {% for error in field_content_model.errors %}
+              <small class="ag-form__error">{{ error }}</small>
+              {% endfor %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+  </form>
+  <h2 class="ag-is-visuallyhidden" id="endcontent" tabindex="0"> {% trans "Esta ingresando al contenido principal" %}  </h2>
+</div>

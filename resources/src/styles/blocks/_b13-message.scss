@@ -1,0 +1,101 @@
+/*----------------------------------------------*\
+  ID: B13
+  Message
+  Type: Dialogue
+  Description: Mensaje para informar al usuario que una busqueda no fue encontrada
+              o a ocurrido algún problema en el servidor.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-message
+ * @description    mensaje para informar al usuario que una busqueda no fue encontrada.
+ * @molecule b13_message
+ * @section Páginas de error > ERROR 400
+ * @markup
+ *   <div class="SG-component__preview">
+ *      <div class="ag-message">
+ *        <figure>
+ *          <img class="ag-message__img" src="../biblored/img/message/error-400.svg" alt="ERROR-400"/>
+ *        </figure>
+ *        <p class="ag-o-subheading">Lo sentimos, la página que buscas no se encuentra.
+ *                                   Te recomendamos volver a la página de inicio.</p>
+ *        <button class="ag-o-btn">Volver al home</button>
+ *      </div>
+ *    </div>
+*/
+
+.ag-message {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include px-rem(max-width, 405px);
+  margin: 0 auto;
+  text-align: center;
+
+  .ag-o-subheading {
+    @include px-rem(padding, 26px 0);
+  }
+}
+
+// Hack IE 11
+@media screen and (min-width:0\0) {
+  .ag-message {
+    .ag-o-subheading {
+      width: 100%;
+    }
+  }
+}
+
+/**
+ * Class: .ag-message
+ * @description    mensaje para informar al usuario que una pagina ya no esta disponible o no
+ *                   posee los permisos para visualizarla.
+ * @molecule b13_message
+ * @section Páginas de error > ERROR 403
+ * @markup
+ *   <div class="SG-component__preview">
+ *      <div class="ag-message">
+ *        <figure>
+ *          <img class="ag-message__img" src="../biblored/img/message/error-403.svg" alt="ERROR-403"/>
+ *        </figure>
+ *        <p class="ag-o-subheading">La pagina que estás intentando buscar ya no existe,
+ *                                    o no posees acceso para verla.</p>
+ *        <button class="ag-o-btn">Volver al home</button>
+ *      </div>
+ *    </div>
+*/
+
+.ag-message__img {
+  width: 100%;
+}
+
+
+/**
+ * Class: .ag-message
+ * @description    mensaje para informar al usuario que a ocurrido algún problema en el servidor.
+ * @molecule b13_message
+ * @section Páginas de error > ERROR 500
+ * @markup
+ *   <div class="SG-component__preview">
+ *      <div class="ag-message">
+ *        <figure>
+ *          <img class="ag-message__img" src="../biblored/img/message/error-500.svg" alt="ERROR-500"/>
+ *        </figure>
+ *        <p class="ag-o-subheading">Lo sentimos, no eres tu, somos nosotros.
+ *                                    Estamos experimentando un problema interno con el servidor.
+ *                                    Por favor vuelve a intentar mas tarde.</p>
+ *        <button class="ag-o-btn">Volver al home</button>
+ *      </div>
+ *    </div>
+*/
+
+//Estilos desde 768px en adelante
+@include media-query(medium) {
+  .ag-message {
+    @include px-rem(margin, 70px auto);
+
+    .ag-o-subheading {
+      @include px-rem(padding, 16px 0 40px 0);
+    }
+  }
+}

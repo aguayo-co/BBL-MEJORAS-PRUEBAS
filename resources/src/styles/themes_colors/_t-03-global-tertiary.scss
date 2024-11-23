@@ -1,0 +1,14 @@
+.ag-t-cards__green {
+
+  .ag-c-card__color {
+      border-bottom: 3px solid $c-on-primary;
+    }
+
+  .ag-tags__bullet {
+    &::before {
+        content: "";
+        background: $c-on-primary;
+    }
+  }
+    
+}

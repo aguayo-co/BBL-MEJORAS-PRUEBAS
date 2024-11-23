@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
+<html lang="es">
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'biblored/favicon/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'biblored/favicon/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'biblored/favicon/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'biblored/favicon/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static 'biblored/favicon/safari-pinned-tab.svg' %}" color="#16223F">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#16223f">
+  <meta name="viewport" content="initial-scale=1, width=device-width">
+  {# Style #}
+  {% block css %}
+    {% include "biblored/includes/layout/css.html" %}
+  {% endblock %}
+</head>
+
+<body>
+{% block body %}{% endblock %}
+{% block js %}
+  {% include "biblored/includes/layout/javascript.html" %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,270 @@
+/*------------------------------------*\
+  ID: B18
+  Grid zig-cards
+  Description: Grilla  de recursos y narrativa en zig zag [Sección narrativa en exposiciones]
+\*------------------------------------*/
+
+/**
+ * Class: ag-zig-cards
+ * @description Grilla de recursos y narrativa en zig zag [Sección narrativa en exposiciones]
+ * @molecule b18_zig-cards
+ * @section Grid
+ * @markup
+ *  <ul class="ag-zig-cards">
+ *    <li class="ag-zig-cards__item">
+ *      <div class="ag-zig-cards__card">
+ *        <article class="ag-c-card">
+ *          <div class="ag-c-card__border">
+ *              <a class="ag-c-card__action" href="/resources/417/" title="Ver detalle de Este título es sobreescrito">
+ *                  <div class="ag-c-card__canvas">
+ *                    <div class="ag-c-card__top">
+ *                      <ul class="ag-tags">
+ *                        <li class="ag-tags__item">
+ *                          <span class="ag-tags__tag ag-tags__tag_outline">
+ *                              Acceso digital
+ *                          </span>
+ *                        </li>
+ *                        <li class="ag-tags__item">
+ *                          <span class="ag-tags__tag ag-tags__tag_outline">
+ *                            Otros
+ *                          </span>
+ *                        </li>
+ *                      </ul>
+ *                    </div>
+ *            <div class="ag-c-card__divider ag-c-card__content">
+ *                <figure class="ag-c-card__media">
+ *                  <img class="ag-c-card__img" src="/media/original_images/Coreal.jpg" alt="Este título es sobreescrito">
+ *                </figure>
+ *              <div class="ag-c-card__text">
+ *                <h2 class="ag-c-card__title" tabindex="0">Este título es sobreescrito</h2>
+ *                  <p class="ag-c-card__subtitle"><strong>Por:</strong> Por mí </p>
+ *                <div class="ag-c-card__lead">
+ *                  El pasado 2 de julio en la Cinemateca de Bogotá se realizaron cinco charlas con algunos de los invitados al festival con el fin de tratar diferentes temas cercanos a la historia de este. 5 años del festival Rock al Parque. Los 2 proyectos seleccionados fueron: BSA con la propuesta Amplifica tu voz y el colectivo SMG con la obra El viaje del músico.
+ *                </div>
+ *              </div>
+ *            </div>
+ *            <ul class="ag-c-card__list">
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Publicador</strong>
+ *                  Red Distrital de Bibliotecas Públicas. BibloRed (Bogotá, CO)
+ *                </li>
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                  2019
+ *                </li>
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Idioma</strong>
+ *                  Otros
+ *                </li>
+ *            </ul>
+ *          </div>
+ *        </a>
+ *        <footer class="ag-c-card__footer">
+ *          <div class="ag-c-card__list-full">
+ *            <strong class="ag-c-card__list-label">Temas</strong>
+ *            <ul class="ag-tags">
+ *              <li class="ag-tags__item">
+ *                <span class="ag-tags__tag ag-tags__tag_outline">
+ *                  Otros
+ *                </span>
+ *              </li>
+ *            </ul>
+ *          </div>
+ *        </footer>
+ *      </div>
+ *    </article>
+ *            </div>
+ *            <div class="ag-zig-cards__lead ag-s01-rich-text ag-s01-rich-text_card">
+ *              <div class="ag-s01-rich-text__scroll">
+ *                <div class="block-related_text"><div class="rich-text"><h3>BibloRed celebra Rock al Parque</h3><p>Además, se están realizarán entrevistas con cinco agrupaciones distritales que participaron en la edición de este año del festival. Por su parte, la gerencia de Artes Plásticas lanzó a comienzos de año una convocatoria para <b>realizar 2 graffitis</b> de gran formato con temática de la celebración de los 25 años del festival Rock al Parque. Los 2 proyectos seleccionados fueron<a href="https://www.publimetro.co/co/entretenimiento/2019/07/02/record-de-asistencia-asi-cerro-rock-al-parque-sus-25-anos.html">: BSA con la propuesta</a><br></p><p>Amplifica tu voz y el colectivo SMG con la obra El viaje del músico.</p><p></p><h4>Cinemateca de Bogotá</h4><p>El pasado 2 de julio en la Cinemateca de Bogotá se realizaron cinco charlas con algunos de los invitados al festival con el fin de tratar diferentes temas cercanos a la historia de este. 5 años del festival Rock al Parque. Los 2 proyectos seleccionados fueron: BSA con la propuesta Amplifica tu voz y el colectivo SMG con la obra El viaje del músico.</p><p></p><blockquote>"El talento de las diferentes entidades de la Alcaldía de Bogotá para ofrecerle a los asistentes un momento inolvidable en sus vidas”, <b>dice Para Juliana Restrepo directora de Idartes</b></blockquote><p></p><ul><li>Con esta gran asistencia, el festival se despide de otra edición que deja muchos momentos memorables, así como nuevos retos planteados.</li><li>El primero de ellos, si el Simón Bolívar puede continuar siendo la casa de un evento que cada año es más grande.</li></ul></div></div>
+ *              </div>
+ *            </div>
+ *          </li>
+ *          <li class="ag-zig-cards__item">
+ *            <div class="ag-zig-cards__card">
+ *    <article class="ag-c-card">
+ *      <div class="ag-c-card__border">
+ *        <a class="ag-c-card__action" href="../biblored/img/demo/zig-cards/zig-card_01.jpg" title="Ver detalle de Este también llegó sin título">
+ *          <div class="ag-c-card__canvas">
+ *            <div class="ag-c-card__top">
+ *              <ul class="ag-tags">
+ *                <li class="ag-tags__item">
+ *                  <span class="ag-tags__tag ag-tags__tag_outline">
+ *                      Acceso digital
+ *                  </span>
+ *                </li>
+ *                <li class="ag-tags__item">
+ *                  <span class="ag-tags__tag ag-tags__tag_outline">
+ *                    Otros
+ *                  </span>
+ *                </li>
+ *              </ul>
+ *            </div>
+ *            <div class="ag-c-card__divider ag-c-card__content">
+ *                <figure class="ag-c-card__media">
+ *                  <img class="ag-c-card__img" src="../biblored/img/demo/zig-cards/zig-card_02.jpg" alt="Este también llegó sin título">
+ *                </figure>
+ *              <div class="ag-c-card__text">
+ *                <h2 class="ag-c-card__title" tabindex="0">Este también llegó sin título</h2>
+ *                <div class="ag-c-card__lead">
+ *                  Y esta descripción me la estoy inventando....
+ *                </div>
+ *              </div>
+ *            </div>
+ *            <ul class="ag-c-card__list">
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Publicador</strong>
+ *                  Red Distrital de Bibliotecas Públicas. BibloRed (Bogotá, CO)
+ *                </li>
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                  2019
+ *                </li>
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Idioma</strong>
+ *                  Otros
+ *                </li>
+ *            </ul>
+ *          </div>
+ *        </a>
+ *        <footer class="ag-c-card__footer">
+ *          <div class="ag-c-card__list-full">
+ *            <strong class="ag-c-card__list-label">Temas</strong>
+ *            <ul class="ag-tags">
+ *              <li class="ag-tags__item">
+ *                <span class="ag-tags__tag ag-tags__tag_outline">
+ *                  Otros
+ *                </span>
+ *              </li>
+ *            </ul>
+ *          </div>
+ *        </footer>
+ *      </div>
+ *    </article>
+ *            </div>
+ *            <div class="ag-zig-cards__lead ag-s01-rich-text ag-s01-rich-text_card">
+ *              <div class="ag-s01-rich-text__scroll">
+ *                <div class="block-related_text"><div class="rich-text"><p><b>Santaolalla</b>, quien más tarde dio una rueda de prensa, se mostró agradecido con el país y habló de su trabajo como productor musical, hablando con humildad de su nutrida carrera: "lo que siempre me ha encantado es relacionarme con artistas por los que sentía admiración, a quienes yo podía sumar al gran talento que tenían, como :</p><ol><li>Café Tacvba</li><li>Bersuit</li><li>Juanes</li></ol><h4><b>¡Récord de asistencia! Así cerró Rock al Parque sus 25 años</b></h4><p>Volviendo al escenario Lago, cada vez eran más quienes llegaban a presenciar la locura de<a href="https://www.publimetro.co/co/entretenimiento/2019/07/01/silverio-punk-sigue-vivo-ahora-viste-lentejuelas.html"> Silverio,</a> que puso a todos a bailar con su electrónica “para cavernícolas” y su estética <i>kitsch</i> de lentejuelas rojas y ropa plateada. Sin embargo, muchos querían ver a <i>Pornomotora</i>, acto que sucedía a Silverio hacia las 5 de la tarde y llamó al pogo a pesar de la lluvia incesante que continuó hasta las 7 de la noche.</p><blockquote>La cifra: 341.000 personas pisaron el Parque Simón Bolívar durante los tres días de esta edición</blockquote><p></p></div></div>
+ *              </div>
+ *            </div>
+ *          </li>
+ *      </ul>
+ */
+
+.ag-zig-cards {
+  list-style: none;
+}
+
+.ag-zig-cards__card,
+.ag-zig-cards__lead {
+  @include px-rem(margin-bottom, 40px);
+  background-color: $c-neutro;
+}
+
+.ag-zig-cards__card {
+  position: relative;
+  background-color: $c-neutro;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .ag-c-card__border {
+    border: none;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 1px;
+    height: 20%;
+    background-color: rgba($c-on-border, .8);
+  }
+}
+
+.ag-zig-cards__item {
+  width: 92%;
+  margin: 0 auto;
+}
+
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+
+  .ag-zig-cards {
+    .ag-zig-cards__lead {
+      @include px-rem(margin-bottom, 40px);
+    }
+  }
+
+  .ag-zig-cards__item {
+    width: 80%;
+  }
+
+}
+
+@media(min-width:900px) {
+
+  .ag-zig-cards__item {
+    width: 100%;
+    @include flexbox;
+    @include align-items(center);
+
+    .ag-zig-cards__card,
+    .ag-zig-cards__lead {
+      @include flex(1 1 100%);
+    }
+
+    .ag-zig-cards__card {
+      @include px-rem(margin-right, 20px);
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        display: block;
+        width: 110%;
+        height: 1px;
+        background-color: $c-on-border;
+        z-index: -1;
+      }
+    }
+
+    &:nth-child(even) {
+      @include flex-direction(row-reverse);
+
+      .ag-zig-cards__lead {
+        @include px-rem(margin-right, 20px);
+
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          display: block;
+          width: 110%;
+          height: 1px;
+          z-index: -1;
+          background-color: $c-on-border;
+        }
+      }
+
+      .ag-zig-cards__card {
+        margin-right: 0;
+        z-index: 3;
+
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+
+}

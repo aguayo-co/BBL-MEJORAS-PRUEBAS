@@ -1,0 +1,269 @@
+{% extends "biblored/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "Editar perfil" %} {{ user.full_name }} {% endblock %}
+
+{% block description %}
+{% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %}
+{% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %}
+{% endblock %}
+
+{% block search %}
+{% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+Template parent: base.html
+Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+<dd class="ag-breadcrumbs__item">
+  <a class="ag-breadcrumbs__link" title="{% trans 'Mi perfil' %}" href="{% url 'profile-invitations' %}">{% trans 'Mi perfil' %}</a>
+</dd>
+<dd class="ag-breadcrumbs__item">
+  {% trans 'Editar perfil' %}
+</dd>
+{% endblock %}
+
+{% block content %}
+<main class="ag-l-page">
+  <div class="ag-l-inner-wide">
+
+    <header class="ag-o-header" id="maincontent" tabindex="0">
+      <h1 class="ag-o-heading" tabindex="0">
+        {% if user.profile.accept_terms %}
+        {% trans "Editar perfil" %}
+        {% else %}
+        {% trans "Bienvenido a la Biblioteca Digital de Bogotá" %}
+        {% endif %}
+      </h1>
+    </header>
+
+    <div class="ag-l-form" id="content" tabindex="0">
+
+      <div class="ag-info">
+
+        <article class="ag-info__panel">
+          {% if user.profile.accept_terms %}
+          <h2 class="ag-info__title" tabindex="0">{% trans "Información de BibloRed" %}</h2>
+          {% endif %}
+
+          <div class="ag-info__flex">
+
+            <div class="ag-info__data">
+              {% if user.profile.accept_terms %}
+              <p class="ag-o-text">
+                <strong>{{ user.full_name }}</strong>
+              </p>
+              <p class="ag-o-text">{{ user.email }}</p>
+              <p class="ag-o-text">{{ user.country }}</p>
+
+              {% else %}
+              <p class="ag-o-text">
+                {% trans "Recuerda que tu usuario y contraseña se administran desde" %}
+                <a class="ag-o-link" href="{{ registration_url }}" title="Biblored" target="_blank"> BibloRed </a>
+              </p>
+              {% endif %}
+
+            </div>
+
+            <figure class="ag-info__figure">
+              <img class="ag-info__img" src="{% static 'biblored/img/profile/logo_biblored_negro.svg' %}"
+                alt="Biblioteca digital de Bogotá">
+              {% if user.profile.accept_terms %}
+              <figcaption class="ag-info__caption">
+                <a class="ag-o-link" href="{{ registration_url }}" title="Biblored"
+                  target="_blank">{% trans "Editar en" %} BibloRed </a>
+              </figcaption>
+              {% endif %}
+            </figure>
+
+          </div>
+        </article>
+        {% if not user.profile.accept_terms %}
+        <div class="ag-info__header">
+          <h2 class="ag-info__title">{% trans "Completa tu perfil en la" %} Biblioteca Digital de Bogotá</h2>
+        </div>
+        {% endif %}
+        <form method="post" class="ag-js-validate" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {% for error in form.none_field_errors %}
+          <ul class="list_error">
+            <li>{{ error }}</li>
+          </ul>
+          {% endfor %}
+
+          <fieldset class="ag-form__field ag-form__field_bottom ag-js-form__field  ag-js-formfieldUploadImg">
+            <legend class="ag-form__label">{{ form.avatar.label }}</legend>
+
+            <div class="ag-form__file-hidden">{{ form.cropped_image }}</div>
+
+            <div class="ag-form__file ag-js-fileParent">
+
+              <button 
+                type="button" 
+                class="ag-o-btn ag-info__btn" 
+                tabindex="-1" 
+                data-modal="show_select_image"
+              >
+                {% if user.profile.avatar %}
+                {% trans "Cambiar foto" %}
+                {% else %}
+                {% trans "Subir foto" %}
+                {% endif %}
+              </button>
+
+              <label class="ag-form__file-label ag-js-fileInputInfo" for="{{ form.avatar.auto_id }}">
+                <span class="ag-is-visuallyhidden">
+                  {% if user.profile.avatar %}
+                  {% trans "Cambiar foto" %}
+                  {% else %}
+                  {% trans "Subir foto" %}
+                  {% endif %}
+                </span>
+                <span class="ag-form__file-txt">{% trans "Formato: .jpg, .jpeg o .png, tamaño máximo: 1MB" %}</span>
+              </label>
+
+            </div>
+
+            {% for error in form.avatar.errors %}
+              <small class="ag-form__error ag-js-msgError" data-for="{{ form.avatar.name }}"
+                role="alert">{{ error }}</small>
+            {% endfor %}
+
+            <div class="ag-form__file-upload ag-js-fileUpload">
+              <div class="ag-chip__avatar ag-form__crop ag-js-img-croped">
+               </div>
+              <span class="ag-form__label ag-form__file-name ag-js-imageUploadedName"></span>
+            </div>
+
+          </fieldset>
+
+          <div class="ag-form__field ag-js-form__field">
+            <label class="ag-form__label" for="{{ form.biography.id_for_label }}">{{ form.biography.label }}</label>
+            <div
+              class="ag-form__input ag-js-formTextarea ag-js-formInput {% if form.biography.errors %} ag-is-error {% endif %}">
+              {{ form.biography }}
+              <div class="ag-form__hint">
+                {% for error in form.biography.errors %}
+                <small class="ag-form__error ag-js-msgError" data-for="{{ form.biography.name }}"
+                  role="alert">{{ error }}</small>
+                {% endfor %}
+                <small class="ag-form__error ag-js-msgError" data-for="{{ form.biography.name }}" hidden></small>
+                <span class="ag-form__helper ag-js-inputCharsCounter" data-for="{{ form.biography.name }}"></span>
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="ag-form__field">
+            <legend class="ag-form__label">{{ form.social_networks.label }}</legend>
+            <div class="ag-form__social">
+              <div class="ag-form__row ag-form__row_flex">
+                <label class="ag-form__social-label i-facebook" for="{{ form.facebook.id_for_label }}">
+                  <span class="ag-is-visuallyhidden">{{ form.facebook.label }}</span>
+                </label>
+                <div class="ag-form__input ag-js-form__field {% if form.facebook.errors %} ag-is-error {% endif %}">
+                  {{ form.facebook }}
+                  {% for error in form.facebook.errors %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.facebook.name }}"
+                    role="alert">{{ error }}</small>
+                  {% endfor %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.facebook.name }}" hidden></small>
+                </div>
+              </div>
+              <div class="ag-form__row ag-form__row_flex">
+                <label class="ag-form__social-label i-twitter" for="{{ form.twitter.id_for_label }}">
+                  <span class="ag-is-visuallyhidden">{{ form.twitter.label }}</span>
+                </label>
+                <div class="ag-form__input ag-js-form__field {% if form.twitter.errors %} ag-is-error {% endif %}">
+                  {{ form.twitter }}
+                  {% for error in form.twitter.errors %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.twitter.name }}"
+                    role="alert">{{ error }}</small>
+                  {% endfor %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.twitter.name }}" hidden></small>
+                </div>
+              </div>
+              <div class="ag-form__row ag-form__row_flex">
+                <label class="ag-form__social-label i-instagram" for="{{ form.instagram.id_for_label }}">
+                  <span class="ag-is-visuallyhidden">{{ form.instagram.label }}</span>
+                </label>
+                <div class="ag-form__input ag-js-form__field {% if form.instagram.errors %} ag-is-error {% endif %}">
+                  {{ form.instagram }}
+                  {% for error in form.instagram.errors %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.instagram.name }}"
+                    role="alert">{{ error }}</small>
+                  {% endfor %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.instagram.name }}" hidden></small>
+                </div>
+              </div>
+              <div class="ag-form__row ag-form__row_flex">
+                <label class="ag-form__social-label i-youtube" for="{{ form.youtube.id_for_label }}">
+                  <span class="ag-is-visuallyhidden">{{ form.youtube.label }}</span>
+                </label>
+                <div class="ag-form__input ag-js-form__field {% if form.youtube.errors %} ag-is-error {% endif %}">
+                  {{ form.youtube }}
+                  {% for error in form.youtube.errors %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.youtube.name }}"
+                    role="alert">{{ error }}</small>
+                  {% endfor %}
+                  <small class="ag-form__error ag-js-msgError" data-for="{{ form.youtube.name }}" hidden></small>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          {% if not user.profile.accept_terms %}
+          <div class="ag-form__row">
+            <div class="ag-form__field ag-js-form__field" data-validate="terms-required">
+              <div class="ag-form__input ag-js-formInput">
+                <div class="ag-form__checkbox">
+                  {{ form.accept_terms }}
+                  <label class="i-check" for="{{ form.accept_terms.id_for_label }}"><span> Acepto los <a
+                        class="ag-o-link" href="http://www.culturarecreacionydeporte.gov.co/es/politica-de-privacidad"
+                        target="_blank"> términos y condiciones</a> de la Biblioteca Digital de Bogotá</span></label>
+                </div>
+                {% for error in form.accept_terms.errors %}
+                <small class="ag-form__error ag-js-msgError" data-for="{{ form.accept_terms.name }}"
+                  role="alert">{{ error }}</small>
+                {% endfor %}
+                <small class="ag-form__error ag-js-msgError" data-for="{{ form.accept_terms.name }}" hidden></small>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% for hidden in  set.hidden_fields %}
+          {{ hidden }}
+          {% endfor %}
+
+          <footer class="ag-info__actions ag-o-actions">
+            {% if user.profile.accept_terms %}
+            <div class="ag-o-actions__item">
+              <a class="ag-o-btn ag-o-btn_outline" href="{{ user.get_absolute_url }}"
+                title=" {% trans 'Ir a mi Perfil' %}">{% trans "Mi perfil" %}</a>
+            </div>
+            {% endif %}
+            <div class="ag-o-actions__item">
+              <button class="ag-o-btn" type="submit">{% trans "Guardar" %}</button>
+            </div>
+          </footer>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</main>
+<div class="ag-js-parent-cropper-profile">
+{% include "biblored/includes/modals/modal_select_image_avatar.html" with is_profile=user.profile %}
+</div>
+{% endblock %}

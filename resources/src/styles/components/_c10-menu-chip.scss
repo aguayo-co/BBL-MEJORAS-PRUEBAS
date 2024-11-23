@@ -1,0 +1,317 @@
+/*------------------------------------*\
+  ID: C10
+  Menu Chip
+  Description: Menú de registro
+\*------------------------------------*/
+
+.ag-c-menu-chip {
+  z-index: 10;
+}
+
+.ag-c-menu-chip__name {
+  @include flexbox;
+  @include align-items(center);
+  width:100%;
+  text-align: left;
+}
+
+.ag-c-menu-chip__crop {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 26px);
+  @include px-rem(height, 26px);
+  @include px-rem(margin, 0 8px 0 20px);
+  overflow: hidden;
+  color: $c-neutro;
+  border-radius: 50%;
+  background-color: $c-secondary;
+}
+
+.ag-c-menu-chip__caption {
+  @include px-rem(min-width, 80px);
+  @include flex(2 1 0);
+}
+
+.ag-c-menu-chip__img {
+  width: 100%;
+}
+
+@supports(object-fit: cover) {
+  .ag-c-menu-chip__img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.ag-c-menu-chip__initials {
+  display: block;
+  @include px-rem(line-height, 26px);
+  text-align: center;
+  @include px-rem(font-size, 12px);
+  font-family: $f-primary;
+  font-weight: $f-medium;
+}
+
+.ag-c-menu-chip__btn,
+.ag-c-menu-chip__caption,
+.ag-c-menu-chip__link {
+  display: block;
+  color: $c-neutro;
+  @include font-rem(14px);
+  @include px-rem(padding, 20px 0);
+  font-weight: $f-medium;
+  cursor: pointer;
+}
+
+
+.ag-c-menu-chip__btn {
+  width: 100%;
+  text-align: left;
+  vertical-align: middle;
+  &:before {
+    @include font-rem(22px);
+    @include px-rem(padding, 0 8px 0 20px);
+    vertical-align: middle;
+  }
+  .ag-c-menu-chip__txt {
+    @include px-rem(padding, 0 20px 0 0);
+  }
+}
+
+.ag-c-menu-chip__name,
+.ag-c-menu-chip__btn,
+.ag-c-menu-chip__link {
+  vertical-align: middle;
+  transition: background-color .4s ease-in-out;
+  &:hover {
+    background-color: $c-on-hover;
+    .ag-c-menu-chip__alert {
+      background-color: $c-neutro;
+      color: $c-on-hover;
+    }
+    .ag-c-menu-chip__crop {
+      background-color: $c-neutro;
+      color: $c-on-hover;
+    }
+  }
+
+  &:active,
+  &:focus {
+    color: $c-neutro;
+  }
+}
+
+.ag-c-menu-chip__item_double {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(space-between);
+
+  &:hover {
+    // Hover de las notificaciones al pasar encima del item Mi perfil
+    .ag-c-menu-chip__alert {
+      color: $c-secondary;
+      background-color: $c-neutro;
+    }
+  }
+
+  .ag-c-menu-chip__link {
+    width: 100%;
+  }
+
+  .ag-c-menu-chip__alert {
+    position: absolute;
+    right: 24px;
+  }
+}
+
+.ag-c-menu-chip__list {
+  list-style: none;
+
+  // Mostrar notificación al lado del item Mi perfil
+  .ag-c-menu-chip__item {
+    .ag-c-menu-chip__alert {
+      opacity: 1;
+    }
+  }
+}
+
+.ag-c-menu-chip__txt {
+  @include px-rem(padding-left, 54px);
+  vertical-align: middle;
+}
+.ag-c-menu-chip__txt_bg {
+  @include px-rem(margin-left, 22px);
+  @include px-rem(padding, 8px 16px);
+  background-color: #e81744;
+  color: #fff;
+  @include px-rem(border-radius, 4px);
+  transition: all .4s;
+  &:hover{
+    opacity: 0.9;
+  }
+}
+
+.ag-c-menu-chip__alert {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  @include px-rem(width, 24px);
+  @include px-rem(height, 24px);
+  @include px-rem(margin-left, 10px);
+  @include font-rem(12px);
+  @include px-rem(letter-spacing, 1px);
+  text-align: center;
+  color: $c-neutro;
+  line-height: 2;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: $c-on-hover;
+  vertical-align: middle;
+  opacity: 0;
+}
+
+@include media-query(medium) {
+
+  .ag-c-menu-chip {
+    position: relative;
+    @include flexbox;
+    @include align-items(center);
+  }
+
+  .ag-c-menu-chip__caption,
+  .ag-c-menu-chip__link {
+    @include font-rem(14px);
+    font-weight: $f-medium;
+    white-space: nowrap;
+  }
+
+  .ag-c-menu-chip__caption {
+    @include px-rem(padding, 18px 0);
+    @include px-rem(max-width, 130px);
+    display: -webkit-box;
+    display: block;
+    overflow: hidden;
+    line-height: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+  .ag-c-menu-chip__link {
+    @include px-rem(padding, 18px 4px 18px 0);
+    .ag-c-menu-chip__txt {
+      @include px-rem(padding-left, 30px);
+    }
+  }
+
+  .ag-c-menu-chip__txt_bg {
+    @include px-rem(margin-left, 8px);
+  }
+
+  .ag-c-menu-chip__btn {
+    @include px-rem(margin-bottom, 4px);
+    .ag-c-menu-chip__txt {
+      @include px-rem(padding, 0 8px 0 2px);
+    }
+    &:before {
+      @include px-rem(padding, 0 0 0 8px);
+    }
+  }
+
+
+  .ag-c-menu-chip__alert {
+    @include px-rem(margin-right, 14px);
+    opacity: 1;
+  }
+
+  .ag-c-menu-chip__name {
+    width: auto;
+    text-align: initial;
+  }
+
+  .ag-c-menu-chip__crop {
+    @include px-rem(margin, 0 8px 0 2px);
+  }
+
+  //- Submenú
+  .ag-c-menu-chip__list {
+    position: absolute;
+    display: block;
+    @include px-rem(top, 62px);
+    right: 0;
+    min-width: 212px;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    background-color: transparent;
+    &.ag-has-menu-chip__focus {
+      height: 100%;
+      min-height: 195px;
+    }
+
+    // Ocultar notificación al lado del item Mi perfil
+    .ag-c-menu-chip__item {
+      .ag-c-menu-chip__alert {
+        right: 0;
+        opacity: 0;
+        transition: all .2s ease-in-out;
+      }
+    }
+  }
+
+  .ag-c-menu-chip__item {
+    position: relative;
+    background-color: $c-bg;
+  }
+
+  //- Despliegue del Menú Chip
+  .ag-is-menu-chip__current {
+    transition: all .5s ease-in-out;
+
+    &:hover {
+
+      // Ocultar notificación al lado del nombre
+      .ag-c-menu-chip__name {
+        .ag-c-menu-chip__alert {
+          opacity: 0;
+        }
+      }
+
+      .ag-c-menu-chip__list {
+        max-height: inherit;
+        max-height: 100vh;
+        border: 1px solid rgba($c-neutro, .2);
+        border-top-color: $c-primary;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+        background-color: $c-bg;
+
+        // Mostrar notificación al lado del item Mi perfil
+        .ag-c-menu-chip__item {
+          .ag-c-menu-chip__alert {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+
+    &:focus {
+      .ag-c-menu-chip__list {
+        background-color: $c-bg;
+        max-height: inherit;
+      }
+    }
+  }
+
+
+  .ag-c-menu-chip__list {
+    &:focus {
+      background-color: $c-bg;
+      max-height: inherit;
+    }
+  }
+
+}

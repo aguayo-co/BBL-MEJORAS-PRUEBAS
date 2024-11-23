@@ -1,0 +1,60 @@
+{% extends "biblored/includes/options_menu/options_base.html" %}
+{% load i18n %}
+
+{% block options_item_list %}
+  {% if user == collection.owner %}
+    {# Dinamic buttons of invited and edited or collaborated #}
+    <li class="ag-list-button__item">
+      <a
+        class="ag-list-button__button
+        i-pen"
+        title=" {% trans 'Editar esta colección' %}"
+        href="{% url 'collection_edit' collection.id %}"
+      >
+        {% trans "Editar" %}
+      </a>
+    </li>
+  {% endif %}
+
+  {# Button for add to modal of collection group #}
+  <li class="ag-list-button__item">
+    <button class="ag-list-button__button
+      i-texts"
+      type="button"
+      data-modal="{{ data_modal }}"
+    >
+      {% trans 'Añadir a un "Grupo de colecciones"' %}
+    </button>
+  </li>
+
+  {# Button to share collection #}
+  <li class="ag-list-button__item">
+    <button
+      class="ag-list-button__button
+      i-share"
+      type="button"
+      data-modal="share_social_{{ card }}_0"
+    >
+      {% trans 'Compartir esta colección' %}
+    </button>
+  </li>
+
+  {% if user == collection.owner and collection.collaborativecollection %}
+    {# Button to invited collaborate #}
+    <li class="ag-list-button__item">
+      <a
+        class="ag-list-button__button
+        i-bulletin"
+        title=" {% trans 'Invitar usuarios a esta colección' %}"
+        href="{% url 'collection_invite' collection.id %}"
+      >
+        {% trans 'Gestionar colaboradores' %}
+      </a>
+    </li>
+  {% endif %}
+{% endblock %}
+
+{% block option_modal %}
+  {# Modal for share in social media #}
+  {% include "biblored/includes/modals/modal_share_social.html" with object=collection title=collection.title title_set=collection.name card=card counter=0 classJsCopyUrl=classJsCopyUrl only %}
+{% endblock %}

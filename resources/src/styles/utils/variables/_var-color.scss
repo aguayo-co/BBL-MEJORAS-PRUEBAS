@@ -1,0 +1,329 @@
+//*------------------------------------*\
+//    Variables Color Template
+//    Referente del sistema de color:
+//    https://material.io/design/color/the-color-system.html
+//*------------------------------------*/
+
+//*------------------------------------*\
+//    Primary
+//    se muestra con mayor frecuencia en las pantallas y componentes
+//*------------------------------------*/
+
+/**
+ * $c-primary
+ * @color
+ * @section Primary
+ */
+
+$c-primary: #16223f;
+
+/**
+ * $c-primary-hover
+ * @color
+ * @section Primary
+ */
+
+$c-primary-hover: #442686;
+
+$c-primary-hover_light: #7551b7;
+$c-primary-hover_dark: #0c0058;
+
+/**
+ * $c-primary-disabled
+ * @color
+ * @section Primary
+ */
+
+$c-primary-disabled: #e5e5e5;
+
+//*------------------------------------*\
+//    Secondary & tertiary
+//    Color para acentuar elementos: Botones de acción,
+//    Controles de selección, Resaltar texto, Barras de progreso, Enlaces y titulares
+//*------------------------------------*/
+
+/**
+ * $c-secondary
+ * @color
+ * @section Secondary
+ */
+
+$c-secondary: #e81744;
+/**
+ * $c-secondary_light
+ * @color
+ * @section Secondary
+ */
+$c-secondary_light: #ff5c6f;
+
+/**
+ * $c-secondary_dark
+ * @color
+ * @section Secondary
+ */
+$c-secondary_dark: #ae001e;
+
+/**
+ * $c-secondary-disabled
+ * @color
+ * @section Secondary
+ */
+
+$c-secondary-disabled: #d1cfcf;
+
+//*------------------------------------*\
+//    Status
+//    colores que indican estado
+//    ej. is-error, is-warning
+//*------------------------------------*/
+
+/**
+ * $c-is-error
+ * @color
+ * @section Status
+ */
+
+$c-is-error: #ce0903;
+
+//*------------------------------------*\
+//    On
+//    elementos de color que se colocan encima de las superficies:
+//    Tipografía y colores de iconografía.
+//    Ejemplo: $c-on-primary
+//*------------------------------------*/
+
+/**
+ * $c-on-primary
+ * @color
+ * @section On
+ */
+
+$c-on-primary: #9eb923;
+
+/**
+ * $c-on-secondary
+ * @color
+ * @section On
+ */
+
+$c-on-secondary: #1aaacc;
+
+$c-on-secondary_light: #65dcff;
+$c-on-secondary_dark: #007b9b;
+
+/**
+ * $c-on-secondary-hover
+ * @color
+ * @section Secondary
+ */
+
+$c-on-secondary-hover: #b5b5b5;
+
+/**
+ * $c-on-tertiary
+ * @color
+ * @section On
+ */
+
+$c-on-tertiary: #ffaf14;
+/**
+ * $c-on-tertiary-dark
+ * @color
+ * @section On
+ */
+
+$c-on-tertiary-dark: #b77900;
+/**
+ * $c-on-tertiary-warm
+ * @color
+ * @section On
+ */
+
+$c-on-tertiary-warm: #fff2c2;
+
+/**
+ * $c-on-text-color
+ * @color
+ * @section On
+ */
+
+$c-on-text-color: #485900;
+
+/**
+ * $c-on-text
+ * @color
+ * @section On
+ */
+
+$c-on-text: #4a4a4a;
+
+/**
+ * $c-on-text-light
+ * @color
+ * @section On
+ */
+$c-on-text-light: #808080;
+
+/**
+ * $c-on-text-ico
+ * @color
+ * @section On
+ */
+
+$c-on-text-ico: #b5b5b5;
+
+/**
+ * $c-on-border
+ * @color
+ * @section On
+ */
+
+$c-on-border: #d3d3d3;
+
+/**
+ * $c-on-border-dark
+ * @color
+ * @section On
+ */
+
+$c-on-border-dark: #0e172c;
+
+/**
+ * $c-on-border-secondary
+ * @color
+ * @section On
+ */
+
+$c-on-border-secondary: #b5b5b5;
+
+/**
+ * $c-on-link
+ * @color
+ * @section On
+ */
+
+$c-on-link: #442686;
+
+/**
+ * $c-on-over
+ * @color
+ * @section On
+ */
+
+$c-on-over: #16223f;
+
+/**
+ * $c-on-hover
+ * @color
+ * @section On
+ */
+
+$c-on-hover: #e81744;
+
+/**
+ * $c-on-social_whatsapp
+ * @color
+ * @section On
+ */
+
+$c-on-whatsapp: #00a152;
+
+/**
+ * $c-on-social_facebook
+ * @color
+ * @section On
+ */
+
+$c-on-facebook: #3b5998;
+
+/**
+ * $c-on-social_twitter
+ * @color
+ * @section On
+ */
+
+$c-on-twitter: #50abf1;
+
+//*------------------------------------*\
+//    Background - Surface
+//    Aparece detrás del contenido desplazable. Es el fondo de referencia
+//    Los colores de la superficie de los componentes.
+//    ej: $c-bg-surface: #fff;
+//*------------------------------------*/
+
+/**
+ * $c-bg
+ * @color
+ * @section Background - Surface
+ */
+
+$c-bg: #16223f;
+
+/**
+ * $c-surface
+ * @color
+ * @section Background - Surface
+ */
+
+$c-surface: #f7f7f7;
+//- #f6f6f6
+
+/**
+ * $c-surface-bg
+ * @color
+ * @section Background - Surface
+ */
+
+$c-surface-bg: #e8eeca;
+
+/**
+ * $c-surface-bg-10
+ * @color
+ * @section Background - Surface
+ */
+
+$c-surface-bg-10: #F5F4F9;
+
+/**
+ * $c-surface-box-bg
+ * @color
+ * @section Background - Surface
+ */
+
+$c-surface-box-bg: #e5e5e5;
+
+/**
+ * $c-surface-bg-error
+ * @color
+ * @section Background - Surface
+ */
+
+$c-surface-bg-error: #ffdedd;
+
+/**
+ * $c-surface-bg-submenu
+ * @color
+ * @section Background - Surface
+ */
+
+$c-surface-bg-submenu: #121b33;
+
+//*------------------------------------*\
+//    Color Less: Blanco y negro
+//*------------------------------------*/
+
+/**
+ * $c-neutro
+ * @color
+ * @section Color Less
+ */
+
+$c-neutro: #fff;
+
+/**
+ * $c-dark
+ * @color
+ * @section Color Less
+ */
+
+$c-dark: #000;

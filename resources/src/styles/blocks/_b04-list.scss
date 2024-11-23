@@ -1,0 +1,752 @@
+/*------------------------------------*\
+  Bloque b04_list
+  Description: Uista consiste en una columna que agrupa filas, que a su vez, contienen los elementos listados.
+  Type: Interactive
+  Path:
+\*------------------------------------*/
+
+/**
+ * Class: .ag-list
+ * @description  columna que agrupa filas, que a su vez, contienen los elementos listados.
+ * @molecule b04_list
+ * @section List
+ * @modifiers
+ *  .ag-list_unborder lista sin border.
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <ul class="ag-list">
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Biblioteca Digital Luis Ángel Arango">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <span class="ag-list__title">Biblioteca Digital Luis Ángel Arango</span>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <a class=" ag-o-link" href="#" title="Ver Contenido">Ver Contenido</a>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Biblioteca Digital Luis Ángel Arango">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <span class="ag-list__title">Biblioteca Digital Luis Ángel Arango</span>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <a class=" ag-o-link" href="#" title="Ver Contenido">Ver Contenido</a>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Biblioteca Digital Luis Ángel Arango">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <span class="ag-list__title">Biblioteca Digital Luis Ángel Arango</span>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <a class=" ag-o-link" href="#" title="Ver Contenido">Ver Contenido</a>
+ *          </div>
+ *        </div>
+ *      </li>
+ *    </ul>
+ *  </div>
+ */
+
+.ag-list-group {
+  @include px-rem(padding-top, 40px);
+}
+.ag-list {
+  list-style: none;
+}
+.ag-list_separator {
+  @include px-rem(margin-top, 40px);
+  border-top: 1px solid $c-on-border;
+}
+
+
+/**
+ * Class: .ag-list.ag-list_unborder
+ * @description  columna que agrupa filas, que a su vez, contienen los elementos listados.
+ * @molecule b04_list unborderer
+ * @section List > Modificadores
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <ul class="ag-list ag-list_unborder">
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <p class="ag-list__title">Juan desea colaborar <span class="ag-list__meta">Hace 10 minutos</span></p>
+ *            <p><a class=" ag-o-link" href="#" title="Usuario">Juan Jose Gaviria</a> desea colaborar en tu colección <a class=" ag-o-link" href="#" title="Usuario">Historia del transporte en Colombia</a>, ¿aceptas?</p>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn ag-o-btn_outline" type="button">Rechazar</button>
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar-3.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <p class="ag-list__title">Ana Maria desea colaborar <span class="ag-list__meta">1 de abril de 2019</span></p>
+ *            <p><a class=" ag-o-link" href="#" title="Usuario">Ana Maria Gonzalez</a> desea colaborar en tu colección <a class=" ag-o-link" href="#" title="Usuario">La Candelaria gran tesoro</a>, ¿aceptas?</p>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn ag-o-btn_outline" type="button">Rechazar</button>
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *    </ul>
+ *  </div>
+ */
+
+.ag-list_unborder {
+  .ag-list__item {
+    border: none;
+  }
+}
+
+/**
+ * Class: .ag-list.ag-list_border
+ * @description  columna que agrupa filas, que a su vez, contienen los elementos listados.
+ * @molecule b04_list borderer
+ * @section List > Modificadores
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <ul class="ag-list ag-list_border">
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">{ Juan José Gaviria }</div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn ag-o-btn_outline" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">{ Juan José Gaviria }</div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn ag-o-btn_outline" type="button">Invitar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">{ Juan José Gaviria }</div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">{ Juan José Gaviria }</div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">{ Juan José Gaviria }</div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">{ Juan José Gaviria }</div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn" type="button">Eliminar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *    </ul>
+ *  </div>
+ */
+
+.ag-list_border {
+  @include px-rem(max-height, 275px);
+  @include px-rem(padding, 8px 0);
+  border: 1px solid $c-on-border;
+  overflow: auto;
+
+  .ag-list__item {
+    border: none;
+  }
+}
+
+/**
+ * Class: .ag-list
+ * @description  columna que agrupa filas, que a su vez, contienen los elementos listados. Puede contener ademas dropdown para mostrar información adicional.
+ * @molecule b04_list Dropdown
+ * @section List > Elementos
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <ul class="ag-list">
+ *      <li class="ag-list__item ag-js-itemList">
+ *        <div class="ag-list__row">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Biblioteca Digital de Bogotá">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <p class="ag-list__title">Biblioteca Virgilio Barco <span class="ag-list__meta">(234 ejemplares)</span></p>
+ *            <button class="ag-o-link i-after-arrow-down ag-js-dropdownBtn" type="button" data-dropdown="details">Ver detalles</button>
+ *            <button class="ag-o-link i-after-arrow-down ag-js-dropdownBtn" type="button" data-dropdown="location">Ubicar ejemplar</button>
+ *          </div>
+ *        </div>
+ *        <div class="ag-list__dropdown-content ag-js-dropdownSlide ag-is-hide" data-dropdown="details">
+ *          <img class="ag-list__dropdown-img_full" src="../biblored/img/demo/map.svg" alt="Mapa de ubicación de la fuente del recurso">
+ *          <div class="ag-list__inner ag-list__information">
+ *            <dl class="ag-definition-list">
+ *              <dt class="ag-definition-list__title">Horario</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Lunes</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Martes</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Miércoles</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Jueves</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *               </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Viernes</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Sábados</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Domingos y festivos</span>
+ *                <span>Cerrado</span>
+ *              </dd>
+ *            </dl>
+ *            <dl class="ag-definition-list">
+ *              <dt class="ag-definition-list__title">Parqueadero</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Disponible</span>
+ *              </dd>
+ *              <dt class="ag-definition-list__title">Dirección</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Calle 11 #4 - 14, Bogotá, Cundinamarca</span>
+ *              </dd>
+ *              <dt class="ag-definition-list__title">Contacto</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Tel: 456 6777</span>
+ *              </dd>
+ *            </dl>
+ *          </div>
+ *        </div>
+ *        <div class="ag-list__dropdown-content ag-js-dropdownSlide ag-is-hide" data-dropdown="location">
+ *          <table class="ag-table ag-list__inner">
+ *            <tr class="ag-table__row ag-table__row_top">
+ *              <th class="ag-table__title">Ejemplares</th>
+ *              <th class="ag-table__title">Número Topográfico</th>
+ *              <th class="ag-table__title"></th>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC9</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC2</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC3</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC8</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">CO863.44 G172A</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">860 G65C</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">CDS 0465</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *          </table>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item ag-js-itemList">
+ *        <div class="ag-list__row">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Biblioteca Digital de Bogotá">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <p class="ag-list__title">Biblioteca Virgilio Barco <span class="ag-list__meta">(234 ejemplares)</span></p>
+ *            <button class="ag-o-link i-after-arrow-down ag-js-dropdownBtn" type="button" data-dropdown="details">Ver detalles</button>
+ *            <button class="ag-o-link i-after-arrow-down ag-js-dropdownBtn" type="button" data-dropdown="location">Ubicar ejemplar</button>
+ *          </div>
+ *        </div>
+ *        <div class="ag-list__dropdown-content ag-js-dropdownSlide ag-is-hide" data-dropdown="details">
+ *          <img class="ag-list__dropdown-img_full" src="../biblored/img/demo/map.svg" alt="Mapa de ubicación de la fuente del recurso">
+ *          <div class="ag-list__inner ag-list__information">
+ *            <dl class="ag-definition-list">
+ *              <dt class="ag-definition-list__title">Horario</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Lunes</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Martes</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Miércoles</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Jueves</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *               </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Viernes</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Sábados</span>
+ *                <span>8:00 AM - 8:00 PM</span>
+ *              </dd>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Domingos y festivos</span>
+ *                <span>Cerrado</span>
+ *              </dd>
+ *            </dl>
+ *            <dl class="ag-definition-list">
+ *              <dt class="ag-definition-list__title">Parqueadero</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Disponible</span>
+ *              </dd>
+ *              <dt class="ag-definition-list__title">Dirección</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Calle 11 #4 - 14, Bogotá, Cundinamarca</span>
+ *              </dd>
+ *              <dt class="ag-definition-list__title">Contacto</dt>
+ *              <dd class="ag-definition-list__item">
+ *                <span>Tel: 456 6777</span>
+ *              </dd>
+ *            </dl>
+ *          </div>
+ *        </div>
+ *        <div class="ag-list__dropdown-content ag-js-dropdownSlide ag-is-hide" data-dropdown="location">
+ *          <table class="ag-table ag-list__inner">
+ *            <tr class="ag-table__row ag-table__row_top">
+ *              <th class="ag-table__title">Ejemplares</th>
+ *              <th class="ag-table__title">Número Topográfico</th>
+ *              <th class="ag-table__title"></th>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC9</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC2</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC3</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">A-N GARC8</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">CO863.44 G172A</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">860 G65C</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *            <tr class="ag-table__row">
+ *              <td class="ag-table__cell">Cien años de soledad</td>
+ *              <td class="ag-table__cell">CDS 0465</td>
+ *              <td class="ag-table__cell"><a class="ag-o-link" href="#">Más información</a></td>
+ *            </tr>
+ *          </table>
+ *        </div>
+ *      </li>
+ *    </ul>
+ *  </div>
+ */
+
+.ag-list__item {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  border-bottom: 1px solid $c-on-border;
+}
+.ag-list__item-stripped {
+  @include px-rem(padding, 22px);
+  color: $c-on-text;
+
+  &:nth-child(odd) {
+    background-color: $c-surface;
+  }
+}
+
+/**
+ * Class: .ag-list
+ * @description  columna que agrupa filas, que a su vez, contienen los elementos listados. También puede usarse para mostrar solicitudes de usuarios.
+ * @molecule b04_list Solicitudes
+ * @section List > Elementos
+ * @markup
+ *  <div class="SG-component__preview">
+ *    <ul class="ag-list">
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <p class="ag-list__title">Juan desea colaborar <span class="ag-list__meta">Hace 10 minutos</span></p>
+ *            <p><a class=" ag-o-link" href="#" title="Usuario">Juan Jose Gaviria</a> desea colaborar en tu colección <a class=" ag-o-link" href="#" title="Usuario">Historia del transporte en Colombia</a>, ¿aceptas?</p>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn ag-o-btn_outline" type="button">Rechazar</button>
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *      <li class="ag-list__item">
+ *        <div class="ag-list__row ag-list__row_multiline">
+ *          <div class="ag-list__visual">
+ *            <figure class="ag-chip__avatar">
+ *              <img class="ag-chip__img" src="../biblored/img/demo/avatar-3.jpg" alt="Usuario">
+ *            </figure>
+ *          </div>
+ *          <div class="ag-list__content">
+ *            <p class="ag-list__title">Ana Maria desea colaborar <span class="ag-list__meta">1 de abril de 2019</span></p>
+ *            <p><a class=" ag-o-link" href="#" title="Usuario">Ana Maria Gonzalez</a> desea colaborar en tu colección <a class=" ag-o-link" href="#" title="Usuario">La Candelaria gran tesoro</a>, ¿aceptas?</p>
+ *          </div>
+ *          <div class="ag-list__actions">
+ *            <button class="ag-o-btn ag-o-btn_outline" type="button">Rechazar</button>
+ *            <button class="ag-o-btn" type="button">Aceptar</button>
+ *          </div>
+ *        </div>
+ *      </li>
+ *    </ul>
+ *  </div>
+ */
+
+.ag-list__row {
+  @include align-items(center);
+  @include flexbox;
+  @include flex(1 100%);
+  @include justify-content(space-between);
+  @include px-rem(padding, 24px 20px);
+  transition: background-color 600ms ease-in-out;
+
+  &.ag-is-active {
+    background-color: $c-surface;
+    border-bottom: 1px solid $c-on-border;
+  }
+
+  &.ag-list__row_small {
+   @include px-rem(padding, 5px 20px);
+  }
+}
+
+.ag-list__inner {
+  width: 90%;
+  @include px-rem(max-width, 650px);
+  @include px-rem(margin, 20px auto 30px);
+}
+
+.ag-list__row_multiline {
+  @include flex-wrap(wrap);
+
+  .ag-list__content {
+    @include flex(1 calc(100% - 66px));
+
+    .ag-o-link {
+      padding: 0;
+    }
+  }
+
+  .ag-list__actions {
+    @include align-items(center);
+    @include flexbox;
+    @include flex(1 100%);
+    @include justify-content(center);
+    @include px-rem(padding-top, 14px);
+    text-align: center;
+  }
+}
+
+.ag-list__actions-btn {
+  @include px-rem(margin-top, 8px);
+  @include px-rem(margin-bottom, 8px);
+}
+
+.ag-list__visual {
+  @include flex(0 0 auto);
+  @include px-rem(margin-right, 10px);
+}
+
+.ag-list__content {
+  @include flex(1 auto);
+  @include px-rem(margin-right, 10px);
+
+  .ag-o-link {
+    padding: 0;
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+
+    &::after {
+      @include font-rem(8px);
+      @include px-rem(padding-left, 6px);
+      display: inline-block;
+    }
+  }
+}
+
+.ag-list__title {
+  color: $c-primary;
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  @include px-rem(margin-bottom, 5px);
+}
+
+.ag-list__meta {
+  @include px-rem(padding-left, 10px);
+  white-space: nowrap;
+  color: $c-on-text;
+  font-family: $f-default;
+  font-weight: $f-regular;
+}
+
+.ag-list__meta_small {
+  opacity: .5;
+  @include px-rem(font-size, 12px);
+}
+
+.ag-list__dropdown-content {
+  @include flex(1 100%);
+
+  .ag-list__dropdown-img_full {
+    width: 100%;
+  }
+}
+
+.ag-list__information {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include justify-content(center);
+}
+
+.ag-definition-list {
+  @include flex(1 1 100%);
+}
+
+.ag-definition-list__title {
+  color: $c-primary;
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  @include px-rem(padding, 6px 0);
+
+}
+
+.ag-definition-list__item {
+  @include align-items(center);
+  @include flexbox;
+  @include justify-content(space-between);
+}
+
+.ag-list__actions {
+  @include flex(0 0 auto);
+
+  .ag-o-btn {
+    @include px-rem(min-width, 100px);
+    @include px-rem(margin-right, 16px);
+    @include px-rem(padding, 8px 12px);
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.ag-list__grid {
+  text-align: left;
+  @include px-rem(margin-bottom, 35px);
+}
+
+.ag-list__grid-item {
+  @include px-rem(margin, 0 20px);
+  @include px-rem(padding, 20px 0);
+  border-bottom: 1px solid $c-on-border;
+
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .ag-list__row.ag-list__row_small {
+    @include px-rem(padding, 5px 0);
+  }
+}
+
+//  small     : $bp-small  : 375px
+@include media-query(small) {
+  .ag-list__content {
+    .ag-o-link {
+      @include px-rem(padding, 0 20px 0 0);
+    }
+  }
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-list__grid {
+    @include flexbox;
+    @include justify-content(center);
+    @include px-rem(margin-bottom, 50px);
+
+    .ag-list__grid-item {
+      @include flex(1 1 50%);
+      border-right: 1px solid $c-on-border;
+      border-bottom: none;
+      margin: 0;
+      @include px-rem(padding, 4px 20px);
+      @include px-rem(min-height, 375px);
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
+
+  .ag-list-group {
+    @include px-rem(padding-top, 50px);
+  }
+  .ag-list__row {
+    @include px-rem(padding, 25px 38px);
+  }
+
+  .ag-list__row_multiline {
+    @include flex-wrap(nowrap);
+
+    .ag-list__actions {
+      display: block;
+      @include flex(0 0 auto);
+      padding-top: 0;
+    }
+  }
+
+  .ag-list__visual {
+    @include px-rem(margin-right, 15px);
+  }
+
+  .ag-list__content {
+    @include px-rem(margin-right, 15px);
+  }
+
+  .ag-list__information {
+    @include flex-wrap(nowrap);
+    @include justify-content(space-between);
+  }
+
+  .ag-definition-list {
+    @include px-rem(padding-right, 50px);
+
+    &:last-of-type {
+      padding-right: 0;
+    }
+  }
+
+  .ag-list__actions-btn {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

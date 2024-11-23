@@ -1,0 +1,335 @@
+/*----------------------------------------------*\
+  ID: C36
+  Hero
+  Type: Banner
+  Description: Banner principal con imagen
+\*----------------------------------------------*/
+
+/**
+ * Class: .c-hero
+ * @description  Título principal, contenido descriptivo, logos corporativos y componente de búsqueda c01_search.
+ * @structure c36_hero
+ * @flag full-width
+ * @section Banner
+ * @markup
+ *   <div class="c-hero swiper-container js-slider-hero swiper-container-initialized swiper-container-horizontal" style="">
+ *     <div class="swiper-wrapper">
+ *       <div class="swiper-slide js-slider-hero-slide swiper-slide-active" style="width: 1254px;">
+ *         <div class="c-hero__slide">
+ *           <div class="c-hero__wrap">
+ *             <div class="c-hero__top">
+ *               <figure class="c-hero__figure">
+ *               <div>
+ *               <iframe width="200" height="113" src="https://www.youtube.com/embed/tE8WVKc-coY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" title="Pielroja - Arriba (Prod Unloged ,DJhosky)"></iframe>
+ *               </div>
+ *               </figure>
+ *               <header class="c-hero__header">
+ *                 <span class="c-hero__text c-hero__text_uppercase ag-o-text_bold">del 19 al 28 de agosto</span>
+ *                 <h2 class="c-hero__title ag-js-booleanHeadline"><p><b><i>Festival Internacional de</i></b> Cine Ambient</p></h2>
+ *                 <span class="ag-js-booleanHeadlineTexts" style="display: none;"><div class="rich-text"><p><b><i>Festival Internacional de</i></b> Cine Ambiental</p></div></span>
+ *                 <div class="c-hero__text c-hero__lead">
+ *                 <div class="rich-text"><p>Descubre la<b> Selección Oficial</b> 2022 de películas que abordan problemáticas ambientales alrededor del mundo.</p></div></div>
+ *                 <a href="/wagtail/pages/" title="Ir a Ver Programación" class="c-hero__btn ag-o-btn">Ver Programación</a>
+ *               </header>
+ *             </div>
+ *           </div>
+ *         </div>
+ *       </div>
+ *     </div>
+ *   </div>
+ */
+
+
+.c-hero {
+  @include px-rem(margin-top, 68px);
+  background-color: $c-surface-bg-10;
+
+  &:not( &.is-hero-bg) {
+    .ag-c-slider__control_outline {
+      color: $c-primary;
+    }
+  }
+
+  &.is-hero-bg {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .swiper-slide {
+    height: 0;
+
+    &-active {
+      height: auto;
+    }
+  }
+}
+
+.c-hero__header {
+  color: $c-on-border-dark;
+
+  .is-hero-bg & {
+    color: $c-neutro;
+  }
+}
+
+.c-hero__title {
+  * {
+    line-height: 1.1;
+  }
+}
+
+.c-hero__text {
+  a {
+    color: $c-primary-hover;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.c-hero__text_uppercase {
+  text-transform: uppercase;
+}
+
+.c-hero__lead {
+  @include text-ellipsis-multiple(18px, 1.8, 7);
+}
+
+.c-hero__figure {
+  div {
+    height: 100%;
+  }
+
+  iframe {
+    width: 100%;
+  }
+}
+
+.c-hero__img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.c-hero__footer {
+  position: relative;
+  @include px-rem(margin-top, 32px);
+  @include px-rem(padding-top, 24px);
+  text-align: center;
+  border-top: 1px solid $c-secondary-disabled;
+  z-index: 10;
+
+  .is-hero-bg & {
+    border-color: $c-neutro;
+  }
+}
+
+.c-hero__footer-btn {
+  display: inline-flex;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include px-rem(row-gap, 8px);
+
+  &:hover {
+    .c-hero__footer-action {
+      transform: translateY(8px);
+    }
+  }
+}
+
+.c-hero__footer-text {
+  font-style: italic;
+  .is-hero-bg & {
+    color: $c-neutro;
+  }
+}
+
+.c-hero__footer-action {
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1)) drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.1)) drop-shadow(0px 1px 10px rgba(0, 0, 0, 0.1));
+  transition: all 0.2s ease-in-out;
+  background: $c-primary-hover;
+
+  &::before {
+    @include px-rem(font-size, 16px);
+  }
+}
+
+/*------------------------------------*\
+  Media Querys
+\*------------------------------------*/
+
+/**
+* Mobile | VP: max-width 768px
+*/
+@include media-query(medium-max) {
+  .c-hero {
+    @include px-rem(padding-bottom, 32px);
+
+    .ag-c-slider__control {
+      padding: 0;
+
+      &_prev {
+        @include px-rem(margin-left, 24px);
+      }
+      &_next {
+        @include px-rem(margin-right, 24px);
+      }
+    }
+
+    .ag-c-slider__dots.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+      @include px-rem(bottom, 162px);
+      @include px-rem(margin-bottom, 24px);
+    }
+  }
+
+  .c-hero__top {
+    @include px-rem(min-height, 250px);
+
+    .is-hero-bg & {
+      @include flexbox;
+      @include align-items(center);
+    }
+  }
+
+  .c-hero__header {
+    @include px-rem(max-width, 560px);
+    @include px-rem(padding, 32px 24px);
+    margin: 0 auto;
+  }
+
+  .c-hero__text {
+    @include px-rem(font-size, 14px);
+  }
+
+  .c-hero__title,
+  .c-hero__lead {
+    @include px-rem(margin-bottom, 8px);
+  }
+
+  .c-hero__title {
+    @include px-rem(margin-top, 8px);
+    @include px-rem(font-size, 28px);
+  }
+
+  .c-hero__btn {
+    display: block;
+    width: 100%;
+    @include px-rem(max-width, 190px);
+    @include px-rem(margin-top, 32px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .c-hero__figure {
+    @include px-rem(height, 212px);
+
+    iframe {
+      height: 100%;
+    }
+  }
+
+  .c-hero__img {
+    height: 100%;
+  }
+
+  .c-hero__controls {
+    position: relative;
+    @include px-rem(height, 50px);
+  }
+}
+
+/**
+* Desktop | VP: min-width 768px
+*/
+@include media-query(medium) {
+  .c-hero {
+    @include px-rem(min-height, 500px);
+    @include px-rem(padding, 64px 0);
+
+    .ag-c-slider__dots.swiper-pagination-bullets {
+      width: 90% !important;
+      @include px-rem(max-width, 930px);
+    }
+  }
+
+  .c-hero__wrap {
+    width: 90%;
+    @include px-rem(max-width, 930px);
+    margin: 0 auto;
+  }
+
+  .c-hero__slide {
+    @include px-rem(min-height, 400px);
+  }
+
+  .c-hero__top {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(column-gap, 80px);
+    @include px-rem(min-height, 315px);
+  }
+
+  .c-hero__figure {
+    order: 2;
+
+    iframe {
+      @include px-rem(height, 270px);
+    }
+  }
+
+  .c-hero__header {
+    @include px-rem(max-width, 350px);
+    @include px-rem(min-width, 350px);
+
+    .is-hero-bg & {
+      @include px-rem(max-width, 480px);
+      @include px-rem(min-width, 480px);
+    }
+  }
+
+  .c-hero__title,
+  .c-hero__lead {
+    @include px-rem(margin-bottom, 16px);
+  }
+
+  .c-hero__title {
+    @include px-rem(margin-top, 16px);
+    @include px-rem(font-size, 40px);
+  }
+
+
+  .c-hero__text {
+    @include px-rem(font-size, 18px);
+  }
+
+  .c-hero__figure {
+    @include px-rem(width, 480px);
+    @include px-rem(max-width, 480px);
+  }
+
+  .c-hero__footer,
+  .c-hero__controls {
+    width: 100%;
+    @include px-rem(max-width, 1140px);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .c-hero__controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    height: 100%;
+    margin: auto;
+  }
+
+  .c-hero__pagination {
+    @include justify-content(center);
+  }
+}

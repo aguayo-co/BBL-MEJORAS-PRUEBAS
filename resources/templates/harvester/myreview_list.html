@@ -1,0 +1,53 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {% trans 'Reseñas' %} {% endblock %}
+
+{% comment %} Template parent: base.html {% endcomment %}
+{% block description %} {% trans "meta description" %} {% endblock %}
+{% block keywords %} {% trans 'meta keywords' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  {# TODO FRONT: BREADCRUMB #}
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page">
+    <section class="ag-l-inner-wide">
+
+      {% if review_list %}
+        <div class="ag-c-filter-band ag-c-filter-band_end" tabindex="0">
+          {% include "biblored/includes/blocks/order_by.html" %}
+        </div>
+      {% endif %}
+
+      <div class="ag-c-card-grid">
+        {% for review in review_list %}
+          {% include "biblored/includes/reviews/review_list_item.html" with review=review csrf_token=csrf_token only %}
+          {% with request.get_full_path as next_url %}
+            {% include "biblored/includes/reviews/review_actions_buttons.html" with review=review next_url=next_url csrf_token=csrf_token only %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+
+      {% include "biblored/includes/paginator.html" %}
+      {% include "biblored/includes/modals/modal_delete_review.html" with csrf_token=csrf_token only %}
+    </section>
+  </main>
+{% endblock %}
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'review' 'js' %}
+{% endblock %}

@@ -1,0 +1,106 @@
+/*------------------------------------*\
+    Patterns Elements
+      #Styles for General lists
+\*------------------------------------*/
+/**
+ * Class: ag-o-list
+ * @description  Listas desordenadas generales con viñeta circular
+ * @atom  Base: HTML
+ * @section 06. Listas
+ * @markup
+ *   <ul class="ag-o-list">
+ *      <li class="ag-o-list__item">Item de lista 1</li>
+ *      <li class="ag-o-list__item">Item de lista 2</li>
+ *   </ul>
+ */
+
+.ag-o-list {
+  list-style-type: disc;
+  @include px-rem(margin-left, 16px);
+}
+
+.ag-o-list__item {
+  @include px-rem(padding-bottom, 14px);
+}
+/**
+ * Class: ag-o-hyphen
+ * @description  Listas desordenadas generales con viñeta circular
+ * @atom  Base: HTML
+ * @section 06. Listas > Bullets -
+ * @markup
+ *    <ul class="ag-o-hyphen">
+ *      <li class="ag-o-hyphen__item">Sit sit commodo sint laboris non deserunt ea magna ipsum voluptate enim.</li>
+ *      <li class="ag-o-hyphen__item">@{lipsum:1:paragraphs}</li>
+ *    </ul>
+ */
+.ag-o-hyphen {
+  list-style: none;
+  @include px-rem(margin, 10px 0);
+
+  &.ag-o-hyphen_color {
+    color: $c-on-text;
+  }
+}
+.ag-o-hyphen__item {
+  @include flexbox;
+  @include px-rem(margin, 10px 0);
+  &:before {
+    content: '- ';
+    @include px-rem(padding-right, 10px);
+  }
+}
+/**
+ * Class: ag-o-tree
+ * @description  Listas desordenadas generales con distribución en línea
+ * @atom  Base: HTML
+ * @section 07. Listas > Bullets -
+ * @markup
+ *    <ul class="ag-o-tree">
+ *      <li class="ag-o-tree__item">Sit sit commodo sint laboris non deserunt.</li>
+ *      <li class="ag-o-tree__item">Non deserunt ea magna ipsum voluptate enim.</li>
+ *    </ul>
+ */
+
+.ag-o-tree {
+  list-style: none;
+  position: relative;
+  @include px-rem(margin-top, 12px);
+  @include px-rem(padding-left, 30px);
+  z-index: -1;
+}
+
+.ag-o-tree__item {
+  position: relative;
+  @include flex;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include px-rem(margin-bottom, 6px);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    @include px-rem(left, -24px);
+    @include px-rem(width, 12px);
+    border-left: 1px solid $c-primary-disabled;
+  }
+  &:before {
+    top: -50%;
+    height: 100%;
+    border-bottom: 1px solid $c-primary-disabled;
+  }
+
+  &::after {
+    top: -30px;
+    height: 92%;
+  }
+
+}
+
+.ag-o-tree__text {
+  @include px-rem(margin, 0 2px);
+
+  &.ag-o-mark {
+    font-weight: $f-bold;
+  }
+}

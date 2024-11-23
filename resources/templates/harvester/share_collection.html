@@ -1,0 +1,61 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+
+{% block title %} {% trans "Compartir Colección" %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+
+{% block breadcrumbs_items %}
+  {% with request.GET.next as previous_url %}
+    <dd class="ag-breadcrumbs__item">
+      <a
+        href="{{ previous_url }}#{{ collection.pk }}"
+        class="ag-breadcrumbs__link"
+        title="{% trans 'Volver a la colección: ' %}{{ collection.title }}"
+      >
+      {{ collection.title }}
+      </a>
+      </dd>
+  {% endwith %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans "Compartir esta colección" %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  {% with request.GET.next as previous_url %}
+    <main class="ag-l-page">
+      <section class="ag-l-inner-wide">
+        <header class="ag-o-header
+          ag-o-header_less-spacing"
+          id="maincontent"
+          tabindex="0"
+        >
+          <h1 class="ag-o-heading">
+            {% trans "Compartir esta colección" %}
+          </h1>
+          <p class="ag-o-subheading">{{ collection.title }}</p>
+        </header>
+      </section>
+
+      <section class="ag-l-inner-wide">
+        <header class="ag-o-title-line
+          ag-o-title-line_small
+          ag-o-title-line_bottom"
+        >
+          <h2 class="ag-o-title-line__text">
+            {% trans "Copia el enlace o compártelo en redes sociales" %}
+          </h2>
+        </header>
+        {% include "biblored/includes/share_social.html" with title=collection.title absolute_url=collection.get_absolute_url only %}
+      </section>
+
+    </main>
+  {% endwith %}
+{% endblock %}
+

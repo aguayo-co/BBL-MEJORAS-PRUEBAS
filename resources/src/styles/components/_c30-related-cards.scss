@@ -1,0 +1,254 @@
+/*------------------------------------*\
+  ID: C30
+  Related cards
+  Description: component to related cards in expositions
+\*------------------------------------*/
+.ag-c-related-cards {
+  position: relative;
+}
+
+.ag-c-related-cards__inner {
+  width: 92%;
+  @include px-rem(max-width, 1060px);
+  margin: 0 auto;
+}
+
+.ag-c-related-cards__card {
+  @include px-rem(max-width, 314px);
+  margin: 0 auto;
+
+  .ag-c-card__headline {
+    @include px-rem(font-size, 16px);
+  }
+
+  .ag-c-card__canvas {
+    @include px-rem(padding, 16px 24px);
+  }
+
+  .ag-c-card__img {
+    @include px-rem(min-height, 210px);
+    object-fit: cover;
+  }
+}
+
+.ag-c-related-cards__list {
+  list-style: none;
+}
+
+.ag-c-related-cards__item {
+  @include px-rem(min-width, 320px);
+  @include px-rem(max-width, 320px);
+}
+
+.ag-has-related-cards__counter {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  color: $c-primary;
+  font-weight: $f-bold;
+  font-family: $f-primary;
+  text-align: center;
+  line-height: 1.4;
+  @include px-rem(margin-bottom, 24px);
+
+  small {
+    font-size: 100%;
+  }
+
+  span {
+    display: block;
+    @include px-rem(font-size, 12px);
+    font-weight: $f-regular;
+    color: $c-primary;
+  }
+}
+
+.ag-c-related-cards__button-next,
+.ag-c-related-cards__button-prev {
+  cursor: pointer;
+  top: calc(50% - 36px);
+  display: block;
+  @include px-rem(width, 36px);
+  @include px-rem(height, 36px);
+  @include px-rem(padding, 12px);
+  border: 1px solid;
+  border-radius: 50%;
+  border-color: $c-on-text;
+  z-index: 1;
+
+  &:before {
+    position: relative;
+    @include px-rem(top, -6px);
+    left: 0;
+    font-family: "#{$ico-font-family}" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: $c-on-text;
+  }
+
+  &.disabled_swiper_button {
+    display: none;
+  }
+}
+
+.ag-c-related-cards__button-prev {
+  &:before {
+    content: $i-arrow-left;
+  }
+}
+
+.ag-c-related-cards__button-next {
+  &:before {
+    content: $i-arrow-right;
+  }
+}
+
+//- Scope Class:  only use for it puts the magenta color theme in the related expositions.
+.ag-s-related-cards_magenta {
+  .ag-tags__tag_color {
+    border: 1px solid $c-secondary;
+    background-color: $c-secondary;
+  }
+
+  .ag-tags__ico_theme {
+    &:before {
+      border-color: $c-secondary;
+      background-color: $c-secondary;
+    }
+  }
+}
+
+//-BP Max 767px
+@include media-query(medium-max) {
+  .ag-c-related-cards__button-next,
+  .ag-c-related-cards__button-prev {
+    display: none;
+  }
+
+  .ag-c-related-cards__card,
+  .ag-c-related-cards__item {
+    margin: 0 auto;
+  }
+
+  .ag-c-related-cards__card {
+    @include px-rem(margin-bottom, 24px);
+  }
+
+  .ag-c-related-cards__list {
+    @include flex-wrap(wrap);
+  }
+
+  .ag-has-related-cards__counter {
+    display: none;
+  }
+}
+
+//- BP Min 768px
+@include media-query(medium) {
+  .ag-c-related-cards {
+    .ag-c-related-cards__item {
+      &.swiper-slide-active {
+        .ag-c-card__border {
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+          border: 1px solid $c-on-border;
+        }
+      }
+    }
+
+    .ag-c-related-cards__wrap {
+      &:not(.swiper-container-initialized) {
+        .ag-c-related-cards__item {
+          &:first-child {
+            @include px-rem(margin-right, 16px);
+          }
+        }
+      }
+
+      &:not(.swiper-container-initialized) ~ .ag-has-related-cards__counter,
+      &:not(.swiper-container-initialized) ~ .ag-c-related-cards__button-next,
+      &:not(.swiper-container-initialized) ~ .ag-c-related-cards__button-prev {
+        display: none;
+      }
+    }
+  }
+
+  .ag-c-related-cards__inner {
+    width: 87%;
+  }
+
+  .ag-c-related-cards__card {
+    .ag-c-card__canvas {
+      @include px-rem(min-height, 116px);
+    }
+  }
+
+  .ag-has-related-cards__counter {
+    @include px-rem(margin-top, 24px);
+  }
+
+  .ag-c-related-cards__list {
+    @include px-rem(margin-bottom, 4px);
+  }
+
+  .ag-c-related-cards__button-next {
+    right: 0;
+  }
+
+  .ag-c-related-cards__button-prev {
+    left: 0;
+  }
+}
+
+//- BP Min 1024
+@include media-query(wide) {
+  .ag-c-related-cards {
+    @include px-rem(max-width, 1060px);
+    margin: 0 auto;
+  }
+
+  .ag-c-related-cards__inner {
+    width: 92%;
+  }
+
+  //- The active class is for related expositions in the template exposition section
+  .ag-has-related-cards_wrap {
+    .ag-c-related-cards__wrap {
+      &:not(.swiper-container-initialized) {
+        @include px-rem(padding-left, 40px);
+        @include px-rem(padding-right, 40px);
+      }
+    }
+  }
+
+  //- The active class is for parent expositions in the template exposition
+  .ag-has-related-cards_parent-exposition {
+    &.ag-l-inner-outside,
+    &.ag-l-inner-inside {
+      width: 100%;
+    }
+  }
+}
+
+//- BP Min 1280px
+@media (min-width: 1280px) {
+  //- The active class is for parent expositions in the template exposition
+  .ag-has-related-cards_parent-exposition {
+    .ag-c-related-cards__inner {
+      width: 97%;
+    }
+
+    .ag-c-related-cards__button-next {
+      @include px-rem(right, -24px);
+    }
+
+    .ag-c-related-cards__button-prev {
+      @include px-rem(left, -24px);
+    }
+  }
+}

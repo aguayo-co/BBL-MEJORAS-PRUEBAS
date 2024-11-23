@@ -1,0 +1,65 @@
+{% load i18n %}
+
+{# Search #}
+<fieldset
+  class="ag-c-filter__item ag-c-modal__inner_630"
+  data-name="{% if form_prefix %}{{ form_prefix|add:"-" }}{% endif %}collections_groups">
+
+  <label class="ag-c-filter__label ag-is-visuallyhidden" for="{{ form.collections_groups.id_for_label }}">
+    <span class="ag-c-filter__label-txt">{{ form.collections_groups.label|capfirst }}</span>
+  </label>
+
+  <div class="ag-c-filter__set ag-c-filter__set_bg ag-u-margin-bottom ag-js-choices-collections-group"
+    data-placeholder="{% trans 'Buscar en tus grupos de colecciones' %}">
+    {{ form.collections_groups|capfirst }}
+  </div>
+
+</fieldset>
+{# #}
+
+{# List of groups #}
+<fieldset
+  class="ag-c-filter__item"
+  data-name="{% if form_prefix %}{{ form_prefix|add:"-" }}{% endif %}collections_groups_checkboxes">
+
+  <legend class="ag-c-filter__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-up">
+    <span class="ag-c-filter__label-txt ag-c-filter__label-txt_indent"> {% trans 'Nombre de "Grupos de Colecciones" ' %} </span>
+  </legend>
+
+  <ul class="ag-list ag-list_unborder ag-js-dropdownSlide ag-is-dropdownOpen ag-js-checkboxes-collections-group">
+    {% for group in form.collections_groups_checkboxes.subwidgets %}
+      <li class="ag-list__item-stripped">
+        <div class="ag-form__checkbox">
+          {{ group.tag }}
+          <label class="i-check" for="{{ group.data.attrs.id }}">{{ group.choice_label|capfirst }}</label>
+          {% for error in group.errors %}
+            <small class="ag-form__error">{{ error }}</small>
+          {% endfor %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+</fieldset>
+{# #}
+
+<h3 class="ag-o-subheading ag-o-subheading_stroke ag-o-subheading_relative"> 
+  <strong class="ag-o-subheading__text"> {% trans 'Crea un nuevo "Grupo de colecciones"' %} </strong>
+</h3>
+
+<div class="ag-form__field">
+  {% if not form.collections_groups_checkboxes.subwidgets|length %}
+    <small class="ag-form__note"> 
+      {% trans "Aún no tienes grupos de colecciones. A continuación puedes crear el primero." %} 
+    </small>
+  {% endif %}
+  <div class="ag-form__box-flex ag-c-modal__inner_630">
+    <div class="ag-form__field">
+      <label for="name_group" class="ag-form__label">{% trans 'Nombre del "Grupo de Colecciones"' %}</label>
+      <div class="ag-form__input ag-form__input_icon ag-js-formInput ">
+        <input id="name_group" type="text" class="ag-form__input ag-js-newCollectionsGroupName" placeholder="{% trans "Ingresa un nombre" %}">
+      </div>
+    </div>
+    <button type="button" class="ag-o-btn ag-o-btn_small ag-js-addNewCollectionsGroup">{% trans 'Crear grupo' %}</button>
+  </div>
+</div>

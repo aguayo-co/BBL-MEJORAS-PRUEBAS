@@ -1,0 +1,495 @@
+/*----------------------------------------------*\
+  ID: C22
+  Banner Grid
+  Type: Slider
+  Description: Deslizador para galería de imágenes y videos [Slider sólo para mobile].
+  \*----------------------------------------------*/
+
+/**
+  * Class: .ag-c-slider-grid
+  * @description Deslizador para galería de imágenes y videos [Slider sólo para mobile].
+  * @structure c22_slider-grid
+  * @flag full-width
+  * @section Banner
+  * @markup
+  *
+  *
+  *
+  */
+
+.ag-c-slider-grid {
+  @include px-rem(padding-bottom, 20px);
+
+  .ag-has-slider-grid__dots {
+    position: relative;
+    width: 90% !important;
+    @include px-rem(padding-top, 20px);
+    @include px-rem(padding-bottom, 6px);
+    bottom: 0;
+
+    .ag-c-slider-grid__bullet {
+      left: 0 !important;
+
+      &.swiper-pagination-bullet {
+        @include px-rem(margin, 2px);
+        transform: scale(0.70);
+      }
+
+      &.swiper-pagination-bullet-active {
+        transform: scale(1);
+        box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.08),
+          2px 3px 6px rgba(0, 0, 0, 0.08),
+          2px 4px 6px rgba(0, 0, 0, 0.08);
+        transition: all 200ms ease-in-out;
+      }
+    }
+  }
+
+}
+
+//- Slider LightBox [Modal] OnlyClass
+.ag-c-slider-grid_wrap {
+  position: relative;
+  @include px-rem(padding, 0 2px);
+
+  .ag-c-slider-grid__control_next,
+  .ag-c-slider-grid__control_prev {
+    position: absolute;
+    bottom: 8px;
+  }
+
+  .ag-c-slider-grid__control_next {
+    right: 0;
+  }
+
+  .ag-c-slider-grid__control_prev {
+    left: 0;
+  }
+
+  .ag-c-slider-grid__control {
+    z-index: 4;
+  }
+
+}
+
+.ag-c-slider-grid__control_next,
+.ag-c-slider-grid__control_prev {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 40px);
+  @include px-rem(height, 40px);
+  border: 1px solid $c-secondary;
+  border-radius: 50%;
+
+  &:before {
+    font-family: '#{$ico-font-family}';
+    @include font-rem(12px);
+    color: $c-secondary;
+  }
+}
+
+.ag-c-slider-grid__control_next {
+  &:before {
+    content: $i-arrow-right;
+    @include px-rem(padding-left, 2px);
+  }
+}
+
+.ag-c-slider-grid__control_prev {
+  &:before {
+    content: $i-arrow-left;
+    @include px-rem(padding-right, 2px);
+  }
+}
+
+
+.ag-c-slider-grid__bullet {
+  @include px-rem(width, 34px);
+  @include px-rem(height, 34px);
+  color: $c-neutro;
+  @include font-rem(14px);
+  font-weight: $f-bold;
+  background-color: $c-secondary;
+}
+
+.ag-c-slider-grid__paginator {
+  text-align: center;
+  z-index: 1;
+}
+
+.ag-c-slider-grid__lead {
+  font-weight: $f-bold;
+  font-size: 100%;
+  font-family: $f-primary;
+  color: $c-primary;
+}
+
+.ag-has-slider-grid__counter {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  color: $c-secondary;
+  font-weight: $f-bold;
+  font-family: $f-primary;
+
+  small {
+    color: $c-primary;
+    font-weight: $f-medium;
+    font-size: 100%;
+  }
+
+  span {
+    display: block;
+    color: $c-primary;
+  }
+}
+
+.ag-c-slider-grid__frame {
+  @include flexbox;
+  list-style: none;
+}
+
+.ag-c-slider-grid__item {
+  height: auto;
+  @include px-rem(max-width, 269px);
+  @include px-rem(margin, 5px);
+
+  &.swiper-slide-active {
+
+    .ag-c-slider-grid__button {
+      border: 3px solid $c-neutro;
+      box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.1),
+        2px 3px 6px rgba(0, 0, 0, 0.12),
+        2px 4px 6px rgba(0, 0, 0, 0.15);
+      transition: all 200ms ease-in-out;
+    }
+  }
+}
+
+.ag-c-slider-grid__button {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $c-neutro;
+  border: 3px solid transparent;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24),
+    0px 0px 2px rgba(0, 0, 0, 0.12);
+  @include px-rem(border-bottom-left-radius, 4px);
+  @include px-rem(border-bottom-right-radius, 4px);
+  overflow: hidden;
+  transition: all 200ms linear;
+
+  &:hover {
+    border: 3px solid $c-secondary;
+    box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.1),
+      2px 3px 6px rgba(0, 0, 0, 0.12),
+      2px 4px 6px rgba(0, 0, 0, 0.15);
+    transition: all 200ms ease-in-out;
+
+    .ag-c-slider-grid__caption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include flex;
+      width: 100%;
+      height: 100%;
+      color: $c-neutro;
+      background-color: rgba($c-secondary, .8);
+
+      &:before {
+        content: $i-redirection;
+        position: absolute;
+        @include px-rem(bottom, 20px);
+        @include px-rem(right, 20px);
+        display: block;
+        width: 100%;
+        height: auto;
+        font-family: '#{$ico-font-family}';
+        color: $c-neutro;
+        text-align: right;
+        @include font-rem(16px);
+      }
+    }
+
+    .ag-c-slider-grid__crop {
+      @include align-items(flex-start);
+      @include justify-content(flex-start);
+      width: calc(44px + 100%);
+      @include px-rem(min-height, 306px);
+      @include px-rem(max-height, 308px);
+      transition: all 200ms ease-in-out;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  }
+}
+
+.ag-c-slider-grid__crop {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  overflow: hidden;
+  width: 100%;
+  @include px-rem(height, 263px);
+  background-color: $c-primary;
+}
+
+//- Slider LightBox OnlyClass
+.ag-c-slider-grid__inline {
+  list-style: none;
+  @include px-rem(margin-bottom, 40px);
+
+  .ag-c-slider-grid__item {
+    @include px-rem(max-width, 460px);
+    margin: 0 auto;
+  }
+
+  .ag-c-slider-grid__crop {
+    height: auto;
+    height: 70vw;
+  }
+
+}
+
+.ag-c-slider-grid__figure {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-color: $c-neutro;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24),
+    0px 0px 2px rgba(0, 0, 0, 0.12);
+  @include px-rem(border-bottom-left-radius, 4px);
+  @include px-rem(border-bottom-right-radius, 4px);
+  border: 1px solid $c-neutro;
+  overflow: hidden;
+  transition: all 200ms linear;
+}
+
+.ag-c-slider-grid__caption {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  @include px-rem(min-height, 44px);
+  @include px-rem(padding, 6px);
+  color: $c-primary;
+  text-align: center;
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  line-height: 1.16;
+  transition: all 200ms linear;
+}
+
+.ag-c-slider-grid__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: all 200ms linear;
+}
+
+//- SliderGrid OnlyClass for Video Gallery
+.ag-has-slider-grid__item {
+  position: relative;
+  border: 3px solid transparent;
+
+  &:hover {
+    border: 3px solid $c-neutro;
+    box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.1),
+      2px 3px 6px rgba(0, 0, 0, 0.12),
+      2px 4px 6px rgba(0, 0, 0, 0.15);
+    transition: all 200ms ease-in-out;
+
+    &:before {
+      transition: all 500ms linear;
+      background-color: rgba($c-secondary, .6);
+    }
+
+  }
+
+  &:before {
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display:block;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: rgba($c-primary,.6);
+    transition: all 500ms linear;
+  }
+
+  div {
+    position: relative;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $c-primary;
+    overflow: hidden;
+    transition: all 200ms linear;
+
+    &:hover {
+      border: 1px solid $c-secondary;
+      box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.1),
+        2px 3px 6px rgba(0, 0, 0, 0.12),
+        2px 4px 6px rgba(0, 0, 0, 0.15);
+      transition: all 200ms ease-in-out;
+    }
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    @include px-rem(height, 256px);
+  }
+
+  &.swiper-slide-active {
+    border: 3px solid $c-neutro;
+    box-shadow: 2px 1px 6px rgba(0, 0, 0, 0.1),
+    2px 3px 6px rgba(0, 0, 0, 0.12),
+    2px 4px 6px rgba(0, 0, 0, 0.15);
+    transition: all 200ms ease-in-out;
+
+    &:before {
+      transition: all 500ms linear;
+      background-color: rgba($c-primary, .3);
+    }
+
+  }
+
+}
+
+//- SliderGrid LightBox OnlyClass for Video Gallery
+.ag-has-slider-grid__iframe {
+
+  div {
+    position: relative;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: $c-primary;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24),
+      0px 0px 2px rgba(0, 0, 0, 0.12);
+    border: 2px solid $c-primary;
+    overflow: hidden;
+    transition: all 200ms linear;
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: 60vw;
+  }
+
+
+}
+
+//  wide: $bp-wide   : 640px
+@include media-query(medium-min) {
+
+  //- Slider LightBox OnlyClass
+  .ag-c-slider-grid_wrap {
+    @include px-rem(padding, 0 60px);
+    @include px-rem(max-width, 640px);
+
+    //- Slider LightBox OnlyClass
+    .ag-c-slider-grid__inline {
+
+      .ag-c-slider-grid__crop {
+        max-height: 50vw;
+      }
+
+      .ag-c-slider-grid__item {
+        @include px-rem(max-width, 576px);
+      }
+    }
+
+    .ag-c-slider-grid__control {
+      @include flexbox;
+    }
+
+    .ag-c-slider-grid__control_next,
+    .ag-c-slider-grid__control_prev {
+      position: absolute;
+      top: calc(100% - 64%);
+      bottom: auto;
+    }
+
+    .ag-c-slider-grid__control_next {
+      right: 0;
+    }
+
+    .ag-c-slider-grid__control_prev {
+      left: 0;
+    }
+
+  }
+
+  .ag-has-slider-grid__iframe {
+
+    iframe {
+      height: 40vw;
+    }
+  }
+}
+
+//  wide: $bp-wide   : 768px
+@include media-query(medium) {
+
+  .ag-c-slider-grid__control {
+    display: block;
+  }
+}
+
+//  wide: $bp-wide   : 1024px
+@include media-query(wide) {
+
+  //- Slider LightBox OnlyClass
+  .ag-c-slider-grid_wrap {
+    @include px-rem(max-width, 768px);
+
+    //- Slider LightBox OnlyClass
+    .ag-c-slider-grid__inline {
+
+      .ag-c-slider-grid__item {
+        @include px-rem(max-width, 704px);
+      }
+    }
+  }
+
+  .ag-c-slider-grid__frame {
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include px-rem(max-width, 1000px);
+    margin: 0 auto;
+  }
+
+  .ag-has-slider-grid__dots {
+    display: none;
+  }
+
+  .ag-c-slider-grid__item {
+    height: auto;
+    width: 33.333%;
+    @include px-rem(margin, 8px);
+
+  }
+
+}

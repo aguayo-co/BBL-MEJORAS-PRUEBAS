@@ -1,0 +1,1305 @@
+/*----------------------------------------------*\
+  ID: C07
+  Banner Slider
+  Type: Slider
+  Description: Slider para banner de forma cíclica.
+\*----------------------------------------------*/
+/**
+ * Class: .ag-c-slider-card
+ * @description  Deslizador para banner contiene el componente card.
+ * @structure c07_slider
+ * @flag full-width
+ * @section Banner
+ * @markup
+ *   <div class="SG-component__preview ag-l-inner-huge">
+ *    <!-- Banner: Home Slider  -->
+ *    <div class="ag-c-slider">
+ *     <!-- Clase: swiper Libreria js -->
+ *     <div class="swiper-container ag-js-slider-home">
+ *       <!-- Contenedor de la librería -->
+ *       <div class="swiper-wrapper">
+ *         <!-- Item swiper -->
+ *         <div class="swiper-slide">
+ *           <!-- Item Card -->
+ *           <div class="ag-c-slider__item">
+ *             <!-- Imagen: Adaptativa de fondo -->
+ *             <figure class="ag-c-slider__mask">
+ *               <img class="ag-c-slider__img" src="/static/biblored/img/demo/banner-slider/slider-malaika.jpg"
+ *                 alt="Home Colecciones- Biblioteca Digital de Bogotá">
+ *             </figure>
+ *
+ *             <div class="ag-c-slider__card">
+ *
+ *              <!-- Componente: c03_card  #1-->
+ *              <article class="ag-c-card">
+ *                <div class="ag-c-card__border">
+ *                  <div class="ag-c-card__canvas">
+ *                    <div class="ag-c-card__top">
+ *                      <ul class="ag-tags">
+ *                        <li class="ag-tags__item">
+ *                          <span class="ag-tags__tag ag-tags__tag_outline">
+ *                            { Video }
+ *                          </span>
+ *                        </li>
+ *                      </ul>
+ *                    </div>
+ *                    <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver">
+ *                      <div class="ag-c-card__content">
+ *                        <figure class="ag-c-card__media">
+ *                          <img class="ag-c-card__img" src="../biblored/img/resource/type-video.svg" alt="">
+ *                        </figure>
+ *                        <div class="ag-c-card__text">
+ *                          <h2 class="ag-c-card__title"> { Resultados de la convocatoria artística "Artes plásticas y visuales, música, danza, teatro e interdisciplinar", del programa de apoyos a la creación artística y para la circulación.}</h2>
+ *                          <p class="ag-c-card__subtitle"><strong>Por:</strong> {Lorena Carvajal}</p>
+ *                          <div class="ag-c-card__lead">
+ *                            { Narración oral sobre su vida al sur de Bogotá, en los barrios Restrepo y El Libertador entre los años 40 y los años 50. El testimonio fue grabado en el marco de la actividad "Los bogotanos del Bogotazo" con el club de adultos mayores de la Biblioteca Carlos E. Restrepo.}
+ *                          </div>
+ *                        </div>
+ *                      </div>
+ *                    </a>
+ *                    <footer class="ag-c-card__footer">
+ *                      <ul class="ag-c-card__list">
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Publicador</strong>
+ *                          {N/A}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                          {1997}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Idioma</strong>
+ *                          {Español}
+ *                        </li>
+ *                      </ul>
+ *                         <div class="ag-c-card__list-full">
+ *                          <strong class="ag-c-card__list-label">Temas</strong>
+ *                          <ul class="ag-tags">
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Educación}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Conferencia}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Fantasía}
+ *                              </a>
+ *                            </li>
+ *                          </ul>
+ *                     </div>
+ *                    </footer>
+ *                  </div>
+ *                </div>
+ *              </article>
+ *
+ *             </div>
+ *
+ *
+ *
+ *           </div>
+ *         </div>
+ *
+ *         <!-- Item swiper -->
+ *         <div class="swiper-slide">
+ *           <!-- Item Card -->
+ *           <div class="ag-c-slider__item">
+ *
+ *             <!-- Imagen: Adaptativa de fondo -->
+ *             <figure class="ag-c-slider__mask">
+ *               <img class="ag-c-slider__img" src="/static/biblored/img/demo/banner-slider/slider-malaika.jpg"
+ *                 alt="Home Colecciones- Biblioteca Digital de Bogotá">
+ *             </figure>
+ *
+ *             <div class="ag-c-slider__card">
+ *                <!-- Componente: c03_card  #2-->
+ *              <article class="ag-c-card">
+ *                <div class="ag-c-card__border">
+ *                  <div class="ag-c-card__canvas">
+ *                    <div class="ag-c-card__top">
+ *                      <ul class="ag-tags">
+ *                        <li class="ag-tags__item">
+ *                          <span class="ag-tags__tag ag-tags__tag_outline">
+ *                            { Video }
+ *                          </span>
+ *                        </li>
+ *                      </ul>
+ *                    </div>
+ *                    <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver">
+ *                      <div class="ag-c-card__content">
+ *                        <figure class="ag-c-card__media">
+ *                          <img class="ag-c-card__img" src="../biblored/img/resource/type-video.svg" alt="">
+ *                        </figure>
+ *                        <div class="ag-c-card__text">
+ *                          <h2 class="ag-c-card__title"> { Resultados de la convocatoria artística "Artes plásticas y visuales, música, danza, teatro e interdisciplinar", del programa de apoyos a la creación artística y para la circulación.}</h2>
+ *                          <p class="ag-c-card__subtitle"><strong>Por:</strong> {Lorena Carvajal}</p>
+ *                          <div class="ag-c-card__lead">
+ *                            { Narración oral sobre su vida al sur de Bogotá, en los barrios Restrepo y El Libertador entre los años 40 y los años 50. El testimonio fue grabado en el marco de la actividad "Los bogotanos del Bogotazo" con el club de adultos mayores de la Biblioteca Carlos E. Restrepo.}
+ *                          </div>
+ *                        </div>
+ *                      </div>
+ *                    </a>
+ *                    <footer class="ag-c-card__footer">
+ *                      <ul class="ag-c-card__list">
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Publicador</strong>
+ *                          {N/A}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                          {1997}
+ *                        </li>
+ *                        <li class="ag-c-card__list-item">
+ *                          <strong class="ag-c-card__list-label">Idioma</strong>
+ *                          {Español}
+ *                        </li>
+ *                      </ul>
+ *                         <div class="ag-c-card__list-full">
+ *                          <strong class="ag-c-card__list-label">Temas</strong>
+ *                          <ul class="ag-tags">
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Educación}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Conferencia}
+ *                              </a>
+ *                            </li>
+ *                            <li class="ag-tags__item">
+ *                              <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                                {Fantasía}
+ *                              </a>
+ *                            </li>
+ *                          </ul>
+ *                     </div>
+ *                    </footer>
+ *                  </div>
+ *                </div>
+ *              </article>
+ *
+ *             </div>
+ *
+ *           </div>
+ *
+ *         </div>
+ *
+ *       </div>
+ *       <div class="ag-c-slider__dots"></div>
+ *          <button class="ag-c-slider__control ag-c-slider__control_space ag-c-slider__control_prev i-arrow-left" type="button">
+ *             <span class="ag-is-visuallyhidden">Atrás</span>
+ *          </button>
+ *          <button class="ag-c-slider__control ag-c-slider__control_space ag-c-slider__control_next i-arrow-right" type="button">
+ *             <span class="ag-is-visuallyhidden">Siguiente</span>
+ *          </button>
+ *      </div>
+ *     </div>
+ *   </div>
+ *
+ *
+*/
+.ag-c-slider {
+  position: relative;
+  overflow: hidden;
+
+  .ag-c-slider__dots {
+    bottom: 0;
+  }
+
+  .swiper-button-disabled {
+    display: none;
+  }
+
+  //- Bullets transversales
+  .ag-c-slider__bullet {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    &.swiper-pagination-bullet-active {
+      opacity: 1;
+        @include px-rem(width, 12px);
+        @include px-rem(height, 12px);
+        position: relative;
+        @include px-rem(margin, 0 1px);
+    }
+
+    &.swiper-pagination-bullet-active-prev,
+    &.swiper-pagination-bullet-active-next {
+      opacity: 0.5;
+        @include px-rem(width, 12px);
+        @include px-rem(height, 12px);
+        position: relative;
+        @include px-rem(margin, 0 1px);
+    }
+
+  }
+}
+
+//- Bullets transversales
+.ag-c-slider__dots {
+  position: relative;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  //- Swiper coloca un width con js por eso el !important
+  width: 50% !important;
+  margin: 0 auto;
+  z-index: 10;
+  &.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+    bottom: 0;
+    left: 0;
+    transform: translate(0);
+  }
+
+  &.swiper-pagination-lock {
+    display: none;
+  }
+}
+.ag-c-slider__dots_end {
+  @include justify-content(flex-end);
+}
+
+.ag-c-slider__bullet {
+  @include px-rem(width, 12px);
+  @include px-rem(height, 12px);
+
+
+  background-color: $c-neutro;
+  border: 2px solid $c-neutro;
+
+  @include px-rem(margin, 0 6px);
+
+  &:hover {
+    background-color: $c-primary-hover;
+    opacity: 1;
+  }
+}
+.ag-c-slider__bullet_primary {
+  background-color: rgba($c-primary-hover, .9);
+
+  .is-hero-bg & {
+    background-color: $c-primary-disabled;
+    opacity: 1;
+  }
+
+  &.swiper-pagination-bullet-active {
+    background-color: $c-primary-hover;
+    border: 2px solid $c-primary-hover;
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: $c-primary-disabled;
+  }
+}
+
+//- Clase Plugin
+.swiper-button-prev,
+.swiper-button-next {
+  background-image: none;
+}
+
+.ag-c-slider__container {
+  @include px-rem(padding-bottom, 20px);
+}
+
+.ag-c-slider__content {
+  @include px-rem(padding-bottom, 85px);
+}
+
+
+.ag-c-slider__control {
+  color: $c-neutro;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  cursor: pointer;
+
+  &.swiper-button-disabled {
+    opacity: 0;
+  }
+
+  &:before {
+    border: 1px solid;
+    border-radius: 50%;
+    cursor: pointer;
+    display: block;
+
+    @include px-rem(height, 16px);
+
+    line-height: 1.36;
+
+    @include px-rem(padding, 10px);
+
+    text-align: center;
+
+    @include px-rem(width, 16px);
+
+    background-color: rgba($c-neutro, 0.6);
+  }
+
+  &.ag-c-slider__control_prev {
+    left: 0;
+  }
+
+  &.ag-c-slider__control_next {
+    right: 0;
+  }
+
+}
+.ag-c-slider__control_outline {
+  &::before {
+    background-color: transparent
+  }
+}
+
+
+//Modificador para centrar los controladores del banner
+.ag-c-slider__control_center {
+  @include px-rem(top, -86px);
+
+  &.ag-c-slider__control_prev {
+    @include px-rem(left, -64px);
+  }
+
+  &.ag-c-slider__control_next {
+    @include px-rem(right, -64px);
+  }
+}
+
+.ag-c-slider__control_space {
+  @include px-rem(padding, 10px);
+}
+
+// centra control con respecto a las imágenes
+.ag-c-slider__control_top {
+  top: 20%;
+}
+
+.ag-c-slider__controls {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 90%;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+.ag-c-slider__controls-row {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 4;
+}
+
+.ag-c-slider__link,
+.ag-c-slider__text {
+  color: $c-neutro;
+  @include font-rem(14px);
+  text-align: center;
+
+  &:before {
+    transition: color 2s ease-out;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(width, 80px);
+    @include px-rem(height, 80px);
+    @include px-rem(padding, 1px);
+    @include px-rem(margin, 0 auto 12px);
+
+    color: $c-primary-hover;
+
+    @include font-rem(45px);
+
+    border-radius: 50%;
+    background-color: $c-neutro;
+  }
+}
+
+.ag-c-slider__link {
+  display: block;
+
+  &:hover {
+    &:before {
+      color: $c-neutro;
+      background-color: $c-primary-hover;
+    }
+  }
+}
+
+
+.ag-c-slider__list {
+  list-style: none;
+}
+
+
+.ag-c-slider__item {
+  position: relative;
+
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include justify-content(center);
+}
+
+.ag-c-slider__mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ag-c-slider_card {
+  .ag-c-slider__item {
+    height: 100%;
+  }
+
+  .ag-c-slider__mask {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+  }
+
+  .ag-c-slider__img {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  .ag-c-slider__bullet {
+    opacity: 0;
+    background-color: $c-primary-hover;
+
+    &.swiper-pagination-bullet-active,
+    &.swiper-pagination-bullet-active-next,
+    &.swiper-pagination-bullet-active-prev {
+      opacity: 1;
+    }
+
+  }
+
+  .ag-c-slider__control_prev,
+  .ag-c-slider__control_next {
+    border: 1px solid transparent;
+
+    &:hover {
+      color: transparent;
+      border: 1px solid transparent;
+
+      &:before {
+        color: $c-neutro;
+        background-color: $c-primary-hover;
+        border: 1px solid $c-neutro;
+      }
+    }
+  }
+
+  .ag-c-slider__dots {
+    left: 50%;
+    transform: translateX(-50%);
+    @include px-rem(padding-bottom, 30px);
+  }
+
+  .swiper-pagination-bullet-active-next,
+  .swiper-pagination-bullet-active-prev {
+    border: 1px solid $c-primary-hover;
+    opacity: 1;
+    background-color: $c-neutro;
+  }
+
+  .ag-c-slider__control {
+    display: none;
+  }
+}
+
+//- Andre's Class -> Expositions Banner
+.ag-c-slider__controls-dots {
+  position: relative;
+  width: 100%;
+  @include px-rem(max-width, 250px);
+  @include px-rem(margin, 20px auto);
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    border-top: 1px solid $c-on-border;
+  }
+
+  .ag-c-slider__dots {
+    @include px-rem(max-width, 100px);
+    padding-bottom: 0;
+    background-color: $c-neutro;
+  }
+}
+
+//- Andre's Class -> Expositions
+.ag-c-slider__control_transparent {
+  &:before {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+  }
+}
+
+//- .ag-c-slider_box  ⇒  .ag-js-slider-home [home.html]
+.ag-c-slider_box {
+
+  .swiper-wrapper {
+    background-color: $c-primary;
+  }
+
+  .ag-c-slider__card {
+    @include px-rem(margin, 40px auto);
+  }
+
+  .ag-c-slider__item {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .ag-c-slider__dots {
+    @include px-rem(top, -26px);
+
+    &.swiper-pagination-lock {
+      display: none;
+    }
+  }
+
+  .ag-c-slider__bullet {
+    background-color: $c-surface;
+    border: 1px solid $c-on-border-secondary;
+  }
+
+  .swiper-pagination-bullet-active-prev,
+  .swiper-pagination-bullet-active-next {
+    background-color: $c-on-border-secondary;
+    border: 1px solid $c-neutro;
+    opacity: .7;
+    transform: scale(.8);
+  }
+
+  .ag-c-slider__control {
+    &:before {
+      background-color: rgba($c-surface, .7);
+      border: 1px solid $c-on-border-secondary;
+      color: $c-on-text;
+    }
+  }
+
+  .ag-c-slider__control_prev,
+  .ag-c-slider__control_next {
+    border: 1px solid transparent;
+
+    &:hover {
+      color: transparent;
+      border: 1px solid transparent;
+
+      &:before {
+        color: $c-neutro;
+        background-color: $c-primary-hover;
+        border: 1px solid $c-neutro;
+      }
+    }
+  }
+
+  .ag-tags__ico {
+    @include px-rem(margin-left, 8px);
+  }
+
+  .ag-c-card__divider {
+    @include px-rem(padding-top, 22px);
+  }
+
+  .ag-c-card__title {
+    max-height: none;
+    @include font-rem(20px);
+  }
+
+  .ag-c-card__subtitle {
+    @include px-rem(margin-top, 12px);
+  }
+
+  .ag-c-slider__item {
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: $c-primary;
+  }
+
+  .ag-c-slider__img {
+    height: 100%;
+    width: auto;
+  }
+
+  @supports(object-fit: cover) {
+
+    .ag-c-slider__mask {
+      .ag-c-slider__img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+    }
+  }
+}
+
+.ag-c-slider_set {
+
+  .swiper-wrapper {
+    @include align-items(center);
+  }
+
+  .swiper-button-disabled {
+    display: none;
+  }
+
+  .ag-c-slider__control_prev,
+  .ag-c-slider__control_next {
+    border: 1px solid transparent;
+
+    &:hover {
+      color: transparent;
+      border: 1px solid transparent;
+
+      &:before {
+        color: $c-primary-hover;
+        border: 1px solid $c-primary-hover;
+        background-color: $c-neutro;
+      }
+    }
+  }
+
+  .ag-c-card__media {
+    max-width: 65%;
+    margin: 0 auto;
+  }
+
+  // Hack IE 11
+  @media screen and (min-width:0\0) {
+    .ag-c-card__side {
+      @include px-rem(margin-left, -72px);
+    }
+  }
+}
+
+.ag-c-card__side {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.ag-c-card_aside {
+  .ag-c-card__side {
+    @include flex(1, 50%);
+  }
+}
+
+
+.ag-c-slider__card {
+  position: relative;
+  width: 70%;
+
+  @include px-rem(max-width, 460px);
+  @include px-rem(margin, 10px auto);
+
+  background: $c-neutro;
+}
+
+
+/**
+ * Class: .ag-c-slider
+ * @molecule c06-carousel
+ * @description  deslizador para mostrar elementos de forma cíclica.
+ * @modifiers
+ *  .ag-c-slider_contrast Cambia contraste de colores (carrusel iconos).
+ *  .ag-c-slider_secondary Cambia contraste de colores (carrusel imágenes).
+ * @section Slider
+ * @markup
+ *    <div class="SG-component__dark-bg SG-slider">
+ *     <!-- Banner Carousel con  iconos en fondo color primario -->
+ *     <div class="ag-l-band-primary">
+ *       <div class="ag-l-inner">
+ *         <div class="ag-c-slider ag-c-slider_primary">
+ *           <div class="swiper-container js-sliderFilter" id="carousel-type-content">
+ *             <div class="swiper-wrapper">
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-book">Libros</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-article">Artículos</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-thesis">Tesis</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-audio">Audios</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-video">Videos</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-picture">Fotografías</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-newspaper">Prensa</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-map">Mapas</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-guide">Boletines</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-bulletin">Guías de Estudios</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-series">Series Monográficas</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-3d">3D</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-data">Datos</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-interactive">Interactivos</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-software">Software</p>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <p class="ag-c-slider__item-ico ag-c-slider__text i-objects">Objectos Físicos</p>
+ *               </div>
+ *             </div>
+ *             <div class="ag-c-slider__dots"></div>
+ *             <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left" type="button">
+ *                 <span class="ag-is-visuallyhidden">Atrás</span>
+ *             </button>
+ *             <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right" type="button">
+ *                 <span class="ag-is-visuallyhidden">Siguiente</span>
+ *             </button>
+ *           </div>
+ *         </div>
+ *       </div>
+ *      </div>
+ *     </div>
+ *
+ *    <div class="SG-slider">
+ *     <!-- Banner Carousel con  iconos en fondo blanco -->
+ *     <div class="ag-l-band-neutro">
+ *      <div class="ag-l-inner">
+ *        <div class="ag-c-slider ag-c-slider_contrast">
+ *          <div class="swiper-container js-sliderFilter" id="carousel-type-content-contrast">
+ *            <div class="swiper-wrapper">
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-book">Libros</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-article">Artículos</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-thesis">Tesis</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-audio">Audios</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-video">Videos</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-picture">Fotografías</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-newspaper">Prensa</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-map">Mapas</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-guide">Boletines</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-bulletin">Guías de Estudios</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-series">Series Monográficas</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-3d">3D</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-data">Datos</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-interactive">Interactivos</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-software">Software</p>
+ *              </div>
+ *              <div class="swiper-slide">
+ *                <p class="ag-c-slider__item-ico ag-c-slider__text i-objects">Objectos Físicos</p>
+ *              </div>
+ *            </div>
+ *            <div class="ag-c-slider__dots"></div>
+ *            <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left" type="button">
+ *              <span class="ag-is-visuallyhidden">Atrás</span>
+ *            </button>
+ *            <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right" type="button">
+ *              <span class="ag-is-visuallyhidden">Siguiente</span>
+ *            </button>
+ *          </div>
+ *        </div>
+ *      </div>
+ *    </div>
+ *    </div>
+ *
+ *    <div class="SG-slider SG-component__grey-bg">
+ *     <!-- Banner Carousel con Logos en imagen -->
+ *     <div class="ag-l-band-surface">
+ *       <div class="ag-l-inner">
+ *         <div class="ag-c-slider ag-c-slider_contrast">
+ *           <div class="swiper-container ag-c-slider_secondary js-sliderSourceInformation" id="carousel-source-information">
+ *             <div class="swiper-wrapper">
+ *               <div class="swiper-slide">
+ *                 <div class="ag-c-slider__item_img">
+ *                   <img class="ag-c-slider_img" src="../biblored/img/source/logos/logo-bnc.svg" alt="Biblioteca Nacional de Colombia">
+ *                   <p class="ag-c-slider__text">Biblioteca Nacional de Colombia</p>
+ *                 </div>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <div class="ag-c-slider__item_img">
+ *                   <img class="ag-c-slider_img" src="../biblored/img/source/logos/logo-bdb.svg" alt="Biblioteca Digital de Bogotá">
+ *                   <p class="ag-c-slider__text">Biblioteca Digital de Bogotá</p>
+ *                 </div>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <div class="ag-c-slider__item_img">
+ *                   <img class="ag-c-slider_img" src="../biblored/img/source/logos/logo-blaa.png" alt="Biblioteca Luis Ángel Arango">
+ *                   <p class="ag-c-slider__text">Biblioteca Luis Ángel Arango</p>
+ *                 </div>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <div class="ag-c-slider__item_img">
+ *                   <img class="ag-c-slider_img" src="../biblored/img/source/logos/logo-bnc.svg" alt="Biblioteca Nacional de Colombia">
+ *                   <p class="ag-c-slider__text">Biblioteca Nacional de Colombia</p>
+ *                 </div>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <div class="ag-c-slider__item_img">
+ *                   <img class="ag-c-slider_img" src="../biblored/img/source/logos/logo-bdb.svg" alt="Biblioteca Digital de Bogotá">
+ *                   <p class="ag-c-slider__text">Biblioteca Digital de Bogotá</p>
+ *                 </div>
+ *               </div>
+ *               <div class="swiper-slide">
+ *                 <div class="ag-c-slider__item_img">
+ *                   <img class="ag-c-slider_img" src="../biblored/img/source/logos/logo-blaa.png" alt="Biblioteca Luis Ángel Arango">
+ *                   <p class="ag-c-slider__text">Biblioteca Luis Ángel Arango</p>
+ *                 </div>
+ *               </div>
+ *             </div>
+ *             <div class="ag-c-slider__dots"></div>
+ *             <button class="ag-c-slider__control ag-c-slider__control_top ag-c-slider__control_prev i-arrow-left" type="button">
+ *                 <span class="ag-is-visuallyhidden">Atrás</span>
+ *             </button>
+ *             <button class="ag-c-slider__control ag-c-slider__control_top ag-c-slider__control_next i-arrow-right" type="button">
+ *                 <span class="ag-is-visuallyhidden">Siguiente</span>
+ *             </button>
+ *           </div>
+ *         </div>
+ *       </div>
+ *      </div>
+ *    </div>
+ */
+
+.ag-c-slider_secondary {
+
+  @include px-rem(padding-bottom, 60px);
+
+  &.swiper-container {
+    .swiper-wrapper {
+      width: 92%;
+      max-width: 1000px;
+      @include align-items(flex-end);
+    }
+  }
+
+  .ag-c-slider__control {
+    border-color: $c-primary-hover;
+  }
+
+  .ag-c-slider__item_img {
+    color: $c-on-text;
+
+    &:hover {
+      .ag-c-slider__text {
+        color: $c-primary-hover;
+      }
+
+      &:after {
+        background-color: $c-primary-hover;
+      }
+    }
+
+    .ag-c-slider__text {
+      color: $c-on-text;
+      line-height: 1.4;
+      margin: 0 auto;
+
+      @include px-rem(max-width, 160px);
+      @include px-rem(padding-bottom, 12px);
+    }
+
+    &:after {
+      background-color: $c-on-text;
+      border-radius: 50%;
+      content: '';
+      display: block;
+      @include px-rem(width, 168px);
+      margin: 0 auto;
+      @include px-rem(height, 1px);
+    }
+  }
+
+  .ag-c-slider_img {
+    display: block;
+
+    @include px-rem(height, 80px);
+    @include px-rem(margin, 0 auto 20px);
+  }
+
+  .ag-c-slider__bullet {
+    background-color: $c-primary-hover;
+  }
+}
+
+
+//- .ag-c-slider_primary ⇒ .js-sliderFilter [biblored/includes/sliders/type_slider.html]
+.ag-c-slider_primary {
+  @include px-rem(padding-bottom, 30px);
+  overflow: hidden;
+
+  .swiper-container {
+    .swiper-wrapper {
+      width: 92%;
+      max-width: 1000px;
+    }
+  }
+
+  .ag-c-slider__control {
+    @include px-rem(top, 42px);
+
+    &:before {
+      transition: all .3s linear;
+    }
+
+    &:hover {
+      &:before {
+        color: $c-primary;
+        background-color: $c-neutro;
+        border-color: $c-neutro;
+      }
+    }
+  }
+
+  .ag-c-slider__control_prev,
+  .ag-c-slider__control_next {
+    border: 1px solid transparent;
+
+    &:hover {
+      color: transparent;
+      border: 1px solid transparent;
+
+      &:before {
+        color: $c-primary-hover;
+        border: 1px solid $c-primary-hover;
+      }
+    }
+  }
+
+  .ag-c-slider__content {
+    @include px-rem(padding-bottom, 60px);
+  }
+}
+
+
+//- .ag-c-slider_contrast  ⇒  .js-sliderSourceInformation [biblored/includes/sliders/allies_slider.html]
+.ag-c-slider_contrast {
+  @include px-rem(padding-bottom, 30px);
+
+  .ag-c-slider__control {
+    color: $c-primary-hover;
+    @include px-rem(top, 42px);
+
+    &:hover {
+      color: $c-neutro;
+
+      &:before {
+        background-color: rgba($c-primary-hover, .8);
+      }
+    }
+  }
+
+  .ag-c-slider__text,
+  .ag-c-slider__link {
+    color: $c-primary;
+
+    &:before {
+      border: 1px solid $c-on-text-ico;
+    }
+
+    &:hover {
+      &:before {
+        border-color: $c-primary-hover;
+      }
+    }
+  }
+
+  .ag-c-slider__bullet {
+    background-color: $c-primary-hover;
+
+    &:hover {
+      background-color: rgba($c-primary-hover, .4);
+    }
+  }
+
+  .ag-c-slider__content {
+    @include px-rem(padding-bottom, 60px);
+  }
+}
+
+
+.ag-c-slider_card {
+  .ag-c-slider__control_space.swiper-button-disabled {
+    display: none;
+  }
+}
+
+//- Layouts contenedores de sliders
+.ag-l-band-primary {
+  .ag-c-slider__control {
+    &::before {
+      background-color: $c-primary;
+    }
+
+    &:hover {
+      color: $c-primary-hover;
+    }
+  }
+}
+
+.ag-l-band-surface {
+  .ag-c-slider__control {
+    &::before {
+      background-color: $c-surface;
+    }
+
+    &:hover {
+      color: $c-neutro;
+
+      &::before {
+        background-color: $c-primary-hover;
+      }
+    }
+  }
+}
+
+.ag-l-band-neutro {
+  .ag-c-slider__control {
+    &::before {
+      background-color: $c-neutro;
+    }
+
+    &:hover {
+      color: $c-neutro;
+
+      &::before {
+        background-color: $c-primary-hover;
+      }
+    }
+  }
+}
+
+
+// Hack IE 11
+@media screen and (min-width:0\0) {
+  .ag-c-slider__controls-row {
+    right: -12%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+
+@media all and (min-width: 650px) {
+  .ag-c-slider_set {
+    .ag-c-slider__control {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .ag-c-card__media {
+      max-width: 100%;
+    }
+
+    .ag-c-card__side {
+      max-width: initial;
+      margin: 0;
+    }
+  }
+
+}
+
+@include media-query(small-m) {
+  .ag-c-slider__card {
+    width: 81.25%;
+
+    @include px-rem(margin, 40px auto);
+  }
+}
+
+@media screen and (min-width: 610px) {
+  .ag-c-slider_box {
+
+    .ag-c-slider__control_prev {
+      @include px-rem(margin-left, 10px);
+    }
+
+    .ag-c-slider__control_next {
+      @include px-rem(margin-right, 10px);
+    }
+  }
+}
+
+
+@include media-query(medium) {
+  .ag-c-slider__card {
+    @include px-rem(margin, 60px auto 60px 80px);
+  }
+
+  .ag-c-slider__control_space {
+    @include px-rem(padding, 20px);
+  }
+
+  .ag-c-slider_set {
+    .ag-c-card_aside {
+      @include px-rem(max-width, 800px);
+    }
+
+    .ag-c-card__media {
+      @include px-rem(max-width, 360px);
+      @include px-rem(min-width, 360px);
+      @include px-rem(max-height, 360px);
+      margin: 0;
+    }
+  }
+
+  .ag-c-slider_card {
+    .ag-c-slider__control {
+      display: block;
+
+      &:before {
+        background-color: $c-neutro;
+        border: 1px solid $c-primary-hover;
+        color: $c-primary-hover;
+      }
+    }
+
+    //- Andre's Class -> Expositions
+    .ag-c-slider__control_transparent {
+
+      &:before {
+        background-color: rgba($c-secondary-disabled, .3);
+        border: 1px solid $c-primary-disabled;
+        color: $c-primary-disabled;
+      }
+    }
+  }
+
+  .ag-c-slider_box {
+    .ag-c-card__title {
+      @include font-rem(32px);
+      line-height: 1.2;
+    }
+  }
+
+  .ag-has-slider_mobile {
+    .ag-c-slider__dots {
+      display: none;
+    }
+  }
+
+  .ag-c-slider__dots_stroke {
+    width: 20%;
+  }
+}
+
+@include media-query(medium-max) {
+  .ag-c-slider__dots_end {
+    position: absolute;
+    right: 0;
+    @include justify-content(center);
+    @include px-rem(margin-bottom, 16px);
+  }
+}
+
+@media screen and (min-width: 830px) {
+  .ag-c-slider_box {
+    .ag-c-slider__card {
+      margin-left: 10%;
+    }
+
+    .ag-c-slider__mask {
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+    }
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .ag-c-slider__controls {
+    @include px-rem(max-width, 820px);
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .ag-c-slider__control_center {
+    display: none;
+  }
+}
+
+@include media-query(wide) {
+  .ag-c-slider_set {
+    .ag-c-card_aside {
+      @include px-rem(max-width, 920px);
+    }
+  }
+}

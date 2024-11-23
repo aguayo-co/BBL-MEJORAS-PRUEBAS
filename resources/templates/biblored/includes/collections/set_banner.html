@@ -1,0 +1,117 @@
+{% load i18n static %}
+
+<article class="swiper-slide ag-banner ag-s-banner">
+
+  <div class="ag-banner__card">
+
+    {# Block banner card #}
+    <div class="ag-banner-card ag-banner-card__cols">
+      {% if collection.image %}
+        <figure class="ag-banner-card__media">
+          <img class="ag-banner-card__img"
+            src="{{ collection.image.url }}"
+            alt=" {% trans 'Imagen de referencia' %} {{ collection.name }}"
+          >
+        </figure>
+      {% endif %}
+
+
+      <article class="ag-banner-card__side">
+        {# Zone to actions #}
+        {% if  user.is_authenticated %}
+          <div class="ag-banner-card__box ag-banner__box">
+            {% include "biblored/includes/collectionsgroup/search_select_detail_page_component.html" with collection=collection form=form favorites_group=favorites_group form_name=None csrf_token=csrf_token color_icon='white' user=user classJsCopyUrl="ag-js-copyUri" only %}
+          </div>
+        {% endif %}
+
+        <span class="ag-banner-card__ref">{% trans "Colección institucional" %}</span>
+
+        {# Title and lead #}
+        {% if  collection.name %}
+          <h2 class="ag-banner-card__title"
+            tabindex="0"
+          >
+            {{collection.name}}
+          </h2>
+        {% endif %}
+        {% if  collection.description %}
+          <div class="ag-banner-card__lead">
+            {{collection.description}}
+          </div>
+        {% endif %}
+
+        {# Data list #}
+        <ul class="ag-banner-card__list">
+          {% if collection.resources_by_type_count %}
+            <li class="ag-banner-card__item">
+              <strong class="ag-banner-card__label">{% trans "Encuentra en esta colección" %}</strong>
+              <ul class="ag-banner-card__dots-list">
+                {% for resource_type, count in collection.resources_by_type_count.items %}
+                  <li class="ag-banner-card__dots-item">{% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endif %}
+          {% if  collection.created_at %}
+            <li class="ag-banner-card__item">
+              <strong class="ag-banner-card__label">{% trans "Creada el" %}:</strong>
+              <ul class="ag-banner-card__dots-list">
+                <li class="ag-banner-card__dots-item"> {{ collection.created_at|date:"DATE_FORMAT" }} </li>
+              </ul>
+            </li>
+          {% endif %}
+        </ul>
+
+      </article>
+    </div>
+
+  </div>
+
+  <footer class="ag-banner__footer"
+  >
+    {# Autor Chip #}
+    {% if collection.data_source %}
+      <div class="ag-banner__foot-avatar
+        ag-chip
+        ag-s-chip"
+      >
+        {% if  collection.data_source.logo %}
+          <figure class="ag-chip__avatar
+            ag-chip__avatar_neutro"
+          >
+            <img class="ag-chip__img"
+              src="{{ collection.data_source.logo.url }}"
+              alt="{% trans 'Logo' %} {{ collection.data_source.name }}"
+            >
+          </figure>
+        {% endif %}
+        {% if  collection.data_source.name %}
+          <span class="ag-chip__text">
+            <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+            {{ collection.data_source.name }}
+          </span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {# Button with url to go to see itself collection #}
+    {% if collection.data_source_url %}
+      <a class="ag-banner__foot-button
+        ag-o-btn
+        ag-o-btn_outside
+        ag-o-link_external
+        i-after-external-link"
+        rel="noreferrer"
+        target="_blank"
+        href="{% url 'login' %}?next={{ collection.data_source_url }}"
+        title="Ir a {{ collection.data_source.name }}"
+      >
+        <span class="ag-o-btn__txt">
+          {% trans 'Ir a este contenido ' %}
+        </span>
+      </a>
+    {% endif %}
+  </footer>
+</article>
+
+

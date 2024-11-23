@@ -1,0 +1,286 @@
+{% extends "wagtailadmin/generic/base.html" %}
+{% load i18n wagtailadmin_tags l10n %}
+
+
+{% block main_content %}
+  <style>
+    .ag-pl-0 {
+      padding-left: 0 !important;
+    }
+
+    .ag-mb-0 {
+      margin-bottom: 0 !important;
+    }
+
+    .ag-mt-40 {
+      margin-top: 40px;
+    }
+
+    .ag-flex-h-center {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ag-icon-warning {
+      fill: var(--w-color-warning-100);
+    }
+
+    .ag-button-icon {
+      padding: 0 !important;
+      background-color: transparent;
+    }
+
+    .ag-list {
+      list-style: none;
+    }
+    .ag-list_flex {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+    }
+
+    .ag-fz-14 {
+      font-size: 14px;
+    }
+
+    .ag-lh-0 {
+      line-height: 0;
+    }
+
+    .w-status {
+      display: block;
+      width: max-content;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 16px;
+      padding: 4px 8px !important;
+    }
+  </style>
+
+  {% if fields.9.value.items %}
+    <header class="w-header w-header--hasform">
+      <div class="row ag-pl-0">
+        <div class="left">
+          <div class="col">
+            <h1 class="w-header__title" id="header-title">
+              Detalle de recursos cosechados
+            </h1>
+          </div>
+        </div>
+        <div class="right">
+        </div>
+      </div>
+    </header>
+
+    <div>
+      <ul class="ag-list ag-list_flex ag-pl-0">
+        {% for status, counts in fields.9.value.items %}
+          <li>
+            <h2 id="resources-heading" class="w-panel__heading" data-panel-heading="">
+              <span 
+                data-panel-heading-text=""
+              >
+                {% if status == "success" %}Correctos{% else %} Fallidos{% endif %}
+              </span>
+            </h2>
+
+            <ul class="workflow-tasks">
+              {% for key, value in counts.items %}
+                <li 
+                  class="workflow-tasks__task"
+                >
+                  <div class="workflow-tasks__step ag-fz-14">
+                    {% if key == "created" %}
+                      Creados:
+                    {% elif key == "deleted" %}
+                      Eliminados:
+                    {% elif key == "updated" %}
+                      Actualizados:
+                    {% endif %}
+                  </div>
+                  <h3 class="workflow-tasks__name">
+                    {{ value }}
+                  </h3>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% else %}
+    <header class="w-header w-header--hasform">
+      <div class="row ag-pl-0">
+        <div class="left">
+          <div class="col">
+            <h1 class="w-header__title" id="header-title">
+              Progreso del cosechamiento
+            </h1>
+          </div>
+        </div>
+        <div class="right">
+        </div>
+      </div>
+    </header>
+
+    <div id="progress-example2" class="progress active">
+      <div class="bar" style="width: {{ progress_bar_percent }}%;">{{ progress_bar_percent }}%</div>
+    </div>
+
+    <span class="w-status w-status--label">
+      {{ fields.10.value }} de {{ fields.11.value }}
+    </span>
+  {% endif %}
+  
+  {# Información general #}
+  <section class="w-panel ag-mt-40" id="header-section" aria-labelledby="header-heading" data-panel="">
+    <div class="w-panel__header">
+      <a class="w-panel__anchor w-panel__anchor--prefix" href="#header-section" data-panel-anchor=""
+        aria-labelledby="header-heading">
+        <svg class="icon icon-link w-panel__icon" aria-hidden="true">
+          <use href="#icon-link"></use>
+        </svg>
+      </a>
+      <button class="w-panel__toggle" type="button" aria-label="Alternar sección" aria-describedby="header-heading"
+        data-panel-toggle="" aria-controls="header-content" aria-expanded="true">  <!-- Cambiado a true -->
+        <svg class="icon icon-placeholder w-panel__icon" aria-hidden="true">
+          <use href="#icon-placeholder"></use>
+        </svg>
+      </button>
+  
+      <h2 class="w-panel__heading" id="header-heading" data-panel-heading="">
+        <span data-panel-heading-text="">Información general</span>
+      </h2>
+  
+      <a class="w-panel__anchor w-panel__anchor--suffix" href="#header-section" aria-labelledby="header-heading">
+        <svg class="icon icon-link w-panel__icon" aria-hidden="true">
+          <use href="#icon-link"></use>
+        </svg>
+      </a>
+      <div class="w-panel__divider"></div>
+    </div>
+  
+    <div id="header-content" class="w-panel__content">  <!-- Eliminado el atributo hidden -->
+      <div class="ag-list_flex">
+        {% block fields_output %}
+          {% if fields %}
+            <dl>
+              {% for field in fields|slice:"5:" %}
+                {% if not field.label == "Contador de recursos" %}
+                  <dt>{{ field.label }}</dt>
+                  <dd class="ag-flex-h-center">
+                    <p class="ag-mb-0">
+                      {% if field.component %}
+                        {% component field.component %}
+                      {% else %}
+                        {{ field.value|localize }}
+                      {% endif %}
+                    </p>
+                    {% if field.label == "Restante estimado" %}
+                      <button
+                        class="ag-lh-0 ag-button-icon"
+                        data-controller="w-tooltip" 
+                        data-w-tooltip-content-value="Este tiempo es una estimación basada en ejecuciones anteriores. Tenga en cuenta que puede variar y no garantiza que la tarea se complete en este lapso."
+                      >
+                        <svg 
+                          class="icon icon-info-circle ag-icon-warning w-w-4 w-h-4"
+                          aria-hidden="true"
+                        >
+                          <use href="#icon-info-circle"></use>
+                        </svg>
+                      </button>
+                    {% endif %}
+                  </dd>
+                {% endif %}
+              {% endfor %}
+            </dl>
+  
+            <dl>
+              {% for field in fields|slice:":5" %}
+                <dt>{{ field.label }}</dt>
+                <dd>
+                  {% if field.component %}
+                    {% component field.component %}
+                  {% else %}
+                    {{ field.value|localize }}
+                  {% endif %}
+                </dd>
+              {% endfor %}
+            </dl>
+          {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  </section>
+
+  {# Etapas del cosechamiento #}
+  <section class="w-panel ag-mt-40" id="additional-section" aria-labelledby="additional-heading" data-panel="">
+    <div class="w-panel__header">
+      <a class="w-panel__anchor w-panel__anchor--prefix" href="#additional-section" data-panel-anchor=""
+        aria-labelledby="additional-heading">
+        <svg class="icon icon-link w-panel__icon" aria-hidden="true">
+          <use href="#icon-link"></use>
+        </svg>
+      </a>
+      <button class="w-panel__toggle" type="button" aria-label="Alternar sección" aria-describedby="additional-heading"
+        data-panel-toggle="" aria-controls="additional-content" aria-expanded="true">
+        <svg class="icon icon-placeholder w-panel__icon" aria-hidden="true">
+          <use href="#icon-placeholder"></use>
+        </svg>
+      </button>
+  
+      <h2 class="w-panel__heading" id="additional-heading" data-panel-heading="">
+        <span data-panel-heading-text="">Etapas del cosechamiento</span>
+      </h2>
+  
+      <a class="w-panel__anchor w-panel__anchor--suffix" href="#additional-section" aria-labelledby="additional-heading">
+        <svg class="icon icon-link w-panel__icon" aria-hidden="true">
+          <use href="#icon-link"></use>
+        </svg>
+      </a>
+      <div class="w-panel__divider"></div>
+    </div>
+  
+    <div id="additional-content" class="w-panel__content">
+      <table class="listing">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for stage in stages %}
+          <tr>
+            <td class="title">
+              <h3>{{ stage }}</h3>
+            </td>
+            <td>{{ stage.start_date }}</td>
+            <td>{{ stage.end_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+
+    {% block footer %}
+        {% if edit_url or delete_url %}
+            <footer class="footer">
+                <div class="footer__container">
+                    {% if delete_url %}
+                        <a href="{{ delete_url }}" class="button serious">{% trans 'Delete' %}</a>
+                    {% endif %}
+                </div>
+            </footer>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

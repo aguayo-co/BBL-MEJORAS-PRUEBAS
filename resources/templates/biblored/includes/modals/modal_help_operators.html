@@ -1,0 +1,90 @@
+{% load i18n %}
+
+<div class="ag-c-modal ag-c-modal_cover ag-js-modal" data-modal="help_operators"  id="wai-modal-help-operator" tabindex="0">
+  <article class="ag-c-modal__box ag-c-modal__scroll">
+    <div class="ag-c-modal__content ag-c-modal_cover__content ag-js-modalContent" tabindex="1">
+      {% comment %}  {% endcomment %}
+      <div>
+        <h3 class="ag-c-modal__headline ag-c-modal__row"  tabindex="2">
+          {% trans "¿Cómo funcionan los operadores lógicos?" %}
+        </h3>
+        <p class="ag-o-text ag-c-modal__text ag-c-modal__row">
+          {% trans "Los operadores booleanos o lógicos, te ayudan a obtener resultados mucho más precisos." %}
+        </p>
+
+        <ul class="ag-spotlight" tabindex="3">
+          <li class="ag-spotlight__item">
+            <h3 class="ag-spotlight__title">{% trans 'AND =  Y ' %}</h3>
+            <p class="ag-spotlight__body">{% trans 'Úsalo para buscar incluyendo' %}
+              <strong>{% trans 'todos los términos de tu búsqueda' %}</strong>.</p>
+          </li>
+          <li class="ag-spotlight__item">
+            <h3 class="ag-spotlight__title">{% trans 'NOT = Y SIN' %}</h3>
+            <p class="ag-spotlight__body">{% trans 'Úsalo para buscar' %}
+              <strong>{% trans 'excluyendo los términos de tu búsqueda' %}</strong>.</p>
+          </li>
+          <li class="ag-spotlight__item">
+            <h3 class="ag-spotlight__title">{% trans 'OR = O' %}</h3>
+            <p class="ag-spotlight__body">{% trans 'Úsalo para buscar algunos' %}
+              <strong>{% trans 'de los términos de tu búsqueda' %}</strong>.</p>
+          </li>
+        </ul>
+
+        <div class="ag-o-title-line ag-o-title-line_offline" >
+          <h3 class="ag-o-title-line__text"  tabindex="4">¿{% trans 'Cómo utilizar el operador lógico “Y”'%}?</h3>
+        </div>
+
+        <div class="ag-c-modal_cover__summary" tabindex="5">
+          <p class="ag-c-modal__paragraph">{% trans 'Con el uso de este operador se aumenta la precisión, es decir que vas a obtener menos resultados pero más afinidad en tu búsqueda, lo que sucede es que ' %} <strong>{% trans '“ambas”' %}</strong>
+            {% trans 'palabras o frases deben aparecer en el resultado.' %}
+          </p>
+          <p class="ag-c-modal__paragraph">{% trans 'Por ejemplo, si en el campo inicial introduces la frase ' %}
+            <strong>{% trans 'cuentos infantiles' %},</strong>{% trans ' seleccionas el operador ' %}
+            <strong>{% trans '“Y”' %}</strong>{% trans ' para luego introducir los términos ' %}
+            <strong>{% trans 'autor:Jacob Grimm' %}</strong>{% trans ',  el sistema buscará coincidencias que contengan ambos términos,' %}
+            <strong>{% trans 'cuentos infantiles ' %} </strong>{% trans ' y ' %}
+            <strong>{% trans 'autor:Jacob Grimm' %}</strong>.
+          </p>
+        </div>
+
+        <div class="ag-o-title-line ag-o-title-line_offline" >
+          <h3 class="ag-o-title-line__text"  tabindex="4">¿{% trans 'Cómo utilizar el operador lógico “Y SIN”'%}?</h3>
+        </div>
+
+        <div class="ag-c-modal_cover__summary" tabindex="5">
+          <p class="ag-c-modal__paragraph">{% trans 'Con el uso de este operador se estará' %}
+            <strong>{% trans '“excluyendo”' %}</strong>{% trans ' el término en la búsqueda, es decir que vas a obtener resultados que no lo contengan, lo que sucederá es que los resultados no tendrán los términos precedidos por este operador. ' %}
+          </p>
+          <p class="ag-c-modal__paragraph">{% trans 'Por ejemplo, si en el campo inicial introduces la frase' %} <strong>{% trans 'cuentos infantiles' %}</strong> {% trans 'y seleccionas el operador' %}
+            <strong>{% trans '“Y SIN”' %}</strong>, {% trans 'le estarás excluyendo los términos' %}
+            <strong>{% trans 'autor:Jacob Grimm' %}</strong>, {% trans 'el sistema buscará coincidencias que contengan la frase' %}
+            <strong>{% trans 'cuentos infantiles ' %}</strong>{% trans ' pero que no tengan los términos ' %}
+            <strong>{% trans 'autor:Jacob Grimm' %}</strong>.
+          </p>
+        </div>
+
+        <div class="ag-o-title-line ag-o-title-line_offline">
+          <h3 class="ag-o-title-line__text"  tabindex="6">¿{% trans 'Cómo utilizar el operador lógico "O"' %}?</h3>
+        </div>
+
+        <div class="ag-c-modal_cover__summary"  tabindex="7">
+          <p class="ag-c-modal__paragraph">{% trans 'El operador' %} <strong>{% trans '“O”' %}</strong> {% trans 'te permite relacionar frases o palabras que' %}
+            <strong>{% trans 'coincidan' %}</strong> {% trans 'con uno o cualquiera de los términos de búsqueda sugeridos, ' %}
+            {% trans 'creando así un grupo con los otros dos operadores: ' %} <strong>{% trans '“Y SIN”' %}</strong> {% trans 'e' %} <strong>{% trans '“Y ”' %}</strong>,
+            {% trans 'lo que te permitirá ampliar la búsqueda.' %}
+          </p>
+          <p class="ag-c-modal__paragraph">{% trans 'Por ejemplo, si en el campo inicial esta la frase' %} <strong>{% trans 'cuentos infantiles' %}</strong>
+            {% trans ' y seleccionas el operador ' %} <strong>{% trans '“O”' %}</strong>{% trans ',  para luego seleccionar el operador' %}
+            <strong>{% trans ' "Y" ' %}</strong> {% trans 'e introducir la frase' %}
+            <strong>{% trans ' autor:Jacob Grimm ' %}</strong>
+            <strong>{% trans ' "Y" ' %}</strong> {% trans ' el' %}
+            <strong>{% trans ' tema:cuentos ' %}</strong>, {% trans " lo que sucederá es que el sistema buscará uno o cualquiera de las coincidencias con alguno(s) de estos términos." %}
+          </p>
+        </div>
+      </div>
+    </div>
+    <button class="ag-is-modal__close i-close ag-js-modalClose"  tabindex="8">
+      <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+    </button>
+  </article>
+</div>

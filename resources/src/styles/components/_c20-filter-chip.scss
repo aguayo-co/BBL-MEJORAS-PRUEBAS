@@ -1,0 +1,291 @@
+/*------------------------------------*\
+  Bloque c20-filter-chip
+  Description: Los chips de filtro usan etiquetas o palabras descriptivas para filtrar el contenido.
+    Los chips de filtro delinean claramente y muestran las opciones en un área compacta.
+    Son una buena alternativa para alternar botones o casillas de verificación.
+  Type: Interactive
+\*------------------------------------*/
+
+/**
+ * Class: .ag-c-filter-chip
+ * @description  Los chips de filtro usan etiquetas o palabras descriptivas para filtrar el contenido
+ * @molecule c20_filter-chip
+ * @section Chip
+ * @markup
+ *	<div class="ag-l-band-surface ag-l-band_top-shadow ag-l-subsection">
+ *		<div class="ag-l-canvas">
+ *			<div class="ag-filter-chip">
+ *				@{include:.ag-filter-chip__set}
+ *				@{include:.ag-filter-chip__actions}
+ *			</div>
+ *		</div>
+ *	</div>
+ */
+.ag-filter-chip {
+  // Estados general
+  .ag-is-remove {
+    display: none;
+  }
+}
+
+/**
+ * Class: .ag-filter-chip__set
+ * @description  Grupo de chip, la disposición de sus elementos se adaptan al ancho del contenedor
+ * @molecule c20_filter-chip Set
+ * @section Chip
+ * @markup
+ *	<ul class="ag-filter-chip__set">
+ *		<li class="ag-filter-chip__tag ag-js-filterTag">
+ *			Artículos
+ *			<span class="ag-filter-chip__after i-close">
+ *				<span class="ag-is-visuallyhidden">Eliminar </span>
+ *			</span>
+ *		</li>
+ *		<li class="ag-filter-chip__tag ag-js-filterTag">
+ *			Contenidos en digital
+ *			<span class="ag-filter-chip__after i-close">
+ *				<span class="ag-is-visuallyhidden">Eliminar </span>
+ *			</span>
+ *		</li>
+ *		<li class="ag-filter-chip__tag ag-js-filterTag">
+ *			Español
+ *			<span class="ag-filter-chip__after i-close">
+ *				<span class="ag-is-visuallyhidden">Eliminar </span>
+ *			</span>
+ *		</li>
+ *	</ul>
+ */
+.ag-filter-chip__set {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include flex(1 1 100%);
+}
+.ag-filter-chip__set_width {
+  @include flex(1 1 70%);
+}
+
+/**
+ * Class: .ag-filter-chip__tag
+ * @description  Elemento del set de filtros
+ * @molecule c20_filter-chip Tag
+ * @section Chip
+ * @markup
+ *		<div class="ag-filter-chip__tag ag-js-filterTag">
+ *			Español
+ *			<span class="ag-filter-chip__after i-close">
+ *				<span class="ag-is-visuallyhidden">Eliminar </span>
+ *			</span>
+ *		<div>
+ */
+.ag-filter-chip__tag {
+  @include inline-flex;
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-rem(padding, 8px 10px);
+  @include px-rem(margin, 0 7px 7px 7px);
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+  color: $c-primary;
+  @include font-rem(14px);
+  font-family: $f-primary;
+  border-radius: 20px;
+  border: 1px solid $c-primary;
+  background-color: $c-neutro;
+  transition: all 0.3s;
+  &:hover,
+  &:focus {
+    color: $c-primary-hover;
+    border-color: $c-primary-hover;
+  }
+}
+
+.ag-filter-chip__text {
+  text-transform: lowercase;
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.ag-filter-chip__after {
+  position: relative;
+  @include px-rem(margin-left, 8px);
+  @include px-rem(padding-left, 8px);
+  line-height: 1;
+  font-size: 8px;
+  &::before {
+    vertical-align: -webkit-baseline-middle;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 18px;
+    margin-top: -9px;
+    background-color: $c-primary;
+  }
+}
+
+/**
+ * Class: .ag-filter-chip__actions
+ * @description  Contenedor para los elementos de acción  del componente
+ * @molecule c20_filter-chip Tag
+ * @section Chip
+ * @markup
+ *		<div class="ag-filter-chip__actions">
+ *			<button class="ag-o-btn ag-o-btn_small ag-o-btn_outline ag-js-filterDelete" type="button" tabindex="0">
+ *				Limpiar Filtros
+ *			</button>
+ *			<button class="ag-o-btn ag-o-btn_small ag-js-asideOpen" type="button" tabindex="0">
+ *				Agregar Filtros
+ *			</button>
+ *		</div>
+ */
+.ag-filter-chip__actions {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(flex-start);
+  @include justify-content(center);
+  @include px-rem(margin-top, 24px);
+  @include px-rem(padding, 16px 0);
+  background-color: $c-surface;
+  @include h-offset-full(92%, 4%);
+
+  .ag-o-btn {
+    @include px-rem(margin, 0 6px);
+  }
+
+  .ag-o-btn_special {
+    @include align-self(flex-start);
+  }
+}
+.ag-filter-chip__actions_centered {
+  @include align-items(center);
+}
+
+.ag-c-filter-chip__alert-wrap {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include justify-content(center);
+}
+
+.ag-o-zindex {
+  z-index: 5;
+}
+.js-tootlipZindex {
+  z-index: 1;
+}
+
+.ag-filter-chip__actions-group {
+  @include px-rem(max-width, 311px);
+  .ag-o-btn {
+    margin: 0;
+
+    &:last-child {
+      @include px-rem(margin-left, 4px);
+    }
+  }
+}
+
+.ag-filter-chip__row {
+  @include flexbox;
+  @include align-items(center);
+
+  .ag-c-tooltip {
+    margin: 0;
+  }
+}
+
+.ag-c-filter-chip__alert {
+  @include px-rem(padding, 0 10px 16px 10px);
+  text-align: center;
+
+  .ag-c-tooltip {
+    overflow: visible;
+    @include px-rem(margin, 0 3px);
+  }
+
+  .ag-is-tipHidden {
+    &:before {
+      opacity: 0;
+    }
+  }
+}
+
+.ag-c-filter-chip__alert-text {
+  display: inline;
+}
+
+@media screen and (min-width: 520px) {
+  .ag-filter-chip_last {
+    width: 100%;
+  }
+
+  .ag-filter-chip__row {
+    position: relative;
+    @include justify-content(center);
+    @include px-rem(margin-top, 8px);
+
+    .ag-c-tooltip {
+      position: relative;
+      right: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 867px) {
+  // .ag-c-filter-chip__alert {
+  // 	padding: 0 20px 0 0;
+  // }
+
+  .ag-filter-chip__actions {
+    @include justify-content(flex-start);
+  }
+}
+
+@include media-query(wide) {
+  .ag-filter-chip {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(space-between);
+  }
+
+  .ag-filter-chip__set {
+    @include px-rem(margin-right, 20px);
+  }
+
+  .ag-filter-chip__actions {
+    @include justify-content(space-between);
+    margin: 0;
+    @include px-rem(padding, 0 0 7px 0);
+    background-color: transparent;
+  }
+
+  .ag-filter-chip__actions_centered {
+    padding: 16px;
+    background-color: $c-surface;
+  }
+
+  .ag-c-filter-chip__alert {
+    padding: 0;
+    @include px-rem(padding-right, 10px);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1242px) {
+  .ag-filter-chip__actions {
+    @include justify-content(center);
+  }
+
+  .ag-filter-chip__actions_centered {
+    @include px-rem(margin-top, 20px);
+  }
+
+  .ag-c-filter-chip__alert {
+    @include px-rem(margin-bottom, 10px);
+  }
+}

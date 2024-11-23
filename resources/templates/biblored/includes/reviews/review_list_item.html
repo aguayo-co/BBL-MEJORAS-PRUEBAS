@@ -1,0 +1,16 @@
+{% load i18n %}
+{% load static %}
+{# TODO FRONT #}
+<p><a href="{{ review.resource.processed_data.get_absolute_url }}">{{ review.resource.processed_data.title }}</a></p>
+{% if review.title %}
+  <p>{{ review.title }}</p>
+{% endif %}
+<p>{{ review.updated_at }}</p>
+<p>{{ review.text }}</p>
+<p>{{ review.author.full_name }}</p>
+{% with review.rating|stringformat:'s' as rating %}
+  {% with 'biblored/img/rating/rating-'|add:rating|add:'.svg' as image_static %}
+    <img src="{% static image_static %}" alt="{% trans 'El número de valoración es' %} {{ review.rating }}">
+  {% endwith %}
+{% endwith %}
+{# ENDTODO FRONT #}

@@ -1,0 +1,163 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block css %}
+  {{ block.super }}
+
+  {% if page.theme == 'purple' %}
+    {% render_bundle 'theme_primary_color' 'css' %}
+  {% endif %}
+
+  {% if page.theme == 'blue' %}
+    {% render_bundle 'theme_secondary_color' 'css' %}
+  {% endif %}
+{% endblock css %}
+
+{% block title %} {% trans 'Detalle' %} {{ page.title }} {% endblock %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %}{% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%}{% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a 
+      class="ag-breadcrumbs__link" 
+      title="{% trans 'Ir a ' %}{{ page.get_parent.title }}" 
+      href="{% url 'expositions:list' %}"
+    >
+      {{ page.get_parent.title }}
+    </a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {{ page.title }}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+<main class="ag-l-page-below">
+
+  <header class="ag-l-inner ag-l-page-down ag-c-cover ag-c-cover_float" id="content" tabindex="0">
+
+    {% if page.image %}
+      <figure class="ag-c-cover__figure">
+        {% image page.image max-1108x641 class="ag-c-cover__image" %}
+      </figure>
+    {% endif %}
+
+    <article class="ag-c-cover__card">
+
+      <ul class="ag-c-cover__tags ag-tags ag-tags_press ag-tags_margin-none">
+
+        <li class="ag-tags__item">
+          <span class="ag-tags__ico ag-tags__ico_theme i-sketch">
+            <span class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+              {% trans "Exposición" %}
+            </span>
+          </span>
+        </li>
+
+        {% if page.exposition_type %}
+          <li class="ag-tags__item ag-tags__bullet">
+            <span class="ag-tags__ico">
+              <span class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+                  {{ page.exposition_type }}
+                </span>
+              </span>
+          </li>
+        {% endif %}
+
+        {% if page.subject.name %}
+          <li class="ag-tags__item ag-tags__bullet">
+            <p class="ag-tags__tag ag-tags__tag_dark ag-tags__tag_size10">
+              {{ page.subject.name }}
+            </p>
+          </li>
+        {% endif %}
+
+      </ul>
+
+      {% if page.title %}
+        <h1 class="ag-c-cover__title ag-o-headwink ag-u-margin-bottom-16">
+          {{ page.title }}
+        </h1>
+      {% endif %}
+
+      <p class="ag-c-cover__row">
+        {{ page.description|cut:"</p>"|cut:"<p>"|safe }}
+      </p>
+
+      <div class="ag-chip ag-u-margin-top-24">
+        <figure class="ag-chip__avatar ag-chip__avatar_color">
+          {% if page.author.profile.avatar %}
+          <img class="ag-chip__img" src="{{ page.author.profile.avatar.url }}"
+            alt="{% trans 'Avatar del curador:' %} {{ page.author.full_name }}">
+          {% else %}
+          {{ page.author.initials }}
+          {% endif %}
+        </figure>
+        <span class="ag-chip__text">
+          <strong class="ag-chip__label">{% trans "Curador" %}</strong>
+          {{ page.author.full_name }}
+        </span>
+      </div>
+
+    </article>
+
+  </header>
+
+  <div class="ag-l-band-surface ag-u-locator">
+
+    {% include "biblored/includes/buttons/scroll_down.html" with page=page.exposition %}
+
+    <section class="ag-l-inner-wide ag-is-button-scroll-stop">
+
+      <header class="ag-o-header-wink ag-o-header-wink_over ag-o-header-wink__inner">
+        <h2 class="ag-o-header-wink__title ag-o-subheadwink"> {{ page.sub_title }} </h2>
+        <p class="ag-o-header-wink__lead"> {{ page.intro|striptags }} </p>
+      </header>
+
+      <ul class="ag-c-menu-gallery">
+        {# loop que recorre las sub exposiciones de una exposición #}
+        {% for secondarypage in page.get_children.specific  %}
+          <li class="ag-c-menu-gallery__item">
+          {% if secondarypage.content_type.model == 'redirection' %}
+            <a class="ag-c-menu-gallery__link" target="_blank" rel="noopener" href="{% pageurl page %}{{ secondarypage.slug }}">
+          {% else %}
+            <a class="ag-c-menu-gallery__link" href="{% pageurl page %}{{ secondarypage.slug }}">
+          {% endif %}
+              <figure class="ag-c-menu-gallery__figure">
+                <span class="ag-c-menu-gallery__mask">
+                  {% image secondarypage.image fill-320x180 class="ag-c-menu-gallery__img ag-is-menu-gallery_hide" %}
+                </span>
+                <figcaption class="ag-c-menu-gallery__caption {% if secondarypage.content_type.model == 'redirection' %} i-after-external-link
+                {% endif %} i-after-redirection">
+                  <span class="ag-c-menu-gallery__wink-text">{{ secondarypage.title }}</span>
+                  <span class="ag-o-btn ag-o-btn_small ag-c-menu-gallery__btn ag-is-menu-gallery_hide">{% trans "Ingresa" %}</span>
+                </figcaption>
+              </figure>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if page.related_expositions %}
+        {# Note: "parent_exposition=True" is a variable only for the main exposition its function it can identify the theme color in related expositions  #}
+        {% include "expositions/exposition_related-expositions-section.html" with related_expositions=page.related_expositions parent_exposition=True only %}
+      {% endif %}
+
+    </section>
+
+  </div>
+
+</main>
+
+{% endblock %}

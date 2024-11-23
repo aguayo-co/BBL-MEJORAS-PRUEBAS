@@ -1,0 +1,38 @@
+{% load menu_helpers %}
+
+
+{% spaceless %}
+  {% if menu_items %}
+    <div class="ag-l-footer__set-item ag-js-dropdownMobile">
+
+      {# Title column #}
+      <h3
+        class="
+          ag-l-footer__title
+          i-after-arrow-down
+          ag-js-dropdownBtn"
+      >
+        {{ menu_instance.heading }}
+      </h3>
+
+      {# Navigation menu #}
+      <ul class="ag-l-footer__list ag-js-dropdownSlide ag-is-hide_mobile">
+        {% for menu_item in menu_items %}
+
+          <li class="ag-l-footer__item">
+            <a
+              class="ag-l-footer__link"
+              href="{{ menu_item.href }}"
+              target="_blank"
+              rel="noopener"
+            >
+              {{ menu_item.text }}
+            </a>
+          </li>
+          
+        {% endfor %}
+      </ul>
+      
+    </div>
+  {% endif %}
+{% endspaceless %}

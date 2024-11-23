@@ -1,0 +1,64 @@
+{% load i18n %}
+
+{# Filtro content_type #}
+<div class="ag-c-filter-band__item
+  ag-js-dropdownOpenInMobile"
+>
+  <span class="ag-c-filter-band__label
+    ag-js-dropdownBtn
+    ag-js-filterBtnDropdown
+    ag-is-searchOpen
+    i-after-arrow-up"
+    tabindex="0"
+  >
+    {{ filters_form.content_type.label }}
+  </span>
+  <div class="ag-c-filter-band__list
+    ag-js-dropdownSlide
+    ag-is-dropdownOpen"
+    tabindex="0"
+  >
+    <div class="ag-c-filter-band__list-inner ag-c-filter-band__list-inner_space">
+      {% for field_type in filters_form.content_type.subwidgets %}
+        <div class="ag-form__checkbox"
+          tabindex="0"
+        >
+          {{ field_type.tag }}
+          <label class="i-check"
+            for="{{ field_type.data.attrs.id }}"
+          >
+            {{ field_type.choice_label }}
+          </label>
+
+          {% for field_error in field_type.errors %}
+          <small class="ag-form__error"
+            role="alert"
+          >
+            {{ field_error }}
+          </small>
+          {% endfor %}
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{# Filtro Tema #}
+<div class="ag-c-filter-band__search
+  ag-js-searchFilter
+  ag-js-choices"
+  data-placeholder="{% trans 'Buscar por' %} {{ filters_form.subject.label|lower }}"
+  tabindex="0"
+>
+  <span class="ag-is-visuallyhidden"
+    {# for="input-selectsearch"#}
+  >
+    {% trans "Buscar por" %} {{ filters_form.subject.label }}
+  </span>
+  <label class="ag-c-filter-band__label"
+    for="{{ filters_form.subject.id_for_label }}">
+    {{ filters_form.subject.label }}
+  </label>
+  {{ filters_form.subject }}
+</div>

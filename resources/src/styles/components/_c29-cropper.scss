@@ -1,0 +1,241 @@
+.ag-c-cropper {
+  transition: all .3s linear;
+
+  .ag-o-actions {
+    padding-bottom: 0;
+  }
+
+  // STYLES CUSTOM CROPPER JS
+  .cropper-dashed {
+    border-color: transparent;
+  }
+
+  .cropper-point {
+    opacity: 0;
+  }
+
+  .cropper-view-box {
+    outline: 4px solid $c-on-secondary;
+    outline-color: $c-on-secondary;
+  }
+}
+
+// STYLES FOR CROPPER OF THE PROFILE FORM
+.ag-js-parent-cropper-profile {
+  .ag-c-cropper {
+
+    .cropper-crop-box,
+    .cropper-view-box {
+      border-radius: 50%;
+    }
+
+    .cropper-view-box {
+      box-shadow: 0 0 0 4px $c-on-secondary;
+      outline: 0;
+    }
+
+    .cropper-face {
+      background-color: inherit !important;
+    }
+
+    .cropper-dashed,
+    .cropper-point.point-se,
+    .cropper-point.point-sw,
+    .cropper-point.point-nw,
+    .cropper-point.point-ne,
+    .cropper-line {
+      display: none !important;
+    }
+
+    .cropper-view-box {
+      outline: inherit !important;
+    }
+  }
+}
+
+.ag-c-cropper__mask {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(min-height, 226px);
+  background-color: rgba($color: $c-dark, $alpha: .5);
+}
+
+.ag-c-cropper__caption {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 64%;
+  @include px-rem(min-height, 120px);
+  @include px-rem(padding, 24px);
+  font-weight: $f-bold;
+  @include px-rem(font-size, 14px);
+  text-align: center;
+  color: $c-primary;
+  border: 4px solid $c-on-secondary;
+  background-color: $c-on-secondary-hover;
+}
+
+.ag-is-cropper-img {
+  /* The size of the image fit the container perfectly */
+  display: block;
+  /* Important property don´t ignore this */
+  max-width: 100%;
+}
+
+.ag-c-cropper__nav-actions {
+  @include px-rem(margin, 30px 0 50px 0);
+}
+
+.ag-c-cropper__nav-actions {
+  @include flexbox;
+  @include justify-content(space-evenly);
+  @include align-items(center);
+  @include flex-wrap(wrap);
+}
+
+.ag-c-cropper__group {
+  @include px-rem(max-width, 132px);
+  @include px-rem(margin-right, 8px);
+  @include px-rem(margin-bottom, 24px);
+  text-align: center;
+
+  .ag-is-hide {
+    display: block;
+  }
+
+  &:last-of-type {
+    @include align-self(flex-end);
+    margin-right: 0;
+  }
+}
+
+.ag-c-cropper__group_widthx2 {
+  @include px-rem(max-width, 253px);
+}
+
+.ag-c-cropper__title {
+  @include px-rem(margin-bottom, 8px);
+  font-weight: $f-bold;
+  @include px-rem(font-size, 14px);
+  color: $c-primary;
+}
+
+.ag-c-cropper__actions {
+  @include flexbox;
+  border: 2px solid $c-primary;
+  @include px-rem(border-radius, 8px);
+}
+
+.ag-c-cropper__actions_input {
+  position: relative;
+  @include px-rem(padding, 8px 10px);
+  cursor: pointer;
+
+  &:hover {
+    .ag-c-cropper__label {
+      opacity: .5;
+    }
+  }
+}
+
+.ag-c-cropper__input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.ag-c-cropper__label {
+  font-weight: $f-bold;
+  color: $c-primary;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.ag-c-cropper__ico {
+  position: relative;
+  @include flex(1 auto);
+  width: 25%;
+  @include px-rem(padding, 2px 0);
+  @include px-rem(font-size, 20px);
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    opacity: .5;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: 0;
+    width: 2px;
+    height: 70%;
+    background-color: $c-primary;
+  }
+
+  &:last-of-type {
+    &::after {
+      background-color: transparent;
+    }
+  }
+}
+
+//Hack para safari 10+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .ag-c-cropper__group {
+      @include px-rem(min-width, 132px);
+    }
+    .ag-c-cropper__group_widthx2 {
+      @include px-rem(min-width, 253px);
+    }
+
+    .ag-c-cropper__actions {
+      @include px-rem(min-height, 45px);
+    }
+
+    .ag-c-cropper__ico {
+      font-size: 0;
+
+      &::before {
+        @include px-rem(font-size, 20px);
+      }
+    }
+
+    .ag-c-cropper__label {
+      width: 100%;
+    }
+  }
+}
+
+.ag-is-cropper-img-croped {
+  @include px-rem(height, 142px);
+  border: 1px solid $c-primary
+}
+
+@include media-query(medium) {
+  .ag-c-cropper__nav-actions {
+    @include justify-content(space-between);
+  }
+
+  .ag-c-cropper__group {
+    margin-bottom: 0;
+  }
+
+  .ag-c-cropper__mask {
+    @include px-rem(height, 495px);
+  }
+
+  .ag-c-cropper__caption {
+    @include px-rem(min-height, 263px);
+    @include px-rem(padding, 48px);
+    @include px-rem(font-size, 18px);
+  }
+}

@@ -1,0 +1,14 @@
+# Django translations
+python manage.py compilemessages --locale es --locale es_CO
+
+
+# The harvesting process needs to decompress 7z, rar and zip files.
+# To do so, the following binaries are required.
+# 7z
+curl -L -o bin/7z https://raw.githubusercontent.com/develar/7zip-bin/master/linux/x64/7za
+chmod +x bin/7z
+# UnRAR free
+curl -L https://www.rarlab.com/rar/rarlinux-x64-5.7.1.tar.gz | tar -xz rar/unrar
+mv rar/unrar bin/
+chmod +x bin/unrar
+rm -rf rar

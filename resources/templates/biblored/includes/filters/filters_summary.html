@@ -1,0 +1,41 @@
+{% extends "biblored/includes/selected_options/filter_chip_wrapper.html" %}
+
+{% load i18n %}
+
+{% block title %}
+  <div class="ag-o-title-line ag-o-title-line_center">
+    <h3 class="ag-o-title-line__text">{% trans 'Estás filtrando por' %}</h3>
+  </div>
+{% endblock title %}
+
+{% block alert_message %}
+  <div
+    class="ag-message-alert ag-message-alert_warning ag-u-margin-bottom-24 ag-js-alert_message_filters_changed ag-is-display-none"
+  >
+    <p
+      class="ag-message-alert__text i-question">
+      {% trans 'Haz seleccionado nuevos filtros para tu búsqueda. Para aplicarlos, haz clic en “Aplicar filtros”.' %}
+    </p>
+    <button class="ag-message-alert__btn ag-o-btn ag-o-btn_special ag-js-apply_filters_extra_button" type="button" tabindex="0">
+      {% trans "Aplicar filtros" %}
+    </button>
+  </div>
+{% endblock alert_message %}
+
+{% block actions %}
+  <div class="ag-filter-chip__actions">
+    <button class="ag-o-btn ag-o-btn_non-standard ag-o-btn_outline ag-js-filterDelete" type="button" tabindex="0">
+      {% trans "Limpiar filtros" %}
+    </button>
+
+    {% if add_filter %}
+      {# Botón despliega filtros #}
+      {% include "biblored/includes/filters/filters_btn_aside_open.html" %}
+    {% else %}
+      {# Botón despliega filtros en Mobile #}
+      <div class="ag-is-hide_desktop">
+        {% include "biblored/includes/filters/filters_btn_aside_open.html" %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock actions %}

@@ -1,0 +1,23 @@
+{% if notifications %}
+  <section class="ag-l-inner-wide" id="content" tabindex="0">
+    {% block notificacions_list_header %}
+      <header class="ag-o-subheader">
+        <h2 class="ag-o-headline ag-o-headline_primary" tabindex="0">
+          {% block notificacions_list_title %}{% endblock %}
+        </h2>
+      </header>
+    {% endblock %}
+
+    <ul class="ag-list">
+      {% block notifications_item_list %}
+      {% endblock %}
+    </ul>
+  </section>
+{% else %}
+  <section class="ag-l-inner-wide" id="content" tabindex="0">
+    <header class="ag-o-subheader-ico i-notify">
+      <h2 class="ag-o-subheading" tabindex="0">
+        {% block notificacions_empty_list_title %}{% endblock %}</h2>
+    </header>
+  </section>
+{% endif %}

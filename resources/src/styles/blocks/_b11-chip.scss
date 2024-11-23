@@ -1,0 +1,235 @@
+/*------------------------------------*\
+  ID: B11
+  Tag
+  Description: Grupo imagen y nombre de usuario
+\*------------------------------------*/
+/**
+ * Class: ag-chip
+ * @description  Chip compuesto por avatar y nombre del creador
+ * @molecule b11_chip
+ * @modifiers
+ *   .ag-chip__avatar_color  Avatar adaptado para cambio en tema de color
+ * @section User
+ * @markup
+ *     <ul class="ag-c-list">
+ *       <li class="ag-c-list-item ag-chip">
+ *         <figure class="ag-chip__avatar">
+ *           <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Logo Biblioteca Luis Ángel Arango">
+ *         </figure>
+ *         <span class="ag-chip__text">
+ *           <strong class="ag-chip__label">Creador</strong>
+ *           {Biblioteca Luis Ángel Arango}
+ *         </span>
+ *       </li>
+ *     </ul>
+ */
+.ag-chip {
+  @include flexbox;
+  @include align-items(center);
+  list-style: none;
+
+  .ag-c-cover__card & {
+    @include flex-wrap(wrap);
+    @include px-rem(row-gap, 16px);
+  }
+}
+
+a.ag-chip {
+  color: inherit;
+  &:hover {
+    color: $c-primary-hover;
+    .ag-chip__avatar {
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+/**
+ * Class: ag-chip
+ * @description  Chip compuesto por avatar y nombre del creador Si el usuario no ha cargado avatar se muestran las iniciales del nombre y apellido.
+ * @molecule b11_chip Initials
+ * @section User
+ * @markup
+ *     <ul class="ag-c-list">
+ *       <li class="ag-c-list-item ag-chip">
+ *         <figure class="ag-chip__avatar">
+ *           BL
+ *         </figure>
+ *         <span class="ag-chip__text">
+ *           <strong class="ag-chip__label">Creador</strong>
+ *           {Biblioteca Luis Ángel Arango}
+ *         </span>
+ *       </li>
+ *     </ul>
+ */
+.ag-chip__avatar {
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+  @include px-rem(width, 50px);
+  @include px-rem(height, 50px);
+  @include px-rem(margin-right, 10px);
+  overflow: hidden;
+  color: $c-neutro;
+  text-transform: uppercase;
+  font-weight: $f-bold;
+  @include px-rem(font-size, 24px);
+  border-radius: 50%;
+  background-color: $c-bg;
+  transition: all .2s;
+
+  &.ag-chip__avatar_box {
+    @include px-rem(max-width, 115px);
+    @include px-rem(min-width, 115px);
+    @include px-rem(height, 115px);
+    @include px-rem(margin-right, 18px);
+    @include font-rem(54px);
+    border: 3px solid $c-on-primary;
+  }
+}
+
+.ag-chip__avatar_color {
+  border: 2px solid $c-secondary;
+}
+
+
+.ag-chip__avatar_neutro {
+  background-color: $c-neutro;
+}
+
+.ag-chip__img {
+  width: 100%;
+}
+
+@supports(object-fit: cover) {
+  .ag-chip__img {
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.ag-chip__text {
+  line-height: 1.5;
+}
+
+.ag-chip__label {
+  display: block;
+}
+
+.ag-chip__caption {
+  color: $c-primary;
+  background-color: $c-neutro;
+}
+
+//- *** Scope class ***
+.ag-s-chip {
+  .ag-chip__label {
+    line-height: 1.5;
+    font-family: $f-primary;
+    font-weight: $f-bold;
+  }
+
+  .ag-chip__avatar_neutro {
+    border: 1px solid $c-neutro;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ag-chip__avatar {
+    @include px-rem(min-width, 36px);
+    @include px-rem(max-width, 36px);
+    @include px-rem(height, 36px);
+    @include px-rem(font-size, 18px);
+  }
+}
+
+/**
+ * Class: ag-chip_set
+ * @description  grupo de avatars
+ * @molecule b11_chip Group
+ * @section User
+ * @markup
+ *    <a href="#">
+ *       <ul class="ag-chip ag-chip_set i-after-plus">
+ *         <li class="ag-chip__avatar ag-chip__avatar_set">
+ *           <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-5.jpg" alt="Lorena María de la Paz">
+ *         </li>
+ *         <li class="ag-chip__avatar ag-chip__avatar_set">
+ *           <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar.jpg" alt="Lorena María de la Paz">
+ *         </li>
+ *         <li class="ag-chip__avatar ag-chip__avatar_set">
+ *           <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-1.jpg" alt="Lorena María de la Paz">
+ *         </li>
+ *         <li class="ag-chip__avatar ag-chip__avatar_set">
+ *           <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-2.jpg" alt="Lorena María de la Paz">
+ *         </li>
+ *         <li class="ag-chip__avatar ag-chip__avatar_set">
+ *           <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-3.jpg" alt="Lorena María de la Paz">
+ *         </li>
+ *         <li class="ag-chip__avatar ag-chip__avatar_set ">
+ *           aa
+ *         </li>
+ *       </ul>
+ *    </a>
+ */
+.ag-chip_set {
+  &:after {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    @include px-rem(min-width, 24px);
+    @include px-rem(max-width, 24px);
+    @include px-rem(height, 24px);
+    @include px-rem(margin-left, -5px);
+    @include font-rem(9px);
+    border: 2px solid $c-neutro;
+    border-radius: 50%;
+    background-color: $c-primary-disabled;
+  }
+}
+
+.ag-chip_set {
+  &:not(:first-child) {
+    @include px-rem(margin-left, -5px);
+  }
+}
+
+.ag-chip__avatar_set {
+  @include px-rem(min-width, 26px);
+  @include px-rem(max-width, 26px);
+  @include px-rem(height, 26px);
+  @include px-rem(margin-right, 0);
+  text-indent: -1px;
+  color: $c-on-text;
+  @include px-rem(font-size, 10px);
+  border: 1px solid $c-neutro;
+  background-color: $c-primary-disabled;
+  transition: transform .4s;
+  &:not(:first-child){
+    @include px-rem(margin-left, -5px);
+  }
+  &:hover {
+    color: $c-neutro;
+    border-color: $c-primary-hover;
+    background-color: $c-primary-hover;
+    transform: scale(1.1);
+  }
+}
+
+/**
+ * Class: ag-chip__avatar_box
+ * @description  Chip avatar perfil, componente relacionado b05_box
+ * @molecule b11_chip box
+ * @section User
+ * @markup
+ *    <figure class="ag-chip__avatar ag-chip__avatar_box">
+ *      <img class="ag-chip__img"src="../biblored/img/demo/avatar-5.jpg"alt="Usuario Full nane">
+ *    </figure>
+ */
+@include media-query(medium) {
+  .ag-chip__avatar_box {
+    @include px-rem(margin-right, 28px);
+  }
+}
+

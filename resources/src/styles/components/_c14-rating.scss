@@ -1,0 +1,203 @@
+/*------------------------------------*\
+  ID: C14
+  Rating
+  Description: Modal transversal
+\*------------------------------------*/
+/**
+ * Class: .ag-rating
+ * @description    Componente de ratings (sistema de votación).
+ * @molecule c14_rating
+ * @section  Ratings
+ * @markup
+ *   <ul class="ag-c-rating">
+ *     <li class="ag-c-rating__item">
+ *       <img class="ag-c-rating__img" src="../biblored/img/rating/rating-1.svg" alt="{Rating 1 }">
+ *     </li>
+ *   </ul>
+ */
+
+.ag-c-rating {
+  list-style: none;
+}
+
+/**
+ * Class: .ag-rating
+ * @description    Componente con acción de ratings (sistema de votación)
+ * @molecule Rating Action
+ * @section Ratings
+ * @modifiers
+ *   .ag-rating_inline Sistema de votación con inputs radio
+ * @markup
+ *   <ul class="ag-c-rating ag-c-rating_inline">
+ *     <li class="ag-c-rating__action">
+ *       <input class="ag-c-rating__input" type="radio" id="rating-1" name="rating">
+ *       <label class="ag-c-rating__label" for="rating-1">
+ *         Chichipato
+ *       </label>
+ *     </li>
+ *     <li class="ag-c-rating__action">
+ *       <input class="ag-c-rating__input" type="radio" id="rating-2" name="rating">
+ *       <label class="ag-c-rating__label" for="rating-2">
+ *         Charro
+ *       </label>
+ *     </li>
+ *     <li class="ag-c-rating__action">
+ *       <input class="ag-c-rating__input" type="radio" id="rating-3" name="rating">
+ *       <label class="ag-c-rating__label" for="rating-3">
+ *         Chimbita
+ *       </label>
+ *     </li>
+ *     <li class="ag-c-rating__action">
+ *       <input class="ag-c-rating__input" type="radio" id="rating-4" name="rating">
+ *       <label class="ag-c-rating__label" for="rating-4">
+ *         Chévere
+ *       </label>
+ *     </li>
+ *     <li class="ag-c-rating__action">
+ *       <input class="ag-c-rating__input" type="radio" id="rating-5" name="rating">
+ *       <label class="ag-c-rating__label" for="rating-5">
+ *         Del chiras
+ *       </label>
+ *     </li>
+ *   </ul>
+ */
+
+.ag-c-rating_inline {
+  @include inline-flex;
+}
+
+.ag-c-rating__item {
+  @include px-rem(max-width, 178px);
+}
+
+.ag-c-rating__action {
+  position: relative;
+  @include flex(1 0 auto);
+  text-align: center;
+  overflow: hidden;
+}
+
+ /**
+ * .ag-c-rating-box | contenedor max-width, 492px, text aling center, margin bottom 20px
+ * @molecule Contenedor botones.
+ * @section Ratings
+ * @markup
+ *   <ul class="ag-c-rating">
+ *     <li class="ag-c-rating__item">
+ *       <img class="ag-c-rating__img" src="../biblored/img/rating/rating-1.svg" alt="{Rating 1 }">
+ *     </li>
+ *   </ul>
+ */
+.ag-c-rating-box {
+  width: 90%;
+  @include px-rem(max-width, 492px);
+  margin: 0 auto 0 0;
+  // text-align: center;
+  @include px-rem(margin-bottom, 62px);
+}
+
+.ag-is-ratingAction {
+  .ag-c-rating__label {
+    &:before {
+      transform: scale(1);
+      background-image: url('/static/biblored/img/ratings/active.svg');
+    }
+  }
+}
+
+.ag-c-rating__label,
+.ag-c-rating__input,
+.ag-c-rating__action input[type="radio"] {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+
+.ag-c-rating__label {
+  &:before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 36px;
+    margin: 0 auto;
+    background-image: url('/static/biblored/img/ratings/inactive.svg');
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: left top;
+    background-size: auto;
+    transition: all .5s ease-in-out;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include flexbox;
+    width: 100%;
+    height: 40px;
+    transition: height .5s ease-in-out;
+    transform: translateY(38px);
+    background-color: $c-neutro;
+  }
+}
+
+
+.ag-c-rating__action {
+  input[type="radio"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    &:hover+.ag-c-rating__label {
+      color: $c-on-text-ico;
+      transition: all .5s ease-in-out;
+
+      &:before {
+        opacity: .5;
+        transform: scale(1);
+        background-image: url('/static/biblored/img/ratings/active.svg');
+      }
+
+      &:after {
+        height: 0;
+      }
+    }
+
+    &:checked+.ag-c-rating__label {
+      &:before {
+        opacity: 1;
+        transform: scale(1);
+        background-image: url('/static/biblored/img/ratings/active.svg');
+      }
+
+      &:after {
+        font-weight: $f-medium;
+        height: 0;
+      }
+    }
+
+    &:checked+.ag-c-rating__label {
+      &:focus {
+        transform: scale(1.5);
+      }
+    }
+  }
+}
+
+.ag-c-rating__img {
+  display: block;
+  width: 100%;
+}
+
+.ag-c-rating__lead {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  font-weight: $f-bold;
+}

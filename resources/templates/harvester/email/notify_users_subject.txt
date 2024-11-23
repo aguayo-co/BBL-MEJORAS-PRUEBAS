@@ -1,0 +1,1 @@
+subject {{ the_sharing_user.full_name }}

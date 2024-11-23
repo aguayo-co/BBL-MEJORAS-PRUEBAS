@@ -1,0 +1,37 @@
+{% load i18n wagtailimages_tags static %}
+
+<li class="swiper-slide ag-c-slider-gallery__slide" tabindex="-1">
+  <div class="ag-c-slider-gallery__item">
+
+    {# Exposition card #}
+    {% include 'biblored/includes/collections/exposition_card.html' with exposition_card=exposition %}
+
+    <div class="ag-c-slider-gallery__controls">
+      <button
+        class="
+          ag-c-slider-gallery__control 
+          ag-c-slider__control_prev
+          i-arrow-left
+          ag-has-slider-gallery__control_prev
+        "
+        type="button"
+        tabindex="-1"
+      >
+        <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+      </button>
+      <button
+        class="
+          ag-c-slider-gallery__control
+          ag-c-slider__control_next
+          i-arrow-right
+          ag-has-slider-gallery__control_next
+        "
+        type="button"
+        tabindex="-1"
+      >
+        <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+      </button>
+    </div>
+    
+  </div>
+</li>

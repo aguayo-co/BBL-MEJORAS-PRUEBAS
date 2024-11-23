@@ -1,0 +1,10 @@
+{% if self.type == "text" %}
+  <div class="ag-c-avatars-list__group-text">
+    {% include "expositions/avatar_info.html" %}
+  </div>
+  {% else %}
+  <div class="ag-c-avatars-list__avatar">
+    {% include "expositions/avatar_image.html" %}
+    {% include "expositions/avatar_info.html" %}
+  </div>
+{% endif %}

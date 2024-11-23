@@ -1,0 +1,66 @@
+{% extends 'custom_user/profile_detail_base.html' %}
+{% load webpack_loader %}
+{% load i18n %}
+
+
+{% spaceless %}  
+
+  {% block profile_content %}
+    <header class="ag-o-header" id="content" tabindex="0">
+
+      {# header perfil público #}
+      <h2 class="ag-o-heading" tabindex="0">
+        {% trans "Colecciones" %}
+      </h2>
+      <p class="ag-o-subheading" tabindex="0">
+        {% trans "Las colecciones son agrupaciones de contenido externo o creado por los usuarios disponible en la Biblioteca Digital de Bogotá." %}
+      </p>
+
+    </header>
+
+    {# Listado colecciones individuales #}
+    {% if not request.GET.collections or request.GET.collections == "individualcollections" %}
+
+      <div class="ag-menu-bar">
+        <span class="ag-menu-bar__item ag-menu-bar__item_active">{% trans "Colecciones de usuario" %}</span>
+        <a
+          class="ag-menu-bar__item"
+          href="?{% url_params 'collections' 'collaborativecollections' 'page' None %}"
+          title="{% trans 'Colecciones colaborativas de' %} {{ profile.user.full_name }}"
+        >
+          {% trans 'Colecciones colaborativas' %}
+        </a>
+      </div>
+
+      {% include 'custom_user/user_profile_collections_list.html' with collections=individualcollections collectionstr="individualcollections" %}
+
+    {% endif %}
+
+    {# Listado colecciones colaborativas #}
+    {% if request.GET.collections == "collaborativecollections" %}
+
+      <div class="ag-menu-bar">
+        <a
+          class="ag-menu-bar__item"
+          href="?{% url_params 'collections' 'individualcollections' 'page' None %}"
+          title="{% trans 'Colecciones de' %} {{ profile.user.full_name }}"
+        >
+          {% trans 'Colecciones de usuario' %}
+        </a>
+        <span class="ag-menu-bar__item ag-menu-bar__item_active">{% trans "Colecciones colaborativas" %}</span>
+      </div>
+
+      {% include 'custom_user/user_profile_collections_list.html' with collections=collaborativecollections collectionstr="collaborativecollections" %}
+
+    {% endif %}
+
+  {% endblock %}
+
+  {% block js %}
+    {{ block.super }}
+      {% render_bundle 'collection_groups_card_component_form' 'js' %}
+      {% render_bundle 'collections_add_to_groups_api' 'js' %}
+      {% render_bundle 'collections_group_favorites_api' 'js' %}
+  {% endblock %}
+
+{% endspaceless %}

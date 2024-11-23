@@ -1,0 +1,58 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C24 Menu Gallery
+  Description: only classes that has been affected with primary's theme color
+  Purple=>#442686 Variable : $c-primary-hover
+\*------------------------------------*/
+.ag-c-menu-gallery {
+
+  .ag-c-menu-gallery__link {
+    &:hover {
+      background-color: $c-primary-hover;
+      box-shadow: inset 0px 4px 4px #30156A;
+    }
+  }
+
+  .ag-c-menu-gallery__caption {
+    &::after {
+      color: $c-primary-hover;
+    }
+  }
+}
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+
+  .ag-c-menu-gallery {
+    .ag-c-menu-gallery__link {
+      &:hover {
+        background-color: transparent;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+
+        .ag-c-menu-gallery__btn {
+          border: 1px solid $c-primary-hover;
+          color: $c-primary-hover;
+        }
+
+        .ag-c-menu-gallery__mask {
+          &:after {
+            transition: all 500ms linear;
+            background-color: rgba($c-primary-hover, .7);
+          }
+        }
+
+      }
+    }
+
+    .ag-c-menu-gallery__wink-text {
+      &:before {
+        background-color: $c-primary-hover;
+      }
+    }
+
+    .ag-c-menu-gallery__btn {
+      background-color: $c-primary-hover;
+      border: 1px solid $c-primary-hover;
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {{ page.title }} {% endblock %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %}{% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%}{% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %} 
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" title="{% trans 'Ir a ' %}{{ page.get_parent.get_parent.title }}" href="{% pageurl page.get_parent.get_parent.specific %}">{{ page.get_parent.get_parent.title }}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" title="{% trans 'Ir a ' %}{{ page.get_parent.title }}" href="{% pageurl page.get_parent.specific %}">{{ page.get_parent.title }}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {{ page.title }}
+  </dd>
+{% endblock %}
+
+
+{% block content %}
+
+  {% spaceless %}
+  
+    <div class="ag-l-page-top">
+      <div class="ag-u-space-bottom-90{% if self.sidebar %} ag-l-out-flex{% endif %}">
+
+        <main {% if self.sidebar %}class="ag-l-out-flex_70"{% endif %}>
+
+          <header class="ag-o-main-header ag-o-main-header_gap24 ag-o-main-header_w100" id="maincontent" tabindex="0">
+            <p class="ag-o-main-header__kicker">{% trans "Tema: " %} <a class="ag-o-undeline ag-o-undeline_primary" href="{% pageurl page.get_parent.specific %}">{{ page.get_parent.title }}</a></p>
+            <h2 class="ag-o-heading" tabindex="0">{{ self.title }}</h2>
+            <p class="ag-o-subheading ag-o-subheading_w100" tabindex="0">{{ self.description }}</p>
+            <figure class="ag-o-main-header__figure">
+              {% image self.image max-708x409 class="ag-o-main-header__img" %}
+            </figure>
+          </header>
+
+          {# Page components #}
+          {% for block in self.content %}
+
+            {% if block.block_type == 'image_gallery' %}
+              <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                  {% include "expositions/exposition_image_gallery.html" with imagegallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+              </section>
+            {% elif  block.block_type == 'video_gallery' %}
+              <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                  {% include "expositions/exposition_video_gallery.html" with videogallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+              </section>
+            {% else %}
+              {% include_block block with block_id=block.id %}
+            {% endif %}
+            
+          {% endfor %}
+
+        </main>
+
+        {# navigation aside #}
+        {% if self.sidebar %}
+          <aside class="ag-c-nav-aside ag-l-out-flex_30">
+
+            <button class="ag-list-button__button ag-list-button__border ag-list-button_center-mb ag-list-button__button_padding0 i-share" type="button" data-modal="share_social_detail_0">{% trans "Compartir este contenido" %}</button>
+            
+            <nav class="ag-c-nav-aside__navigation">
+
+              {# link temas #}
+              <div class="ag-c-nav-aside__item">
+                <h4 class="ag-c-nav-aside__title">{% trans "Temas" %}</h4>
+                <div class="ag-c-nav-aside__wrap">
+                  
+                  {% for related_themes in self.sidebar.related_themes.all %}
+                    <a 
+                      href="{% pageurl related_themes.theme.specific %}" 
+                      class="ag-o-link" 
+                      alt="{{ related_themes.theme.title }}">
+
+                      {{ related_themes.theme.title }}
+
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+
+              {# link questions #}
+              <div class="ag-c-nav-aside__item">
+                <h4 class="ag-c-nav-aside__title">{% trans "Preguntas relacionadas" %}</h4>
+                <div class="ag-c-nav-aside__wrap">
+                  {% for related_questions in self.sidebar.related_question.all %}
+                    <a 
+                      href="{% pageurl related_questions.question.specific %}" 
+                      class="ag-o-link ag-o-link_hover-purple"
+                      title="{{ related_questions.question.title }}">
+
+                      {{ related_questions.question.title }}
+
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+
+            </nav>
+
+          </aside>
+        {% endif %}
+
+      </div>
+    </div>
+
+    {# components prefooter #}
+    {% if self.footer_content %}
+      <div class="ag-l-page">
+        {% for block in self.footer_content %}
+
+          {% if block.block_type == 'image_gallery' %}
+            <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                {% include "expositions/exposition_image_gallery.html" with imagegallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+            </section>
+          {% elif  block.block_type == 'video_gallery' %}
+            <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                {% include "expositions/exposition_video_gallery.html" with videogallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+            </section>
+          {% else %}
+            {% include_block block with block_id=block.id %}
+          {% endif %}
+
+        {% endfor %}
+      </div>
+    {% endif %}
+
+  {% endspaceless %}
+
+  {% include "biblored/includes/modals/modal_share_social.html" with object=self.specific title=page.title card="detail" counter=0 classJsCopyUrl="ag-js-copyUri" only %}
+    
+{% endblock %}

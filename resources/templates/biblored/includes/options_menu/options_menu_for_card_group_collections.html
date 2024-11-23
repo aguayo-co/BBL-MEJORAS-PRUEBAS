@@ -1,0 +1,22 @@
+{% extends "biblored/includes/options_menu/options_base.html" %}
+{% load i18n %}
+
+{% block options_item_list %}
+  <li class="ag-list-button__item">
+    <button class="ag-list-button__button i-share"
+      type="button"
+      data-modal="share_social_{{ card }}_{{ counter }}">
+      {% trans 'Compartir' %}
+    </button>
+  </li>
+  {% if user == object.owner %}
+  <li class="ag-list-button__item">
+    <button class="ag-list-button__button i-delete ag-js-deleteCollectionFromCollectionsGroupPk"
+      type="button"
+      value="{{ collection.pk }}-{{ collection|get_meta:"model_name" }}-{{ collection|get_meta:"app_label" }}"
+      data-modal="delete_collection_from_collections_group">
+      {% trans 'Eliminar de este "Grupo de Colecciones"' %}
+    </button>
+  </li>
+  {% endif %}
+{% endblock %}

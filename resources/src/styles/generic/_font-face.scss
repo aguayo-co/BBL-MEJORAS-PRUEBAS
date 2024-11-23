@@ -1,0 +1,1087 @@
+/*------------------------------------*\
+    #font-family Opensans Regular | Roboto Regular, Medium and Bold
+\*------------------------------------*/
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,700i|Roboto:ital,wght@0,400;0,500;0,700;1,300&display=swap");
+
+@font-face {
+  font-family: "#{$ico-font-family}";
+  src: url("#{$font-path}/#{$ico-font-family}.eot?");
+  src: url("#{$font-path}/#{$ico-font-family}.eot?#iefix")
+      format("embedded-opentype"),
+    url("#{$font-path}/#{$ico-font-family}.ttf?") format("truetype"),
+    url("#{$font-path}/#{$ico-font-family}.woff?") format("woff"),
+    url("#{$font-path}/#{$ico-font-family}.svg?##{$ico-font-family}")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.i-,
+[class^="i-"],
+[class*=" i-"] {
+  &:before {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: "#{$ico-font-family}" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+.i-after-,
+[class^="i-after-"],
+[class*="i-after-"] {
+  &:after {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: "#{$ico-font-family}" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+// Variables icomoon v8.1 BD3
+/**
+ * @icon .i-arrow-up-thin
+ * @markup
+ *  <span class="i-arrow-up-thin"></span>
+ */
+.i-arrow-up-thin {
+  &:before {
+    content: $i-arrow-up-thin; 
+  }
+}
+
+// Variables icomoon v8.0 BD3
+/**
+ * @icon .i-compass
+ * @markup
+ *  <span class="i-compass"></span>
+ */
+.i-compass {
+  &:before {
+    content: $i-compass;
+  }
+}
+
+/**
+ * @icon .i-person-following
+ * @markup
+ *  <span class="i-person-following"></span>
+ */
+.i-person-following {
+  &:before {
+    content: $i-person-following;
+  }
+}
+
+/**
+ * @icon .i-digital
+ * @markup
+ *  <span class="i-digital"></span>
+ */
+.i-digital {
+  &:before {
+    content: $i-digital;
+  }
+}
+
+/**
+ * @icon .i-menu
+ * @markup
+ *  <span class="i-menu"></span>
+ */
+.i-menu {
+  &:before {
+    content: $i-menu;
+  }
+}
+
+.i-after-menu {
+  &:after {
+    content: $i-menu;
+  }
+}
+
+/**
+ * @icon .i-share
+ * @markup
+ *  <span class="i-share"></span>
+ */
+.i-share {
+  &:before {
+    content: $i-share;
+  }
+}
+
+/**
+ * @icon .i-copy
+ * @markup
+ *  <span class="i-copy"></span>
+ */
+.i-copy {
+  &:before {
+    content: $i-copy;
+  }
+}
+
+/**
+ * @icon .i-pen
+ * @markup
+ *  <span class="i-pen"></span>
+ */
+.i-pen {
+  &:before {
+    content: $i-pen;
+  }
+}
+
+
+
+// iconos v7.8
+/**
+ * @icon .i-arrow-alt-up
+ * @markup
+ *  <span class="i-arrow-alt-up"></span>
+ */
+.i-arrow-alt-up {
+  &::before {
+    content: $i-arrow-alt-up;
+  }
+}
+
+/**
+ * @icon .i-arrow-alt-right
+ * @markup
+ *  <span class="i-arrow-alt-right"></span>
+ */
+.i-arrow-alt-right {
+  &::before {
+    content: $i-arrow-alt-right;
+  }
+}
+
+/**
+ * @icon .i-arrow-alt-down
+ * @markup
+ *  <span class="i-arrow-alt-down"></span>
+ */
+.i-arrow-alt-down {
+  &::before {
+    content: $i-arrow-alt-down;
+  }
+}
+
+/**
+ * @icon .i-arrow-alt-left
+ * @markup
+ *  <span class="i-arrow-alt-left"></span>
+ */
+.i-arrow-alt-left {
+  &::before {
+    content: $i-arrow-alt-left;
+  }
+}
+
+/**
+ * @icon .i-rotate-left
+ * @markup
+ *  <span class="i-rotate-left"></span>
+ */
+.i-rotate-left {
+  &::before {
+    content: $i-rotate-left;
+  }
+}
+
+/**
+ * @icon .i-rotate-right
+ * @markup
+ *  <span class="i-rotate-right"></span>
+ */
+.i-rotate-right {
+  &::before {
+    content: $i-rotate-right;
+  }
+}
+
+// iconos v7.7
+/**
+ * @icon .i-square
+ * @markup
+ *  <span class="i-after-square"></span>
+ */
+.i-after-square {
+  &::after {
+    content: $i-square;
+  }
+}
+
+// iconos v7.6
+/**
+ * @icon .i-add_right
+ * @markup
+ *  <span class="i-add_right"></span>
+ */
+.i-add_right {
+  &:before {
+    content: $i-add_right;
+  }
+}
+
+/**
+* @icon .i-add_left
+* @markup
+*  <span class="i-add_left"></span>
+*/
+.i-add_left {
+  &:before {
+    content: $i-add_left;
+  }
+}
+
+/**
+ * @icon .i-zoom-out
+ * @markup
+ *  <span class="i-zoom-out"></span>
+ */
+.i-zoom-out {
+  &:before {
+    content: $i-zoom-out;
+  }
+}
+
+/**
+ * @icon .i-zoom-in
+ * @markup
+ *  <span class="i-zoom-in"></span>
+ */
+.i-zoom-in {
+  &:before {
+    content: $i-zoom-in;
+  }
+}
+
+// iconos v7.5
+/**
+ * @icon .i-travel
+ * @markup
+ *  <span class="i-travel"></span>
+ */
+.i-travel {
+  &:before {
+    content: $i-travel;
+  }
+}
+
+/**
+ * @icon .i-filter
+ * @markup
+ *  <span class="i-filter"></span>
+ */
+.i-filter {
+  &:before {
+    content: $i-filter;
+  }
+}
+
+/**
+ * @icon .i-contents-related
+ * @markup
+ *  <span class="i-contents-related"></span>
+ */
+.i-contents-related {
+  &:before {
+    content: $i-contents-related;
+  }
+}
+
+/**
+ * @icon .i-history
+ * @markup
+ *  <span class="i-history"></span>
+ */
+.i-history {
+  &:before {
+    content: $i-history;
+  }
+}
+
+/**
+ * @icon .i-location
+ * @markup
+ *  <span class="i-location"></span>
+ */
+.i-location {
+  &:before {
+    content: $i-location;
+  }
+}
+
+/**
+ * @icon .i-narrative
+ * @markup
+ *  <span class="i-narrative"></span>
+ */
+.i-narrative {
+  &:before {
+    content: $i-narrative;
+  }
+}
+
+/**
+ * @icon .i-pushpin
+ * @markup
+ *  <span class="i-pushpin"></span>
+ */
+.i-pushpin {
+  &:before {
+    content: $i-pushpin;
+  }
+}
+
+/**
+ * @icon .i-scroll-down
+ * @markup
+ *  <span class="i-scroll-down"></span>
+ */
+.i-scroll-down {
+  &:before {
+    content: $i-scroll-down;
+  }
+}
+
+/**
+ * @icon .i-story
+ * @markup
+ *  <span class="i-story"></span>
+ */
+.i-story {
+  &:before {
+    content: $i-story;
+  }
+}
+
+/**
+ * @icon .i-terms
+ * @markup
+ *  <span class="i-terms"></span>
+ */
+.i-terms {
+  &:before {
+    content: $i-terms;
+  }
+}
+
+// iconos v7.4
+/**
+ * @icon .i-delete
+ * @markup
+ *  <span class="i-delete"></span>
+ */
+.i-delete {
+  &:before {
+    content: $i-delete;
+  }
+}
+
+// iconos v7.3
+/**
+ * @icon .i-redirection
+ * @markup
+ *  <span class="i-redirection"></span>
+ */
+.i-redirection {
+  &:before {
+    content: $i-redirection;
+  }
+}
+
+.i-after-redirection {
+  &:after {
+    content: $i-redirection;
+  }
+}
+
+/**
+ * @icon .i-question
+ * @markup
+ *  <span class="i-question"></span>
+ */
+.i-question {
+  &:before {
+    content: $i-question;
+  }
+}
+
+.i-after-question {
+  &:after {
+    content: $i-question;
+  }
+}
+
+// iconos v7.2
+/**
+ * @icon .i-external-link
+ * @markup
+ *  <span class="i-external-link"></span>
+ */
+.i-external-link {
+  &:before {
+    content: $i-external-link;
+  }
+}
+
+.i-after-external-link {
+  &:after {
+    content: $i-external-link;
+  }
+}
+
+//iconos v7.1
+/**
+ * @icon .i-check-circle
+ * @markup
+ *  <span class="i-check-circle"></span>
+ */
+.i-check-circle {
+  &:before {
+    content: $i-check-circle;
+  }
+}
+
+//iconos v7.0
+/**
+ * @icon .i-brochure
+ * @markup
+ *  <span class="i-brochure"></span>
+ */
+.i-brochure {
+  &:before {
+    content: $i-brochure;
+  }
+}
+
+/**
+ * @icon .i-music-sheet
+ * @markup
+ *  <span class="i-music-sheet"></span>
+ */
+.i-music-sheet {
+  &:before {
+    content: $i-music-sheet;
+  }
+}
+
+/**
+ * @icon .i-texts
+ * @markup
+ *  <span class="i-texts"></span>
+ */
+.i-texts {
+  &:before {
+    content: $i-texts;
+  }
+}
+
+//iconos v6.0
+/**
+ * @icon .i-exclamation-mark
+ * @markup
+ *  <span class="i-exclamation-mark"></span>
+ */
+.i-exclamation-mark {
+  &:before {
+    content: $i-exclamation-mark;
+  }
+}
+
+//iconos v5.0
+/**
+ * @icon .i-quote
+ * @markup
+ *  <span class="i-quote"></span>
+ */
+.i-quote {
+  &:before {
+    content: $i-quote;
+  }
+}
+
+.i-after-quote {
+  &:after {
+    content: $i-quote;
+  }
+}
+
+//iconos v4.0
+/**
+ * @icon .i-link-facebook
+ * @markup
+ *  <span class="i-link-facebook"></span>
+ */
+.i-link-facebook {
+  &:before {
+    content: $i-link-facebook;
+  }
+}
+
+//iconos v4.0
+/**
+ * @icon .i-secure
+ * @markup
+ *  <span class="i-secure"></span>
+ */
+.i-secure {
+  &:before {
+    content: $i-secure;
+  }
+}
+
+.i-after-secure {
+  &:after {
+    content: $i-secure;
+  }
+}
+
+//iconos v4.0
+/**
+ * @icon .i-link-whatsapp
+ * @markup
+ *  <span class="i-link-whatsapp"></span>
+ */
+.i-link-whatsapp {
+  &:before {
+    content: $i-link-whatsapp;
+  }
+}
+
+//iconos v3.0
+/**
+ * @icon .i-plus
+ * @markup
+ *  <span class="i-plus"></span>
+ */
+.i-plus {
+  &:before {
+    content: $i-plus;
+  }
+}
+
+.i-after-plus {
+  &:after {
+    content: $i-plus;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-thesis
+ * @markup
+ *  <span class="i-thesis"></span>
+ */
+.i-thesis {
+  &:before {
+    content: $i-thesis;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-bulletin
+ * @markup
+ *  <span class="i-bulletin"></span>
+ */
+.i-bulletin {
+  &:before {
+    content: $i-bulletin;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-newspaper
+ * @markup
+ *  <span class="i-newspaper"></span>
+ */
+.i-newspaper {
+  &:before {
+    content: $i-newspaper;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-guide
+ * @markup
+ *  <span class="i-guide"></span>
+ */
+.i-guide {
+  &:before {
+    content: $i-guide;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-series
+ * @markup
+ *  <span class="i-series"></span>
+ */
+.i-series {
+  &:before {
+    content: $i-series;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-map
+ * @markup
+ *  <span class="i-map"></span>
+ */
+.i-map {
+  &:before {
+    content: $i-map;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-burguer
+ * @markup
+ *  <span class="i-burguer"></span>
+ */
+.i-burguer {
+  &:before {
+    content: $i-burguer;
+  }
+}
+
+//iconos v2.0
+/**
+ * @icon .i-sketch
+ * @markup
+ *  <span class="i-sketch"></span>
+ */
+.i-sketch {
+  &:before {
+    content: $i-sketch;
+  }
+}
+
+//iconos v1.0
+/**
+ * @icon .i-3d
+ * @markup
+ *  <span class="i-3d"></span>
+ */
+.i-3d {
+  &:before {
+    content: $i-3d;
+  }
+}
+
+/**
+ * @icon .i-arrow-down
+ * @markup
+ *  <span class="i-arrow-down"></span>
+ */
+.i-arrow-down {
+  &:before {
+    content: $i-arrow-down;
+  }
+}
+
+.i-after-arrow-down {
+  &:after {
+    content: $i-arrow-down;
+  }
+}
+
+/**
+ * @icon .i-arrow-left
+ * @markup
+ *  <span class="i-arrow-left"></span>
+ */
+.i-arrow-left {
+  &:before {
+    content: $i-arrow-left;
+  }
+}
+
+.i-after-arrow-left {
+  &:after {
+    content: $i-arrow-left;
+  }
+}
+
+/**
+ * @icon .i-arrow-right
+ * @markup
+ *  <span class="i-arrow-right"></span>
+ */
+.i-arrow-right {
+  &:before {
+    content: $i-arrow-right;
+  }
+}
+
+/**
+ * @icon .i-arrow-up
+ * @markup
+ *  <span class="i-arrow-up"></span>
+ */
+.i-arrow-up {
+  &:before {
+    content: $i-arrow-up;
+  }
+}
+
+.i-after-arrow-up {
+  &:after {
+    content: $i-arrow-up;
+  }
+}
+
+/**
+ * @icon .i-audio
+ * @markup
+ *  <span class="i-audio"></span>
+ */
+.i-audio {
+  &:before {
+    content: $i-audio;
+  }
+}
+
+/**
+ * @icon .i-bdb
+ * @markup
+ *  <span class="i-bdb"></span>
+ */
+.i-bdb {
+  &:before {
+    content: $i-bdb;
+  }
+}
+
+/**
+ * @icon .i-biblored
+ * @markup
+ *  <span class="i-biblored"></span>
+ */
+.i-biblored {
+  &:before {
+    content: $i-biblored;
+  }
+}
+
+/**
+ * @icon .i-book
+ * @markup
+ *  <span class="i-book"></span>
+ */
+.i-book {
+  &:before {
+    content: $i-book;
+  }
+}
+
+/**
+ * @icon .i-check
+ * @markup
+ *  <span class="i-check"></span>
+ */
+.i-check {
+  &:before {
+    content: $i-check;
+  }
+}
+
+/**
+ * @icon .i-close
+ * @markup
+ *  <span class="i-close"></span>
+ */
+.i-close {
+  &:before {
+    content: $i-close;
+  }
+}
+
+/**
+ * @icon .i-collaborate
+ * @markup
+ *  <span class="i-collaborate"></span>
+ */
+.i-collaborate {
+  &:before {
+    content: $i-collaborate;
+  }
+}
+
+/**
+ * @icon .i-collective
+ * @markup
+ *  <span class="i-collective"></span>
+ */
+.i-collective {
+  &:before {
+    content: $i-collective;
+  }
+}
+
+/**
+ * @icon .i-consult-contents
+ * @markup
+ *  <span class="i-consult-contents"></span>
+ */
+.i-consult-contents {
+  &:before {
+    content: $i-consult-contents;
+  }
+}
+
+/**
+ * @icon .i-create
+ * @markup
+ *  <span class="i-create"></span>
+ */
+.i-create {
+  &:before {
+    content: $i-create;
+  }
+}
+
+/**
+ * @icon .i-data
+ * @markup
+ *  <span class="i-data"></span>
+ */
+.i-data {
+  &:before {
+    content: $i-data;
+  }
+}
+
+/**
+ * @icon .i-article
+ * @markup
+ *  <span class="i-article"></span>
+ */
+.i-article {
+  &:before {
+    content: $i-article;
+  }
+}
+
+/**
+ * @icon .i-exclusive
+ * @markup
+ *  <span class="i-exclusive"></span>
+ */
+.i-exclusive {
+  &:before {
+    content: $i-exclusive;
+  }
+}
+
+/**
+ * @icon .i-facebook
+ * @markup
+ *  <span class="i-facebook"></span>
+ */
+.i-facebook {
+  &:before {
+    content: $i-facebook;
+  }
+}
+
+/**
+ * @icon .i-instagram
+ * @markup
+ *  <span class="i-instagram"></span>
+ */
+.i-instagram {
+  &:before {
+    content: $i-instagram;
+  }
+}
+
+/**
+ * @icon .i-interactive
+ * @markup
+ *  <span class="i-interactive"></span>
+ */
+.i-interactive {
+  &:before {
+    content: $i-interactive;
+  }
+}
+
+/**
+ * @icon .i-like
+ * @markup
+ *  <span class="i-like"></span>
+ */
+.i-like {
+  &:before {
+    content: $i-like;
+  }
+}
+
+/**
+ * @icon .i-megaphone
+ * @markup
+ *  <span class="i-megaphone"></span>
+ */
+.i-megaphone {
+  &:before {
+    content: $i-megaphone;
+  }
+}
+
+/**
+ * @icon .i-not-available
+ * @markup
+ *  <span class="i-not-available"></span>
+ */
+.i-not-available {
+  &:before {
+    content: $i-not-available;
+  }
+}
+
+/**
+ * @icon .i-notify
+ * @markup
+ *  <span class="i-notify"></span>
+ */
+.i-notify {
+  &:before {
+    content: $i-notify;
+  }
+}
+
+/**
+ * @icon .i-personal
+ * @markup
+ *  <span class="i-personal"></span>
+ */
+.i-personal {
+  &:before {
+    content: $i-personal;
+  }
+}
+
+/**
+ * @icon .i-picture
+ * @markup
+ *  <span class="i-picture"></span>
+ */
+.i-picture {
+  &:before {
+    content: $i-picture;
+  }
+}
+
+/**
+ * @icon .i-objects
+ * @markup
+ *  <span class="i-objects"></span>
+ */
+.i-objects {
+  &:before {
+    content: $i-objects;
+  }
+}
+
+/**
+ * @icon .i-search
+ * @markup
+ *  <span class="i-search"></span>
+ */
+.i-search {
+  &:before {
+    content: $i-search;
+  }
+}
+
+/**
+ * @icon .i-software
+ * @markup
+ *  <span class="i-software"></span>
+ */
+.i-software {
+  &:before {
+    content: $i-software;
+  }
+}
+
+/**
+ * @icon .i-star
+ * @markup
+ *  <span class="i-star"></span>
+ */
+.i-star {
+  &:before {
+    content: $i-star;
+  }
+}
+
+/**
+ * @icon .i-twitter
+ * @markup
+ *  <span class="i-twitter"></span>
+ */
+.i-twitter {
+  &:before {
+    content: $i-twitter;
+  }
+}
+
+/**
+ * @icon .i-user
+ * @markup
+ *  <span class="i-user"></span>
+ */
+.i-user {
+  &:before {
+    content: $i-user;
+  }
+}
+
+/**
+ * @icon .i-video
+ * @markup
+ *  <span class="i-video"></span>
+ */
+.i-video {
+  &:before {
+    content: $i-video;
+  }
+}
+
+/**
+ * @icon .i-youtube
+ * @markup
+ *  <span class="i-youtube"></span>
+ */
+.i-youtube {
+  &:before {
+    content: $i-youtube;
+  }
+}

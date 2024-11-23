@@ -1,0 +1,23 @@
+{% load i18n static %}
+
+<header class="ag-l-inner-inside ag-o-header-wink">
+  <div class="ag-o-header-wink__inner">
+    <h2 class="ag-o-header-wink__title ag-o-subheadwink">{{ videogallery.name }}</h2>
+    <p class="ag-o-header-wink__lead">{{ videogallery.description }}</p>
+  </div>
+</header>
+
+<div class="swiper-container ag-c-slider-grid ag-js-videoSliderGrid" data-id="{{ block_counter }}">
+  <ul class="swiper-wrapper  ag-c-slider-grid__frame">
+    {% for videogallery_item in videogallery.videos %}
+      <li class="swiper-slide ag-c-slider-grid__item ag-has-slider-grid__item  ag-js-videoSlider ag-js-openVideoGalleryModal" data-item-gallery-index="{{ forloop.counter0 }}" data-modal="video_gallery-{{ block_counter }}">
+        {{ videogallery_item.value.html }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div id="page_video_swiper_pagination-{{ block_counter }}" class="swiper-pagination ag-has-slider-grid__dots"></div>
+</div>
+
+
+{% include "biblored/includes/modals/modal_gallery.html" with modal=videogallery subpage_parent=page_parent block_counter=block_counter media_type="Videos" media="video_gallery-" media_slider="ag-js-videoSliderModal" control_slider="modal_video" only%}

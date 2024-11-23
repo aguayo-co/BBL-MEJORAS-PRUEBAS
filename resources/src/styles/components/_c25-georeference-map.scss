@@ -1,0 +1,13 @@
+/*------------------------------------*\
+  Bloque c25_georeference-map
+  Description: Mapa que ubica diferentes hitos con puntos de localización
+  Type: Interactive
+\*------------------------------------*/
+
+.ag-c-map__wrap {
+  @include px-rem(height, 618px);
+}
+
+.ag-c-map {
+  z-index: 1;
+}

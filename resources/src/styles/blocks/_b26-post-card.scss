@@ -1,0 +1,26 @@
+/*------------------------------------*\
+  ID: B26
+  Post card
+  Description: Image with text
+\*------------------------------------*/
+
+.ag-post-card {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ag-post-card_wrap {
+  @include px-rem(max-width, 430px);
+}
+
+.ag-post-card__image {
+  display: block;
+  width: 100%;
+  @include px-rem(max-width, 150px);
+  @include px-rem(margin, 0 auto 24px auto);
+}
+
+.ag-post-card__caption {
+  text-align: center;
+}

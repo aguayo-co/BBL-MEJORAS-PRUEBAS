@@ -1,0 +1,15 @@
+//*------------------------------------*\
+// Variables Path rutas a los assets
+//*------------------------------------*/
+/**
+ * Variable ruta imágenes CSS Background-image | use: url(# {$img-path}/card-shadow.svg)
+ * @nuclide Root
+ * @section Variables Background-image > Config
+ */
+$img-path: "../img" !default;
+/**
+ * Variable ruta a la carpeta de fuentes
+ * @nuclide Root
+ * @section Variables Typo > Config
+ */
+$font-path: "../fonts" !default;

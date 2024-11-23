@@ -1,0 +1,29 @@
+.c-landscape-card,
+.c-landscape-card__body {
+  @include flexbox;
+  @include flex-direction(column);
+}
+.c-landscape-card {
+  @include px-rem(row-gap, 16px);
+}
+.c-landscape-card__link {
+  border: 1px solid $c-on-border;
+  transition: all 0.2s ease-in-out;
+
+  &:hover,
+  &:active {
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  
+  .c-landscape-card__cta {
+    color: $c-on-hover;
+  }
+}
+}
+.c-landscape-card__body {
+  @include px-rem(row-gap, 8px);
+  @include px-rem(padding, 24px);
+  background-color: $c-neutro;
+}
+.c-landscape-card__cta {
+  text-decoration: none;
+}

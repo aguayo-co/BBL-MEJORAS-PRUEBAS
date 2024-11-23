@@ -1,0 +1,40 @@
+{% load i18n static %}
+{% load builtins %}
+
+<dialog class="ag-c-modal ag-c-modal_cover ag-js-modal" data-modal="show_select_image" id="wai-modal-help-operator"
+  tabindex="0">
+  <article class="ag-c-modal__box ag-c-modal__scroll">
+    <div class="ag-c-modal__content ag-c-modal__content_740 ag-js-modalContent" tabindex="1">
+      <div>
+        {# Block header #}
+        <header class="ag-o-header">
+          <h3 
+            class="ag-o-heading ag-u-margin-bottom" 
+            tabindex="2">
+            {% block title_header_select_image %}{% endblock title_header_select_image %}
+          </h3>
+          {% block description_header_select_image %}{% endblock description_header_select_image %}
+        </header>
+        {# Block menu tabs #}
+        <div class="ag-menu-bar ag-menu-bar_border-primary">
+          {% block menu_tabs_select_image %}{% endblock menu_tabs_select_image %}
+        </div>
+        {# Block content menu tabs #}
+        <div class="ag-menu-bar__content">
+          {% block content_tabs_select_image %}{% endblock content_tabs_select_image %}
+        </div>
+      </div>
+    </div>
+    <button
+      class="ag-c-modal__tooltip-btn-24
+      ag-o-btn-tooltip
+      i-close
+      ag-js-modalClose"
+      type="button"
+    >
+      <span class="ag-o-btn-tooltip__tooltip">
+      Cerrar
+      </span>
+    </button>
+  </article>
+</dialog>

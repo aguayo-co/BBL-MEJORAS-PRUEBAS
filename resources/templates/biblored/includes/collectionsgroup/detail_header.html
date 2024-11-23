@@ -1,0 +1,15 @@
+{% load i18n static %}
+
+{% if user.is_authenticated %}
+  <div class="ag-banner__box">
+    {% if user == collections_group.owner %}
+      <a
+        class="ag-o-btn"
+        title=" {% trans 'Editar esta colección' %}"
+        href="{% url 'collectionsgroup_edit' collections_group.id %}"
+      >
+        {% trans "Editar" %}
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

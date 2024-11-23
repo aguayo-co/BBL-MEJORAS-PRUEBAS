@@ -1,0 +1,8 @@
+{% load i18n %}
+
+{# Filtro Tema #}
+<div class="ag-c-filter-band__search ag-js-searchFilter ag-js-choices" data-placeholder="{% trans 'Buscar por' %} {{ filters_form.subject.label }}" tabindex="0">
+  <span class="ag-is-visuallyhidden">{% trans "Buscar por" %} {{ filters_form.subject.label }}</span>
+  <label class="ag-c-filter-band__label" for="{{ filters_form.subject.id_for_label }}">{{ filters_form.subject.label }}</label>
+  {{ filters_form.subject }}
+</div>

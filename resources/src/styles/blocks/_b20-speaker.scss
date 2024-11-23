@@ -1,0 +1,30 @@
+/*----------------------------------------------*\
+  ID: b20_speaker
+  Text Block
+  Type: Information
+  Description: Block with text similar to Blockquote
+\*----------------------------------------------*/
+.ag-speaker {
+  position: relative;
+  @include px-rem(margin-top, 20px);
+
+  &:after {
+    content: "";
+    position: absolute;
+    @include px-rem(top, -20px);
+    left: 0;
+    display: block;
+    @include px-rem(width, 2px);
+    height: calc(100% + 20px);
+    background-color: $c-primary;
+    border-radius: 8px;
+  }
+
+}
+
+//- BP Min-with: 768px
+@include media-query(medium) {
+  .ag-speaker {
+    @include px-rem(padding-left, 20px);
+  }
+}

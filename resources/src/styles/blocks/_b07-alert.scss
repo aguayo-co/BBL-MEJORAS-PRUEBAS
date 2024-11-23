@@ -1,0 +1,292 @@
+/*----------------------------------------------*\
+  ID: B07
+  Alert
+  Type: Notification
+  Description: Mensajes para informar al usuario de un proceso realizado o su intento.
+\*----------------------------------------------*/
+
+
+/**
+ * Class: .ag-alert
+ * @description  mensajes para informar al usuario de un proceso realizado o su intento.
+ * @molecule b08_alert
+ * @modifiers
+ *  .ag-alert_success  Se usa para alertas de exito.
+ *  .ag-alert_error  Se usa para alertas de error.
+ * @section Notificaciones
+ * @markup
+ *    <div class="SG-component__preview">
+ *      <p class="ag-alert ag-alert_success i-check">
+ *        <span class="ag-alert__lead">Se ha guardado correctamente</span>
+ *        <button class="ag-alert__close i-close" type="button"></button>
+ *      </p>
+ *    </div>
+ *    <div class="SG-component__preview">
+ *      <p class="ag-alert ag-alert_error i-close">
+ *        <span class="ag-alert__lead">No se ha guardado correctamente</span>
+ *        <button class="ag-alert__close i-close" type="button"></button>
+ *      </p>
+ *    </div>
+ *    <div class="SG-component__preview">
+ *      <p class="ag-alert i-not-available">
+ *        <span class="ag-alert__lead">Este contenido no está disponible</span>
+ *      </p>
+ *    </div>
+*/
+
+.ag-alert {
+  @include inline-flex;
+  @include justify-content(space-between);
+  @include align-items(center);
+  max-width: 400px;
+  @include px-rem(padding, 12px);
+  line-height: 1.4;
+  color: $c-on-text;
+  @include font-rem(14px);
+  background-color: rgba($c-on-border, 0.3);
+  box-shadow: 0px 2px 2px 0px rgba($c-dark, 0.07);
+  &:before {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(width, 24px);
+    @include px-rem(min-width, 24px);
+    @include px-rem(max-width, 24px);
+    @include px-rem(height, 24px);
+    @include px-rem(margin-right, 14px);
+    line-height: 1;
+    @include font-rem(11px);
+    border: 3px solid;
+    border-radius: 50%;
+  }
+}
+
+.ag-o-messages_big {
+  text-align: center;
+
+  .ag-alert__lead {
+    &::before {
+      color: $c-primary-hover;
+      display: block;
+      @include font-rem(90px);
+      @include px-rem(margin-bottom, 30px);
+    }
+  }
+}
+
+.ag-alert_error {
+  background-color: $c-surface-bg-error;
+  color: $c-secondary;
+}
+
+.ag-alert_success {
+  background-color: $c-surface-bg;
+  color: $c-on-text-color;
+}
+
+.i-not-available {
+  &:before {
+    @include font-rem(30px);
+  }
+}
+
+.ag-alert__lead {
+  @include align-self(center);
+}
+
+.ag-alert__close {
+  @include align-self(center);
+  @include px-rem(margin-left, 14px);
+  @include px-rem(padding-top, 4px);
+  @include font-rem(10px);
+  @include px-rem(line-height, 28px);
+  opacity: .6;
+  color: inherit;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    @include px-rem(margin-left, 12px);
+    opacity: 1;
+    @include font-rem(12px);
+  }
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-alert {
+    @include px-rem(padding, 12px 20px);
+    @include font-rem(16px);
+  }
+}
+
+// Este breakpoint aplica los estilos al iframe | resources/templates/harvester/contentresourcecollections_form.html
+// en 600px
+@media screen and (min-width: 495px) {
+  .ag-o-messages_big {
+    .ag-alert__lead {
+      &::before {
+        @include font-rem(135px);
+        @include px-rem(margin-bottom, 40px);
+      }
+    }
+  }
+}
+// Alertas segun estructura de Django
+// DEFAULT_MESSAGE_LEVELS: https://docs.djangoproject.com/en/2.2/ref/contrib/messages/
+
+// Level Constant |  Tag
+// ----------------------------
+// ERROR          |   error
+// DEBUG          |   debug
+// INFO           |   info
+// SUCCESS        |   success
+// WARNING        |   warning
+
+.ag-o-messages {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ag-o-messages_form {
+  position: static;
+  @include px-rem(margin, 8px 0);
+  .ag-alert {
+    box-shadow: none;
+    @include font-rem(14px);
+
+    &:before {
+      @include px-rem(width, 20px);
+      @include px-rem(min-width, 20px);
+      @include px-rem(max-width, 20px);
+      @include px-rem(height, 20px);
+    }
+  }
+}
+
+.ag-o-messages__item {
+  list-style: none;
+  text-align: center;
+  background-color: $c-surface;
+  box-shadow: 0px 2px 2px 0px rgba($c-dark, 0.07);
+
+  .ag-alert {
+    width: 92%;
+    max-width: initial;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
+    color: inherit;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .ag-alert__lead {
+    @include flex(1 1);
+  }
+}
+
+.ag-o-messages__debug,
+.ag-o-messages__error {
+  .ag-o-messages__item {
+    background-color: $c-surface-bg-error;
+    color: $c-is-error;
+  }
+  .ag-alert {
+    &:before {
+      content: $i-close;
+    }
+  }
+}
+
+.ag-o-messages__success {
+  .ag-o-messages__item {
+    background-color: $c-surface-bg;
+    color: $c-on-text-color;
+  }
+  .ag-alert {
+    &:before {
+      content: $i-check;
+    }
+  }
+}
+
+.ag-o-messages__warning {
+  .ag-o-messages__item {
+    background-color: $c-on-tertiary-warm;
+    color: $c-on-tertiary-dark;
+  }
+  .ag-alert {
+    &:before {
+      content: $i-close;
+    }
+  }
+}
+
+.ag-o-messages__info {
+  .ag-alert {
+    &:before {
+      content: $i-not-available;
+      @include font-rem(30px);
+    }
+  }
+}
+
+.ag-is-messageClose {
+  display: none;
+}
+
+.ag-has-messageOpen {
+  animation:moveOpen 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  max-height: 100vh;
+}
+
+.ag-has-messageClose {
+  position: relative;
+  max-height: 0;
+  overflow: hidden;
+  // transform: translateX(-100%);
+  transition: all ease-out;
+  animation: moveOut 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+}
+
+.ag-o-messages_ico {
+  list-style: none;
+}
+
+.ag-o-messages__content {
+  text-align: center;
+}
+
+.ag-o-messages__ico-lead {
+  &:after {
+    content:'';
+    display: block;
+    @include px-rem(width, 60px);
+    @include px-rem(height, 60px);
+    background-image: url('/static/biblored/img/ratings/active.svg');
+    background-position: center center;
+    background-size: contain;
+    @include px-rem(margin-top, 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@keyframes moveOpen {
+  from {transform: translate(-100px, 0)}
+  50% {transform : translate(12px,0)}
+  to {transform  : translate(0, 0)}
+}
+
+@keyframes moveOut {
+  from {max-height: 100vh;}
+  to {max-height: 0;}
+}
+

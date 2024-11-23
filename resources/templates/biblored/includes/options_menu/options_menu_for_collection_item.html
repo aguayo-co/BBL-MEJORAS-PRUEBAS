@@ -1,0 +1,39 @@
+{% extends "biblored/includes/options_menu/options_base.html" %}
+{% load i18n %}
+
+{% block options_item_list %}
+
+  <li class="ag-list-button__item">
+    <button
+      data-modal="share_social_{{ card }}_{{ counter }}"
+      class="ag-list-button__button i-share"
+    >
+      {% trans 'Compartir' %}
+    </button>
+  </li>
+
+  {% if user.is_authenticated and collection|is_collection %}
+    <li class="ag-list-button__item">
+      <button
+        data-modal="search_select_collections_groups_{{ counter }}"
+        class="ag-list-button__button i-texts"
+      >
+        {% trans 'Añadir a un "Grupo de colecciones"' %}
+      </button>
+    </li>
+  {% endif %}
+
+  {# Button for add to modal of collection group #}
+  {% if user == collection.owner and collection|is_collection %}
+    <li class="ag-list-button__item">
+      <a
+        class="ag-list-button__button i-pen"
+        title="{% trans 'Editar esta colección' %}"
+        href="{% url 'collection_edit' collection.id %}"
+      >
+        {% trans 'Editar' %}
+      </a>
+    </li>
+  {% endif %}
+
+{% endblock %}

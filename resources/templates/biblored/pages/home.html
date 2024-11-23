@@ -1,0 +1,290 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+
+
+  <div class="ag-hero">
+    {#Imagen hero fondo #}
+    <figure class="ag-hero__background">
+      <img class="ag-hero__img-size" src="{{ header_image }}" alt="{% trans 'Acerca de' %} {{ title }}">
+    </figure>
+    <div class="ag-hero__caption">
+      <div class="ag-hero__deck">
+        {#Bloque: hero_brand #}
+        <div class="ag-hero__brand">
+          <div class="ag-hero__brand-content">
+            {#Logo Biblioteca digital Curvas #}
+            <img class="ag-hero__img" src="{{ logo_1 }}" alt="Biblioteca digital de Bogotá">
+          </div>
+          {# Texto dinámico #}
+          {% include "biblored/includes/banner/hero_home_text.html" with hero_text=header_text %}
+
+        </div>
+        {# Componente: c01_search #}
+        {% include "biblored/includes/banner/hero_home_search.html" with hero_search=search_form %}
+
+      </div>
+      {#Bloque: hero_brand #}
+      <div class="ag-hero__tagline">
+        {#Logo Leer es volar y alcaldía en curvas #}
+        <img class="ag-hero__img" src="{{ logo_2 }}" alt="Alcaldía Mayor de Bogotá">
+      </div>
+    </div>
+  </div>
+
+  <div class="ag-l-canvas" id="content" tabindex="0">
+    {% include "biblored/includes/blocks/skydrop.html" with user_authenticated=user.is_authenticated %}
+  </div>
+
+  {% if user.is_authenticated %}
+  <section class="ag-l-inner-wide">
+    <header class="ag-o-header">
+      <h2 class="ag-o-heading" tabindex="0">
+        ¡{% trans "Hola" %} {{ user.full_name }}!
+      </h2>
+      <p class="ag-o-subheading">
+        {% trans "Recomendados según tus últimas búsquedas" %}
+      </p>
+    </header>
+
+    {% if based_on_reads %}
+    <div class="ag-c-card-grid ag-c-card-grid_grid">
+      {% for resource in based_on_reads %}
+        {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user counter=forloop.counter0 only %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </section>
+  {% endif %}
+
+
+  {# Bloque de colecciones - Sets #}
+  <div class="ag-l-band-surface" id="maincontent" tabindex="0">
+    <section class="ag-l-inner-wide">
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Colecciones de instituciones" %}
+        </h2>
+        <p class="ag-o-subheading">
+          {% trans "Explora los contenidos que la Biblioteca Digital de Bogotá ha seleccionado para ti" %}
+        </p>
+      </header>
+
+      <div class="ag-c-card-grid" tabindex="0">
+        {% for collection in curated_collections %}
+          {% include "biblored/includes/collections/set_card.html" with collection=collection counter=forloop.counter0  only %}
+        {% endfor %}
+      </div>
+      <div class="ag-o-actions">
+        <a class="ag-o-btn ag-o-actions__item" title="{% trans 'Ver más colecciones' %}" href="{% url 'sets' %}">
+          {% trans "Ver más colecciones" %}
+        </a>
+      </div>
+    </section>
+  </div>
+
+  {# Bloque Tipos de contenido #}
+  <section class="ag-l-band-primary">
+    <div class="ag-l-inner-wide">
+
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading ag-o-heading_contrast" tabindex="0">
+          {% trans "Filtra tu búsqueda" %}
+        </h2>
+      </header>
+
+      <div class="ag-c-slider ag-c-slider_primary">
+
+        <div class="ag-c-slider__content swiper-container js-sliderFilter">
+          <ul class="ag-c-slider__list swiper-wrapper">
+            {% for content_type in content_types %}
+              {% include "biblored/includes/sliders/type_slider.html" with content_type=content_type %}
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div>
+          <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left ag-has-slider_primary_prev" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Anterior diapositiva" %}</span>
+          </button>
+          <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right ag-has-slider_primary_next" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Siguiente diapositiva" %}</span>
+          </button>
+        </div>
+
+        <div class="ag-c-slider__dots ag-has-slider_primary__dots"></div>
+      </div>
+
+    </div>
+  </section>
+  {# Bloque de Exposiciones - Entidades (Carrusel destacados Exposiciones EtapaII) #}
+  {% if expositions %}
+
+    <section class="ag-l-inner-wide">
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Exposiciones" %}
+        </h2>
+        <p class="ag-o-subheading">
+          {% trans "Visita contenidos comentados y seleccionados por expertos" %}
+        </p>
+      </header>
+
+      <div class="ag-c-slider-gallery">
+        <div class="swiper-container ag-c-slider-gallery__container ag-js-slider-gallery">
+          <ul class="swiper-wrapper ag-c-slider-gallery__wrapper">
+
+            {% for exposition in expositions %}
+              {% include "biblored/includes/sliders/expositions_gallery.html" with exposition=exposition only %}
+            {% endfor %}
+          </ul>
+          <div class="ag-c-slider__dots ag-has-slider-gallery__dots" tabindex="-1"></div>
+        </div>
+      </div>
+
+      <div class="ag-o-actions">
+        <a class="ag-o-btn ag-o-actions__item" title="{% trans 'Ver más contenidos' %}" href="{% url 'expositions:list' %}">
+          {% trans "Ver más exposiciones" %}
+        </a>
+      </div>
+    </section>
+
+  {% endif %}
+
+  {# Bloque de colecciones - usuario #}
+  <div class="ag-l-band-surface">
+    <section class="ag-l-inner-wide">
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Colecciones de usuario" %}
+        </h2>
+        <p class="ag-o-subheading">
+          {% trans "Conoce las colecciones que otros han creado y únete para colaborar" %}
+        </p>
+      </header>
+      <div class="ag-c-card-grid">
+        {% for collection in collections %}
+          {% include "biblored/includes/collections/collection_card.html" with counter=forloop.counter0 collection=collection favorites_group=collections_favorites_group color_icon="blue" user=user only %}
+          {% if request.user.is_authenticated %}
+            {% include "biblored/includes/collectionsgroup/search_select_list_page_component.html" with counter=forloop.counter0 formset=collections_formset collection=collection favorites_group=collections_favorites_group csrf_token=csrf_token only %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="ag-o-actions">
+        <a class="ag-o-btn ag-o-btn_outline ag-o-actions__item"
+        href="{% if user.is_authenticated %} {% url 'collection_add' %} {% else %} {% url 'login' %}?next={% url 'collection_add' %} {% endif %}"
+        title="{% if user.is_authenticated %} {% trans 'Ir a Crear colección' %} {% else %} {% trans 'Inicia sesión para crear colecciones' %} {% endif %}">
+          {% trans "Crear colección" %}
+        </a>
+
+        <a class="ag-o-btn ag-o-actions__item" title="{% trans 'Ver más colecciones' %}" href="{% url 'collections' %}">
+          {% trans "Ver más colecciones" %}
+        </a>
+      </div>
+    </section>
+  </div>
+
+  {# Bloque elemento recomendado #}
+  {% if promoted_resources %}
+  <div class="ag-l-inner-huge">
+    <div class="ag-c-slider ag-c-slider_box">
+      <div class="swiper-container ag-js-slider-home">
+
+        <div class="swiper-wrapper">
+        {% for promoted_resource in promoted_resources %}
+          <div class="swiper-slide">
+            <div class="ag-c-slider__item">
+              {% if promoted_resource.image %}
+                <figure class="ag-c-slider__mask">
+                  <img class="ag-c-slider__img" src="{{ promoted_resource.image.url }}" alt="{% trans 'Imagen destacada de' %} {{ promoted_resource.resource.processed_data.title }}">
+                </figure>
+              {% endif %}
+
+              {% include "biblored/includes/resource/promoted_resource_item.html" with request=request processed_data=promoted_resource.resource.processed_data %}
+
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+        <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left ag-has-slider_box_prev" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+        </button>
+        <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right ag-has-slider_box_next" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+        </button>
+        <div class="ag-c-slider__dots ag-has-slider_box__dots"></div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <section class="ag-l-inner-wide">
+
+    <header class="ag-o-header">
+      <h2 class="ag-o-heading" tabindex="0">
+        {% trans "Lo más visto" %}
+      </h2>
+    </header>
+    {% if most_read %}
+    <div class="ag-c-card-grid ag-c-card-grid_grid">
+      {% for resource in most_read %}
+        {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user counter=forloop.counter0 only %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="ag-o-actions">
+      <a class="ag-o-btn ag-o-actions__item" title="{% trans 'Ver más contenidos' %}" href="{% url 'search' %}">
+        {% trans "Ver más contenidos" %}
+      </a>
+    </div>
+  </section>
+
+
+  {# Bloque Aliados#}
+  {% if allies %}
+  <div class="ag-l-band-surface ag-l-band-surface_bottom">
+    <div class="ag-l-inner-wide">
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Aliados" %}
+        </h2>
+      </header>
+      {% include "biblored/includes/sliders/allies_slider.html" with allies=allies only %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% include "biblored/includes/messages/messages_templates.html" %}
+  {% include "biblored/includes/modals/modal_register.html" only %}
+  {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+    {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+    {% render_bundle 'collection_groups_card_component_form' 'js' %}
+    {% render_bundle 'collections_add_to_groups_api' 'js' %}
+    {% render_bundle 'collections_group_favorites_api' 'js' %}
+{% endblock %}

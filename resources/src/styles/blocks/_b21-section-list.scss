@@ -1,0 +1,166 @@
+/*------------------------------------*\
+  ID: B21
+  Section list
+  Description: component with section list only for expositions section
+\*------------------------------------*/
+.ag-section-list {
+  position: relative;
+
+  .ag-s01-rich-text {
+    h2,
+    h3,
+    h4 {
+      color: $c-on-text;
+    }
+  }
+}
+
+//- Modifiers to columns with the variable 'right'
+.ag-section-list_right {
+  .ag-section-list__column {
+    &:first-child {
+      @include order(1);
+    }
+
+    &:last-child {
+      @include order(0);
+    }
+  }
+}
+
+.ag-section-list__img {
+  width: 100%;
+}
+
+.ag-section-list__caption {
+  @include px-rem(padding, 8px 0 16px 8px);
+  @include px-rem(font-size, 12px);
+  line-height: 1.5;
+  color: $c-on-text-light;
+  // border-bottom: 1px solid $c-on-text-light;
+}
+
+//- BP Max-with: 767px
+@include media-query(medium-max) {
+  .ag-section-list__column {
+    &.ag-s01-rich-text {
+      width: 92%;
+      margin: 0 auto;
+    }
+  }
+}
+
+//- BP Min-with: 768px
+@include media-query(medium) {
+  .ag-section-list {
+    @include flexbox;
+    @include justify-content(space-between);
+  }
+
+  .ag-section-list__caption {
+    padding-left: 0;
+  }
+
+  .ag-section-list__column {
+    @include flex(1 0 50%);
+    max-width: 50%;
+
+    &:first-child {
+      @include px-rem(padding-right, 8px);
+    }
+
+    &:last-child {
+      @include px-rem(padding-left, 8px);
+    }
+
+    p:first-of-type,
+    h2:first-of-type,
+    h3:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  //- Modifiers to columns with the variable 'right'
+  .ag-section-list_right {
+    .ag-section-list__column {
+      &:first-child {
+        @include order(1);
+        padding-right: 0;
+        @include px-rem(padding-left, 8px);
+      }
+
+      &:last-child {
+        @include order(0);
+        padding-left: 0;
+        @include px-rem(padding-right, 8px);
+      }
+    }
+  }
+
+  //- Modifiers to columns with the variable 'full'
+  .ag-section-list_full {
+    &.ag-section-list {
+      @include flex-wrap(wrap);
+    }
+
+    .ag-section-list__column {
+      @include flex(1 0 100%);
+      max-width: 100%;
+
+      &:first-child {
+        padding-right: 0;
+      }
+
+      &:last-child {
+        padding-left: 0;
+      }
+
+      p:first-of-type,
+      h2:first-of-type,
+      h3:first-of-type {
+        margin-top: revert;
+      }
+    }
+  }
+}
+
+//  wide: $bp-wide   : 1024px
+@include media-query(wide) {
+  .ag-section-list__column {
+    &:first-child {
+      @include px-rem(padding-right, 20px);
+    }
+
+    &:last-child {
+      @include px-rem(padding-left, 20px);
+    }
+  }
+
+  //- Modifiers to columns with the variable 'right'
+  .ag-section-list_right {
+    .ag-section-list__column {
+      &:first-child {
+        padding-right: 0;
+        @include px-rem(padding-left, 20px);
+      }
+
+      &:last-child {
+        padding-left: 0;
+        @include px-rem(padding-right, 20px);
+      }
+    }
+  }
+
+  //- Modifiers to columns with the variable 'full'
+  .ag-section-list_full {
+    .ag-section-list__column {
+      &:first-child {
+        padding-right: 0;
+      }
+
+      &:last-child {
+        padding-left: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+.c-link-list,
+.c-link-list__item,
+.c-link-list__header {
+  @include flexbox;
+}
+
+.c-link-list {
+  @include flex-wrap(wrap);
+  @include px-rem(column-gap, 24px);
+  @include px-rem(row-gap, 24px);
+  font-family: $f-primary;
+}
+
+.c-link-list__item {
+  @include align-items(center);
+  @include px-rem(border-radius, 8px);
+  border: 1px solid $c-on-border;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.c-link-list__img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+
+.c-link-list__header {
+  @include justify-content(space-between);
+}
+
+.c-link-list__title {
+  flex: 1 80%;
+  color: $c-primary;
+}
+
+.c-link-list__text {
+  font-family: $f-default;
+}
+
+
+@media screen and(max-width: 580px) {
+  .c-link-list__item {
+    @include px-rem(column-gap, 16px);
+    @include px-rem(padding, 16px);
+    flex: 1 1 100%;
+  }
+
+  .c-link-list__figure {
+    @include px-rem(min-width, 84px);
+    @include px-rem(max-width, 84px);
+    @include px-rem(height, 84px);
+    @include px-rem(border-radius, 8px);
+    overflow: hidden;
+  }
+
+  .c-link-list__header {
+    @include align-items(center);
+    @include px-rem(margin-bottom, 8px);
+  }
+
+  .c-link-list__title {
+    @include text-ellipsis-multiple(16px, 1.4, 2);
+  }
+
+  .c-link-list__text {
+    @include text-ellipsis-multiple(14px, 1.8, 2);
+  }
+}
+
+@media screen and(min-width: 579px) {
+  .c-link-list__item {
+    @include px-rem(min-width, 510px);
+    @include px-rem(max-width, 510px);
+    @include px-rem(max-height, 196px);
+  }
+
+  .c-link-list__content {
+    @include px-rem(padding, 24px 16px 24px 24px);
+  }
+
+  .c-link-list__figure {
+    @include px-rem(min-width, 196px);
+    @include px-rem(max-width, 196px);
+    height: 100%;
+    @include px-rem(border-radius, 8px 0 0 8px);
+    overflow: hidden;
+  }
+
+  .c-link-list__header {
+    @include px-rem(margin-bottom, 16px);
+  }
+
+  .c-link-list__title {
+    @include text-ellipsis-multiple(18px, 1.4, 3);
+  }
+
+  .c-link-list__text {
+    @include text-ellipsis-multiple(14px, 1.8, 3);
+  }
+
+}
+
+@media screen and(max-width: 1134px) {
+  .c-link-list {
+    @include justify-content(center);
+  }
+}

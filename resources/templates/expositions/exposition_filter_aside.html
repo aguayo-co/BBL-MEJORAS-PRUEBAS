@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load static %}
+
+<aside class="ag-c-filter-aside__content">
+
+  <button class="ag-c-filter-aside__btn-close i-close">
+    <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+  </button>
+
+  <article class="ag-c-filter-aside__wrap">
+    <h4 class="ag-c-filter-aside__title">{% trans "Ordena por" %}</h4>
+    <span class="ag-c-filter-aside__control ag-form__select i-after-arrow-down">
+      <label class="ag-is-visuallyhidden" for="timeline_sort_by_select_{{ timeline.id }}">{% trans "Ordena por" %}</label>
+      <select id="timeline_sort_by_select_{{ timeline.id }}" >
+        <option value="categories">Categorías</option>
+        <option value="dates" selected>Fecha</option>
+      </select>
+    </span>
+  </article>
+
+  <article class="ag-c-filter-aside__wrap">
+    <h4 class="ag-c-filter-aside__title">{% trans "Filtra por categorías" %}</h4>
+    <ul class="ag-c-filter-aside__list" id="timeline_categories_list_filters_{{ timeline.id }}">
+      {% for category_name, category_description in timeline.categories.items %}
+        <li class="ag-c-filter-aside__checkbox ag-is-filter-aside__{{ category_name }}">
+          <input type="checkbox" name="category" id="timeline_category_{{ timeline.id }}_{{ forloop.counter0 }}" value="{{ category_name }}" checked>
+          <label class="i-check" for="timeline_category_{{ timeline.id }}_{{ forloop.counter0 }}"> {{ category_description }} </label>
+        </li>
+      {% endfor %}
+    </ul>
+  </article>
+
+</aside>

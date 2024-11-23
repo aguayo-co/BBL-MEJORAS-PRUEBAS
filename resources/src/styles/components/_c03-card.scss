@@ -1,0 +1,1391 @@
+/*------------------------------------*\
+  ID: C03
+  Card
+  Description: Tarjetas contienen contenido y acciones sobre un solo tema.
+  // @include font-rem(14px);
+  // @include px-rem(padding-right, 20px);
+\*------------------------------------*/
+
+/**
+ * Class: ag-c-card
+ * @description  Tarjetas que contienen contenido y acciones sobre un solo tema.
+ * @molecule c03_card
+ * @section Card
+ * @modifiers
+ *  .ag-c-card_slot  Define el max ancho del elemento en 466px
+ *  .ag-c-card_top-shadow Agrega en la parte superior elementos con sombra, se usa para las card de colecciones
+ *  .ag-c-card_aside Color de texto blanco, toda la trajeta es clicleable.
+ *  .ag-c-card_entry Recurso de exposición a full wide, se usa en detalle de exposición.
+ * @markup
+ *    <article class="ag-c-card ag-c-card_slot">
+ *      <div class="ag-c-card__border">
+ *        <a class="ag-c-card__action" href="#" title="Ver detalle de Radionovela Manuela - Capítulo 8">
+ *          <div class="ag-c-card__canvas">
+ *            <div class="ag-c-card__top">
+ *              <ul class="ag-tags">
+ *                  <li class="ag-tags__item">
+ *                    <span class="ag-tags__tag ag-tags__tag_outline">
+ *                      Audio
+ *                    </span>
+ *                  </li>
+ *              </ul>
+ *            </div>
+ *            <div class="ag-c-card__content ag-c-card__divider">
+ *                <figure class="ag-c-card__media">
+ *                  <img class="ag-c-card__img" src="../biblored/img/resource/type-video.svg" alt="Radionovela Manuela - Capítulo 8">
+ *                </figure>
+ *              <div class="ag-c-card__text">
+ *                <h2 class="ag-c-card__title">Resultados de la convocatoria artística "Artes plásticas y visuales, música, danza, teatro e interdisciplinar", del programa de apoyos a la creación artística y para la circulación.</h2>
+ *                <p class=""ag-c-card__subtitle">
+ *                    <strong>Por:</strong> Lorena Carvajal
+ *                </p>
+ *                <div class="ag-c-card__lead">
+ *                   Narración oral sobre su vida al sur de Bogotá, en los barrios Restrepo y El Libertador entre los años 40 y los años 50. El testimonio fue grabado en el marco de la actividad "Los bogotanos del Bogotazo" con el club de adultos mayores de la Biblioteca Carlos E. Restrepo.
+ *                </div>
+ *              </div>
+ *            </div>
+ *            <ul class="ag-c-card__list">
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Año de Publicación</strong>
+ *                  1970
+ *                </li>
+ *                <li class="ag-c-card__list-item">
+ *                  <strong class="ag-c-card__list-label">Idioma</strong>
+ *                  SPA - Español
+ *                </li>
+ *            </ul>
+ *          </div>
+ *        </a>
+ *        <footer class="ag-c-card__footer">
+ *          <div class="ag-c-card__list-full">
+ *            <strong class="ag-c-card__list-label">Temas</strong>
+ *            <ul class="ag-tags">
+ *              <li class="ag-tags__item">
+ *                <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                  Educación
+ *                </a>
+ *              </li>
+ *              <li class="ag-tags__item">
+ *                <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                  Conferencia
+ *                </a>
+ *              </li>
+ *              <li class="ag-tags__item">
+ *                <a class="ag-tags__tag ag-tags__tag_link" href="#">
+ *                  Fantasía
+ *                </a>
+ *              </li>
+ *            </ul>
+ *          </div>
+ *        </footer>
+ *      </div>
+ *    </article>
+ */
+.ag-c-card {
+  position: static;
+}
+
+.ag-c-card__link {
+  display: inline-block;
+  width: 100%;
+  -khtml-user-select: text;
+  -ms-user-select: text;
+  -moz-user-select: text;
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  user-select: text;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.ag-c-card_slot {
+  @include px-rem(max-width, 466px);
+}
+
+.ag-c-card_slide {
+  margin: 0 auto;
+}
+
+/**
+ * Class: ag-c-card.ag-c-card_top-shadow
+ * @description  Agrega en la parte superior elementos con sombra, se usa para las card de agrupaciones
+ * @molecule c03_card top-shadow
+ * @section Card > Modificadores
+ * @markup
+ *   <article class="ag-c-card  ag-c-card_top-shadow ag-c-card_slot">
+ *     <div class="ag-c-card__border">
+ *       <a class="ag-c-card__action" href="/collections/5/" title="Ir al listado de recursos de Colección aleatoria">
+ *           <figure class="ag-c-card__media">
+ *             <img class="ag-c-card__img" src="../biblored/img/demo/resource-004.jpg" alt="Colección aleatoria">
+ *           </figure>
+ *         <ul class="ag-c-card__bar ag-c-card__bar_bg">
+ *           <li class="ag-c-card__bar-item">
+ *             <strong class="ag-c-card__bar-label">Encuentra en esta colección</strong>
+ *             <ul class="ag-c-card__bar-sublist">
+ *               <li class="ag-c-card__bar-subitem">{211 Audios}</li>
+ *               <li class="ag-c-card__bar-subitem">{135 Videos}</li>
+ *               <li class="ag-c-card__bar-subitem">{20 Artículos}</li>
+ *               <li class="ag-c-card__bar-subitem">{Otros}</li>
+ *             </ul>
+ *           </li>
+ *           <li class="ag-c-card__bar-item ag-c-card__bar-item_last">
+ *             <strong class="ag-c-card__bar-label">Publicada el:</strong>
+ *             <ul class="ag-c-card__bar-sublist">
+ *               <li class="ag-c-card__bar-subitem"> 14 de Junio de 2019 </li>
+ *             </ul>
+ *           </li>
+ *         </ul>
+ *         <div class="ag-c-card__canvas">
+ *           <div class="ag-c-card__top">
+ *             <ul class="ag-tags">
+ *               <li class="ag-tags__item">
+ *                   <span class="ag-tags__ico ag-tags__ico_purple i-collective">
+ *                     <span class="ag-tags__tag ag-tags__tag_dark">
+ *                       Colección colaborativa
+ *                     </span>
+ *                   </span>
+ *               </li>
+ *             </ul>
+ *           </div>
+ *           <div class="ag-c-card__divider">
+ *              <h2 class="ag-c-card__title"> { Los bogotanos en el bogotazo }</h2>
+ *              <div class="ag-c-card__lead">
+ *                 { Una colección que reune contenidos digitales sobre la memoria en torno a la figura de Jorge Eliécer Gaitán.  }
+ *               </div>
+ *           </div>
+ *         </div>
+ *       </a>
+ *       <footer class="ag-c-card__footer">
+ *         <ul class="ag-c-card__list ag-c-card__list_end">
+ *           <li class="ag-c-card__list-item ag-chip">
+ *             <figure class="ag-chip__avatar">
+ *               <img class="ag-chip__img" src="../biblored/img/demo/avatar.jpg" alt="">
+ *             </figure>
+ *             <span class="ag-chip__text">
+ *               <strong class="ag-chip__label">Creador</strong>
+ *               { Lorena Carvajal }
+ *             </span>
+ *           </li>
+ *           <li class="ag-c-card__list-item">
+ *             <strong class="ag-c-card__list-label">Colaboradores</strong>
+ *             <ul class="ag-chip ag-chip_set i-after-plus">
+ *               <li class="ag-chip__avatar ag-chip__avatar_set">
+ *                 AB
+ *               </li>
+ *               <li class="ag-chip__avatar ag-chip__avatar_set">
+ *                 <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar.jpg" alt="">
+ *               </li>
+ *               <li class="ag-chip__avatar ag-chip__avatar_set">
+ *                 <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-1.jpg" alt="">
+ *               </li>
+ *               <li class="ag-chip__avatar ag-chip__avatar_set">
+ *                 <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-2.jpg" alt="">
+ *               </li>
+ *               <li class="ag-chip__avatar ag-chip__avatar_set">
+ *                 <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar-3.jpg" alt="">
+ *               </li>
+ *               <li class="ag-chip__avatar ag-chip__avatar_set">
+ *                 <img class="ag-chip__img ag-chip__img_set" src="../biblored/img/demo/avatar.jpg" alt="">
+ *               </li>
+ *             </ul>
+ *           </li>
+ *         </ul>
+ *
+ *       </footer>
+ *     </div>
+ *   </article>
+ */
+
+.ag-c-card_top-shadow {
+  position: relative;
+  width: 100%;
+  @include px-rem(padding-top, 10px);
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    background-color: $c-neutro;
+  }
+
+  &:before {
+    width: 86%;
+    @include px-rem(height, 20px);
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(22, 34, 63, 0.14);
+  }
+
+  &:after {
+    position: absolute;
+    @include px-rem(top, 20px);
+    left: 50%;
+    width: 96%;
+    @include px-rem(height, 10px);
+    margin-left: -48%;
+    box-shadow: 0 0 8px rgba(22, 34, 63, 0.14);
+  }
+}
+
+
+.ag-c-card__border {
+  position: relative;
+  z-index: 2;
+  @include px-rem(padding, 32px 16px 16px);
+  border: 1px solid rgba($c-on-border, 0.8);
+  background-color: $c-neutro;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.ag-c-card__canvas {
+  @include px-rem(padding, 24px 16px 0);
+}
+
+.ag-c-card__canvas_padding0 {
+  padding: 0;
+}
+
+.ag-c-card__footer {
+  @include px-rem(padding, 0 16px 24px);
+}
+.ag-c-card__footer-flex {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-rem(margin-top, 32px);
+}
+.ag-c-card__footer-flex_end {
+  @include justify-content(flex-end);
+}
+
+// Modificador que cambia el color de fondo y agrega espacios en los items
+.ag-c-card__footer_bg {
+  @include px-rem(margin-top, 20px);
+  @include px-rem(padding, 6px 14px);
+  background-color: $c-surface;
+}
+
+.ag-c-card_top-shadow {
+  .ag-c-card__canvas {
+    @include px-rem(padding-top, 16px);
+  }
+}
+
+.ag-c-card__action {
+  display: block;
+}
+.ag-c-card__action_set {
+  .ag-c-card__img {
+    transition: all 0.2s ease-in;
+  }
+
+  &:hover {
+    .ag-c-card__title {
+      text-decoration: underline
+    }
+
+    .ag-c-card__img {
+      transform: scale(1.1)
+    }
+  }
+}
+
+.ag-c-card__wide-box.ag-c-card__divider {
+  @include px-rem(padding-top, 20px);
+  border-top: 1px solid $c-neutro;
+  border-bottom: 0;
+}
+
+.ag-c-card__divider {
+  @include px-rem(padding-bottom, 22px);
+  border-bottom: 1px solid rgba($c-on-border, 0.8);
+}
+
+.ag-c-card__divider_none {
+  border-bottom: none;
+}
+
+// seacrh result
+.ag-c-card_divider {
+  @include px-rem(margin, 20px 0);
+  @include px-rem(padding, 16px 16px 8px 16px);
+  border: 1px solid rgba(211, 211, 211, 0.8);
+
+  .ag-c-card__list {
+    border-top: 1px solid rgba($c-on-border, 0.8);
+  }
+}
+
+.ag-c-card__tags {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include px-rem(column-gap, 8px);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  list-style: none;
+
+  .ag-c-card-grid & {
+    margin-bottom: 0;
+  }
+}
+
+.ag-c-card__bullet {
+  display: inline-flex;
+  align-items: baseline;
+
+  .ag-o-text_semibold {
+    @include px-rem(margin-right, 8px);
+  }
+
+  &::before {
+    content: "";
+    position: relative;
+    top: -2px;
+    width: 4px;
+    height: 4px;
+    display: block;
+    @include px-rem(margin-right, 16px);
+    @include px-rem(margin-left, 16px);
+    border-radius: 50%;
+    background: $c-primary-hover;
+  }
+}
+
+.ag-c-card__media {
+  @include flex(1, 50%);
+  @include px-rem(max-height, 245px);
+  overflow: hidden;
+
+  &.ag-c-card__color {
+    @include px-rem(height, 260px);
+    @include px-rem(max-height, 260px);
+  }
+}
+
+// - Color theme
+.ag-c-card__color {
+  border-bottom: 3px solid $c-secondary;
+
+  .ag-c-card__img {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+  }
+}
+
+.ag-c-related-cards__card,
+.ag-c-slider-gallery__item {
+  .ag-c-card__media,
+  .ag-c-card__img {
+    height: auto;
+  }
+}
+
+// estilos para imagenes rotas resultados y card
+.ag-c-card__img {
+  width: 100%;
+  position: relative;
+  color: transparent;
+}
+
+.ag-c-card__content {
+  @include flexbox;
+
+  .ag-c-card__media {
+    @include px-rem(min-width, 80px);
+    @include px-rem(max-width, 80px);
+    @include px-rem(margin-top, 6px);
+    @include px-rem(margin-right, 16px);
+  }
+
+  .ag-c-card__text,
+  .ag-c-card__img {
+    width: 100%;
+  };
+
+}
+
+.ag-c-card__header {
+  @include px-rem(margin-top, 8px);
+}
+
+/**
+ * Class: ag-c-card__title | font-size: 15px/19px
+ * @description  Título del recurso
+ * @molecule card Título
+ * @section Card > Elementos
+
+ * @markup
+ *  <h2 class="ag-c-card__title">Resultados de la convocatoria artística "Artes plásticas y visuales, música, danza, teatro e interdisciplinar", del programa de apoyos a la creación artística y para la circulación.</h2>
+*/
+
+.ag-c-card__title {
+  @include text-ellipsis-multiple(15px, 1.4, 2);
+  color: $c-primary;
+  font-weight: $f-medium;
+  font-family: $f-primary;
+}
+
+/**
+ * Class: ag-c-card__headline | font-size: 20px
+ * @description  Título de las tarjeta de Exposiciones
+ * @molecule card Título
+ * @section Card > Elementos
+
+ * @markup
+ *  <h2 class="ag-c-card__headline">Titulo de la exposición</h2>
+*/
+
+.ag-c-card__headline {
+  @include text-ellipsis-multiple(20px, 1.2, 2);
+  color: $c-primary;
+  font-weight: $f-medium;
+  font-family: $f-primary;
+}
+
+.ag-c-card__title_hammer {
+  @include text-ellipsis-multiple(19px, 1.4, 2);
+}
+
+.ag-c-card__lead,
+.ag-c-card__title,
+.ag-c-card__bar-label {
+  .ag-c-card_divider & {
+    margin-bottom: 8px;
+  }
+}
+
+/**
+ * Class: ag-c-card__lead | font-size: 12px/14px
+ * @description  Abstract del recurso
+ * @molecule card Lead
+ * @section Card > Elementos
+
+ * @markup
+ *  <div class="ag-c-card__lead">
+ *    <p>Narración oral sobre su vida al sur de Bogotá, en los barrios Restrepo y El Libertador entre los años 40 y los años 50. El testimonio fue grabado en el marco de la actividad "Los bogotanos del Bogotazo" con el club de adultos mayores de la Biblioteca Carlos E. Restrepo.</p>
+ *  </div>
+*/
+.ag-c-card__lead {
+  @include px-rem(margin-top, 8px);
+  @include text-ellipsis-multiple(14px, 1.8, 5);
+  word-break: break-word;
+
+  .ag-c-card_divider & {
+    margin-top: 0;
+  }
+
+  a {
+    cursor: pointer;
+    color: $c-on-link;
+    font-family: $f-default;
+    transition: all 0.2s;
+    padding: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $c-on-over;
+      text-decoration: underline;
+    }
+  }
+}
+
+// Modificador que cambia el color del texto al primario del proyecto
+.ag-c-card__lead_primary {
+  @include px-rem(margin, 12px 0);
+  color: $c-primary;
+}
+
+.ag-s-card-margin-right-16 {
+  @include px-rem(margin-right, 16px);
+}
+
+/**
+ * Class: ag-c-card__needless
+ * @description  Label redundante en listados de cards
+ * @molecule card label
+ * @section Card > Elementos
+
+ * @markup
+ *  <strong class="ag-c-card__needless">Fuente</strong>
+ *  <p>Biblioteca Nacional de Colombia</p>
+*/
+.ag-c-card__redundant {
+  font-weight: $f-medium;
+  opacity: 0.7;
+}
+
+.ag-c-card__review {
+  @include px-rem(margin-top, 12px);
+}
+
+.ag-c-card__review-text {
+  transition: all 600ms ease-in-out;
+  @include px-rem(max-height, 1000px);
+  overflow: hidden;
+
+  &.ag-c-card__review-max {
+    transition: all 400ms ease-in-out;
+    @include px-rem(max-height, 86px);
+    overflow: hidden;
+  }
+}
+
+.ag-c-card__button {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  width: 100%;
+  @include px-rem(max-width, 820px);
+  @include px-rem(margin, 20px auto 0);
+
+  &[hidden] {
+    display: none;
+  }
+
+  .ag-c-card__button-text {
+    @include flex(0 0 auto);
+    @include px-rem(padding, 0 8px 0 14px);
+
+    &::after {
+      @include px-rem(padding, 0 6px);
+      @include font-rem(6px);
+      transform: rotate(0deg);
+      display: inline-block;
+      transition: all 500ms ease-out;
+    }
+
+    &.ag-is-show {
+      &::after {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 1px;
+    background-color: $c-on-border;
+    @include flex(1 1 100%);
+  }
+}
+
+/**
+ * Class: ag-c-card__list
+ * @description  lista de información del recurso
+ * @molecule card List
+ * @section Card > Elementos
+
+ * @modifiers
+ *  .ag-c-card__list_end: justify-content space-between, el último elemento tiene un padding right. Se usa para el grupo de colaboradores.
+ * @markup
+  *  <ul class="ag-c-card__list">
+  *   <li class="ag-c-card__list-item">
+  *     <strong class="ag-c-card__list-label">Publicador</strong>
+  *     N/A
+  *   </li>
+  *   <li class="ag-c-card__list-item">
+  *     <strong class="ag-c-card__list-label">Año de Publicación</strong>
+  *     1997
+  *   </li>
+  *   <li class="ag-c-card__list-item">
+  *     <strong class="ag-c-card__list-label">Idioma</strong>
+  *     Español
+  *   </li>
+  *   <li class="ag-c-card__list-full">
+  *     <strong class="ag-c-card__list-label">Temas</strong>
+  *   </li>
+  *  </ul>
+*/
+.ag-c-card__list {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include px-rem(margin-top, 16px);
+  list-style: none;
+}
+
+.ag-c-card__list_end {
+  @include justify-content(space-between);
+}
+.ag-c-card__list_align {
+  @include align-items(center);
+}
+
+.ag-c-card__list-item_full {
+  flex: 1 0 100%;
+}
+
+.ag-c-card__list-label {
+  display: block;
+}
+
+.ag-c-card__list-txt-pipe {
+  position: relative;
+  display: inline-block;
+  @include px-rem(padding, 4px 13px);
+
+  &:first-of-type {
+    padding-left: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      @include px-rem(right, -2px);
+      @include px-rem(top, 6px);
+      @include px-rem(width, 1px);
+      @include px-rem(height, 20px);
+      background-color: $c-secondary-disabled;
+    }
+  }
+}
+
+.ag-c-card__list-full {
+  min-width: 100%;
+  @include px-rem(padding-top, 14px);
+}
+
+/**
+ * Class: ag-c-card__bar
+ * @description  lista de información de la colección
+ * @molecule card bar
+ * @section Card > Elementos
+
+ * @markup
+ *    <ul class="ag-c-card__bar">
+ *      <li class="ag-c-card__bar-item ag-chip">
+ *
+ *        <figure class="ag-chip__avatar">
+ *          AA
+ *        </figure>
+ *        <span class="ag-chip__text">
+ *          <strong class="ag-chip__label">Curador</strong>
+ *          Andrea Acosta
+ *        </span>
+ *      </li>
+ *      <li class="ag-c-card__bar-item">
+ *        <strong class="ag-c-card__bar-label">Encuentra en esta exposición</strong>
+ *        <ul class="ag-c-card__bar-sublist">
+ *          <li class="ag-c-card__bar-subitem">211 Audios</li>
+ *          <li class="ag-c-card__bar-subitem">135 Videos</li>
+ *          <li class="ag-c-card__bar-subitem">20 Artículos</li>
+ *          <li class="ag-c-card__bar-subitem">Otros</li>
+ *        </ul>
+ *      </li>
+ *      <li class="ag-c-card__bar-item">
+ *        <strong class="ag-c-card__bar-label">Publicada el:</strong>
+ *        <ul class="ag-c-card__bar-sublist">
+ *          <li class="ag-c-card__bar-subitem"> 14 de Junio de 2019 </li>
+ *        </ul>
+ *      </li>
+ *    </ul>
+ */
+.ag-c-card__bar {
+  @include px-rem(padding-top, 10px);
+}
+
+.ag-c-card__bar,
+.ag-c-card__bar-sublist {
+  list-style: none;
+}
+
+.ag-c-card__bar-item {
+  @include px-rem(margin, 6px 0);
+  &:first-child {
+    padding-left: 0;
+  }
+}
+
+.ag-c-card__bar-sublist {
+  @include flexbox;
+  @include flex-wrap(wrap);
+}
+
+.ag-c-card__bar-subitem {
+  @include px-rem(padding-right, 4px);
+  @include font-rem(11px);
+}
+
+/**
+ * Class: ag-c-card__bar_bg
+ * @description  lista de información de la colección con fondo, los ítems en mobile tienen border-bottom y el label se oculta.
+ * @molecule card bar background
+ * @section Card > Elementos
+
+ * @markup
+ *  <ul class="ag-c-card__bar ag-c-card__bar_bg">
+ *    <li class="ag-c-card__bar-item">
+ *      <strong class="ag-c-card__bar-label">Encuentra en esta colección</strong>
+ *      <ul class="ag-c-card__bar-sublist">
+ *        <li class="ag-c-card__bar-subitem">211 Audios</li>
+ *        <li class="ag-c-card__bar-subitem">135 Videos</li>
+ *        <li class="ag-c-card__bar-subitem">20 Artículos</li>
+ *        <li class="ag-c-card__bar-subitem">Otros</li>
+ *      </ul>
+ *    </li>
+ *    <li class="ag-c-card__bar-item ag-c-card__bar-item_last">
+ *      <strong class="ag-c-card__bar-label">Publicada el:</strong>
+ *      <ul class="ag-c-card__bar-sublist">
+ *        <li class="ag-c-card__bar-subitem"> {16 de septiembre de 2019} </li>
+ *      </ul>
+ *    </li>
+ *  </ul>
+ */
+
+.ag-c-card__bar_bg {
+  // @include px-rem(padding, 2px 10px 0);
+  // background-color: $c-surface;
+  .ag-c-card__bar-item {
+    // @include px-rem(padding-bottom, 6px);
+    @include flexbox;
+    @include align-items(center);
+    @include flex-wrap(wrap);
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($c-on-border, 0.8);
+    }
+  }
+  .ag-c-card__bar-label {
+    @include px-rem(padding-right, 4px);
+  }
+}
+
+/**
+ * Class: .ag-c-card.ag-c-card_aside
+ * @description  Tarjetas que contienen contenido y acciones sobre un solo tema.
+ * @molecule c03_card side
+ * @section Card > Modificadores
+ * @markup
+ *    <div class="ag-l-band-primary">
+ *      <article class="ag-c-card  ag-c-card_aside">
+ *        <a class="ag-c-card__action ag-c-card__wrap" href="#" title="Ir al detalle de Acción Cultural Popular - Radio Sutatenza">
+ *          <figure class="ag-c-card__square">
+ *            <img class="ag-c-card__cover" src="../biblored/img/demo/resource-004.jpg" alt="Colección aleatoria">
+ *          </figure>
+ *          <div class="ag-c-card__side">
+ *            <div class="ag-c-card__canvas">
+ *              <div class="ag-c-card__top">
+ *                <ul class="ag-tags">
+ *                  <li class="ag-tags__item">
+ *                    <span class="ag-tags__ico ag-tags__ico_green i-star">
+ *                      <span class="ag-tags__tag ag-tags__tag_neutro">
+ *                        Contenido Sugerido
+ *                      </span>
+ *                    </span>
+ *                  </li>
+ *                </ul>
+ *              </div>
+ *              <div class="ag-c-card__divider">
+ *                  <h2 class="ag-c-card__title"> Acción Cultural Popular - Radio Sutatenza </h2>
+ *                  <div class="ag-c-card__lead">
+ *                    Una colección que reune contenidos digitales sobre la memoria en torno a la figura de Jorge Eliécer Gaitán. Producidos por los usuarios de la Red Distrital de Bibliotecas Públicas en el marco de actividades de recolección de memoria local.
+ *                  </div>
+ *              </div>
+ *            </div>
+ *            <footer class="ag-c-card__footer">
+ *              <ul class="ag-c-card__bar">
+ *                <li class="ag-c-card__bar-item">
+ *                  <strong class="ag-c-card__bar-label">Encuentra en esta colección</strong>
+ *                  <ul class="ag-c-card__bar-sublist">
+ *                    <li class="ag-c-card__bar-subitem">{211 Audios}</li>
+ *                    <li class="ag-c-card__bar-subitem">{135 Videos}</li>
+ *                    <li class="ag-c-card__bar-subitem">{20 Artículos}</li>
+ *                    <li class="ag-c-card__bar-subitem">{Otros}</li>
+ *                  </ul>
+ *                </li>
+ *                <li class="ag-c-card__bar-item ag-c-card__bar-item_last">
+ *                  <strong class="ag-c-card__bar-label">Creada el:</strong>
+ *                  <ul class="ag-c-card__bar-sublist">
+ *                    <li class="ag-c-card__bar-subitem"> 13 de Junio de 2019 </li>
+ *                  </ul>
+ *                </li>
+ *              </ul>
+ *              <div class="ag-chip">
+ *                <figure class="ag-chip__avatar">
+ *                  <img class="ag-chip__img" src="../biblored/img/demo/logo-blaa.png" alt="Logo Biblioteca Luis Ángel Arango">
+ *                </figure>
+ *                <span class="ag-chip__text">
+ *                  <strong class="ag-chip__label">Creador</strong>
+ *                  Biblioteca Luis Ángel Arango
+ *                </span>
+ *              </div>
+ *            </footer>
+ *          </div>
+ *        </a>
+ *      </article>
+ *    </div>
+ */
+
+.ag-c-card_aside {
+  @include px-rem(max-width, 480px);
+  margin: 0 auto;
+  @include px-rem(padding, 0);
+  color: $c-neutro;
+
+  .ag-c-card__title {
+    color: $c-neutro;
+  }
+  .ag-c-card__action {
+    color: $c-neutro;
+  }
+
+  .ag-c-card__wide-box {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include flex(1, 100%);
+
+    .ag-c-card__actions {
+      @include flexbox;
+      @include flex-direction(row-reverse);
+      @include justify-content(space-between);
+      @include align-items(center);
+      width: 40%;
+
+      .ag-o-btn_outline {
+        max-width: 60%;
+      }
+    }
+
+    .ag-o-btn {
+      min-width: auto;
+      @include px-rem(padding, 14px 24px);
+    }
+
+    .ag-o-btn_outline {
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+      max-width: 32%;
+      border: 1px solid $c-neutro;
+      @include px-rem(font-size, 12px);
+      color: $c-neutro;
+      background-color: transparent;
+
+      .ag-o-btn__txt {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      &:hover {
+        color: #442686;
+        border: 1px solid #442686;
+        background-color: #fff;
+      }
+
+      &::after {
+        @include px-rem(font-size, 14px);
+      }
+    }
+  }
+}
+
+// support IE9+ CSS
+.ag-c-card__cover {
+  width: 100%;
+  height: auto;
+  transition: all 0.2s cubic-bezier(0.45, 0.33, 0.57, 0.47);
+}
+
+@supports(object-fit: cover) {
+
+  .ag-c-card__cover {
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+/**
+ * Class: .ag-c-card.ag-c-card_entry
+ * @description  Recurso de exposición a full wide, se usa en detalle de exposición
+ * @molecule c03_card Entry
+ * @section Card > Modificadores
+ * @markup
+ *    <article class="ag-c-card ag-c-card_entry">
+ *      <header class="ag-c-card_entry__header ag-o-header">
+ *        <h1 class="ag-o-heading">
+ *          Colección de Biodiversidad fauna y flora de la Región Andina Central
+ *        </h1>
+ *        <div class="ag-o-header__item">
+ *          <p class="ag-tags__ico ag-tags__ico_blue i-sketch">
+ *            <span class="ag-tags__tag ag-tags__tag_dark">
+ *              Exposición
+ *            </span>
+ *          </p>
+ *        </div>
+ *      </header>
+ *      <div class="ag-c-card_entry__inner ag-l-inner-wide">
+ *        <div class="ag-c-card__lead">
+ *          Así inicié mi recorrido hacia el encuentro con varias historias en los barrios más adinerados del norte de la ciudad de Bogotá.
+ *        </div>
+ *      </div>
+ *      <figure class="ag-banner ag-banner_simple ag-banner__mask">
+ *        <img class="ag-banner__img" src="../biblored/img/demo/slider-gallery/gallery_fauna.jpg" alt="Imagen de referencia de Colección de Biodiversidad fauna y flora de la Región Andina Central">
+ *      </figure>
+ *      <div class="ag-c-card_entry__inner ag-l-inner-wide">
+ *        <ul class="ag-c-card__bar">
+ *          <li class="ag-c-card__bar-item ag-chip">
+ *            <figure class="ag-chip__avatar">
+ *                LL
+ *            </figure>
+ *            <span class="ag-chip__text">
+ *              <strong class="ag-chip__label">Curador</strong>
+ *              Lulita Rincón
+ *            </span>
+ *          </li>
+ *          <li class="ag-c-card__bar-item">
+ *            <strong class="ag-c-card__bar-label">Encuentra en esta exposición</strong>
+ *            <ul class="ag-c-card__bar-sublist">
+ *              <li class="ag-c-card__bar-subitem">{211 Audios}</li>
+ *              <li class="ag-c-card__bar-subitem">{135 Videos}</li>
+ *              <li class="ag-c-card__bar-subitem">{20 Artículos}</li>
+ *              <li class="ag-c-card__bar-subitem">{Otros}</li>
+ *            </ul>
+ *          </li>
+ *          <li class="ag-c-card__bar-item">
+ *            <strong class="ag-c-card__bar-label">Publicada el:</strong>
+ *            <ul class="ag-c-card__bar-sublist">
+ *              <li class="ag-c-card__bar-subitem"> 18 de Junio de 2019 </li>
+ *            </ul>
+ *          </li>
+ *        </ul>
+ *        <h2 class="ag-c-card__title"> La fotografía en Colombia </h2>
+ *        <div class="ag-c-card__lead">
+ *          Ahora que al mundo del cine lo acusan de repetitivo, de insustancial, de vivir a costa de remakes, de comedias tontas y de explosiones, llamaradas y toda clase de efectos especiales, no dejo de pensar en lo que fue el mundo de las estrellas hasta hace apenas treinta años, quizá menos. Porque lo cierto es que las llamadas estrellas de la pantalla han desaparecido del firmamento del cine. ¿Qué estrellas? Bien, estoy pensando en actores como Cary Grant, James Stewart o John Wayne, o en estrellas como Ava Gardner, Audrey Hepburn o Lana Turner. La verdad es que nadie les exigió ser grandes actores o actrices, aunque unos lo fueran de verdad y otros se limitaran a repetir su personaje. De hecho ha habido grandes actores (Charles Laughton, por ejemplo) que no alcanzaron la popularidad o el gancho de las estrellas, pero eso era sencillamente porque las estrellas eran otra categoría y lucían como tales por encima de cualquier otra consideración. La verdad es que aquél era un mundo de una falsedad total en el que nadie era lo que parecía, pero también es cierto que sólo unos cuantos seres de origen humano entre muchos miles alcanzaron la categoría de estrellas. Y si alguien me pregunta qué tenían esos elegidos que no tuvieran los demás, sólo les puedo responder con una palabra: glamour. Por lo general, las estrellas de hoy se caracterizan por ser efímeras o por ser sustituibles. Un año resulta ser la reina de las pantallas Cameron Díaz y cuando ya la tienes localizada resulta que ahora la reina es Jennifer Anniston; y apenas unos meses más tarde la reina es una tal Angelina Jolie, pero luego abres el Tentaciones de la semana siguiente y resulta que la que manda es la hija de Goldie Hawn, que ya ni me ha dado tiempo a enterarme de cómo se llama.
+ *        </div>
+ *      </div>
+ *    </article>
+ */
+.ag-c-card_entry {
+  .ag-c-card__bar {
+    @include px-rem(margin-bottom, 18px);
+  }
+  .ag-c-card__title {
+    text-align: center;
+  }
+}
+
+.ag-c-card_entry__header {
+  @include px-rem(margin-bottom, 30px);
+  padding-bottom: 0;
+}
+
+.ag-c-card_entry__lead {
+  @include px-rem(margin, 30px 0);
+}
+
+.ag-c-card_entry__inner {
+  @include px-rem(margin, 30px auto);
+}
+
+.ag-c-card__tooltip {
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(column-gap, 8px);
+
+  .ag-o-btn-ico {
+    &:before {
+      @include px-rem(font-size, 22px);
+      color: $c-primary;
+    }
+  }
+
+  .ag-c-tooltip {
+    z-index: 10;
+    @include px-rem(margin, 0 4px);
+
+    &:before,
+    &:after {
+      @include px-rem(bottom, -10px);
+    }
+  }
+
+  .ag-c-tooltip__box {
+    top: 130%;
+    left: auto;
+    right: -50%;
+    transform: translateX(0%);
+  }
+}
+
+// Contenedor para delete-resource-collection
+.ag-c-card__delete {
+  position: relative;
+}
+
+// - Dinamic action below zone
+.ag-c-card__button-list {
+  list-style: none;
+}
+.ag-c-card__button-list_margin {
+  @include px-rem(margin-top, 16px)}
+
+// - Dinamic action below zone
+.ag-c-card__button-columns {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-rem(column-gap, 8px);
+}
+
+.ag-c-card__button-col {
+  @include flex(0 1 auto);
+
+  // &:last-child {
+  // @include align-self(flex-end);
+  // margin-left: auto;
+  // }
+}
+
+.ag-c-card_button-right {
+  .ag-list-button__action {
+    @include px-rem(margin-bottom, 8px);
+    margin-left: auto;
+  }
+}
+
+// - *** Scope class ***
+.ag-s-card {
+  .ag-c-card__bar-label,
+  .ag-c-card__list-label {
+    display: inline-block;
+    line-height: 1.5;
+    font-family: $f-primary;
+    font-weight: $f-bold;
+  }
+}
+
+// - *** Scope class ***
+.ag-s-card_position {
+  .ag-is-list-button_open {
+    .ag-list-button_position-list {
+      top: auto;
+      right: 0;
+      @include px-rem(bottom, 28px);
+    }
+  }
+}
+
+@media only screen and(max-width: 480px) {
+  // Contenedor para delete-resource-collection
+  .ag-c-card__delete {
+    .ag-c-card__canvas {
+      @include px-rem(padding-top, 48px);
+    }
+  }
+}
+
+@media only screen and(max-width: 767px) {
+  .ag-c-card_aside {
+    .ag-c-card__wide-box {
+      @include flex-direction(column);
+      @include px-rem(padding-top, 20px);
+
+      .ag-chip {
+        margin-left: 12px;
+
+        .ag-chip__avatar {
+          @include px-rem(min-width, 60px);
+          @include px-rem(max-width, 60px);
+          @include px-rem(height, 60px);
+        }
+      }
+
+      .ag-c-card__actions {
+        @include flex-direction(column-reverse);
+        width: 100%;
+        padding-top: calc(50px - 12px);
+      }
+
+      .ag-o-btn {
+        min-width: 90%;
+      }
+
+      .ag-o-btn_outline {
+        @include px-rem(margin-top, 12px);
+      }
+
+      .ag-o-link_external {
+        @include px-rem(margin-top, 30px);
+      }
+    }
+  }
+
+  .ag-c-card__list-actions {
+    @include px-rem(margin-top, 16px);
+  }
+}
+
+@media only screen and(min-width: 768px) {
+  // Contenedor para delete-resource-collection
+  .ag-c-card__delete {
+    .ag-c-card__canvas {
+      @include px-rem(padding-top, 48px);
+    }
+  }
+}
+
+// bp desde 768px hasta 850px
+@media only screen and(min-width: 768px) and(max-width: 850px) {
+  .ag-c-card_aside {
+    .ag-c-card__wide-box {
+      .ag-chip {
+        @include px-rem(max-width, 320px);
+      }
+    }
+  }
+
+  .ag-c-card_aside {
+    .ag-c-card__wide-box {
+      .ag-c-card__actions {
+        width: 44%;
+      }
+    }
+  }
+}
+
+// small     : $bp-small  : 375px
+@include media-query(small) {
+
+  .ag-c-card__list_end {
+    .ag-c-card__list-item {
+      &:not(:last-child) {
+        @include px-rem(padding-right, 14px);
+      }
+    }
+  }
+}
+
+
+// Medium  : 768px
+// Desktop
+@include media-query(medium) {
+  .ag-c-card__border {
+    @include px-rem(padding, 24px);
+
+    .ag-c-card-grid & {
+      display: inline-block;
+      width: 100%;
+    }
+
+    .ag-o-btn {
+      @include px-rem(min-width, 100px);
+      @include px-rem(max-width, 140px);
+      @include px-rem(padding, 10px 18px);
+    }
+  }
+
+  .ag-c-card_slide {
+    width: 100%;
+  }
+
+  .ag-c-card__canvas {
+    @include px-rem(padding, 26px 24px 0);
+  }
+  .ag-c-card__canvas_padding0 {
+    padding: 0;
+  }
+
+  .ag-c-card__footer {
+    @include px-rem(padding, 0 24px 26px);
+  }
+
+  .ag-c-card__footer_bg {
+    @include px-rem(padding, 6px 24px);
+  }
+
+  .ag-c-card__content {
+    .ag-c-card__media {
+      @include px-rem(min-width, 116px);
+      @include px-rem(max-width, 138px);
+
+      .ag-c-card_divider & {
+        @include px-rem(min-width, 132px);
+        @include px-rem(max-width, 132px);
+      }
+    }
+  }
+
+  .ag-c-card__content_top {
+    @include px-rem(margin-top, 116px);
+  }
+
+  .ag-c-card_entry {
+    .ag-c-card__bar {
+      @include justify-content(center);
+      @include px-rem(margin-bottom, 38px);
+    }
+  }
+
+  .ag-c-card_entry__header {
+    @include px-rem(margin-bottom, 40px);
+    padding-bottom: 0;
+  }
+
+  .ag-c-card_entry__lead {
+    @include px-rem(margin, 40px 0);
+    @include font-rem(16px);
+  }
+
+  .ag-c-card_entry__inner {
+    @include px-rem(margin, 50px auto);
+  }
+
+  .ag-c-card_aside {
+    @include px-rem(max-width, 920px);
+    @include px-rem(padding, 30px 40px);
+  }
+
+  .ag-c-card__wrap {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(padding-bottom, 22px);
+
+    .ag-c-card__footer {
+      @include px-rem(padding, 0 24px 0);
+    }
+  }
+
+  .ag-c-card_divider {
+    .ag-c-card__lead {
+      @include text-ellipsis-multiple(14px, 1.8, 3);
+    }
+  }
+
+
+  .ag-c-card_divider {
+    margin: 0 0 16px;
+    border-width: 1px;
+    @include px-rem(padding, 8px 16px);
+
+    .ag-c-card-grid & {
+      @include px-rem(margin-bottom, 40px);
+      page-break-inside: avoid;
+    }
+
+    .ag-zig-cards__card & {
+      margin-bottom: 0;
+    }
+
+    .ag-c-card__list {
+      border-top: none;
+    };
+  };
+
+}
+// Mobile
+@include media-query(medium-max) {
+  // Search result
+  .ag-c-card__title {
+    .ag-c-card_divider & {
+      @include px-rem(font-size, 17px);
+    }
+  }
+
+
+  .ag-c-card__media {
+
+    &.has-tag-collection {
+
+      .ag-c-card_divider & {
+        margin-top: 40px;
+      }
+
+      &+.ag-c-card__text {
+        .ag-tags__ico {
+          margin-left: -96px;
+        }
+      }
+
+    }
+  }
+}
+
+// wide      : $bp-wide   : 1024px
+@include media-query(wide) {
+  .ag-c-card__title {
+    @include text-ellipsis-multiple(19px, 1.4, 2);
+  }
+
+  .ag-c-card__bar {
+    @include flexbox;
+    @include align-items(center);
+    @include px-rem(padding, 6px 0 10px);
+    padding-top: 0;
+  }
+
+  .ag-c-card__bar-item {
+    @include px-rem(margin, 6px 0);
+    @include px-rem(padding, 0 10px);
+    &:not(:last-child) {
+      border-right: 1px solid rgba($c-on-border, 0.8);
+    }
+
+    .ag-c-card__bar_unborder & {
+      border-right: none;
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  .ag-c-card__bar-item_last {
+    min-width: 35%;
+    @include px-rem(padding-right, 0);
+  }
+
+  .ag-c-card__bar_bg {
+    // @include px-rem(padding, 6px 10px);
+    .ag-c-card__bar-item {
+      &:not(:last-child) {
+        border-bottom: none;
+      }
+    }
+  };
+
+}
+
+// large     : $bp-large  : 1180px;
+@include media-query(large) {
+  .ag-c-card__bar-item {
+    @include px-rem(padding, 0 14px);
+  }
+
+  .ag-c-card__bar-item_last {
+    @include px-rem(padding-right, 0);
+  }
+}
+
+// huge-max     : $bp-huge  : 1440px;
+@include media-query(huge-max) {
+  .ag-c-card_divider {
+    .ag-tags__ico {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+// huge     : $bp-huge  : 1440px;
+@include media-query(huge) {
+  .ag-c-card__header {
+    @include flexbox;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: 40px;
+
+    .ag-tags__ico {
+      order: 1;
+      min-width: 166px;
+    }
+  }
+}

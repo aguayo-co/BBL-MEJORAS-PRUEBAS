@@ -1,0 +1,132 @@
+{% load i18n static %}
+
+<article id="{{ object.pk }}" class="ag-c-card_divider ag-s-card_position">
+
+  <a
+    class="ag-c-card__link"
+    href="{{ object.get_absolute_url }}"
+    title="{% trans 'Ver detalle de' %} {% firstof title object.title  %}"
+  >
+
+    {% block tags_header %}{% endblock tags_header %}
+    <div class="ag-c-card__content">
+
+      {% if object.image %}
+        <figure class="ag-c-card__media {% if has_tag == "true" %}has-tag-collection{% endif %}">
+          <img class="ag-c-card__img"
+            src="{% if object.image.url %}{{ object.image.url }}{% else %}{{ object.image }}{% endif %}"
+            alt="{% trans 'Imagen de apoyo de ' %} {% firstof title object.title  %}"
+          >
+        </figure>
+      {% endif %}
+
+      <div class="ag-c-card__text">
+
+        <header class="ag-c-card__header">
+
+          {# Only collections #}
+          {% block result-icon %}{% endblock %}
+
+          {% if object.title %}
+            <h2 class="ag-c-card__title" tabindex="0">{% firstof object.title %}</h2>
+          {% endif %}
+
+        </header>
+        
+        {# Creator and year publisher #}
+        {% block creator %}
+          <p class="ag-c-card__bar-label">
+            {% if object.creator is not None %}
+              <span class="ag-c-card__redundant">{% trans "Por: " %} </span>
+              <strong class="ag-o-text_semibold">{{ object.creator }}</strong>
+              {% if object.date is not None %}|{% endif %}
+            {% endif %}
+
+            {% if object.date is not None or object.formatted_date is not None %}
+              <span class="ag-c-card__redundant">
+                {% trans "Fecha: " %}
+              </span>
+
+              <strong class="ag-o-text_semibold">
+                {% if object.formatted_date is not None %} 
+                  {{ object.formatted_date }}
+                {% else %}
+                  {{ object.date|date:"Y" }}
+                {% endif %}
+              </strong>
+            {% endif %}
+          </p>
+        {% endblock %}
+
+        {# Description #}
+        {% if object.description %}
+          <div class="ag-c-card__lead">
+            {{ object.description|striptags }}
+          </div>
+        {% endif %}
+
+        {# Secondary information #}
+        {% block secondary_information %}
+          {# Content for collections #}
+          {% if object.resources_by_type_count %}
+            <div>
+              <span class="ag-c-card__redundant">{% trans "Encuentra en esta colección" %}: </span>
+              {% for resource_type, count in object.resources_by_type_count.items %}
+                <span class="{% if not forloop.counter == 1 %}ag-c-card__bullet{% endif %}">
+                  {% if not resource_type == 'Otros' %}
+                    <strong class="ag-o-text_semibold">{{ count }}</strong>
+                  {% endif %}
+                  {{ resource_type }}
+                </span>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endblock %}
+
+        {# Themes #}
+        {% block top_themes %}
+        
+          {# Only resources #}
+          {% if object.subject %}
+            <ul class="ag-c-card__tags ag-c-card__bar_unborder">
+
+              <li>
+                {% trans "Temas" %}:
+              </li>
+
+              {% for subject_item, search_url in object.subject.items %}
+                <li class="ag-c-card__bar-item">
+                  <span class="ag-tags__tag ag-tags__tag_outline">
+                    {{ subject_item }}
+                  </span>
+                </li>
+              {% endfor %}
+
+            </ul>
+          {% endif %}
+
+        {% endblock top_themes %}
+
+      </div>
+
+    </div>
+
+    {% block bottom_themes %}{% endblock bottom_themes %}
+
+  </a>
+
+  {# Add to collection button #}
+  <footer>
+    <ul class="ag-c-card__button-list">
+      <li class="ag-c-card__button-item ag-c-card_button-right">
+        {% block options_button %}
+          {# buttons into list of options #}
+          {% include "biblored/includes/options_menu/options_menu_for_collection_item.html" with counter=counter user=user collection=object card="search" only %}
+        {% endblock %}
+      </li>
+    </ul>
+  </footer>
+
+</article>
+
+{% block modal %}{% endblock %}

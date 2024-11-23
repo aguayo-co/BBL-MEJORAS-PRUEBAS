@@ -1,0 +1,8 @@
+{% load i18n %}
+
+{# Filtro Fuentes #}
+<div class="ag-c-filter-band__search ag-js-searchFilter ag-js-choices" data-placeholder="{% trans 'Buscar por' %} {{ filters_form.data_source.label }}" tabindex="0">
+  <span class="ag-is-visuallyhidden">{% trans "Busque por" %} {{ filters_form.data_source.label }}</span>
+  <label class="ag-c-filter-band__label" for="{{ filters_form.data_source.id_for_label }}">{{ filters_form.data_source.label }}</label>
+  {{ filters_form.data_source }}
+</div>

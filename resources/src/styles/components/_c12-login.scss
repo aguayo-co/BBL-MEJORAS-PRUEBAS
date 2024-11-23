@@ -1,0 +1,94 @@
+.ag-c-login {
+  display: block;
+  @include px-rem(padding-top, 70px);
+  @include px-rem(max-width, 420px);
+  width: 88%;
+  margin: 0 auto;
+
+  .ag-form__header {
+    @include px-rem(margin-top, 60px);
+
+    .ag-o-heading {
+      text-align: center;
+      @include px-rem(margin-bottom, 60px);
+    }
+  }
+
+  .ag-o-actions {
+    @include px-rem(margin-top, 50px);
+  }
+}
+
+.ag-c-login__title {
+  color: $c-neutro;
+  font-family: $f-primary;
+  @include font-rem(20px);
+  font-weight: $f-bold;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.ag-c-login__text {
+  @include font-rem(14px);
+  @include px-rem(padding, 10px 0);
+  text-align: left;
+}
+
+.ag-is-half {
+  @include flex(1 1 50%);
+}
+
+.ag-is-half_last {
+  order: 2;
+}
+
+.ag-c-login__background {
+  background: rgba($c-primary, .7)  url('/static/biblored/img/demo/login-bg.svg') no-repeat left top;
+  background-size: cover;
+}
+
+.ag-is-half__inner {
+  @include px-rem(max-width, 500px);
+  @include px-rem(margin, 0 auto);
+  @include px-rem(padding, 10px 0 100px 0);
+}
+
+.ag-c-login__list {
+  @include font-rem(14px);
+  line-height: 1.6;
+  list-style-type: disc;
+  @include px-rem(margin-left, 16px);
+  @include px-rem(padding, 14px 0);
+  text-align: left;
+}
+
+.ag-c-login__list-item {
+  @include px-rem(padding-bottom, 30px);
+  &:last-child {
+    padding: 0;
+  }
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+
+  .ag-c-login__title {
+    @include font-rem(32px);
+    text-align: left;
+  }
+
+  .ag-c-login__text {
+    @include font-rem(16px);
+  }
+
+  .ag-c-login__list {
+    @include font-rem(16px);
+  }
+}
+
+//  wide    : $bp-wide : 1024px
+@include media-query(wide) {
+  .ag-is-half__inner {
+    @include px-rem(margin, 30px auto);
+  }
+}

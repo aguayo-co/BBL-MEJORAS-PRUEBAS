@@ -1,0 +1,241 @@
+/*------------------------------------*\
+  ID: C24
+  Menu Gallery
+  Description: Menu gallery, sistema de navegación de la exposición
+\*------------------------------------*/
+
+/**
+ * Class: ag-c-menu-gallery
+ * @description  Tarjeta con contenido para las subpaginas de exposición
+ * @molecule ag-c-menu-gallery
+ * @section Cover
+ * @markup
+ *  <div class="ag-c-cover__wrap">
+ *   <a class="ag-c-menu-gallery" href="/expositions/historia-de-rock-al-parque/en-julio-sigue-la-celebración">
+ *     <figure class="ag-c-menu-gallery-figure">
+ *       <img class="ag-c-menu-gallery-mask" src="../biblored/img/demo/resource-004.jpg" alt="En julio sigue la celebración">
+ *     </figure>
+ *     <div class="ag-c-menu-gallery-footer i-after-redirection">
+ *       <p class="ag-o-headline"> En julio sigue la celebración </p>
+ *     </div>
+ *   </a>
+ *   <a class="ag-c-menu-gallery" href="/expositions/historia-de-rock-al-parque/en-julio-sigue-la-celebración">
+ *     <figure class="ag-c-menu-gallery-figure">
+ *       <img class="ag-c-menu-gallery-mask" src="/static/biblored/img/demo/banner/banner_home-exhibiciones.jpg" alt="En julio sigue la celebración">
+ *     </figure>
+ *     <div class="ag-c-menu-gallery-footer i-after-external-link">
+ *       <p class="ag-o-headline"> Grupos seleccionados </p>
+ *     </div>
+ *   </a>
+ *  </div>
+ */
+
+.ag-c-menu-gallery {
+  list-style: none;
+  @include px-rem(margin-bottom, 60px);
+}
+
+.ag-c-menu-gallery__item {
+  border: 1px solid $c-on-border;
+  @include px-rem(max-width, 460px);
+  @include px-rem(border-radius, 8px);
+  @include px-rem(margin, 0 auto 6px);
+  overflow: hidden;
+}
+
+.ag-c-menu-gallery__link {
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(min-height, 64px);
+  background-color: $c-neutro;
+  transition: all 500ms linear;
+  &:hover {
+    background-color: $c-secondary;
+    box-shadow: inset 0px 4px 4px #9C0D2C;
+    .ag-c-menu-gallery__caption {
+      color: $c-neutro;
+      &::after {
+        color: $c-neutro;
+      }
+    }
+  }
+  &[target="_blank"] {
+    .ag-c-menu-gallery__caption {
+      &::after {
+        @include font-rem(16px);
+        transform: rotate(0);
+      }
+    }
+  }
+}
+
+.ag-c-menu-gallery__figure {
+  width: 100%;
+  margin: 0;
+  &::after {
+    transition: all 500ms linear;
+  }
+}
+
+.ag-is-menu-gallery_hide {
+  display: none;
+}
+
+.ag-c-menu-gallery__caption {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-rem(padding, 8px 14px);
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  line-height: 1.4;
+  @include font-rem(16px);
+  color: $c-primary;
+
+  &::after {
+    color: $c-secondary;
+    @include font-rem(12px);
+    @include px-rem(margin, 0 4px);
+    transform: rotate(45deg);
+  }
+
+}
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+
+  .ag-c-menu-gallery {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(stretch);
+  }
+
+  .ag-c-menu-gallery__item {
+    @include flex(1 0 0);
+    @include px-rem(min-width, 300px);
+    @include px-rem(max-width, 320px);
+    @include px-rem(margin, 0 10px 10px 0);
+    color: $c-primary;
+    background-color: $c-neutro;
+    &:hover {
+      transition: all 300ms linear;
+      box-shadow: 0px -4px 2px rgba(0, 0, 0, 0.04),
+      0px 2px 4px rgba(0, 0, 0, 0.04),
+      0px 1px 4px rgba(0, 0, 0, 0.04),
+      0px 4px 4px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  .ag-c-menu-gallery__mask {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: transparent;
+      transition: all 800ms linear;
+    }
+  }
+
+  .ag-c-menu-gallery__link {
+    height: 100%;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+
+      .ag-c-menu-gallery__caption {
+        color: inherit;
+      }
+
+      .ag-c-menu-gallery__btn {
+        border: 1px solid $c-secondary;
+        background-color: $c-neutro;
+        color: $c-secondary;
+      }
+
+      .ag-c-menu-gallery__mask {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        &:after {
+          transition: all 500ms linear;
+          background-color: rgba($c-secondary, .7);
+        }
+      }
+
+    }
+  }
+
+  .ag-c-menu-gallery__figure {
+    @include flexbox;
+    @include justify-content(column);
+    @include flex-direction(column);
+    @include align-items(stretch);
+    width: 100%;
+    height: 100%;
+    @include px-rem(min-height, 102px);
+    overflow: hidden;
+    @include px-rem(border-top-left-radius, 8px);
+    @include px-rem(border-top-right-radius, 8px);
+    background-color: $c-primary;
+  }
+
+  .ag-c-menu-gallery__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .ag-c-menu-gallery__caption {
+    @include flex-direction(column);
+    @include justify-content(space-between);
+    @include align-items(flex-start);
+    @include px-rem(padding, 10px 14px);
+    background-color: $c-neutro;
+    height: 100%;
+    &:after {
+      display: none;
+    }
+  }
+
+  .ag-c-menu-gallery__wink-text {
+    @include flexbox;
+    @include align-content(stretch);
+    @include px-rem(margin-bottom, 6px);
+
+    &:before {
+      content: "";
+      display: block;
+      @include flex(0 0 auto);
+      width: 4px;
+      height: auto;
+      @include px-rem(max-height, 25px);
+      @include px-rem(margin-right, 6px);
+      border-radius: 8px;
+      background-color: $c-secondary;
+    }
+  }
+
+  .ag-c-menu-gallery__btn {
+    display: block;
+    margin: 0 0 0 auto;
+    background-color: $c-secondary;
+    border: 1px solid $c-secondary;
+    transition: all 500ms linear;
+  }
+
+  .ag-is-menu-gallery_hide {
+    display: block;
+  }
+}

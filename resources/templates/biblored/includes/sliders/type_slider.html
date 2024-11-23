@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<li class="swiper-slide">
+  {% if content_type.icon_class %}
+    <a class="ag-c-slider__link i-{{ content_type.icon_class }}" href="{{ content_type.search_url }}" title="{% trans 'Ir a la búsqueda filtrada como' %} {{ content_type.name }}">{{ content_type.name }}</a>
+  {% else %}
+    <a class="ag-c-slider__link i-bdb" href="{{ content_type.search_url }}" title="{% trans 'Ir a la búsqueda filtrada como' %} {{ content_type.name }}">{{ content_type.name }}</a>
+  {% endif %}
+</li>

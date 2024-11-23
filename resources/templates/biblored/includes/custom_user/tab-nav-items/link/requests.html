@@ -1,0 +1,5 @@
+{% extends 'biblored/includes/custom_user/tab-nav-items/link/base.html' %}
+{% load i18n %}
+{% block anchor_url %}{% url 'profile-requests' %}{% endblock %}
+{% block anchor_title %}{% trans 'Ver solicitudes recibidas' %}{% endblock %}
+{% block tab_text %}{% trans "Solicitudes recibidas" %}{% endblock %}

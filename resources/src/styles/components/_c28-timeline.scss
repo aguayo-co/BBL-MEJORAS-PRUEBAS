@@ -1,0 +1,568 @@
+/*------------------------------------*\
+  ID: C25
+  Timeline
+  Description: Timeline, plugin vis.js
+\*------------------------------------*/
+/*------------------------------------*\
+  IS Class: inside is the plugin's properties
+\*------------------------------------*/
+.ag-is-timeline__item {
+
+  &.vis-item {
+
+    .vis-item-content {
+      padding: 0;
+    }
+
+    &.vis-point.vis-selected,
+    &.vis-selected {
+      border-color: transparent;
+      background-color: rgba(0, 0, 0, .08);
+    }
+
+    /*------------------------------------*\
+      Plugin's vis.js class: Overflow range
+    \*------------------------------------*/
+    .vis-item-overflow {
+      overflow: visible;
+    }
+  }
+
+  &.vis-range {
+    border: 0;
+    border-width: 0;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  .vis-item-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  &.vis-dot {
+    display: none;
+  }
+}
+
+/*------------------------------------*\
+  Component general class: inside is the plugin's properties
+\*------------------------------------*/
+.ag-c-timeline {
+
+
+  .vis-timeline {
+    border: 1px solid $c-surface;
+  }
+
+  .vis-panel {
+
+    &.vis-center {
+      border: 0;
+    }
+
+    /*------------------------------------*\
+      Horizontal axis => Timeline ruler
+    \*------------------------------------*/
+    &.vis-top {
+      position: relative;
+      top: -32px !important;
+      left: 50% !important;
+      transform: translateX(-50%);
+      border: 1px solid transparent;
+
+      .vis-time-axis {
+        border: 0;
+        background-color: $c-neutro;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1),
+          0px 3px 4px rgba(0, 0, 0, 0.08),
+          0px 4px 4px rgba(0, 0, 0, 0.08);
+
+        .vis-grid.vis-minor {
+          border-color: $c-primary-disabled;
+        }
+
+        .vis-text {
+          font-family: $f-primary;
+          font-weight: $f-medium;
+          color: $c-primary;
+          @include px-rem(margin-left, 1px);
+          border-left: 1px solid $c-primary-disabled;
+        }
+      }
+    }
+
+    &.ag-is-timeline__fixed-axis {
+      position: fixed;
+      top: 42px !important;
+    }
+  }
+
+  /*------------------------------------*\
+    Horizontal Group axis
+  \*------------------------------------*/
+  .vis-foreground {
+    .vis-group {
+      border-bottom: 1px solid $c-primary-disabled;
+    }
+  }
+
+  /*------------------------------------*\
+    Vertical categories axis
+  \*------------------------------------*/
+  .vis-panel {
+
+    .vis-label {
+      position: relative;
+    }
+
+    .vis-inner {
+      position: absolute;
+      width: 1px;
+      clip: rect(0 0 0 0);
+      overflow: hidden;
+      border: 0;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+    }
+  }
+
+}
+
+/*------------------------------------*\
+  Aside with button's timeline
+\*------------------------------------*/
+.ag-c-timeline__controls {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  @include px-rem(width, 50px);
+  height: 100%;
+  margin: 0 0 0 auto;
+  background-color: $c-neutro;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1),
+  0px 3px 4px rgba(0, 0, 0, 0.1),
+  0px 0px 0px rgba(0, 0, 0, 0);
+  transition: right 500ms ease-out;
+}
+
+.ag-c-timeline__list {
+  position: relative;
+  list-style: none;
+  width: 100%;
+}
+
+.ag-c-timeline__item-btn {
+  @include px-rem(margin, 8px auto);
+}
+
+.ag-c-timeline__control {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 40px);
+  @include px-rem(height, 40px);
+  @include px-rem(padding, 2px);
+  margin: 0 auto;
+  &:before {
+    @include font-rem(18px);
+    color: $c-on-text-light;
+  }
+}
+
+.ag-c-timeline__button-control {
+  @include px-rem(margin, 20px auto);
+}
+
+/*------------------------------------*\
+    Class that Fix to aside in timeline
+\*------------------------------------*/
+.ag-is-timeline__control_fix {
+  position: fixed;
+  @include px-rem(top, 70px);
+  right: 0;
+  z-index: 2;
+}
+
+/*------------------------------------*\
+    Class Square image: Only hover
+\*------------------------------------*/
+.ag-c-timeline__fig {
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+  @include px-rem(left, 5px);
+  @include px-rem(top, 5px);
+  @include px-rem(width, 70px);
+  @include px-rem(height, 70px);
+  background-color: $c-primary;
+}
+
+.ag-c-timeline__border {
+  display: none;
+  position: absolute;
+  @include px-rem(left, -95px);
+  bottom: 0;
+  @include px-rem(width, 80px);
+  @include px-rem(height, 80px);
+  @include px-rem(border-radius, 4px);
+
+  &:after {
+    content: '';
+    position: absolute;
+    @include px-rem(left, 10px);
+    @include px-rem(bottom, 40px);
+    @include px-rem(width, 84px);
+    @include px-rem(height, 2px);
+  }
+}
+
+/*------------------------------------*\
+    Class Avatar image: Only hover
+\*------------------------------------*/
+.ag-is-timeline_avatar {
+  border-radius: 50%;
+
+  .ag-c-timeline__fig {
+    border-radius: 50%;
+  }
+}
+
+.ag-c-timeline__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/*------------------------------------*\
+    Class Item Button
+\*------------------------------------*/
+.ag-c-timeline__item {
+  display: block;
+  width: 100%;
+  position: relative;
+  background-color: rgba($c-neutro, .7);
+  transition: all 3ms ease-in-out;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    @include px-rem(left, -4px);
+    @include px-rem(width, 8px);
+    @include px-rem(height, 8px);
+    @include px-rem(border-radius, 8px);
+    border: 4px solid $c-neutro;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .ag-c-timeline__border {
+      display: block;
+    }
+
+    .ag-c-timeline__title {
+      text-decoration: underline;
+      &:after {
+        text-decoration: none;
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      @include px-rem(bottom, -1px);
+      @include px-rem(left, -5px);
+      @include px-rem(width, 14px);
+      @include px-rem(height, 14px);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    &.ag-is-timeline__range {
+      &:before {
+        display: none;
+      }
+    }
+
+  }
+
+}
+
+.ag-c-timeline__group {
+  display: block;
+  position: relative;
+  list-style: none;
+  @include flexbox;
+  @include justify-content(space-between);
+}
+
+/*------------------------------------*\
+  IS Class: Only range
+\*------------------------------------*/
+.ag-is-timeline__range {
+  &:after {
+    width: 100%;
+  }
+
+  &:before {
+    width: 102%;
+  }
+}
+
+.ag-c-timeline__title,
+.ag-c-timeline__subtitle,
+.ag-c-timeline__lead {
+  display: block;
+  font-family: $f-primary;
+  line-height: 1.4;
+}
+
+.ag-c-timeline__title {
+  @include flexbox;
+  @include align-items(center);
+  font-weight: $f-bold;
+  color: $c-primary;
+  @include font-rem(18px);
+
+  &:after {
+    @include px-rem(margin-left, 6px);
+    @include px-rem(padding-top, 4px);
+    @include font-rem(10px);
+  }
+}
+
+.ag-c-timeline__subtitle {
+  font-weight: $f-regular;
+  @include font-rem(14px);
+}
+
+.ag-c-timeline__lead {
+  font-weight: $f-regular;
+  color: $c-on-text;
+  @include font-rem(12px);
+  text-align: left;
+}
+
+.ag-c-timeline__aside {
+  position: relative;
+  @include flex(1 0 auto);
+  @include px-rem(padding-bottom, 16px);
+}
+
+.ag-c-timeline__aside_left {
+  @include px-rem(padding-left, 10px);
+  @include px-rem(margin-left, -5px);
+  @include px-rem(padding-right, 10px);
+  text-align: left;
+}
+
+.ag-c-timeline__aside_right {
+  @include px-rem(padding-right, 10px);
+  @include px-rem(margin-right, -5px);
+  text-align: right;
+
+  .ag-c-timeline__subtitle {
+    @include justify-content(flex-end);
+  }
+}
+
+
+/*------------------------------------*\
+  Theme´s colors class: Only Timeline view
+  Theme-blue: $c-on-secondary #1AAACC
+\*------------------------------------*/
+.ag-is-timeline__theme-blue {
+
+  .ag-c-timeline__border {
+    background-color: $c-on-secondary;
+    &:after {
+      background-color: $c-on-secondary;
+    }
+  }
+
+  .ag-c-timeline__title {
+    color: $c-on-secondary;
+  }
+
+  &.ag-c-timeline__item {
+    &:after {
+      background-color: $c-on-secondary;
+    }
+
+    &:hover {
+      &:before {
+        border: 2px solid $c-on-secondary;
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-magenta: $c-secondary #E81744
+\*------------------------------------*/
+.ag-is-timeline__theme-magenta {
+
+  .ag-c-timeline__border {
+    background-color: $c-secondary;
+    &:after {
+      background-color: $c-secondary;
+    }
+  }
+
+  .ag-c-timeline__title {
+    color: $c-secondary;
+  }
+
+  &.ag-c-timeline__item {
+    &:after {
+      background-color: $c-secondary;
+    }
+
+    &:hover {
+      &:before {
+        border: 2px solid $c-secondary;
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-green: $c-on-primary #9EB923
+\*------------------------------------*/
+.ag-is-timeline__theme-green {
+
+  .ag-c-timeline__border {
+    background-color: $c-on-primary;
+    &:after {
+      background-color: $c-on-primary;
+    }
+  }
+
+  .ag-c-timeline__title {
+    color: $c-on-primary;
+  }
+
+  &.ag-c-timeline__item {
+    &:after {
+      background-color: $c-on-primary;
+    }
+
+    &:hover {
+      &:before {
+        border: 2px solid $c-on-primary;
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-purple: $c-primary-hover #442686
+\*------------------------------------*/
+.ag-is-timeline__theme-purple {
+
+  .ag-c-timeline__border {
+    background-color: $c-primary-hover;
+    &:after {
+      background-color: $c-primary-hover;
+    }
+  }
+
+  .ag-c-timeline__title {
+    color: $c-primary-hover;
+  }
+
+  &.ag-c-timeline__item {
+    &:after {
+      background-color: $c-primary-hover;
+    }
+
+    &:hover {
+      &:before {
+        border: 2px solid $c-primary-hover;
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-yellow: $c-on-tertiary #FFAF14
+\*------------------------------------*/
+.ag-is-timeline__theme-yellow {
+
+  .ag-c-timeline__border {
+    background-color: $c-on-tertiary;
+    &:after {
+      background-color: $c-on-tertiary;
+    }
+  }
+
+  .ag-c-timeline__title {
+    color: $c-on-tertiary;
+  }
+
+  &.ag-c-timeline__item {
+    &:after {
+      background-color: $c-on-tertiary;
+    }
+
+    &:hover {
+      &:before {
+        border: 2px solid $c-on-tertiary;
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-red: $c-is-error #EC0B04
+\*------------------------------------*/
+.ag-is-timeline__theme-red {
+
+  .ag-c-timeline__border {
+    background-color: $c-is-error;
+    &:after {
+      background-color: $c-is-error;
+    }
+  }
+
+  .ag-c-timeline__title {
+    color: $c-is-error;
+  }
+
+  &.ag-c-timeline__item {
+    &:after {
+      background-color: $c-is-error;
+    }
+
+    &:hover {
+      &:before {
+        border: 2px solid $c-is-error;
+      }
+    }
+  }
+}
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+
+  //- General container
+  .ag-c-timeline__wrap {
+    max-width: calc(100% - 110px);
+    margin: 0 auto;
+  }
+
+  .ag-c-timeline__control {
+    @include px-rem(width, 56px);
+    @include px-rem(height, 56px);
+  }
+
+  .ag-c-timeline__controls {
+    @include px-rem(width, 60px);
+    @include px-rem(padding-top, 50px);
+  }
+}

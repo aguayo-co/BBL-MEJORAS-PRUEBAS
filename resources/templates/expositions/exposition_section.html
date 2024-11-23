@@ -1,0 +1,168 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static wagtailcore_tags wagtailimages_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block css %}
+    {{ block.super }}
+
+    {% if page.get_parent.exposition.theme == 'purple' %}
+        {% render_bundle 'theme_primary_color' 'css' %}
+    {% endif %}
+
+    {% if page.get_parent.exposition.theme == 'blue' %}
+        {% render_bundle 'theme_secondary_color' 'css' %}
+    {% endif %}
+
+    {% render_bundle 'expositions' 'css' %}
+
+{% endblock css %}
+
+{% block title %} {% trans 'Sección: ' %} {{ page.title }} {% endblock %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %}{% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%}{% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+    {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs_items %}
+    <dd class="ag-breadcrumbs__item">
+        <a class="ag-breadcrumbs__link" title="{% trans 'Ir a ' %}{{ page.get_parent.get_parent.title }}" href="{% url 'expositions:list' %}">{{ page.get_parent.get_parent.title }}</a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+        <a class="ag-breadcrumbs__link" title="{% trans 'Ir a ' %}{{ page.get_parent.title }}" href="{% pageurl page.get_parent.specific %}">{{ page.get_parent.title }}</a>
+    </dd>
+    <dd class="ag-breadcrumbs__item">
+        {{ page.title }}
+    </dd>
+{% endblock %}
+
+{% block content %}
+
+    <header class="ag-l-inner-large ag-c-cover" id="content" tabindex="0">
+
+        {% if page.image %}
+            <figure class="ag-c-cover__figure">
+                {% image page.image max-1108x641 class="ag-c-cover__image" %}
+            </figure>
+        {% endif %}
+
+        <article class="ag-c-cover__fill">
+
+            <div class="ag-c-cover__head">
+
+                <ul class="ag-tags ag-tags_press ag-tags_margin-none">
+
+                  <li class="ag-tags__item">
+                    <span class="ag-tags__ico ag-tags__ico_theme i-sketch">
+                      <span class="ag-tags__tag ag-tags__tag_light ag-tags__tag_size10">
+                        {% trans "Exposición" %}
+                      </span>
+                    </span>
+                  </li>
+          
+                  {% if page.get_parent.exposition.exposition_type %}
+                    <li class="ag-tags__item ag-tags__bullet">
+                      <span class="ag-tags__ico">
+                        <span class="ag-tags__tag ag-tags__tag_light ag-tags__tag_size10">
+                            {{ page.get_parent.exposition.exposition_type }}
+                          </span>
+                        </span>
+                    </li>
+                  {% endif %}
+          
+                  {% if page.subject.name %}
+                    <li class="ag-tags__item ag-tags__bullet">
+                      <p class="ag-tags__tag ag-tags__tag_light ag-tags__tag_size10">
+                        {{ page.subject.name }}
+                      </p>
+                    </li>
+                  {% endif %}
+            
+                </ul>
+
+                {% if page.title %}
+                    <span class="ag-c-cover__action">
+                        Estás en:
+                        <a class="ag-c-cover__link ag-o-undeline" title="{% trans 'Ir a la exposición principal' %}" href="{% pageurl page.get_parent.specific %}">{{ page.get_parent.title }}</a>
+                    </span>
+
+                    <h1 class="ag-c-cover__title ag-o-headwink">
+                        {{ page.title }}
+                    </h1>
+                {% endif %}
+
+            </div>
+
+            <strong class="ag-c-cover__lead ag-c-cover_wrap">
+                {{ page.short_description }}
+            </strong>
+
+            <p class="ag-c-cover__text ag-c-cover_wrap">
+                {{ page.long_description }}
+            </p>
+        </article>
+
+    </header>
+
+    <div class="ag-c-menu-aside">
+        {% include "expositions/exposition_menu_aside.html" with aside_menu=page.get_parent.get_children.specific subpage_parent=page page_slug=page.get_parent.slug only %}
+    </div>
+
+    <main class="ag-l-page-below" id="maincontent" tabindex="0">
+
+        {% for subpage in page.content %}
+            {% if subpage.block_type == 'rich_text' %}
+              {% if forloop.first %}
+                {% include "expositions/component/free_content_component.html" with show_context_delimiter=subpage.show_context_delimiter rich_text_title=page.rich_text_title rich_text_intro=page.rich_text_intro self=subpage.value only %}
+              {% else %}
+                {% include "expositions/component/free_content_component.html" with show_context_delimiter=subpage.show_context_delimiter rich_text_title=None rich_text_intro=None self=subpage.value only %}
+              {% endif %}
+            {% elif  subpage.block_type == 'image_gallery' %}
+                <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                    {% include "expositions/exposition_image_gallery.html" with imagegallery=subpage.value page_parent=page block_counter=forloop.counter0 only %}
+                </section>
+            {% elif  subpage.block_type == 'video_gallery' %}
+                <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+                    {% include "expositions/exposition_video_gallery.html" with videogallery=subpage.value page_parent=page block_counter=forloop.counter0 only %}
+                </section>
+            {% elif  subpage.block_type == 'narrative' %}
+                {% include "expositions/exposition_narrative.html" with request=request resources_narrative=subpage.value user=user only %}
+            {% elif  subpage.block_type == 'cloud' %}
+                {% include "expositions/cloud_detail.html" with cloud=subpage.value only %}
+            {% elif  subpage.block_type == 'map' %}
+                {% include "expositions/map.html" with page=page map=subpage.value only %}
+            {% elif  subpage.block_type == 'timeline' %}
+                {% include "expositions/timeline.html" with page=page timeline=subpage.value only %}
+            {% elif  subpage.block_type == 'avatar_list' %}
+                {% include "expositions/component/avatars_list.html" with self=subpage.value only %}
+            {% elif  subpage.block_type == 'section_list' %}
+                {% include "expositions/components/section_list.html" with self=subpage.value only %}
+            {% else %}
+                {% include_block subpage %}
+            {% endif %}
+        {% endfor %}
+
+        {% include "biblored/includes/buttons/scroll_down.html" %}
+
+        {% if page.related_expositions %}
+            {% include "expositions/exposition_related-expositions-section.html" with related_expositions=page.related_expositions only %}
+        {% elif page.get_parent.related_expositions %}
+            {% include "expositions/exposition_related-expositions-section.html" with related_expositions=page.get_parent.related_expositions only %}
+        {% endif %}
+
+    </main>
+
+    {% include "expositions/timeline_content_template.html" %}
+
+{% endblock %}
+
+{% block js %}
+    {{ block.super }}
+    {% render_bundle 'expositions' 'js' %}
+    {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+{% endblock %}

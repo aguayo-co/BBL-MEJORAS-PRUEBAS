@@ -1,0 +1,157 @@
+.c-dropdown {
+    @include px-rem(margin-bottom, 40px);
+}
+.c-dropdown__box,
+.c-dropdown__list {
+    list-style-type: none;
+}
+
+.c-dropdown__box {
+    @include flexbox;
+    @include flex-direction(column);
+    @include px-rem(row-gap, 16px);
+    @include px-rem(max-width, 780px);
+    margin: 0 auto;
+}
+
+.c-dropdown__element {
+    border: 1px solid $c-on-border;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .3s linear;
+
+    &:hover {
+        background-color: $c-primary-hover;
+        box-shadow: #30156A inset 0px 4px 4px;
+        color: $c-neutro;
+
+        .c-plan-card__headline {
+            &::before {
+                color: $c-neutro;
+            }
+        }
+
+        .c-dropdown__title {
+            color: $c-neutro;
+        }
+    }
+    &.is-collapsible-open {
+        cursor: auto;
+        &:hover {
+            background-color: initial;
+            box-shadow: none;
+            color: initial;
+            transition: none; 
+
+            .c-plan-card__headline {
+                &::before {
+                    color: initial;
+                }
+            }
+            .c-dropdown__title {
+                color: initial;
+            }
+        }
+    }
+}
+.c-plan-card__headline {
+    position: relative;
+    @include flexbox;
+    @include justify-content(space-between);
+    @include flex-direction(row-reverse);
+    align-items: center;
+    @include px-rem(padding-top, 24px);
+    @include px-rem(padding-right, 24px);
+    @include px-rem(padding-left, 24px);
+    @include px-rem(padding-bottom, 24px);
+    border-bottom: none;
+    cursor: pointer;
+
+    &::before {
+        @include px-rem(font-size, 17px);
+        color: $c-primary-hover;
+        transform: rotate(180deg);
+        transition: all .3s linear;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 90%;
+        height: 1px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $c-on-border;
+        visibility: hidden;
+    }
+    .is-collapsible-open & {
+        &::before {
+            transform: rotate(0);
+        }
+        &::after {
+            visibility: visible;
+        }
+    }
+}
+
+.c-dropdown__item {
+
+}
+
+.c-dropdown__title {
+    font-weight: $f-bold;
+    @include px-rem(font-size, 18px);
+    color: $c-on-over;
+    transition: all .3s linear;
+}
+.c-dropdown__list {
+    @include px-rem(margin-top, 16px);
+}
+.c-dropdown__item {
+    @include px-rem(margin-bottom, 16px);
+}
+.c-dropdown__link {
+    @include px-rem(font-size, 16px);
+}
+
+.c-dropdown__content {
+    @include px-rem(padding-right, 24px);
+    @include px-rem(padding-left, 24px);
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: all .3s;
+
+    .is-collapsible-open & {
+        @include px-rem(margin-bottom, 24px);
+        opacity: 1;
+        visibility: visible;
+        overflow: visible;
+        transition: all .2s;
+    }
+}
+.c-dropdown__cta {
+    @include flexbox;
+    @include flex-direction(row-reverse);
+    @include justify-content(flex-end);
+    @include align-items(center);
+    @include px-rem(column-gap, 8px);
+    text-decoration: none;
+    &::before {
+        @include px-rem(font-size, 12px);
+    }
+}
+
+@include media-query(medium) {
+    .c-dropdown {
+        @include px-rem(margin-bottom, 90px);
+    }
+}
+@media only screen and (min-width: 560px) {
+    .c-plan-card__headline {
+        &::after {
+            width: 94%;
+        }
+    }
+}

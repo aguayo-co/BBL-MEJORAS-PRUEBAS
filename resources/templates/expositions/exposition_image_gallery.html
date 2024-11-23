@@ -1,0 +1,31 @@
+{% load i18n static wagtailimages_tags %}
+
+<header class="ag-l-inner-inside ag-o-header-wink">
+  <div class="ag-o-header-wink__inner">
+    <h2 class="ag-o-header-wink__title ag-o-subheadwink">{{ imagegallery.name }}</h2>
+    {% if imagegallery.description %}
+      <p class="ag-o-header-wink__lead">{{ imagegallery.description }}</p>
+    {% endif %}
+  </div>
+</header>
+
+<div class="swiper-container ag-c-slider-grid ag-js-imageSliderGrid" data-id="{{ block_counter }}">
+  <ul class="swiper-wrapper  ag-c-slider-grid__frame">
+    {% for imagegallery_item in imagegallery.images.all %}
+      <li class="swiper-slide ag-c-slider-grid__item">
+        <button class="ag-c-slider-grid__button ag-js-openImgGalleryModal"  type="button" data-modal="image_gallery-{{ block_counter }}" data-item-gallery-index="{{ forloop.counter0 }}">
+          <span class="ag-c-slider-grid__crop">
+            {% image imagegallery_item.image fill-314x314 %}
+          </span>
+          <span class="ag-c-slider-grid__caption">{{ imagegallery_item.image.title }}</span>
+        </button>
+      </li>
+    {% endfor %}
+  </ul>
+
+
+  <div id="page_img_swiper_pagination-{{ block_counter }}" class="swiper-pagination ag-has-slider-grid__dots"></div>
+
+</div>
+
+{% include "biblored/includes/modals/modal_gallery.html" with modal=imagegallery subpage_parent=page_parent block_counter=block_counter media_type="Imágenes" media="image_gallery-" media_slider="ag-js-imgSliderModal" control_slider="modal_img" only %}

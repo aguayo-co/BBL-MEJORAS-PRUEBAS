@@ -1,0 +1,58 @@
+/*----------------------------------------------*\
+  ID: b13_table
+  Table
+  Type: Information
+  Description: Tabla para mostrar información con enlace a detalles a la derecha.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-table
+ * @description bloque de tabla
+ * @molecule b13_table
+ * @section Information
+ * @markup
+ *  <table class="ag-table">
+ *    <tr class="ag-table__row">
+ *      <th class="ag-table__title">Ejemplares</th>
+ *      <th class="ag-table__title">Número Topográfico</th>
+ *      <th class="ag-table__title"></th>
+ *    </tr>
+ *    <tr class="ag-table__row">
+ *      <td class="ag-table__cell">Cien años de soledad</td>
+ *      <td class="ag-table__cell">A-N GARC9</td>
+ *      <td class="ag-table__cell"><a class="ag-o-link" href="#" title="">Más información</a></td>
+ *    </tr>
+ *    <tr class="ag-table__row">
+ *      <td class="ag-table__cell">Cien años de soledad</td>
+ *      <td class="ag-table__cell">A-N GARC2</td>
+ *      <td class="ag-table__cell"><a class="ag-o-link" href="#" title="">Más información</a></td>
+ *    </tr>
+ *  </table>
+ */
+
+.ag-table__row {
+  text-align: left;
+  &:not(.ag-table__row_top) {
+    border-top: 1px solid $c-on-border;
+  }
+}
+
+.ag-table__title {
+  color: $c-primary;
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  @include px-rem(padding, 6px 6px 6px 0);
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.ag-table__cell {
+  @include px-rem(padding, 6px 6px 6px 0);
+
+  &:last-child {
+    padding-right: 0;
+    text-align: right;
+  }
+}

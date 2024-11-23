@@ -1,0 +1,43 @@
+{% load i18n static %}
+
+<div class="ag-choice-image ag-has-content-menu-hide" data-content-tabs="choice-image">
+  <div class="ag-choice-image-s-position">
+    {# TODO: Default cover image #}
+    <div class="ag-form__field ag-js-form__field">
+      {{ form.default_cover_image }}
+      <small class="ag-form__error ag-js-msgError" data-for="{{ form.default_cover_image.name }}"
+        hidden></small>
+      {% for error in form.default_cover_image.errors %}
+      <small class="ag-form__error ag-js-msgError">{{ error }}</small>
+      {% endfor %}
+    </div>
+
+    <div class="ag-choice-image__wrap">
+      {% for choice in form.default_cover_image.field.choices %}
+          {% with full_image_path=choice.0 %}
+              {% if full_image_path %}
+                  <figure class="ag-choice-image__mask ag-js-choice-image id_default_cover_image_{{ forloop.counter0 }}">
+                    <img class="ag-choice-image__img" src="{% static full_image_path|get_static_rel_path %}"
+                      alt="{{ choice.1 }}">
+                    <figcaption class="ag-choice-image__caption">{% trans "Seleccionar como portada" %}</figcaption>
+                  </figure>
+              {% endif %}
+          {% endwith %}
+      {% endfor %}
+    </div>
+
+    <div class="ag-o-actions ag-u-margin-top-64">
+      <button 
+        class="ag-o-btn ag-o-btn_outline ag-o-btn_full ag-o-btn_order ag-o-actions__item ag-js-modalClose"
+      >
+        {% trans "Cancelar" %}
+      </button>
+      <button 
+        class="ag-o-btn ag-o-actions__item ag-o-btn_full ag-js-btn-choice-image" 
+        type="button"
+      >
+        {% trans "Confirmar portada" %}
+      </button>
+    </div>
+  </div>
+</div>

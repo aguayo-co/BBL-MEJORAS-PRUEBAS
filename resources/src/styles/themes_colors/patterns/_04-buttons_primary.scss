@@ -1,0 +1,14 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  Buttons transversal style
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+
+.ag-o-button-action {
+    &.i-scroll-down,
+    &.i-filter {
+    background-color: $c-primary-hover;
+  }
+}

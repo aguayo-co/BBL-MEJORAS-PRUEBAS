@@ -1,0 +1,129 @@
+{% extends "biblored/page.html" %}
+
+{% load i18n %}
+
+{% block title %} {% trans 'Inicio de sesión' %} / {% trans 'Registro' %} {% endblock %}
+
+{% block description %}
+  {% trans 'Accede a todos los beneficios que te ofrece la Biblioteca Digital de Bogotá' %}
+{% endblock %}
+
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+
+<main class="ag-c-login">
+  <section id="maincontent" tabindex="0">
+    <div id="content" tabindex="0">
+      <form class="ag-js-validate" id="login-form" method="post" >
+        {% csrf_token %}
+        <div class="ag-form__header">
+
+          <div class="ag-c-tooltip-wrapper ag-c-tooltip-wrapper_align">
+            <h2 class="ag-o-heading" tabindex="0">{% trans "Ingresa" %}</h2>
+            {# tooltip #}
+            {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="login" only %}
+          </div>
+          <p>{% trans "Inicia sesión con tu usuario y contraseña para acceder a los contenidos de la Biblioteca Digital de Bogotá. " %}</p>
+        </div>
+
+        <div class="ag-form__field ag-js-form__field">
+          <label class="ag-form__label" for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+          <div class="ag-form__input ag-form__input_icon ag-js-formInput {% if form.non_field_errors %} ag-is-error i-close {% endif %}" data-validate="document-required">
+            {{ form.username }}
+            <small class="ag-form__error ag-js-msgError" data-for="{{ form.username.name }}" hidden></small>
+            {% for error in form.username.errors %}
+              <small class="ag-form__error ag-js-msgError" data-for="{{ form.username.name }}" role="alert">{{ error }}</small>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="ag-form__field ag-js-form__field">
+          <label class="ag-form__label" for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+          <div class="ag-form__input ag-form__input_icon ag-js-formInput {% if form.non_field_errors %} ag-is-error i-close {% endif %}" data-validate="password-required">
+            {{ form.password }}
+            <small class="ag-form__error ag-js-msgError" data-for="{{ form.password.name }}" hidden></small>
+            {% for error in form.password.errors %}
+              <small class="ag-form__error ag-js-msgError" data-for="{{ form.password.name }}" role="alert">{{ error }}</small>
+            {% endfor %}
+          </div>
+          {% if form.non_field_errors %}
+            <div class="ag-o-messages_form">
+              <ul class="ag-o-messages__error">
+                {% for error in form.non_field_errors %}
+                <li class="ag-o-messages__item">
+                  <span class="ag-alert i-alert">
+                    <span class="ag-alert__lead" role="alert"  tabindex="0">{{ error }}</span>
+                  </span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+        <div class="ag-form__field ag-js-form__field {% if form.non_field_errors %} ag-is-error {% endif %}" data-validate="select-country">
+          <label class="ag-form__label" for="{{ form.country.id_for_label }}">{{ form.country.label }}</label>
+          <div class="ag-form__select i-after-arrow-down">
+            {{ form.country }}
+          </div>
+          <small class="ag-form__error ag-js-msgError" data-for="{{ form.country.name }}" hidden></small>
+          {% for error in form.country.errors %}
+            <small class="ag-form__error ag-js-msgError" data-for="{{ form.country.name }}" role="alert">{{ error }}</small>
+          {% endfor %}
+        </div>
+        <div class="ag-form__field ag-form__field_flexbox">
+          <div class="ag-form__checkbox">
+            {{ form.remember }}
+            <label class="i-check" for="{{ form.remember.id_for_label }}">{{ form.remember.label }}</label>
+          </div>
+          <div class="ag-form__info">
+            <p class="ag-form__info-row">
+              <a href="https://catalogo.biblored.gov.co/login" target="_blank" class="ag-o-link">{% trans "¿Olvidaste tu contraseña?" %}</a>
+            </p>
+          </div>
+        </div>
+        {# Campos ocultos #}
+        {% for hidden in  form.hidden_fields %}
+          {{ hidden }}
+        {% endfor %}
+        <div class="ag-o-actions">
+          <button class="ag-o-btn" type="submit">{% trans "Ingresa" %}</button>
+        </div>
+      </form>
+    </div>
+    <div class="ag-o-title-line ag-o-title-line_center">
+      <h3 class="ag-o-title-line__text">{% trans "¿Eres un usuario nuevo? " %}</h3>
+    </div>
+    <div class="ag-is-half__inner">
+      <p class="ag-c-login__text" tabindex="0">
+        {% trans "La Biblioteca Digital de Bogotá hace parte de BibloRed, Red Distrital de Bibliotecas Públicas de Bogotá." %}
+      </p>
+      <p class="ag-c-login__text" tabindex="0">
+        {% trans "Para acceder a los servicios de la Biblioteca Digital de Bogotá, te enviaremos a la página web de BibloRed. Allí puedes afiliarte para disfrutar de los siguientes beneficios:" %}
+      </p>
+      <ul class="ag-c-login__list">
+        <li class="ag-c-login__list-item" tabindex="0">
+          {% trans "Más de 100 espacios públicos de lectura en la ciudad." %}
+        </li>
+        <li class="ag-c-login__list-item" tabindex="0">
+          {% trans "Préstamo de libros, películas y música para llevar a tu casa." %}
+        </li>
+        <li class="ag-c-login__list-item" tabindex="0">
+          {% trans "Una programación cultural permanente." %}
+        </li>
+        <li class="ag-c-login__list-item" tabindex="0">
+          {% trans "Accede a la Biblioteca Digital de Bogotá para disfrutar contenidos digitales de forma gratuita, crear tus propias colecciones, colaborar y compartir con otros." %}
+        </li>
+      </ul>
+      <div class="ag-o-actions">
+        <a class="ag-o-btn ag-o-btn_outline" href="{{ registration_url }}" title="{% trans 'Afiliate a' %} BibloRed" target="_blank">{% trans "Afíliate" %}</a>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

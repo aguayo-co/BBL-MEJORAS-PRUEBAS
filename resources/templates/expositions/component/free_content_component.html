@@ -1,0 +1,37 @@
+{% load i18n %}
+
+
+{% spaceless %}
+
+  <section class="ag-l-inner-inside ag-o-header-wink ag-is-button-scroll-stop">
+
+    {% if show_context_delimiter or self.show_context_delimiter %}
+      <span class="ag-o-head-tag">
+        <strong class="ag-o-head-tag__ico i-history">{% trans 'Contexto' %}</strong>
+      </span>
+    {% endif %}
+
+    {% if rich_text_title or self.title or rich_text_intro or self.intro %}
+      <header class="ag-o-header-wink__inner">
+        {% if rich_text_title or self.title  %}
+          <h2
+            class="ag-o-header-wink__title ag-o-subheadwink"
+          >
+            {% firstof rich_text_title self.title %}
+          </h2>
+        {% endif %}
+        {% if rich_text_intro or self.intro %}
+          <p class="ag-o-header-wink__lead">
+            {% firstof rich_text_intro self.intro %}
+          </p>
+        {% endif %}
+      </header>
+    {% endif %}
+
+  </section>
+
+  <div class="ag-l-inner-inside ag-u-sides-padding ag-s01-rich-text">
+    {{ self.wysiwyg }}
+  </div>
+
+{% endspaceless %}

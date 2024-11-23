@@ -1,0 +1,11 @@
+{% extends "biblored/includes/custom_user/invitations_requests_list_base.html" %}
+{% load i18n %}
+{% block notificacions_list_header %}{% endblock %}
+
+{% block notifications_item_list %}
+  {% for request_notification in notifications %}
+    {% include "biblored/includes/notifications/notification_request_item.html" with notification=request_notification user=request_notification.user csrf_token=csrf_token only %}
+  {% endfor %}
+{% endblock %}
+
+{% block notificacions_empty_list_title %}{% trans 'No tienes solicitudes pendientes' %}{% endblock %}

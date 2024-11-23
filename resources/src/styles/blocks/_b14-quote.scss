@@ -1,0 +1,214 @@
+/*----------------------------------------------*\
+  ID: b14_quote
+  Quote
+  Type: Information
+  Description: Contenedor de elementos para mostrar comentarios.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-quote
+ * @description  Contenido de participación de usuarios es un listado de reseñas.
+ * @molecule b14_quote
+ * @section Information
+ * @markup
+ *   <div class="ag-quote i-quote">
+ *    <blockquote class="ag-quote__text">Brandon Sanderson se está convirtiendo rápidamente en mi autor favorito. Crecí con Tolkein, Asimov, Herbert y otros escritores talentosos. Aunque era joven y no entendía todo en la página, las historias cobraron vida para mí. También fui un gran fan de Orson Scott Card en la escuela secundaria, y de los últimos 15 años de George RR Martin. En mi opinión, Brandon Sanderson podría vencerlos a todos. Sé que se tomará como una herejía blasfema y limítrofe ser por.
+ *    </blockquote>
+ *
+ *    <div class="ag-chip ag-quote__chip">
+ *     <figure class="ag-chip__avatar">
+ *       <img class="ag-chip__img" src="../biblored/img/demo/avatar-3.jpg" alt="Logo Biblioteca Luis Ángel Arango">
+ *     </figure>
+ *    </div>
+ *
+ *    <div class="ag-quote__editor">
+ *      <strong>Sandra Patricia Rodríguez</strong>
+ *      <p>Bogotá</p>
+ *    </div>
+ *   </div>
+ */
+
+.ag-quote {
+  position: relative;
+  @include flexbox;
+  @include flex-direction(column);
+  @include justify-content(space-between);
+  @include px-rem(padding, 20px 0 0 20px);
+  @include px-rem(margin, 20px auto 60px);
+
+  &:before {
+    position: absolute;
+    @include px-rem(top, -12px);
+    @include px-rem(left, -20px);
+    @include font-rem(30px);
+    color: $c-primary-hover;
+  }
+
+  &:after {
+    content: "";
+    @include px-rem(top, 20px);
+    left: 0;
+    position: absolute;
+    display: block;
+    @include px-rem(width, 1px);
+    height: calc(100% - 20px);
+    background-color: $c-primary-hover;
+  }
+}
+
+.ag-quote__text {
+  @include px-rem(margin-bottom, 30px);
+  line-height: 1.8;
+  word-break: break-word;
+}
+
+.ag-quote__chip {
+  position: absolute;
+  @include px-rem(left, -24px);
+  bottom: 0;
+  z-index: 1;
+
+  .ag-chip__avatar {
+    @include px-rem(min-width, 50px);
+    @include px-rem(max-width, 50px);
+    @include px-rem(height, 50px);
+  }
+}
+
+.ag-quote__title,
+.ag-quote__date {
+  line-height: 1.4;
+  color: $c-primary;
+  font-weight: $f-medium;
+  font-family: $f-primary;
+}
+
+.ag-quote__title {
+  @include font-rem(16px);
+  @include px-rem(margin, 16px 0 0);
+}
+
+.ag-quote__date {
+  @include font-rem(12px);
+  @include px-rem(margin, 8px 0 24px);
+}
+
+.ag-quote__item {
+  .ag-o-link {
+    line-height: initial;
+  }
+}
+
+.ag-quote__list {
+  list-style: none;
+  width: 100%;
+  text-align: right;
+}
+
+.ag-quote__footer {
+  @include flexbox;
+  @include justify-content(space-between);
+  width: 100%;
+  @include px-rem(margin-left, 16px);
+}
+
+.ag-quote__btn {
+  position: relative;
+  @include px-rem(bottom, -3px);
+  right: 0;
+  display: none;
+  margin-left: auto;
+  background-color: $c-neutro;
+}
+
+.ag-quote__wrap {
+  position: relative;
+  display: block;
+}
+
+.ag-quote__ellipsis {
+  color: $c-on-text-light;
+}
+
+//- Active class This class envolve the counter text
+.ag-is-quote__box {
+  position: relative;
+  height: 100%;
+  @include text-ellipsis-multiple(14px, 1.8, 8);
+  transition: max-height 500ms ease-in-out;
+}
+
+.ag-is-quote__show-btn {
+  display: block;
+}
+
+.ag-is-quote__show-text {
+  .ag-is-quote__box {
+    height: 100%;
+    min-height: min-content;
+    max-height: 1500px;
+    -webkit-line-clamp: initial;
+    -webkit-box-orient: initial;
+    text-overflow: initial;
+    transition: max-height 300ms ease-in-out;
+  }
+
+  .ag-quote__btn {
+    margin-top: 0;
+  }
+}
+
+@media all and (min-width: 480px) {
+  .ag-quote__list {
+    @include flexbox;
+    @include justify-content(flex-end);
+    @include align-items(center);
+    @include flex(1 0 220px);
+    width: 100%;
+    @include px-rem(max-width, 220px);
+    @include px-rem(margin-right, 16px);
+  }
+
+  .ag-quote__item {
+    &:first-child {
+      @include px-rem(margin-right, 8px);
+      @include px-rem(padding-right, 8px);
+      border-right: 1px solid $c-on-text-light;
+    }
+  }
+
+  .ag-is-quote__box {
+    @include text-ellipsis-multiple(14px, 1.8, 6);
+  }
+}
+
+@media all and (min-width: 610px) {
+  .ag-is-quote__box {
+    @include text-ellipsis-multiple(14px, 1.8, 5);
+  }
+}
+
+@media all and (min-width: 740px) {
+  .ag-is-quote__box {
+    @include text-ellipsis-multiple(14px, 1.8, 4);
+  }
+}
+
+@media all and (min-width: 930px) {
+  .ag-is-quote__box {
+    @include text-ellipsis-multiple(14px, 1.8, 3);
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-quote {
+    @include px-rem(padding-right, 30px);
+    @include px-rem(margin, 20px 20px 60px 20px);
+  }
+
+  .ag-quote__footer {
+    @include px-rem(margin-left, 24px);
+  }
+
+}

@@ -1,0 +1,450 @@
+/*----------------------------------------------*\
+  ID: C05
+  Filter Band
+  Type: Form
+  Description: Componente utilizado para filtrar
+  la visualización de los elementos.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-c-filter-band
+ * @description   Componante usado para desplegar informacion listada
+ * @molecule c04_dropdown
+ * @section Dropdown
+ * @modifiers
+ *  .ag-c-filter-band__grid Para un grupo de varios dropdown, se le debe colocar este contenedor (flexbox)
+ * @markup
+ *   <div class="ag-c-filter-band__grid">
+ *     <div class="ag-c-filter-band__group ag-js-filterItem" data-name="data_sources">
+ *       <button class="ag-c-filter-band__label ag-js-dropdownBtn ag-js-filterBtnDropdown ag-is-searchOpen i-after-arrow-up" for="sort-by__for">Ordenar</button>
+ *       <ul class="ag-c-filter-band__list ag-js-dropdownSlide ag-is-dropdownOpen">
+ *           <li class="ag-c-filter-band__item">
+ *             <a class="ag-c-filter-band__link " href="?order_by=az">De la a A a la Z</a>
+ *           </li>
+ *           <li class="ag-c-filter-band__item">
+ *             <a class="ag-c-filter-band__link " href="?order_by=za">De la Z a la A</a>
+ *           </li>
+ *           <li class="ag-c-filter-band__item">
+ *             <a class="ag-c-filter-band__link ag-c-filter-band__link_active" href="?order_by=recent">Más reciente</a>
+ *           </li>
+ *           <li class="ag-c-filter-band__item">
+ *             <a class="ag-c-filter-band__link " href="?order_by=-recent">Menos reciente</a>
+ *           </li>
+ *       </ul>
+ *     </div>
+ *   <div class="ag-c-filter-band__grid">
+ */
+
+.ag-c-filter-band {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  @include px-rem(margin-top, 20px);
+
+  select {
+    border: 0;
+  }
+}
+.ag-c-filter-band_right {
+  .ag-c-filter-band__group {
+    @include px-rem(margin-right, 30px);
+  }
+}
+
+.ag-c-filter-band__group {
+  position: relative;
+  margin-right: 0;
+  margin-left: auto;
+
+  .ag-c-filter-band__item {
+    margin: 0;
+  }
+}
+
+.ag-c-filter-band__label {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  width: 100%;
+  padding: 0;
+  color: $c-primary;
+  font-weight: $f-bold;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &:after {
+    @include px-rem(margin, 1px 0 0 12px);
+    line-height: 1.8;
+    color: $c-secondary;
+    @include font-rem(10px);
+  }
+}
+
+.ag-c-filter-band__label_table {
+  display: table;
+  vertical-align: center;
+  width: 100%;
+
+  &:after {
+    display: table-cell;
+  }
+}
+
+.ag-c-filter-band__text {
+  display: table-cell;
+  width: 100%;
+}
+
+.ag-c-filter-band__title {
+  @include font-rem(19px);
+  font-weight: $f-medium;
+  border-bottom: 1px solid $c-on-border;
+  color: $c-primary;
+  @include px-rem(padding, 10px 0);
+  @include px-rem(margin-bottom, 10px);
+}
+
+.ag-c-filter-band__link {
+  display: block;
+  width: 100%;
+  @include px-rem(padding, 4px 10px);
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    color: $c-neutro;
+    background-color: $c-on-hover;
+  }
+  &.ag-c-filter-band__link_active {
+    color: $c-neutro;
+    background-color: $c-on-hover;
+  }
+}
+
+.ag-c-filter-band__list {
+  list-style: none;
+  border: 1px solid $c-on-border;
+  background-color: $c-neutro;
+  // transition: all 0.5s ease-in-out;
+
+  &.ag-is-hidden {
+    opacity: 0;
+    border-color: transparent;
+  }
+
+  &.ag-c-filter-band__list_absolute {
+    position: absolute;
+    @include px-rem(top, 30px);
+    @include px-rem(right, -12px);
+    @include px-rem(min-width, 120px);
+    z-index: 6;
+  }
+}
+
+.ag-c-filter-band__form {
+  //contenedor de select multiple
+  select {
+    width: 100%;
+  }
+  .ag-c-filter-band__list {
+    min-width: 100%;
+    right: 0;
+
+    .ag-c-filter-band__list-inner {
+      @include px-rem(padding, 16px 10px);
+    }
+
+    &.ag-is-dropdownOpen {
+      &:not(.ag-is-hidden) {
+        @include px-rem(max-height, 600px);
+      }
+    }
+  }
+}
+
+.ag-c-filter-band__list-inner_space {
+  height: auto;
+  @include px-rem(max-height, 250px);
+  overflow: scroll;
+
+  .ag-form__checkbox {
+    @include px-rem(margin-bottom, 8px);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.ag-c-filter-band__btn {
+  position: absolute;
+  @include px-rem(top, 8px);
+  @include px-rem(right, 8px);
+  z-index: 10;
+}
+
+// medium-max, máximo 767px;
+@include media-query(medium-max) {
+  .ag-c-filter-band {
+    @include px-rem(margin-bottom, 20px);
+
+    &.ag-c-filter-band_end {
+      @include justify-content(flex-end);
+    }
+
+    .ag-c-filter {
+      height: 100%;
+      @include px-rem(padding-top, 40px);
+      @include px-rem(padding-left, 20px);
+    }
+  }
+
+  .ag-c-filter-band__form {
+    @include px-rem(margin-top, 20px);
+  }
+
+  .ag-c-filter-band__item {
+    @include px-rem(margin-top, 20px);
+  }
+
+  .ag-c-filter-band__search {
+    @include px-rem(margin-top, 20px);
+  }
+
+  .ag-c-filter-band__list {
+    border: none;
+  }
+
+  .ag-s-filter-band {
+    .ag-l-aside {
+      @include px-rem(max-width, 480px);
+    }
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  // Estilos ag-filter-band
+  .ag-c-filter-band {
+    @include justify-content(flex-end);
+    @include px-rem(margin-bottom, 32px);
+
+    .ag-l-aside {
+      @include px-rem(margin-right, 0);
+      max-width: initial;
+      width: 100%;
+    }
+
+    &.ag-c-filter-band_top {
+      @include px-rem(margin-top, 20px);
+    }
+
+    &.ag-c-filter-band_space-between {
+      @include justify-content(space-between);
+    }
+
+    .ag-c-filter {
+      border: 0;
+      padding: 0;
+    }
+
+    .ag-c-filter__title {
+      display: none;
+    }
+    //line height en 2 para el navegador Safari 11+
+    .ag-select-search__input-cloned {
+      padding: 0;
+      line-height: 2;
+    }
+  }
+
+  .ag-c-filter-band__group {
+    @include px-rem(margin-bottom, 0);
+  }
+
+  .ag-c-filter-band__grid {
+    @include flexbox;
+    @include justify-content(flex-end);
+    .ag-is-choiceSelected {
+      .ag-select-search__list-multiple {
+        border: 1px solid $c-on-border;
+      }
+    }
+  }
+
+  .ag-c-filter-band__group {
+    @include px-rem(margin-left, 30px);
+  }
+
+  .ag-c-filter-band__label {
+    @include font-rem(14px);
+  }
+
+  .ag-c-filter-band__list {
+    position: absolute;
+    @include px-rem(top, 30px);
+    @include px-rem(right, -12px);
+    min-width: 120px;
+    z-index: 6;
+
+    &.ag-c-filter-band__list_wide {
+      @include px-rem(width, 200px);
+      overflow-x: scroll;
+    }
+  }
+
+  .ag-c-filter-band__form {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(flex-end);
+    width: 100%;
+
+    .ag-c-filter-band__label {
+      &:not(.ag-js-dropdownBtn) {
+        @include px-rem(margin-right, 20px);
+      }
+    }
+
+    //contenedor de select search
+    .ag-select-search {
+      @include flexbox;
+      @include align-items(center);
+      @include px-rem(min-width, 160px);
+      &:after {
+        position: static;
+        @include px-rem(top, 0);
+        @include px-rem(right, 0);
+        transform: translateY(0);
+      }
+    }
+
+    .ag-c-filter-band__item {
+      position: relative;
+      @include px-rem(margin-left, 30px);
+    }
+  }
+
+  .ag-c-filter-band__item {
+    @include flexbox;
+    @include align-items(center);
+    @include flex(0 0 160px);
+  }
+
+  .ag-c-filter-band__btn {
+    display: none;
+  }
+
+  //Estilos para select search en desktop
+  .ag-c-filter-band__search {
+    position: relative;
+    @include px-rem(margin-left, 30px);
+
+    .ag-select-search {
+      border: 0;
+      &:after {
+        @include px-rem(margin-left, 12px);
+        @include font-rem(20px);
+        color: $c-secondary;
+      }
+    }
+
+    .ag-select-search__inner {
+      padding: 0;
+    }
+
+    .ag-select-search__list-multiple {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      @include px-rem(padding, 6px);
+      background-color: $c-neutro;
+    }
+
+    .ag-c-filter-band__label {
+      display: none;
+    }
+
+    .ag-select-search__input {
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: $c-primary;
+        font-weight: $f-bold;
+        @include font-rem(14px);
+        font-family: $f-primary;
+        line-height: 2.1;
+      }
+
+      &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $c-primary;
+        font-weight: $f-bold;
+        @include font-rem(14px);
+        font-family: $f-primary;
+        opacity: 1;
+      }
+
+      &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: $c-primary;
+        font-weight: $f-bold;
+        @include font-rem(14px);
+        font-family: $f-primary;
+      }
+
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: $c-primary;
+        font-weight: $f-bold;
+        @include font-rem(14px);
+        font-family: $f-primary;
+      }
+
+      &:focus {
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: $c-on-text-ico;
+        }
+
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          color: $c-on-text-ico;
+        }
+
+        &:-ms-input-placeholder {
+          /* IE 10+ */
+          color: $c-on-text-ico;
+        }
+
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          color: $c-on-text-ico;
+        }
+      }
+    }
+  }
+
+  .ag-c-filter-band__title {
+    display: none;
+  }
+
+  //Hack para safari 10+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      .ag-c-filter-band {
+        .ag-select-search__input-cloned {
+          padding: 0;
+          // line height en uno para otros navegadores
+          line-height: 1;
+        }
+      }
+    }
+  }
+}
+
+// wide    : $bp-wide: 1024px;
+@include media-query(wide) {
+  .ag-s-filter-band {
+    &.ag-c-filter-band {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

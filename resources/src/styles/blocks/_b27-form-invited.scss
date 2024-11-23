@@ -1,0 +1,71 @@
+/*------------------------------------*
+  Block in context
+  #Styles for the invited users form
+  Description: only use in button search
+/*------------------------------------*/
+.ag-form-invited {
+  display: block;
+}
+
+.ag-form-invited_wrap {
+  width: 92%;
+  @include px-rem(max-width, 632px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ag-form-invited__actions {
+  position: sticky;
+  bottom: 0;
+  @include px-rem(padding-top, 32px);
+  @include px-rem(padding-bottom, 32px);
+  background-color: $c-neutro;
+  border-top: 1px solid $c-surface-box-bg;
+  list-style: none;
+  z-index: 100;
+}
+
+.ag-form-invited__item {
+  &:first-child {
+    @include px-rem(margin-bottom, 16px);
+  }
+}
+
+.ag-form-invited__buttons {
+  display: block;
+  width: 100%;
+  @include px-rem(max-width, 336px);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// medium : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-form-invited__actions {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .ag-form-invited__item {
+    &:first-child {
+      margin-bottom: 0;
+      @include px-rem(margin-right, 16px);
+    }
+  }
+}
+
+// wide : $bp-wide: 1024px;
+@include media-query(wide) {
+  // .ag-form-invited__actions {
+  //   @include justify-content(flex-end);
+  // }
+
+  .ag-form-invited__item {
+    &:last-child {
+      @include px-rem(margin-right, 40px);
+    }
+  }
+}

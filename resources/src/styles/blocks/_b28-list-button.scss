@@ -1,0 +1,167 @@
+/*------------------------------------*
+  Block in context
+  #Styles for the invited users form
+  Description: only use in button search
+/*------------------------------------*/
+.ag-list-button {
+  position: relative;
+
+  &:focus {
+    border: 1px dashed blue;
+  }
+}
+
+.ag-list-button__list {
+  display: block;
+  position: absolute;
+  z-index: 3;
+  opacity: 0;
+  transform: scale(0);
+  @include px-rem(min-width, 286px);
+  list-style: none;
+  background-color: $c-neutro;
+  @include px-rem(padding-right, 16px);
+  @include px-rem(padding-left, 16px);
+  border: 1px solid rgba($c-on-border, 0.8);
+}
+
+.ag-list-button_position-list {
+  @include px-rem(right, -30px);
+  @include px-rem(top, 40px);
+}
+
+.ag-list-button__action {
+  @include flexbox;
+  @include align-items(center);
+  line-height: 1;
+  font-family: $f-primary;
+  @include px-rem(font-size, 14px);
+  font-weight: $f-medium;
+  cursor: pointer;
+  color: $c-primary;
+  text-align: left;
+  padding-inline: 0;
+  transition: color 300ms ease-in-out;
+
+  &:hover {
+
+    .ag-list-button__span {
+      text-decoration: underline;
+      text-underline-position: under;
+      color: $c-primary-hover;
+    }
+
+    &:after {
+      display: inline-block;
+      color: $c-on-text-light;
+    }
+  }
+
+  &:after {
+    @include px-rem(font-size, 22px);
+    @include px-rem(margin-left, 8px);
+  }
+
+  .ag-list-button_right & {
+    display: inline-block;
+  }
+}
+
+.ag-list-button__button {
+  display: block;
+  width: 100%;
+  @include px-rem(padding-top, 16px);
+  @include px-rem(padding-bottom, 16px);
+  font-family: $f-primary;
+  font-weight: $f-medium;
+  @include px-rem(font-size, 12px);
+  line-height: 1.5;
+  cursor: pointer;
+  color: $c-primary;
+  text-align: left;
+  padding-inline: 0;
+  border-bottom: 1px solid rgba($c-on-border, 0.8);
+  transition: color 300ms ease-in-out;
+
+  &:before {
+    display: inline-block;
+    vertical-align: middle;
+    @include px-rem(margin-right, 8px);
+    @include px-rem(font-size, 18px);
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-position: under;
+    color: $c-primary-hover;
+  }
+
+  &.i-bulletin {
+    &:before {
+      @include px-rem(font-size, 24px);
+    }
+  }
+}
+
+//modifires .ag-list-button__button
+.ag-list-button__button_padding0 {
+  padding: 0;
+}
+
+.ag-list-button__item {
+  &:last-child {
+    .ag-list-button__button {
+      border-bottom: none;
+    }
+  }
+}
+.ag-list-button__align-right {
+  margin-left: auto;
+  width: fit-content;
+}
+.ag-list-button__border {
+  border-bottom: none;
+}
+.ag-list-button__border-top {
+  border-bottom: none;
+  border-top: 1px solid rgba($c-on-border, 0.8);
+  text-align: center;
+}
+
+.ag-list-button_right {
+  margin-top: 8px;
+  text-align: right;
+}
+
+//- Active class
+.ag-is-list-button_open {
+  .ag-list-button__list {
+    opacity: 1;
+    animation: scale-up_show 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+  }
+}
+
+@keyframes scale-up_show {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+    opacity: 1;
+  }
+}
+
+@include media-query(wide-max) {
+  .ag-list-button_center-mb {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+

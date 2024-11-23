@@ -1,0 +1,26 @@
+// slider.scss -- Custom sliders
+//
+// Edit by Aguayo 2019
+
+/*------------------------------------*\
+    Custom StyleGuide
+\*------------------------------------*/
+
+.SG-slider {
+  margin: 50px 0;
+  &.SG-component__dark-bg,
+  &.SG-component__grey-bg {
+    padding: 20px 0 40px;
+  }
+  .ag-c-slider {
+    padding-top: 40px;
+  }
+  // Banner carrusel primario
+  .ag-c-slider__item-ico,
+  .ag-c-slider__item_img {
+    padding-bottom: 40px;
+  }
+  .ag-c-slider__dots {
+    margin: 0 auto;
+  }
+}

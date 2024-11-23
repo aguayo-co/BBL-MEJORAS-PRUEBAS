@@ -1,0 +1,63 @@
+{% load i18n %}
+{% load static %}
+
+<div class="ag-c-modal ag-c-modal_cover ag-has-modal_opacity js-modalClouds" tabindex="0">
+
+    <article class="ag-c-modal__inner ag-c-modal__inner_small ag-c-modal__inner_brimless" tabindex="0">
+
+      <div class="ag-o-header ag-o-header_spacing">
+        <p class="ag-o-subheading " tabindex="0">
+          {% if cloud.group_by == "data_source"%}
+            {% trans "Fuente de datos:" %}
+          {% elif cloud.group_by == "subject" %}
+            {% trans "Tema:" %}
+          {% elif cloud.group_by == "creator" %}
+            {% trans "Autor:" %}
+          {% elif cloud.group_by == "date" %}
+            {% trans "Fecha de publicación:" %}
+          {% elif cloud.group_by == "type" %}
+            {% trans "Formato:" %}
+          {% endif %}
+        </p>
+        {% for group, resources in modalcloudterms %}
+          <h3 data-cloud="cloud_{% if cloud.group_by == "date" %}{{ group.numerator }}{% else %}{{ forloop.counter0 }}{% endif %}" class="ag-o-heading js-modalCloud" tabindex="0">
+            {{ group }}
+          </h3>
+        {% endfor %}
+      </div>
+
+      <span class="ag-o-head-tag ag-o-head-tag_big">
+        <strong class="ag-o-head-tag__ico ag-o-head-tag__ico_big i-contents-related" tabindex="0">{% trans "Recursos relacionados" %}</strong>
+      </span>
+
+      {% for group, resources in modalcloudterms %}
+        <strong data-cloud="cloud_{% if cloud.group_by == "date" %}{{ group.numerator }}{% else %}{{ forloop.counter0 }}{% endif %}" class="ag-c-modal__counter js-modalCloud">
+          {{ resources|length }}
+          {% if  resources|length != 1 %}
+            Recursos
+          {% else %}
+            Recurso
+          {% endif %}
+        </strong>
+      {% endfor %}
+
+
+      <div class="ag-c-modal__content ag-c-modal_cover__content">
+        {% for group, resources in modalcloudterms %}
+        <div data-cloud="cloud_{% if cloud.group_by == "date" %}{{ group.numerator }}{% else %}{{ forloop.counter0 }}{% endif %}" class="ag-c-card-column_flex ag-c-card-column__grid ag-js-card-grid js-modalCloud" tabindex="0">
+          {% for resource in resources %}
+              {% include "biblored/includes/resource/resource_item_modal.html" with processed_data=resource.processed_data only %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <footer class="ag-c-modal__headfix ag-c-modal__headfix_spacing">
+        <button class="ag-is-modal__close i-close ag-js-modalCloudClose">
+          <span class="ag-is-visuallyhidden">{% trans "Cerrar Modal" %}</span>
+        </button>
+
+      </footer>
+
+    </article>
+</div>

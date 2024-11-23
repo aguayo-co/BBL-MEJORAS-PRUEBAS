@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<div class="ag-c-slider ag-c-slider_contrast ag-has-slider_mobile">
+  <div class="swiper-container ag-c-slider_secondary js-sliderSourceInformation">
+    <div class="swiper-wrapper">
+      {% for allie in allies %}
+        <a class="swiper-slide" href="{{ allie.search_url }}" title="{% trans 'Ver el resultado de búsqueda filtrado por' %} {{ allie.name }}">
+          <div class="ag-c-slider__item_img">
+            <img class="ag-c-slider_img" src="{{ allie.logo.url }}" alt="{% trans 'Logo' %} {{ allie.name }}">
+            <p class="ag-c-slider__text"> {{ allie.name }} </p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+    <button class="ag-c-slider__control ag-c-slider__control_top ag-c-slider__control_prev ag-has-slider_contrast__prev i-arrow-left" type="button">
+      <span class="ag-is-visuallyhidden">{% trans "Anterior diapositiva" %}</span>
+    </button>
+    <button class="ag-c-slider__control ag-c-slider__control_top ag-c-slider__control_next ag-has-slider_contrast__next i-arrow-right" type="button">
+      <span class="ag-is-visuallyhidden">{% trans "Siguiente diapositiva" %}</span>
+    </button>
+  <div class="ag-c-slider__dots ag-has-slider_contrast__dots" tabindex="-1"></div>
+</div>

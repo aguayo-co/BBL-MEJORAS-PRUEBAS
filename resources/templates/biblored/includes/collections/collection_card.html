@@ -1,0 +1,118 @@
+{% load i18n static %}
+ 
+{% spaceless %}
+
+  <article class="ag-c-card ag-s-card_position {% if collection.collaborativecollection %}ag-t-cards_purple{% endif %}">
+    <div class="ag-c-card_top-shadow">
+
+      {# wrap: indenta los contenidos #}
+      <div class="ag-c-card__border">
+        
+        <a class="ag-c-card__action" href="{{ collection.get_absolute_url }}" title="{% trans 'Ir al listado de recursos de' %} {{ collection.title }}">
+
+
+          {# collection type tag #}
+          <div class="ag-c-card__top">
+            <ul class="ag-tags">
+              <li class="ag-tags__item">
+                {% if  collection.collaborativecollection %}
+                  <span class="ag-tags__ico ag-tags__ico_purple i-collective">
+                    <span class="ag-tags__tag ag-tags__tag_dark">
+                      {% trans "Colección colaborativa" %}
+                    </span>
+                  </span>
+                {% else %}
+                  <span class="ag-tags__ico ag-tags__ico_pink i-personal">
+                    <span class="ag-tags__tag ag-tags__tag_dark">
+                      {% trans "Colección individual" %}
+                    </span>
+                  </span>
+                {% endif %}
+              </li>
+            </ul>
+          </div>
+
+
+          {# type of content #}
+          <ul class="ag-c-card__bar ag-c-card__bar_bg">
+            {% if collection.resources_by_type_count %}
+            <li class="ag-c-card__bar-item">
+              <strong class="ag-c-card__bar-label">{% trans "Encuentra en esta colección" %}:</strong>
+              <ul class="ag-c-card__bar-sublist">
+                {% for resource_type, count in collection.resources_by_type_count.items %}
+                  <li class="ag-c-card__bar-subitem ag-tags__bullet ag-tags__bullet_first">{% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}</li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endif %}       
+          </ul>
+
+
+          {# image #}
+          {% if collection.image or collection.default_cover_image %}
+            <figure class="ag-c-card__media ag-c-card__color">
+              <img
+                class="ag-c-card__img"
+                src="{% if collection.image %}{{ collection.image.url }}{% else %}
+                {% static collection.default_cover_image|get_static_rel_path %}{% endif %}"
+                alt="{% trans 'Imagen de referencia de' %} {{ collection.title }}"
+              />
+            </figure>
+          {% endif %}
+          
+          {# title and description #}
+          <div class="ag-c-card__canvas ag-c-card__canvas_padding0">
+            <div class="ag-c-card__divider ag-c-card__divider_none">
+              {% if collection.title %}
+              <h2 class="ag-c-card__title" tabindex="0"> {{ collection.title }} </h2>
+              {% endif %}
+              {% if collection.description %}
+              <div class="ag-c-card__lead">
+                {{ collection.description }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+
+
+        </a>
+
+        <footer class="ag-c-card__inner-below">
+          <ul class="ag-c-card__button-list ag-c-card__button-columns">
+
+            {# avatar #}
+            <li class="ag-c-card__list-item">
+              <a class="ag-chip" href="{{ collection.owner.get_absolute_url }}" title="{% trans 'Ver el perfil de' %} {{ collection.owner.full_name }}">
+                <figure class="ag-chip__avatar ag-chip__avatar_color">
+                  {% if  collection.owner.profile.avatar %}
+                    <img class="ag-chip__img" src="{{ collection.owner.profile.avatar.url }}" alt="{% trans 'Avatar creador' %} {{ collection.owner.full_name }}">
+                  {% else %}
+                    {{ collection.owner.initials }}
+                  {% endif %}
+                </figure>
+                {% if collection.owner.full_name %}
+                <span class="ag-chip__text">
+                  <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+                  {{ collection.owner.full_name }}
+                </span>
+                {% endif %}
+              </a>
+            </li>
+
+            {# menu options #}
+            <li class="ag-c-card__button-col">
+              {# buttons into list of options #}
+              {% include "biblored/includes/options_menu/options_menu_for_collection_item.html" with counter=counter collection=collection processed_data=resource.processed_data user=user card="collection" only %}
+            </li>
+
+          </ul>
+        </footer>
+
+      </div>
+
+    </div>
+  </article>
+
+{% endspaceless %}
+
+{% include "biblored/includes/modals/modal_share_social.html" with object=collection title=collection.title counter=counter card="collection" classJsCopyUrl="ag-js-copyUrlAnotherPage" only %}

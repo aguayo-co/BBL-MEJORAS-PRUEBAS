@@ -1,0 +1,14 @@
+// buttons.scss -- Buttons with icons and / or text
+//
+//
+// Edit by Aguayo 2019
+
+.SG-button {
+  margin-bottom: 10px;
+  padding: 8px;
+  white-space: nowrap;
+  &:hover {
+    border-color: $c-on-hover;
+    color: $c-on-hover;
+  }
+}

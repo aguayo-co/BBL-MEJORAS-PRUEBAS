@@ -1,0 +1,62 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C23 Menu Aside
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+.ag-c-menu-aside {
+  .ag-c-menu-aside__link {
+    &:active,
+    &.ag-has-menu-aside__current {
+      .ag-c-menu-aside__text {
+        color: $c-on-secondary;
+      }
+    }
+
+    &:hover {
+      background-color: $c-on-secondary;
+      box-shadow: inset 0px 4px 4px #0c8eac;
+
+      .ag-c-menu-aside__text {
+        color: $c-neutro;
+      }
+    }
+  }
+
+  .ag-c-menu-aside__main-button {
+    background-color: rgba($c-on-secondary, 0.95);
+
+    &:hover {
+      background-color: rgba($c-on-secondary, 1);
+    }
+
+    .ag-c-menu-aside__wrap {
+      &:hover,
+      &:active,
+      &:focus {
+        .ag-c-menu-aside__text-button {
+          &:before {
+            background-color: rgba($c-on-secondary_dark, 0.5);
+          }
+        }
+      }
+    }
+  }
+
+  .ag-c-menu-aside__anchor {
+    &:hover {
+      border-color: $c-on-secondary;
+
+      .ag-c-menu-aside__anchor-mask {
+        &::before {
+          background-color: rgba($c-on-secondary, 0.8);
+        }
+      }
+
+      .ag-c-menu-aside__anchor-title {
+        color: $c-on-secondary;
+      }
+    }
+  }
+}

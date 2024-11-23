@@ -1,0 +1,653 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static resources wagtailcore_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %}
+  {% with processed_data=object.processed_data %}
+    {% trans "Detalle de contenido" %}
+    {% if   processed_data.title %} | {{ processed_data.title }} {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %}
+  {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block opengraph %}
+  {% with processed_data=object.processed_data %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ processed_data.title }}">
+    <meta property="og:url" content="{% build_absolute_uri %}">
+    <meta property="og:description" content="{{ processed_data.description|striptags }}">
+    <meta property="og:image" content="{% build_absolute_uri processed_data.image %}">
+    <meta property="article:author" content="{{ processed_data.creator }}">
+    {# Twitter platform #}
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:title" content="{{ processed_data.title }}" />
+    <meta property="twitter:url" content="{% build_absolute_uri %}" />
+    <meta property="twitter:description" content="{{ processed_data.description|striptags }}" />
+    {% if processed_data.image %}
+      <meta property="twitter:image" content="{% build_absolute_uri processed_data.image %}"/>
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans "Detalle de contenido" %}
+  </dd>
+  {% with processed_data=object.processed_data %}
+    <dd class="ag-breadcrumbs__item">
+      {{ processed_data.title }}
+    </dd>
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  {% with request.get_full_path as next_url %}
+
+    <main class="ag-l-page">
+
+      {% with processed_data=object.processed_data %}
+
+        <article id="content" class="ag-c-detail">
+          <div class="ag-c-detail__wrap">
+            {# Breadcrumbs scrollTo #}
+            <ul class="ag-l-inner-wide
+              ag-arrow-breadcrumb
+              ag-u-margin-bottom-16"
+            >
+              {% if processed_data.description %}
+                <li class="ag-arrow-breadcrumb__item">
+                  <a href="#topDescription"
+                    class="ag-arrow-breadcrumb__link
+                    ag-o-link"
+                  >
+                    {% trans "Descripción" %}
+                  </a>
+                </li>
+              {% endif %}
+              <li class="ag-arrow-breadcrumb__item">
+                <a href="#topInformation"
+                  class="ag-arrow-breadcrumb__link
+                  ag-o-link"
+                >
+                  {% trans "Información adicional" %}
+                </a>
+              </li>
+              {% if reviews %}
+                <li class="ag-arrow-breadcrumb__item">
+                  <a href="#topReviews"
+                    class="ag-arrow-breadcrumb__link
+                    ag-o-link"
+                  >
+                    {% trans "Reseñas" %}
+                  </a>
+                </li>
+              {% endif %}
+              {% if object.related.resources %}
+                <li class="ag-arrow-breadcrumb__item">
+                  <a href="#topRelatedContents"
+                    class="ag-arrow-breadcrumb__link
+                    ag-o-link"
+                  >
+                    {% trans "Contenidos relacionados" %}
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+
+            <div class="ag-c-detail__layout-grid
+              ag-l-inner-wide"
+            >
+
+              {# Hero Items #}
+              <div class="ag-c-detail__hero
+                ag-u-margin-bottom-16"
+              >
+                <ul class="ag-tags ag-tags_column">
+                  
+                  {% if processed_data.is_exclusive %}
+                    <li class="ag-tags__item">
+                      <span class="ag-tags__ico
+                        ag-tags__ico_red
+                        i-exclusive"
+                      >
+                        <span class="ag-tags__tag
+                          ag-tags__tag_dark"
+                        >
+                          {% trans "Exclusivo BibloRed" %}
+                        </span>
+                      </span>
+                    </li>
+                  {% endif %}
+
+                  {% if processed_data.type %}
+                    <li class="ag-tags__item">
+                      <span class="ag-tags__tag ag-tags__tag_bold">
+                        {{ processed_data.type }}
+                      </span>
+                    </li>
+                  {% endif %}
+
+                </ul>
+
+                <h1 class="ag-o-heading"
+                  tabindex="0"
+                >
+                  {{ processed_data.title }}
+                </h1>
+
+                {% if processed_data.average_rating %}
+                  <div class="ag-c-detail__row">
+                      <ul class="ag-c-rating">
+                        <li class="ag-c-rating__item">
+                          {% with processed_data.average_rating|floatformat:'0' as rating %}
+                            {% with 'biblored/img/rating/rating-'|add:rating|add:'.svg' as image_static %}
+                              <img
+                                src="{% static image_static %}"
+                                alt="{% trans 'El número de valoración es' %} {{ review.rating }}"
+                              />
+                            {% endwith %}
+                          {% endwith %}
+                        </li>
+                      </ul>
+                      <a class="ag-o-link
+                        ag-c-detail__byline"
+                        href="#topReviews"
+                      >
+                        {{ page_obj.paginator.count }} {% trans "reseña" %}{{ page_obj.paginator.count|pluralize }}
+                      </a>
+                  </div>
+                {% endif %}
+              </div>
+
+              {# Aside image #}
+              <div class="ag-c-detail__aside">
+                {% if processed_data.image %}
+                  <figure class="ag-c-detail__media {% if "http" in processed_data.image %}ag-c-detail__media_surface{% endif %}">
+                    <img class="ag-c-detail__img {% if "http" in processed_data.image %} ag-c-detail__img_scale-down{% endif %}"
+                      src="{{ processed_data.image }}"
+                      alt="{% trans 'Imagen de apoyo de ' %} {{ processed_data.title }}"
+                    >
+                  </figure>
+                {% endif %}
+                <div class="ag-c-detail__actions
+                  ag-u-margin-bottom-24"
+                >
+                  {# TODO FRONT: share button #}
+                  <div class="ag-c-detail__actions-item">
+                    {% if user.is_authenticated %}
+                      <a
+                        href="{% url 'share_resource' contentresource.pk %}?next={{ next_url }}"
+                        class="ag-list-button__button
+                        i-share"
+                      >
+                        {% trans "Compartir" %}
+                      </a>
+                    {% else %}
+
+                      <button
+                        class="ag-list-button__button
+                        i-share"
+                        type="button"
+                        data-modal="share_social_detail_0"
+                      >
+                        {% trans "Compartir" %}
+                      </button>
+
+                    {% endif %}
+                    {# ENDTODO FRONT: share button #}
+                  </div>
+                  <div class="ag-c-detail__actions-item">
+                    {% if user.is_authenticated %}
+                      <button
+                        class="ag-list-button__button i-texts ag-js-collection_iframe_open_btn"
+                        type="button"
+                        data-modal="add_collection"
+                        data-iframe-src="{% url 'content_resource_collections_edit' processed_data.pk %}"
+                        data-for='iframeCollections'
+                      >
+                        {% trans "Añadir a colección" %}
+                      </button>
+                    {% else %}
+                      <a
+                        class="ag-list-button__button i-texts"
+                        href="{% url 'login' %}?{% url_params 'next' processed_data.get_absolute_url %}"
+                        title="{% trans 'Ir a Iniciar sesión y volver a ' %}{{ processed_data.title }}"
+                      >
+                        {% trans "Añadir a colección" %}
+                      </a>
+                    {% endif %}
+                  </div>
+                  {% if referer_exposition %}
+                    <div class="ag-c-detail__actions-item">
+                        <a
+                          class="ag-o-btn ag-o-btn_outline"
+                          href="{{ referer_exposition.url }}"
+                          title="{% trans 'Volver a la exposición ' %}{{ referer_exposition.title }}"
+                        >
+                          {% trans "Volver a la exposición" %}
+                        </a>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+
+              {# Right side => Sticky card #}
+              {% if processed_data %}
+                <div class="ag-c-detail__sticky-side
+                  ag-u-margin-bottom-24"
+                >
+                  <div class="ag-headicon-card
+                    ag-headicon-card_small"
+                  >
+                  {% get_resource_external_url processed_data as resource_url %}
+                  {% if resource_url %}
+                    {# Exclusive resource #}
+                    {% if processed_data.is_exclusive %}
+                      {# Authenticated user : Blue card #}
+                      {% if user.is_authenticated %}
+                        <span class="ag-headicon-card__ico-title
+                          ag-headicon-card_blue
+                          ag-u-margin-bottom-16">
+
+                          {% trans "CONTENIDO PARA USUARIOS REGISTRADOS" %}
+
+                        </span>
+                        <p class="ag-u-center
+                          ag-u-margin-bottom-16"
+                        >
+                          {% trans "¡Haz clic y disfruta!" %}
+                        </p>
+                        <a class="ag-headicon-card__btn
+                          ag-o-btn"
+                          href="{{ resource_url }}"
+                          title="{% trans 'Ver este contenido en' %} {{ processed_data.data_source.name }}"
+                          target="_blank"
+                        >
+                          {% trans "Ir a este contenido" %}
+                        </a>
+                      {# No authenticated user : Blue card go to login #}
+                      {% else %}
+                        <span class="ag-headicon-card__ico-title
+                          ag-headicon-card_blue
+                          ag-u-margin-bottom-16"
+                        >
+                          {% trans "CONTENIDO PARA USUARIOS REGISTRADOS" %}
+                        </span>
+                        <p class="ag-headicon-card__text
+                          ag-u-margin-bottom-16"
+                        >
+                          <strong>
+                            {% trans "Inicia sesión para disfrutar este recurso. " %}
+                          </strong>
+                          {% trans "Si aún no estás afiliado a BibloRed, haz clic en el botón." %}
+                        </p>
+                        <a class="ag-headicon-card__btn
+                          ag-o-btn"
+                          href="{% url 'login' %}?{% url_params 'next' resource_url %}"
+                          title="{% trans 'Acceder' %}"
+                          target="_blank"
+                        >
+                          {% trans "Acceder" %}
+                        </a>
+                      {% endif %}
+                    {# Free resource #}
+                    {% else %}
+                      <span class="ag-headicon-card__ico-title
+                        ag-headicon-card_purple
+                        ag-u-margin-bottom-16">
+
+                        {% trans "CONTENIDO DE LIBRE ACCESO" %}
+
+                      </span>
+                      <p class="ag-headicon-card__text
+                        ag-u-margin-bottom-16"
+                      >
+                        <strong>{% trans "Este contenido es de libre acceso. " %}</strong>
+                        {% trans "Solo haz clic en el siguiente botón." %}
+                      </p>
+                      <a class="ag-headicon-card__btn
+                        ag-o-btn"
+                        href="{{ resource_url }}"
+                        title="{% trans 'Ver este contenido en' %} {{ processed_data.data_source.name }}"
+                        target="_blank"
+                      >
+                        {% trans "Ir a este contenido" %}
+                      </a>
+                    {% endif %}
+                  {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+              {# Main content #}
+              <div class="ag-c-detail__content">
+
+                <ul class="ag-c-detail__list">
+                  {% if processed_data.creator %}
+                    <li class="ag-c-detail__list-item">
+                      <strong class="ag-o-label">
+                        {% trans "Autor" %}
+                      </strong>
+                      <button class="ag-o-link
+                        ag-o-link_left
+                        ag-js-didyoumeanText"
+                        type="button"
+                      >
+                        {{ processed_data.creator }}
+                      </button>
+                    </li>
+                  {% endif %}
+                  {% if processed_data.formatted_date is not None %}
+                    <li class="ag-c-detail__list-item">
+                      <strong class="ag-o-label">{% trans "Año de publicación" %}</strong>
+                      {{ processed_data.formatted_date }}
+                    </li>
+                  {% endif %}
+                  {% if processed_data.language %}
+                    <li class="ag-c-detail__list-item">
+                      <strong class="ag-o-label">{% trans "Idioma" %}</strong>
+                      {{ processed_data.language }}
+                    </li>
+                  {% endif %}
+                  {% if processed_data.publisher %}
+                    <li class="ag-c-detail__list-item">
+                      <strong class="ag-o-label">{% trans "Publicado por" %}</strong>
+                      {{ processed_data.publisher }}
+                    </li>
+                  {% endif %}
+
+                </ul>
+
+                {% if processed_data.description or processed_data.citation %}
+                  <dl class="ag-c-detail__info"
+                    id="topDescription"
+                  >
+                    {% if processed_data.description %}
+                      <dt class="ag-o-label"
+                        tabindex="0"
+                      >
+                        {% trans "Descripción" %}
+                      </dt>
+                      <dd class="ag-c-detail__text"
+                        tabindex="0"
+                      >
+                        {{ processed_data.description | striptags }}
+                      </dd>
+                    {% endif %}
+                    {% if processed_data.citation %}
+                      <dt class="ag-o-label"
+                        tabindex="0"
+                      >
+                        {% trans "Citación recomendada (normas APA)" %}
+                      <dt>
+                      <dd class="ag-c-detail__text"
+                        tabindex="0"
+                      >
+                        {% get_resource_cite processed_data %}
+                      </dd>
+                    {% endif %}
+                  </dl>
+                {% endif %}
+
+              </div>
+
+            </div>
+
+            <div class="ag-l-band-surface"
+              id="topInformation"
+              >
+              <div class="ag-c-detail__footer
+                ag-l-inner-wide"
+              >
+                <h2 class="ag-o-headline
+                  ag-o-headline_primary"
+                  tabindex="0"
+                >
+                  {% trans "Información adicional" %}
+                </h2>
+
+                <ul class="ag-c-detail__list">
+                  {% if processed_data.subject.items %}
+                    <li class="ag-c-detail__list-full">
+                      <strong class="ag-o-label">{% trans "Temas" %}</strong>
+                      <ul class="ag-tags">
+                        {% for subject_item, search_url in processed_data.subject.items %}
+                          <li class="ag-tags__item">
+                            {% if search_url %}
+                              <a
+                                class="ag-tags__tag
+                                ag-tags__tag_link"
+                                title="{% trans 'Estás en' %} {{ subject_item }}"
+                                href="{{ search_url }}"
+                              >
+                                {{ subject_item }}
+                              </a>
+                            {% else %}
+                              <span class="ag-tags__tag
+                              ag-tags__tag_outline"
+                              >
+                                {{ subject_item }}
+                              </span>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% endif %}
+
+                  {% if processed_data.rights %}
+                    <li class="ag-c-detail__list-full">
+                      <strong class="ag-o-label">{% trans "Derechos de uso" %}</strong>
+                      {{ processed_data.rights }}
+                    </li>
+                  {% endif %}
+
+                  {% if processed_data.data_source %}
+                    <li class="ag-c-detail__list-item"
+                      tabindex="0"
+                    >
+                      <strong class="ag-o-label">{% trans "Fuente" %}</strong>
+                      <a class="ag-o-link"
+                        href="{{ processed_data.data_source.search_url }}"
+                        title="{% trans 'Buscar más contenidos de esta fuente' %}"
+                      >
+                        {{ processed_data.data_source }}
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {# Falta URL proporcionada por la BDB #}
+                  <li class="ag-c-detail__list-item">
+                    <strong class="ag-o-label">{% trans "Términos y condiciones de uso" %}</strong>
+                    {% trans "Más información" %}
+                    <a class="ag-o-link"
+                      title="{% trans 'Leer términos y condiciones' %}"
+                      href="http://www.culturarecreacionydeporte.gov.co/es/politica-de-privacidad"
+                      target="_blank"
+                    >
+                      {% trans "aquí" %}
+                    </a>
+                  </li>
+
+                  {% if processed_data.created_at and processed_data.formatted_date %}
+                  
+                    <li class="ag-c-detail__list-item"
+                      tabindex="0"
+                    >
+                      <strong class="ag-o-label">{% trans "Año de publicación" %}</strong>                    
+                        {{ processed_data.formatted_date }}
+                    </li>
+                  
+                  {% endif %}
+
+                  {% if processed_data.format %}
+                    <li class="ag-c-detail__list-item">
+                      <strong class="ag-o-label"
+                        tabindex="0"
+                      >
+                        {% trans "Formato" %}
+                      </strong>
+                      {{ processed_data.format }}
+                    </li>
+                  {% endif %}
+
+                  {% if processed_data.coverage %}
+                    <li class="ag-c-detail__list-item">
+                      <strong class="ag-o-label"
+                        tabindex="0"
+                      >
+                        {% trans "Cobertura" %}
+                      </strong>
+                      {{ processed_data.coverage }}
+                    </li>
+                  {% endif %}
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      {% endwith %}
+
+      {% if reviews %}
+        <section class="ag-l-inner-wide"
+          id="topReviews"
+        >
+          <header class="ag-o-header">
+            <h2 class="ag-o-heading"
+              tabindex="0"
+            >
+              ({{ page_obj.paginator.count }})
+              {% trans "Reseña" %}{{ page_obj.paginator.count|pluralize }}
+              {% trans " de este contenido" %}
+            </h2>
+          </header>
+
+          <div class="ag-l-subsection">
+            <div class="ag-l-griddle ag-l-griddle_push-left">
+              <div class="ag-l-griddle__frame">
+                {% for review in reviews %}
+                  {% include "biblored/includes/reviews/reviews_item.html" %}
+                {% endfor %}
+              </div>
+            </div>
+            {# Paginador lista #}
+            {% include "biblored/includes/paginator.html" %}
+          </div>
+        </section>
+      {% endif %}
+
+      {% if user_has_review_permissions %}
+        {# Header Block, this container is a article generic block #}
+        <article class="ag-o-header
+          ag-o-header_wrap"
+        >
+          <h3 class="ag-o-subtitle
+            ag-u-margin-bottom-24"
+          >
+            {% trans "Califica y comenta" %}
+          </h3>
+          <p class="ag-u-margin-bottom-24">
+            {% trans "Cuéntale a los demás qué te pareció este contenido. ¿Lo recomendarías? ¿Por qué?" %}
+          </p>
+          <a href="{% url 'review_add' %}?resource={{ object.pk }}&next={{ next_url }}"
+            class="ag-o-btn"
+          >
+            {% trans "Escribe una reseña" %}
+          </a>
+        </article>
+      {% endif %}
+
+      {% if object.related.resources %}
+        <section id="topRelatedContents" class="ag-l-band-surface">
+          <div class="ag-l-inner-wide">
+            <header class="ag-o-header">
+              <h2 class="ag-o-heading"
+                tabindex="0"
+              >
+                {% trans "Contenidos relacionados" %}
+              </h2>
+            </header>
+
+            <div class="ag-c-card-grid ag-c-card-grid_grid">
+              {% for resource in object.related.resources %}
+                {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user only %}
+              {% endfor %}
+            </div>
+
+          </div>
+        </section>
+      {% endif %}
+
+      <section class="ag-l-inner-wide">
+        {# Usuario Logueado #}
+
+        {% if user.is_authenticated and object.related.by_reads %}
+          <header class="ag-o-header">
+            <h2 class="ag-o-heading"
+              tabindex="0"
+            >
+              {% trans "Basado en tus últimas lecturas" %}
+            </h2>
+          </header>
+
+          <div class="ag-c-card-grid ag-c-card-grid_grid">
+            {% for resource_by_reads in object.related.by_reads %}
+              {% include "biblored/includes/resource/resource_item.html" with request=request object=resource_by_reads.processed_data user=user only %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if not user.is_authenticated %}
+          {# Usuario Anónimo #}
+          <header class="ag-o-header">
+            <h1 class="ag-o-heading"
+              tabindex="0"
+            >
+              {% trans "¡Disfruta más de la BDB!" %}
+            </h1>
+            <p class="ag-o-subheading"
+              tabindex="0"
+            >
+              {% trans "Explora contenidos digitales de forma gratuita, crea tus propias colecciones, colabora y comparte con otros." %}
+            </p>
+            <p class="ag-o-actions
+              ag-o-actions_header"
+            >
+              <a class="ag-o-btn ag-o-actions__item"
+                title="{% trans 'Afíliate' %}"
+                href="{{ registration_url }}"
+              >
+                {% trans "Afíliate" %}
+              </a>
+            </p>
+          </header>
+        {% endif %}
+      </section>
+    </main>
+
+  {% endwith %}
+  {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}
+  {% include "biblored/includes/modals/modal_share_social.html" with object=object title=object.processed_data.title card="detail" counter=0 classJsCopyUrl="ag-js-copyUri" only %}
+  {% include "biblored/includes/modals/modal_delete_review.html" with csrf_token=csrf_token only %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+  {% render_bundle 'review' 'js' %}
+{% endblock %}

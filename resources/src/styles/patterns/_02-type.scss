@@ -1,0 +1,189 @@
+/*------------------------------------*\
+    Patterns Elements
+      #Styles for text
+\*------------------------------------*/
+
+// Mobile font-size: 90%
+/**
+  * Class: ag-theme,  Font-size: 100%/12px
+  * @atom Base: HTML
+  * @section 02. Textos
+  * @markup
+  *  <html class="ag-theme">
+  *     <p>@{lipsum:quantity:type}</p>
+  *  </html>
+  */
+html,
+.ag-theme {
+  font-size: 100%;
+
+}
+
+
+p {
+  line-height: 1.8;
+}
+
+/**
+ * Class: ag-o-text, Font-family: Open Sans  |  Font-weight:Regular | Font-size: 12px | color: #4A4A4A
+ * @atom Texto Body
+ * @modifiers
+ *  .ag-o-text_bold  Texto en negrita
+ * @section 02. Textos
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <p class="ag-o-text">@{lipsum:1:paragraphs}</p>
+ *   </div>
+ *   <p class="SG-component__preview">
+ *     <strong class="ag-o-text_bold">@{lipsum:1:paragraphs}</strong>
+ *   </p>
+ */
+
+body,
+.ag-o-text {
+  line-height: 1.8;
+  color: $c-on-text;
+  @include font-rem(14px);
+  font-family: $f-default;
+}
+
+.ag-o-text_bold {
+  font-family: $f-primary;
+  font-weight: $f-bold;
+}
+
+/**
+ * Class: ag-o-text  |  Font-weight:Medium
+ * @atom Texto Medium
+ * @section 02. Textos
+ * @markup
+ *   <p class="SG-component__preview">
+ *      @{lipsum:1:paragraphs} <strong class="ag-o-text_medium">Texto medium</strong>
+ *   </p>
+ */
+.ag-o-text_medium {
+  font-weight: $f-medium;
+}
+
+.ag-o-text_semibold {
+  font-weight: $f-semibold;
+}
+
+/**
+ * Class: ag-o-text_bottom  |  padding-bottom: 58 / 34 px
+ * @atom Texto con espaciado en la parte inferior
+ * @section 02. Textos
+ * @markup
+ *   <p class="SG-component__preview">
+ *      @{lipsum:1:paragraphs} <strong class="ag-o-text_bottom">Texto medium</strong>
+ *   </p>
+ */
+.ag-o-text_bottom {
+  margin-bottom: calc(32px - 20px);
+}
+
+  /**
+  * Class: ag-o-text_left  |  Font-weight:Medium
+  * @atom Texto Medium
+  * @section 02. Textos
+  * @markup
+  *   <p class="SG-component__preview">
+  *      @{lipsum:1:paragraphs} <strong class="ag-o-text_left">Texto medium</strong>
+  *   </p>
+  */
+  .ag-o-text_left {
+    text-align: left;
+  }
+
+/**
+ * Class:.ag-o-mark | color: #442686
+ * @atom Texto destacado
+ * @section 02. Textos
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <p> Texto de resultados <strong class="ag-o-mark">20</strong> ítems</p>
+ *   </div>
+ */
+.ag-o-mark {
+  color: $c-primary-hover;
+}
+
+/**
+ * Class:.ag-o-label | color: #16223F | Font-weight: Bold | Roboto
+ * @atom Label block
+ * @section 02. Textos
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <p><strong class="ag-o-label">Label</strong>Descripción</p>
+ *   </div>
+ */
+.ag-o-label {
+  display: block;
+  color: $c-primary;
+  font-weight: $f-bold;
+  font-family: $f-primary;
+}
+
+/**
+ * Class:.ag-o-center-mobile
+* @description  Texto centrado en mobile hasta 768px, en desktop toma la alineación de su contenedor.
+ * @atom Textos centrados
+ * @section 02. Textos
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <p class="ag-o-center-mobile">Texto centrado en mobile</p>
+ *   </div>
+ */
+.ag-o-center-mobile {
+  text-align: center;
+}
+
+/**
+ * Class:.ag-o-text-bg
+ * @description  Texto con fondo blanco
+ * @atom Textos con fondo
+ * @section 02. Textos
+ * @markup
+ *   <div class="SG-component__preview">
+ *     <p class="ag-o-text-bg">Texto con fondo blanco</p>
+ *   </div>
+ */
+.ag-o-text-bg {
+  background-color: $c-neutro;
+  z-index: 1;
+}
+
+.ag-o-text-bg_fontsize {
+  @include px-rem(margin, 10px 0);
+  font-size: 14px;
+}
+
+.ag-o-pipeline {
+    
+  &:first-of-type {
+    position: relative;
+    @include px-rem(margin-right, 8px);
+    @include px-rem(padding-right, 11px);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      right: 0;
+      width: 1px;
+      height: 16px;
+      background-color: $c-on-text;
+    }
+  }
+}
+
+// medium: $bp-medium : 768px
+@include media-query(medium) {
+  .ag-o-center-mobile {
+    text-align: inherit;
+  }
+
+  .ag-o-text_bottom {
+    margin-bottom: calc(56px - 20px);
+  }
+}

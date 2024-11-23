@@ -1,0 +1,116 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n static wagtailcore_tags %}
+
+{# Meta tags #}
+{% block title %} {% trans 'Exposiciones'%} {% endblock %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %} {% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%} {% endblock %}
+
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Exposiciones' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+
+  <main class="ag-l-page-below">
+    <section class="ag-l-page-top">
+
+      <header class="ag-o-main-header" id="maincontent" tabindex="0">
+        <h1 class="ag-o-heading" tabindex="0">
+          {% trans "Exposiciones en línea" %}
+        </h1>
+        <p class="ag-o-subheading" tabindex="0">
+          {% trans "A través de textos, mapas, líneas de tiempo, galerías de imágenes y videos, disfruta recorridos temáticos organizados por investigadores para estudiantes, maestros, mediadores e interesados." %}
+        </p>
+      </header>
+
+      {% if  exposition_list %}
+        <div class="ag-l-inner-large ag-c-slider ag-c-slider_card" id="content" tabindex="0">
+          {# ag-js-slider-exposition clase de referencia para el slider desde JS #}
+          <div class="swiper-container ag-js-slider-exposition">
+            <ul class="swiper-wrapper">
+              {# loop que recorre el listado de exposiciones #}
+              {% for exposition in exposition_list %}
+                {% include "biblored/includes/collections/exposition_banner.html" with exposition_banner=exposition exposition_author=exposition.author only %}
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="ag-c-slider__controls-dots">
+            <div class="ag-c-slider__dots"></div>
+          </div>
+
+        </div>
+      {% endif %}
+
+    </section>
+
+    <section class="ag-l-inner-wide">
+
+      <header class="ag-o-main-header" tabindex="0">
+        <h2 class="ag-o-title" tabindex="0">
+          {% trans "Conoce las exposiciones en línea que tenemos para ti" %}
+        </h2>
+        <p class="ag-o-subheading" tabindex="0">
+          {% trans "La Biblioteca Digital de Bogotá ofrece a sus visitantes una amplia selección" %}
+          {% trans "de exposiciones en linea. Te invitamos a visitarlas." %}
+        </p>
+      </header>
+
+      {# filter-band #}
+      <div class="ag-c-filter-band">
+        {# Botón despliega filtros en Mobile #}
+        <div class="ag-c-filter__control">
+          <button class="ag-o-btn ag-o-btn_small ag-js-asideOpen ag-js-filterBtn" type="button">
+            {% trans "Filtrar" %}
+          </button>
+        </div>
+        {# Botón filtrar para mobile #}
+        {# clase para abrir los filtros en mobile ag-is-aside_open #}
+        <div class="ag-l-aside ag-l-aside_band ag-js-aside">
+          <button class="ag-o-btn-close i-close ag-js-asideClose" type="button"  tabindex="0">
+            <span class="ag-is-visuallyhidden">{% trans "Cerrar" %} </span>
+          </button>
+          <div class="ag-c-filter ag-js-asideContent">
+            <div class="ag-c-filter-band__grid">
+              <form method="get" id="filters_form" class="ag-c-filter-band__form"  tabindex="0">
+                {% include "biblored/includes/filters/filter_subject.html" %}
+
+                {% for hidden in filters_form.hidden_fields %}
+                  {{ hidden }}
+                {% endfor %}
+              </form>
+            </div>
+          </div>
+        </div>
+        {% include "biblored/includes/blocks/order_by.html" %}
+      </div>
+
+      {# Grid lista de exposiciones #}
+      <div class="ag-c-card-grid">
+        {# loop que recorre el listado de exposiciones #}
+        {% for exposition in exposition_list %}
+          {% include "biblored/includes/collections/exposition_card.html" with exposition_card=exposition counter=forloop.counter0 is_list="true" only %}
+        {% endfor %}
+      </div>
+
+      {# Paginador lista #}
+      {% include "biblored/includes/paginator.html" %}
+    </section>
+
+  </main>
+
+{% endblock%}

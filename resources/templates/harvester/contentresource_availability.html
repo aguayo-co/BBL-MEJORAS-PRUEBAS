@@ -1,0 +1,225 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load resources %}
+
+{% block title %} {% trans 'Ir al contenido' %} {% endblock %}
+
+{#} Template parent: base.html {#}
+{% block description %} {% trans "Las colecciones de la Biblioteca Digital de Bogotá reúnen contenidos producidos y preservados por ciudadanos, bibliotecas, museos, archivos y bases de datos" %} {% endblock %}
+{% block keywords %} {% trans 'Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  {% with processed_data=object.processed_data %}
+    <dd class="ag-breadcrumbs__item">
+      <a class="ag-breadcrumbs__link" href="{{ processed_data.get_absolute_url }}" title="{% trans 'Ver detalle de' %} {{ processed_data.title }}">
+        {{ processed_data.title }}
+      </a>
+    </dd>
+    {% endwith %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Ir al contenido' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page">
+    <section class="ag-l-inner-wide">
+      <div class="ag-list-group">
+        {% with resource_group=object.resource_group %}
+
+          {% if resource_group.online_resources %}
+
+            <h3 class="ag-o-headline ag-o-headline_title">
+              {% trans 'Ejemplares digitales disponibles en:' %}
+            </h3>
+            <ul class="ag-list ag-list_separator">
+              {% for resource in resource_group.online_resources %}
+                <li class="ag-list__item">
+                  <div class="ag-list__row">
+                    {% if resource.data_source.image %}
+                    <div class="ag-list__visual">
+                      <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+                        <img class="ag-chip__img" src="{{ resource.data_source.image.url }}" alt="{% trans 'Imagen de' %} {{ resource.data_source.name }}">
+                      </figure>
+                    </div>
+                    {% endif %}
+                    <div class="ag-list__content">
+                      <span class="ag-list__title">{{ resource.data_source.name }}</span>
+                    </div>
+                    <div class="ag-list__actions">
+                      {% with processed_data=resource.processed_data %}
+                        {% get_resource_external_url processed_data as resource_url %}
+                        {% if resource_url %}
+                          {% if user.is_megared or not processed_data.is_exclusive %}
+                            <a
+                              class="ag-o-link ag-o-link_external i-after-external-link"
+                              href="{{ resource_url }}"
+                              title="{% trans 'Ver este contenido en' %} {{ processed_data.data_source.name }}"
+                              target="_blank"
+                              rel="noopener"
+                            >
+                              {% trans "Ver Contenido" %}
+                            </a>
+                          {% else %}
+                            <a
+                              class="ag-o-link"
+                              href="{{ resource_url }}"
+                              title="{% trans 'Ver este contenido en' %} {{ processed_data.data_source.name }}"
+                              target="_blank"
+                            >
+                              {% trans "Ver Contenido" %}
+                            </a>
+                          {% endif %}
+                        {% endif %}
+                      {% endwith %}
+                    </div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% if resource_group.offline_sources %}
+            <h3 class="ag-o-headline ag-o-headline_title">
+              {{ resource_group.offline_resources|length }}{% trans ' ejemplares en físico disponibles en:' %}
+            </h3>
+
+            <ul class="ag-list ag-list_separator">
+
+              {% for source in resource_group.offline_sources %}
+                <li class="ag-list__item ag-js-itemList">
+                  <div class="ag-list__row">
+
+                    {% if source.image %}
+                    <div class="ag-list__visual">
+                      <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+                        <img class="ag-chip__img" src="{{ source.image.url }}" alt="{% trans 'Imagen de' %} {{ source.name }}">
+                      </figure>
+                    </div>
+                    {% endif %}
+
+                    <div class="ag-list__content">
+                      <p class="ag-list__title">{{ source.name }} <span class="ag-list__meta">({{ source.resources|length }} {% trans 'ejemplares' %})</span></p>
+                      <button class="ag-o-link i-after-arrow-down ag-js-dropdownBtn" type="button" data-dropdown="details">{% trans 'Ver detalles' %}</button>
+                      <button class="ag-o-link i-after-arrow-down ag-js-dropdownBtn" type="button" data-dropdown="location">{% trans 'Ubicar ejemplar' %}</button>
+                    </div>
+                  </div>
+
+                  <div class="ag-list__dropdown-content ag-js-dropdownSlide ag-is-hide" data-dropdown="details">
+                    {% comment %} <img class="ag-list__dropdown-img_full" src="" alt=""> {% endcomment %}
+                    <div class="ag-list__information ag-list__inner">
+                      <dl class="ag-definition-list">
+                        <dt class="ag-definition-list__title">{% trans 'Horario' %}</dt>
+                        {% if source.schedule_set.all %}
+
+                          {% for schedule in source.schedule_set.all %}
+                            <dd class="ag-definition-list__item">
+
+                              {% for value, text in schedule.DAYS_CHOICES %}
+                                {% if value == schedule.day %}
+                                  <span>{{ text }}</span>
+                                  {% if schedule.closed %}
+                                    <span>{% trans 'Cerrado' %}</span>
+                                  {% else %}
+                                  <span>
+                                      {% if schedule.opening and schedule.closing %}
+                                        {{ schedule.opening|time:"TIME_FORMAT" }} - {{ schedule.closing|time:"TIME_FORMAT" }}
+                                      {% endif %}
+                                    </span>
+                                  {% endif %}
+                                {% endif %}
+                              {% endfor %}
+
+                            </dd>
+                          {% endfor %}
+
+                        {% else %}
+                          <dd>{% trans 'No hay información del horario de este recurso' %}</dd>
+                        {% endif %}
+
+                      </dl>
+
+                      {% if source.parking or source.address or source.contact %}
+                        <dl class="ag-definition-list">
+
+                          {% if source.parking %}
+                            <dt class="ag-definition-list__title">{% trans 'Parqueadero' %}</dt>
+                            <dd class="ag-definition-list__item">
+                              <span>{% trans 'Disponible' %}</span>
+                            </dd>
+                          {% endif %}
+
+                          {% if source.address %}
+                            <dt class="ag-definition-list__title">{% trans 'Dirección' %}</dt>
+                            <dd class="ag-definition-list__item">
+                              <span>{{ source.address }}</span>
+                            </dd>
+                          {% endif %}
+
+                          {% if source.contact %}
+                            <dt class="ag-definition-list__title">{% trans 'Contacto' %}</dt>
+                            <dd class="ag-definition-list__item">
+                              <span>{{ source.contact }}</span>
+                            </dd>
+                          {% endif %}
+
+                        </dl>
+                      {% endif %}
+
+                    </div>
+                  </div>
+
+                  <div class="ag-list__dropdown-content ag-js-dropdownSlide ag-is-hide" data-dropdown="location">
+                    <table class="ag-table ag-list__inner">
+                      <tr class="ag-table__row ag-table__row_top">
+                        <th class="ag-table__title">{% trans 'Ejemplares' %}</th>
+                        <th class="ag-table__title">{% trans 'Número Topográfico' %}</th>
+                        <th class="ag-table__title"></th>
+                      </tr>
+
+                      {% for resource in source.resources %}
+                        {% with processed_data=resource.processed_data %}
+                          <tr class="ag-table__row">
+                            <td class="ag-table__cell">{{ processed_data.title }}</td>
+                            <td class="ag-table__cell">
+                              {% if processed_data.topographicNumber %}
+                                {{ processed_data.topographicNumber }}
+                              {% endif %}
+                            </td>
+                            <td class="ag-table__cell">
+                              {% get_resource_external_url processed_data as resource_url %}
+                              {% if resource_url %}
+                              {% if user.is_megared or not processed_data.is_exclusive %}
+                                <a class="ag-o-link ag-o-link_external i-after-external-link" href="{{ resource_url }}" title="{% trans 'Ver este contenido en' %} {{ processed_data.data_source.name }}" target="_blank" rel="noopener">{% trans "Ver Contenido" %}</a>
+                              {% else %}
+                                <a class="ag-o-link" href="{{ resource_url }}" title="{% trans 'Ver este contenido en' %} {{ processed_data.data_source.name }}">{% trans "Ver Contenido" %}</a>
+                              {% endif%}
+                              {% endif %}
+                            </td>
+                          </tr>
+                        {% endwith %}
+                      {% endfor %}
+
+                    </table>
+                  </div>
+                </li>
+              {% endfor %}
+
+            </ul>
+          {% endif %}
+
+        {% endwith %}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+

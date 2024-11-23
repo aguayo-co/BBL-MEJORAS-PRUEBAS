@@ -1,0 +1,30 @@
+{% load i18n static wagtailimages_tags %}
+
+<div
+  class="
+    ag-section-list
+    {% if not image_alignment.image_alignment == "left" %}
+      ag-section-list_{{ image_alignment.image_alignment }}
+    {% endif %}
+  "
+>
+
+  <div class="ag-section-list__column">
+    <figure>
+      {% image image_alignment.image width-985 as section_img %}
+      <img
+        src="{{ section_img.file.url }}"
+        alt="{{ section_img.default_alt_text }}"
+        class="ag-section-list__img"
+      >
+      <figcaption class="ag-section-list__caption">
+        {{ image_alignment.image_caption }}
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="ag-section-list__column ag-s01-rich-text">
+    {{ image_alignment.rich_text }}
+  </div>
+
+</div>

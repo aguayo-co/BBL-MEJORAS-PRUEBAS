@@ -1,0 +1,38 @@
+{% load i18n %}
+{% load static %}
+
+{% if requests %}
+  <section class="ag-l-inner-wide">
+    <header class="ag-o-subheader">
+      <h2 class="ag-o-headline ag-o-headline_primary" tabindex="0"> {% trans 'Solicitudes' %} </h2>
+    </header>
+    <ul class="ag-list">
+      {% for notification_request in requests %}
+        {% include "biblored/includes/notifications/notification_request_item.html" with user=request.user notification=notification_request csrf_token=csrf_token only %}
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+
+{% if invitations %}
+  <section class="ag-l-inner-wide" id="content" tabindex="0">
+    <header class="ag-o-subheader">
+      <h2 class="ag-o-headline ag-o-headline_primary" tabindex="0">{% trans 'Invitaciones' %}</h2>
+    </header>
+
+    <ul class="ag-list">
+      {% for invitation in invitations %}
+        {% include "biblored/includes/notifications/notification_invitation_item.html" with user=invitation.collaborativecollection.owner notification=invitation csrf_token=csrf_token only %}
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+{% if not requests and not invitations %}
+    <section class="ag-l-inner-wide" id="content" tabindex="0">
+      <header class="ag-o-subheader-ico i-notify">
+        <h2 class="ag-o-subheading" tabindex="0">{% trans 'No tienes solicitudes pendientes' %}</h2>
+      </header>
+    </section>
+{% endif %}

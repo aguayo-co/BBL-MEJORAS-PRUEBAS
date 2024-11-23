@@ -1,0 +1,58 @@
+/*------------------------------------*\
+  ID: B22
+  Message Alert
+  Description: Block with message in template
+\*------------------------------------*/
+.ag-message-alert {
+  @include px-rem(padding, 16px);
+  @include px-rem(border-radius, 10px);
+}
+
+.ag-message-alert__text {
+  @include flexbox;
+  @include align-items(center);
+  color: $c-on-text;
+  line-height: 1.4;
+
+  &:before {
+    @include px-rem(font-size, 24px);
+    @include px-rem(margin-right, 8px);
+  }
+}
+
+.ag-message-alert__btn {
+  display: block;
+  width: 100%;
+  @include px-rem(max-width, 380px);
+  margin: 0 auto;
+  @include px-rem(margin-top, 16px);
+}
+
+.ag-message-alert_warning {
+  background-color: $c-on-tertiary-warm;
+
+  .ag-message-alert__text {
+    &:before {
+      color: $c-on-tertiary-dark;
+    }
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-message-alert {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+  }
+
+  .ag-message-alert__btn {
+    @include flex(0 0 156px);
+    @include px-rem(max-width, 156px);
+    margin: 0 0 0 auto;
+  }
+
+  .ag-message-alert__text {
+    @include px-rem(margin-right, 8px);
+  }
+}

@@ -1,0 +1,48 @@
+/*------------------------------------*
+  Transversal Elements
+  #Styles for layout theme,
+  Specifically : Griddle layout
+/*------------------------------------*/
+.ag-l-griddle {
+  position: static;
+}
+
+.ag-l-griddle__columns {
+  list-style: none;
+}
+
+// medium max   : 767px;
+@include media-query(medium-max) {
+  .ag-l-griddle_push-left {
+    @include px-rem(padding-left, 16px);
+  }
+
+  .ag-l-griddle__frame {
+    max-width: 94%;
+    margin: 0 auto;
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  // Layout item Flexbox
+  .ag-l-griddle__frame {
+    width: 100%;
+  }
+}
+
+//  wide: $bp-wide : 1024px
+@include media-query(wide) {
+  .ag-l-griddle__columns {
+    @include flexbox;
+    @include align-items(center);
+  }
+
+  .ag-l-griddle_bottom-24 {
+    @include px-rem(margin-bottom, 24px);
+  }
+
+  .ag-l-griddle__column {
+    @include flex(1 0 auto);
+  }
+}

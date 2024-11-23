@@ -1,0 +1,39 @@
+.o-section {
+  @include px-rem(margin-top, 40px);
+  @include px-rem(margin-bottom, 40px);
+
+  &.o-section_mt-0 {
+    margin-top: 0;
+  }
+
+  &.o-section_mb-0 {
+    margin-bottom: 0;
+  }
+}
+
+// Only logged component
+.o-section-top {
+  @include px-rem(margin-top, 40px);
+}
+
+.o-section-surface {
+  @include px-rem(padding-top, 40px);
+  @include px-rem(padding-bottom, 40px);
+}
+
+@include media-query(medium) {
+  .o-section {
+    @include px-rem(margin-top, 80px);
+    @include px-rem(margin-bottom, 80px);
+  }
+
+  // Only logged component
+  .o-section-top {
+    @include px-rem(margin-top, 80px);
+  }
+
+  .o-section-surface {
+    @include px-rem(padding-top, 80px);
+    @include px-rem(padding-bottom, 80px);
+  }
+}

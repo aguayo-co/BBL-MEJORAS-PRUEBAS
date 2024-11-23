@@ -1,0 +1,28 @@
+{% load i18n %}
+{% load builtins %}
+
+<form
+  id="{{ form_id }}"
+  method="post"
+  class="ag-js-validate {% if form_extra_classes %}{{ form_extra_classes }}{% endif %}"
+>
+  {% csrf_token %}
+  <input type="hidden"
+    name="model_name"
+    value="{{ collection|get_meta:"model_name" }}"
+  />
+  {% if form_prefix %}
+    <input type="hidden"
+      name="form_prefix"
+      value="{{ form_prefix }}"
+    />
+  {% endif %}
+  {% if form_name %}
+    <input type="hidden"
+      name="form_name"
+      value="{{ form_name }}"
+    />
+  {% endif %}
+
+  {% include "biblored/includes/modals/modal_search_select_collections_groups_in_card_component.html" with form=form data_modal=data_modal collection=collection form_button_type=form_button_type form_button_extra_classes=form_button_extra_classes form_prefix=form_prefix wai_modal="wai_modal-groups-collection" only %}
+</form>

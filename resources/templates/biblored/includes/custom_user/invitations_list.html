@@ -1,0 +1,11 @@
+{% extends "biblored/includes/custom_user/invitations_requests_list_base.html" %}
+{% load i18n %}
+{% block notificacions_list_header %}{% endblock %}
+
+{% block notifications_item_list %}
+  {% for invitation in notifications %}
+      {% include "biblored/includes/notifications/notification_invitation_item.html" with notification=invitation user=invitation.collaborativecollection.owner csrf_token=csrf_token only %}
+  {% endfor %}
+{% endblock %}
+
+{% block notificacions_empty_list_title %}{% trans 'No tienes invitaciones pendientes' %}{% endblock %}

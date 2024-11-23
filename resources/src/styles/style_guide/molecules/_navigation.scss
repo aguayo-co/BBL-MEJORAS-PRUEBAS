@@ -1,0 +1,27 @@
+// navigation.scss -- Top-level navigation
+//
+// Edit by Aguayo 2019
+
+.SG-nav {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  li {
+    @include flex(1 1 auto);
+  }
+  .SG-nav__item--active {
+    border-bottom: 3px solid $color--brand_project;
+  }
+}
+
+.SG-nav .SG-nav__item--active:hover {
+  border-bottom: 3px solid $c-on-hover;
+}
+
+@media screen and (max-width: 530px) {
+  .SG-nav {
+    @include flex-wrap(wrap);
+    li {
+      @include flex(1 1 50%);
+    }
+  }
+}

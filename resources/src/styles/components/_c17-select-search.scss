@@ -1,0 +1,200 @@
+/*---------------------------------------------*\
+  ID: c17
+  Select search
+  Type: Select form
+  Description:  Select Box/text input plugin
+\*----------------------------------------------*/
+/**
+ * Class: .ag-select-search
+ * @description Componente select search.
+ * @molecule c17_select-search
+ * @section Select Search
+ * @markup
+ *   <div class="ag-select-search" data-type="select-multiple" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" dir="ltr">
+ *     <div class="ag-select-search__inner">
+ *       <div class="ag-select-search__list ag-select-search__list-multiple"></div>
+ *       <input type="text" class="ag-select-search__input ag-select-search__input-cloned" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" placeholder="Buscar un tema"></div>
+ *       <div class="ag-select-search__list ag-select-search__list-dropdown" aria-expanded="false">
+ *       <div class="ag-select-search__list" dir="ltr" role="listbox" aria-multiselectable="true">
+ *         <div class="ag-select-search__item ag-select-search__item-choice ag-select-search__item-selectable ag-is-highlighted" data-select-text="" data-choice="" data-id="1" data-value="9" data-choice-selectable="" id="choices--id_subject-item-choice-1" role="option" aria-selected="true">
+ *           Biologia
+ *         </div>
+ *         <div class="ag-select-search__item ag-select-search__item-choice ag-select-search__item-selectable" data-select-text="" data-choice="" data-id="2" data-value="5" data-choice-selectable="" id="choices--id_subject-item-choice-2" role="option">
+ *           Ciencias Naturales
+ *         </div>
+ *         <div class="ag-select-search__item ag-select-search__item-choice ag-select-search__item-selectable" data-select-text="" data-choice="" data-id="3" data-value="4" data-choice-selectable="" id="choices--id_subject-item-choice-3" role="option">
+ *           CIENCIAS SOCIALES
+ *         </div>
+ *       </div>
+ *     </div>
+ *   </div>
+*/
+
+// containerOuter
+.ag-select-search {
+  display: block;
+  position: relative;
+  @include px-rem(border-radius, 4px);
+  border: 1px solid $c-on-border;
+  @include px-rem(margin-bottom, 24px);
+  @include font-rem(14px);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:after {
+    content: $i-search;
+    display: block;
+    position: absolute;
+    @include px-rem(top, 22px);
+    @include px-rem(right, 8px);
+    transform: translateY(-50%);
+    line-height: 1;
+    font-family: $ico-font-family;
+    color: $c-on-text;
+    @include font-rem(18px);
+    pointer-events: auto;
+  }
+
+}
+
+.ag-select-search[data-type*=select-multiple] .ag-select-search__inner,
+.ag-select-search[data-type*=text] .ag-select-search__inner {
+  cursor: text;
+}
+
+// containerInner
+.ag-select-search__inner {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  width: 100%;
+  overflow: hidden;
+  @include px-rem(padding, 8px 8px 0);
+}
+// input
+.ag-select-search__input {
+  display: inline-block;
+  vertical-align: baseline;
+  border: 0;
+  border-radius: 0;
+  color: $c-on-text;
+  &.ag-is-hidden {
+    max-width: 140px;
+    opacity: 0;
+  }
+}
+
+.ag-select-search__list-multiple {
+  @include order(1);
+  display: block;
+  height: auto;
+  @include px-rem(max-height, 140px);
+  @include px-rem(padding, 4px 0);
+  overflow-y: auto;
+}
+
+
+.ag-select-search__input-cloned {
+  @include order(0);
+  @include px-rem(padding, 8px);
+  max-width: calc(100% - 10px);
+}
+
+
+.ag-select-search__list-multiple,
+.ag-select-search__input-cloned  {
+  @include flex(1 0 100%);
+}
+
+
+// list
+.ag-select-search__list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+// item
+.ag-select-search__item {
+  position: relative;
+  cursor: default;
+  @include px-rem(padding, 10px);
+}
+
+// listDropdown
+.ag-select-search__list-dropdown {
+  display: none;
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  background-color: $c-neutro;
+  border: 1px solid $c-on-border;
+  top: 100%;
+  left: 0;
+  @include px-rem(margin-top, -1px);
+  overflow-x: hidden;
+  max-height: 240px;
+  overflow-y: auto;
+
+  .select-search__list {
+    position: relative;
+    @include px-rem(max-height, 300px);
+    overflow: auto;
+    will-change: scroll-position;
+  }
+}
+
+// listItems
+.ag-select-search__list-multiple {
+
+  .ag-select-search__item[data-deletable] {
+    @include px-rem(padding-right, 8px);
+  }
+  .ag-select-search__item {
+    @include inline-flex;
+    height: 30px;
+    max-width: 180px;
+    @include px-rem(border-radius, 20px);
+    @include px-rem(padding, 2px 8px);
+    @include px-rem(margin, 0 4px 4px 0);
+    @include font-rem(14px);
+    color: $c-neutro;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    background-color: $c-secondary;
+  }
+}
+
+
+// itemSelectable
+.ag-select-search__item-selectable {
+  cursor: pointer;
+}
+
+// button
+.ag-select-search__button {
+  position: relative;
+  display: inline-block;
+  @include px-rem(padding-left, 16px);
+  @include px-rem(margin, 0 -4px 0 8px);
+  @include px-rem(width, 8px);
+  line-height: 1;
+  opacity: .75;
+  border-radius: 0;
+  text-indent: -9999px;
+  border: 0;
+  border-left: 1px solid $c-neutro;
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iN3B4IiBoZWlnaHQ9IjdweCIgdmlld0JveD0iMCAwIDcgNyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNTIuNiAoNjc0OTEpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPnBsdXM8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0icGx1cyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTMuMDAwMDAwLCAtMy4wMDAwMDApIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPHBhdGggZD0iTTkuODg2OTcsNy4xODUyMSBMNy4xODU0Miw3LjE4NTM2IEw3LjE4NTMzLDkuODg2ODQgQzcuMTg1MjUsMTAuMjg4NzQgNi44NTk2OCwxMC42MTQzMiA2LjQ1Nzc4LDEwLjYxNDQgQzYuMjU3MDEsMTAuNjE0NCA2LjA3NTE3LDEwLjUzMzAyIDUuOTQzNjIsMTAuNDAxNDcgQzUuODExODYsMTAuMjY5NyA1LjczMDM5LDEwLjA4NzkzIDUuNzMwNTQsOS44ODcxNiBMNS43MzA0OSw3LjE4NTIyIEwzLjAyODY3LDcuMTg1MjUgQzIuODI3OTA5LDcuMTg1MjcgMi42NDYwNTQsNy4xMDM4OCAyLjUxNDM5Miw2Ljk3MjIxIEMyLjM4Mjc2OCw2Ljg0MDU5IDIuMzAxMzg4LDYuNjU4OSAyLjMwMTM4OSw2LjQ1Nzk4IEMyLjMwMTM3Nyw2LjA1NjE3IDIuNjI2OTY0LDUuNzMwNTggMy4wMjg5NCw1LjczMDQzIEw1LjczMDM5LDUuNzMwMyBMNS43MzA0OSwzLjAyODcyIEM1LjczMDQ5LDIuNjI2OTAzIDYuMDU2MTQsMi4zMDEyNTIgNi40NTc5NiwyLjMwMTI1MSBDNi44NTk1OSwyLjMwMTM2NSA3LjE4NTA1LDIuNjI2ODIyIDcuMTg1MjQsMy4wMjg1MyBMNy4xODUzNSw1LjczMDM0IEw5Ljg4NzA1LDUuNzMwMzQgQzEwLjI4ODgsNS43MzA1NyAxMC42MTQyOSw2LjA1NjA2IDEwLjYxNDM3LDYuNDU3NjYgQzEwLjYxNDQ0LDYuODU5NTUgMTAuMjg4NzksNy4xODUyMSA5Ljg4Njk3LDcuMTg1MjEgWiIgaWQ9IlBhdGgiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogc2NyZWVuOyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNi40NTc4ODAsIDYuNDU3ODI1KSByb3RhdGUoLTQ1LjAwMDAwMCkgdHJhbnNsYXRlKC02LjQ1Nzg4MCwgLTYuNDU3ODI1KSAiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==');
+  @include px-rem(background-size, 8px);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+

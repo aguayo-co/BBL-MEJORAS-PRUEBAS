@@ -1,0 +1,37 @@
+{% load wagtailcore_tags i18n static %}
+{% load render_bundle from webpack_loader %}
+
+{# Bloque Tipos de contenido #}
+  <section class="ag-l-band-primary">
+    <div class="ag-l-inner-wide">
+
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading ag-o-heading_contrast" tabindex="0">
+          {% trans "Filtra tu búsqueda" %}
+        </h2>
+      </header>
+
+      <div class="ag-c-slider ag-c-slider_primary">
+
+        <div class="ag-c-slider__content swiper-container js-sliderFilter">
+          <ul class="ag-c-slider__list swiper-wrapper">
+            {% for content_type in content_types %}
+              {% include "biblored/includes/sliders/type_slider.html" with content_type=content_type %}
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div>
+          <button class="ag-c-slider__control ag-c-slider__control_prev i-arrow-left ag-has-slider_primary_prev" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Anterior diapositiva" %}</span>
+          </button>
+          <button class="ag-c-slider__control ag-c-slider__control_next i-arrow-right ag-has-slider_primary_next" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Siguiente diapositiva" %}</span>
+          </button>
+        </div>
+
+        <div class="ag-c-slider__dots ag-has-slider_primary__dots"></div>
+      </div>
+
+    </div>
+  </section>

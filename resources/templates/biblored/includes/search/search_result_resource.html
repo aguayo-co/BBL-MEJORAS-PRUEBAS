@@ -1,0 +1,53 @@
+{% extends "biblored/includes/search/search_result_card.html" %}
+
+{% load i18n static %}
+
+{# block para los tags en el top de la card, por ejemplo: "EXCLUSIVO BIBLORED"#}
+{% block tags_header %}
+  <div class="ag-c-card__top">
+    {# Tags in card #}
+    {% if object.is_exclusive %}
+      <ul class="ag-tags">
+        <li class="ag-tags__item">
+          <span class="ag-tags__ico
+            ag-tags__ico_red
+            i-exclusive"
+          >
+            <span class="ag-tags__tag
+              ag-tags__tag_dark"
+            >
+              {% trans "Exclusivo BibloRed" %}
+            </span>
+          </span>
+        </li>
+      </ul>
+    {% endif %}
+  </div>
+{% endblock tags_header %}
+
+{% block secondary_information %}
+  <div>
+    {% if object.data_source %}
+      <span class="ag-s-card-margin-right-16">
+        <span class="ag-c-card__redundant">{% trans "Fuente" %}</span>: 
+        <strong class="ag-o-text_semibold">{{ object.data_source }}</strong>
+      </span>
+    {% endif %}
+    {% if object.type %}
+      <span>
+        <span class="ag-c-card__redundant">{% trans "Tipo de contenido" %}</span>:
+        <strong class="ag-o-text_semibold">{{ object.type }}</strong>
+      </span>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block options_button %}
+  {# buttons into list of options #}
+  {% include "biblored/includes/options_menu/options_menu_for_resource_item.html" with request=request collection=collection processed_data=object user=user card="search-resource" counter=counter only %}
+{% endblock options_button %}
+
+{% block modal %}
+  {# Modal for share resource if isnt authenticated #}
+  {% include "biblored/includes/modals/modal_share_social.html" with object=object title=object.title card="search-resource" counter=counter only %}
+{% endblock %}

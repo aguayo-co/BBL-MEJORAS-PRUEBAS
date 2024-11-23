@@ -1,0 +1,21 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C24 Cloud Terms
+  Description: only classes that has been affected with primary's theme color
+  Purple=>#442686 Variable : $c-primary-hover
+\*------------------------------------*/
+#cloudWrap {
+  
+  .ag-Circle {
+    &:hover {
+      fill: rgba($c-primary-hover, 0.3);
+    }
+  }
+
+  .ag-js-cloud-hover {
+    .ag-c-cloud__box {
+      color: $c-primary-hover;
+    }
+  }
+
+}

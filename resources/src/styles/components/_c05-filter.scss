@@ -1,0 +1,571 @@
+/*----------------------------------------------*\
+  ID: C05
+  Filter
+  Type: Form
+  Description: Componente utilizado para filtrar
+  la visualización de los elementos.
+\*----------------------------------------------*/
+
+.ag-c-filter {
+  position: relative;
+  z-index: 3;
+  @include px-rem(padding, 24px 16px);
+}
+
+.ag-c-filter__form {
+  .ag-c-tooltip__box {
+    right: -35%;
+    transform: translateX(35%);
+  }
+}
+
+.ag-c-filter__label {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  @include px-rem(margin-bottom, 12px);
+  @include px-rem(padding-top, 12px);
+  color: $c-primary;
+  font-weight: $f-bold;
+  cursor: pointer;
+  transition: color 0.5s;
+  text-transform: lowercase;
+
+  &:first-letter {
+    text-transform: uppercase;
+  }
+
+  &:after {
+    display: table-cell;
+    width: 34px;
+    text-align: right;
+    @include px-rem(margin-left, 12px);
+    line-height: 1.8;
+    color: $c-secondary;
+    @include font-rem(10px);
+    transition: color 0.5s;
+  }
+
+  &:hover {
+    color: $c-primary-hover;
+
+    &:after {
+      color: $c-primary-hover;
+    }
+  }
+}
+
+.ag-c-filter__label-txt {
+  text-transform: initial;
+  display: table-cell;
+  width: 100%;
+}
+
+.ag-c-filter__label-txt_indent {
+  @include px-rem(padding-left, 22px);
+}
+
+.ag-c-filter__search {
+  position: relative;
+  z-index: 4;
+
+  .ag-c-search__title {
+    @include font-rem(14px);
+    @include px-rem(margin-bottom, 14px);
+  }
+}
+
+.ag-c-filter__inline-box {
+  @include flexbox;
+  @include align-items(center);
+  list-style: none;
+  @include px-rem(max-width, 480px);
+  @include px-rem(margin, 16px auto 24px auto);
+}
+
+.ag-c-filter__search-input {
+  position: static;
+}
+
+.ag-c-filter__title {
+  @include font-rem(19px);
+  font-weight: $f-medium;
+  border-bottom: 1px solid $c-on-border;
+  color: $c-primary;
+  @include px-rem(padding, 10px 0);
+  @include px-rem(margin-bottom, 10px);
+}
+
+.ag-c-filter__headline {
+  position: relative;
+  margin-top: 0;
+  width: 100%;
+  text-align: center;
+  @include px-rem(padding-top, 24px);
+  @include px-rem(padding-bottom, 24px);
+}
+
+.ag-c-filter__link {
+  white-space: nowrap;
+}
+
+.ag-c-filter__btn {
+  min-width: 100%;
+  @include px-rem(max-width, 200px);
+  @include px-rem(margin, 20px 0);
+}
+
+.ag-c-filter__group {
+  @include px-rem(margin-top, 6px);
+
+  &.ag-is-hide {
+    @include px-rem(max-height, 164px);
+  }
+  .ag-form__radio {
+    @include px-rem(margin-bottom, 12px);
+
+    &:hover {
+      color: $c-primary-hover;
+    }
+  }
+
+  .ag-form__checkbox {
+    @include px-rem(margin-bottom, 12px);
+    z-index: 0;
+
+    &:hover {
+      color: $c-primary-hover;
+    }
+  }
+}
+
+.ag-c-filter__related {
+  position: relative;
+  @include px-rem(margin-top, 10px);
+  @include px-rem(padding-left, 30px);
+
+  .ag-form__checkbox {
+    @include inline-flex;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -13px;
+    @include px-rem(left, 18px);
+    @include px-rem(width, 12px);
+    height: 100%;
+    border-left: 1px solid $c-primary-disabled;
+    border-bottom: 1px solid $c-primary-disabled;
+  }
+}
+
+.ag-c-filter__related-border {
+  @include px-rem(margin, 10px 0);
+  @include px-rem(padding-bottom, 10px);
+  padding-left: 0;
+  text-align: center;
+  border: 1px solid $c-primary-disabled;
+}
+
+.ag-c-filter__box {
+  @include inline-flex;
+  @include flex(0 0 auto);
+  @include align-items(center);
+
+  &:first-child {
+    border-right: 1px solid $c-on-border;
+  }
+
+  &:last-child {
+    @include px-rem(margin-left, 16px);
+  }
+}
+
+.ag-c-filter__legend {
+  @include px-rem(padding, 0 20px);
+  @include px-rem(font-size, 12px);
+  color: $c-on-text;
+}
+
+.ag-c-filter__item {
+  @include px-rem(margin-bottom, 8px);
+}
+
+.ag-c-filter__fixed {
+  position: fixed;
+  @include px-rem(top, 70px);
+  left: 16px;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+.ag-c-filter__button_sticky {
+  position: sticky;
+  z-index: 2;
+  bottom: 0;
+  @include px-rem(margin-top, 32px);
+  @include px-rem(margin-left, -16px);
+  @include px-rem(margin-right, -16px);
+  @include px-rem(padding, 30px 0 20px);
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.88) 0.63%,
+    #ffffff 35.24%
+  );
+  box-shadow: 5px -5px 10px -10px rgba(0, 0, 0, 0.3);
+}
+
+.ag-c-filter__bar {
+  position: relative;
+  z-index: 5;
+  animation-name: popOut;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
+
+.ag-c-filter__btn-close {
+  position: absolute;
+  z-index: 3;
+  @include px-rem(right, 8px);
+}
+
+.ag-c-filter__set_bg {
+  .ag-select-search {
+    &::after {
+      top: 49%;
+      right: 0;
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+      @include px-rem(width, 46px);
+      @include px-rem(height, 46px);
+      border-radius: 0 4px 4px 0;
+      font-size: 20px;
+      color: $c-neutro;
+      cursor: pointer;
+      background-color: $c-secondary;
+    }
+  }
+}
+
+//- Active class: Only apply in search results
+.ag-is-element-closest-filter {
+  .ag-is-hide_desktop {
+    display: none;
+  }
+
+  .ag-filter-chip__actions {
+    @include justify-content(center);
+    background-color: transparent;
+  }
+
+  .ag-o-btn_non-standard {
+    width: 100%;
+    @include px-rem(max-width, 380px);
+    margin: 0 auto;
+  }
+
+  .ag-c-filter {
+    @include px-rem(margin-top, -140px);
+    background-color: $c-neutro;
+  }
+
+  .ag-c-filter__btn-close {
+    @include px-rem(top, -130px);
+  }
+}
+
+//- Active class: This class fix the search into top
+.ag-is-filter-fixed_top {
+  &.ag-is-element-closest-filter {
+    .ag-c-filter__fixed {
+      @include px-rem(top, 65px);
+      width: 100%;
+      z-index: 10;
+    }
+
+    .ag-c-filter__search {
+      width: 92%;
+      @include px-rem(max-width, 632px);
+      margin: 0 auto;
+    }
+
+    .ag-c-filter__headline,
+    .ag-c-filter__inline-box {
+      display: none;
+    }
+
+    .ag-c-filter__bar {
+      width: 100%;
+      margin: 0 auto;
+      @include px-rem(margin-bottom, 8px);
+      @include px-rem(padding, 16px 0 8px);
+      background-color: $c-neutro;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+      animation-name: popInTop;
+      animation-duration: 500ms;
+      animation-fill-mode: forwards;
+    }
+
+    .ag-l-middle {
+      @include px-rem(margin-top, 130px);
+    }
+
+    .ag-is-aside_open {
+      .ag-c-filter {
+        @include px-rem(margin-top, -40px);
+      }
+
+      .ag-c-filter__btn-close {
+        @include px-rem(top, -20px);
+      }
+    }
+  }
+}
+
+.ag-is-filter_height {
+  height: 100%;
+  @include px-rem(min-height, 430px);
+  @include px-rem(max-height, 430px);
+}
+
+
+// medium-max, máximo 767px;
+@include media-query(medium-max) {
+  .ag-c-filter {
+    border-right: 1px solid rgba($c-on-border, 0.8);
+  }
+
+  //- Active class: this class expands the aside the wrap at 100% in mobile
+  .ag-is-aside_parent {
+    width: 100%;
+
+    .ag-l-middle {
+      overflow: hidden;
+    }
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-c-filter {
+    border-right: 1px solid rgba($c-on-border, 0.8);
+  }
+
+  .ag-c-filter__control {
+    display: none;
+  }
+
+  //- Active class: Only apply in search results
+  .ag-is-element-closest-filter {
+    .ag-l-middle {
+      @include px-rem(margin-top, 170px);
+    }
+
+    .ag-c-filter__fixed {
+      @include px-rem(top, 110px);
+    }
+
+    .ag-c-filter__btn-close {
+      @include px-rem(top, -170px);
+    }
+
+    .ag-is-aside_open {
+      .ag-c-filter {
+        @include px-rem(margin-top, -190px);
+      }
+    }
+  }
+
+  //- Active class: This class fix the search into top
+  .ag-is-filter-fixed_top {
+    &.ag-is-element-closest-filter {
+      .ag-l-middle {
+        @include px-rem(margin-top, 24px);
+      }
+    }
+  }
+}
+
+//  max-wide: $bp-wide : 1023px
+@include media-query(wide-max) {
+  .ag-c-filter__fixed {
+    max-width: 92%;
+  }
+
+  .ag-c-filter__search {
+    @include flexbox;
+    @include align-items(center);
+    width: 100%;
+    @include px-rem(max-width, 480px);
+    margin: 0 auto;
+  }
+
+  .ag-c-filter__open-button {
+    @include flex(0 0 116px);
+    @include px-rem(padding-left, 16px);
+  }
+
+  //- Active class: Only apply in search results
+  .ag-is-element-closest-filter {
+    .ag-is-aside_open {
+      left: 0;
+      @include px-rem(max-width, 420px);
+    }
+
+    .ag-c-search__suggestions {
+      width: calc(100% - 116px);
+      left: 0;
+    }
+  }
+
+  //- Active class: This class fix the search into top
+  .ag-is-filter-fixed_top {
+    &.ag-is-element-closest-filter {
+      .ag-c-filter__fixed {
+        max-width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  //- Active class: this class expands the aside the wrap at 100% in mobile
+  .ag-is-aside_parent {
+    .ag-c-filter__fixed {
+      opacity: 0;
+    }
+  }
+}
+
+//  wide: $bp-wide : 1024px
+@include media-query(wide) {
+  .ag-c-filter {
+    padding-left: 0;
+  }
+
+  .ag-c-filter__search {
+    display: block;
+    position: relative;
+    @include px-rem(max-width, 480px);
+    margin: 0 auto;
+  }
+
+  .ag-c-filter__open-button {
+    display: none;
+  }
+
+  .ag-c-filter__form {
+    .ag-c-tooltip__box {
+      right: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  .ag-c-filter__fixed {
+    @include px-rem(top, 110px);
+    @include px-rem(left, 330px);
+    max-width: calc(100% - 400px);
+  }
+
+  //- Active class: Only apply in search results
+  .ag-is-element-closest-filter {
+    .ag-c-filter {
+      margin-top: 0;
+    }
+
+    .ag-l-aside {
+      position: static;
+      z-index: 1;
+    }
+  }
+
+  //- Active class: This class fix the search into top
+  .ag-is-filter-fixed_top {
+    &.ag-is-element-closest-filter {
+      .ag-l-middle {
+        @include px-rem(margin-top, 24px);
+      }
+
+      .ag-c-filter__fixed {
+        left: 0;
+        max-width: 100%;
+      }
+
+      .ag-c-filter {
+        @include px-rem(margin-top, 10px);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:450px){
+  .ag-c-filter__search {
+    display: block;
+ 
+  }
+   .ag-c-filter__open-button  {
+     @include px-rem(margin-top, 16px);
+     padding-left: 0;
+     text-align: center;
+   }
+}
+
+// Animation Search
+@keyframes swoopOutTop {
+  0% {
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    transform: scaleY(1) translate3d(0, 0, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: scaleY(1) translate3d(0, 20px, 0);
+  }
+  60% {
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    transform: scaleY(1.2) translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: scaleY(1.5) translate3d(0, -400px, 0);
+  }
+}
+
+@keyframes popInTop {
+  0% {
+    transform: translate3d(0, -200px, 0) scale3d(0.1, 0.1, 0.1);
+    opacity: 0;
+  }
+  40% {
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    transform: translate3d(0, 0, 0) scale3d(1.08, 1.08, 1.08);
+  }
+  60% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+
+  100% {
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes popOut {
+  0% {
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale3d(1, 1, 1);
+  }
+  60% {
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+    transform: scale3d(1.04, 1.04, 1.04);
+  }
+  100% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  }
+}

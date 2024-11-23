@@ -1,0 +1,11 @@
+{% load i18n %}
+{% load static %}
+{% load builtins %}
+
+{% with collection|get_meta:"model_name" as content_type %}
+  {% if content_type == "set" %}
+    {% include "biblored/includes/collectionsgroup/set_card.html" with collection=collection title_group=title_group counter=forloop.counter0 color_icon='blue' only %}
+  {% else %}
+    {% include "biblored/includes/collectionsgroup/collection_card.html" with collection=collection title_group=title_group counter=forloop.counter0 color_icon='blue' only %}
+  {% endif %}
+{% endwith %}

@@ -1,0 +1,17 @@
+{% block extrahead %}
+  {{ widget.media }}
+{% endblock %}
+<table>
+    {% for subwidget in widget.subwidgets %}
+        <tr id="tr_for_{{ subwidget.attrs.id }}">
+            {% if subwidget.attrs.data_label %}
+                <td>
+                    <label {% if subwidget.attrs.required %}class="required"{% endif %} for="{{ subwidget.attrs.id }}">{{ subwidget.attrs.data_label }}</label>
+                </td>
+            {% endif %}
+            <td>
+                {% include subwidget.template_name with widget=subwidget%}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

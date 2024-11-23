@@ -1,0 +1,40 @@
+{% load wagtailcore_tags i18n static %}
+{% load render_bundle from webpack_loader %}
+
+{# Bloque de Exposiciones - Entidades (Carrusel destacados Exposiciones EtapaII) #}
+  {% if expositions %}
+
+    <section id="{{ id_section }}" class="o-section {{ class_section }}">
+      <div class="ag-l-inner-wide">
+
+        <header class="ag-o-header ag-o-header_top-0">
+          <h2 class="ag-o-heading" tabindex="0">
+            {% trans "Exposiciones" %}
+          </h2>
+          <p class="ag-o-subheading">
+            {% trans "Visita contenidos comentados y seleccionados por expertos" %}
+          </p>
+        </header>
+
+        <div class="ag-c-slider-gallery">
+          <div class="swiper-container ag-c-slider-gallery__container ag-js-slider-gallery">
+            <ul class="swiper-wrapper ag-c-slider-gallery__wrapper">
+
+              {% for exposition in expositions %}
+                {% include "biblored/includes/sliders/expositions_gallery.html" with exposition=exposition only %}
+              {% endfor %}
+            </ul>
+            <div class="ag-c-slider__dots ag-has-slider-gallery__dots" tabindex="-1"></div>
+          </div>
+        </div>
+
+        <div class="ag-o-actions">
+          <a class="ag-o-btn ag-o-actions__item" title="{% trans 'Ver más contenidos' %}" href="{% url 'expositions:list' %}">
+            {% trans "Ver más exposiciones" %}
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  {% endif %}

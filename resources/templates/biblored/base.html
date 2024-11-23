@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{% load static i18n gtm_tags tawkto wagtailuserbar %}
+<html lang="es" class="ag-u-scroll-smooth">
+
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W3R6T38');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    {% gtm_head %}
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    {% if page.search_description %}
+      <meta name="description" content="{{ page.search_description }}">
+    {% else %}
+      {# For django pages #}
+      <meta name="description" content="{% block description %}{% endblock %}">
+    {% endif %}
+    {% if page.keywords %}
+      <meta name="Keywords" content="{{ page.keywords }}">
+    {% else %}
+      {# For django pages #}
+      <meta name="Keywords" content="{% block keywords %}{% endblock %}">
+    {% endif %}
+    
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    {# Fav ICO #}
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#16223f">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'biblored/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'biblored/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'biblored/favicon/favicon-16x16.png' %}">
+    <link type="text/plain" rel="author" href="{% url 'humans' %}"/>
+    <link rel="manifest" href="{% static 'biblored/favicon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'biblored/favicon/safari-pinned-tab.svg' %}" color="#16223F">
+    {# Open Graph #}
+    {% block opengraph %}{% endblock %}
+    {# Style #}
+    {% block css %}
+      {% include "biblored/includes/layout/css.html" %}
+    {% endblock %}
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3R6T38"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% gtm_body %}
+    {% wagtailuserbar %}
+
+    <a class="ag-is-link-accesibilityfix ag-js-accesibilityTop" tabindex="0" href="#maincontent"
+      title="{% trans 'Saltar el menú principal' %}">
+      {% trans "Saltar navegación e ir al contenido principal" %}
+    </a>
+
+    {#  Component: l01_header  #} 
+    <header class="ag-l-header ag-is-menu_fixed" tabindex="0">
+      <div class="ag-l-header__wrapper">
+        <div class="ag-l-header__bar">
+          {% include "biblored/includes/layout/header_brand.html" %}
+          {# Layout: Bloque central #}
+
+          <div class="ag-l-header__hub ag-js-dropdown">
+            {# Componente: c01_search #}
+            {% block search %}{% endblock %}
+            {# Elemento: Botón de control de menú en mobile #}
+            <button class="ag-c-menu__anim ag-js-btnOpenMenu" type="button">
+                <span class="ag-c-menu__anim-box">
+                  <span class="ag-c-menu__anim-inner">
+                    <span class="ag-is-visuallyhidden">{% trans "Abrir Menú" %}</span>
+                  </span>
+                </span>
+            </button>
+          </div>
+
+        </div>
+        {% include "biblored/includes/layout/header_menu.html" with user=user %}
+      </div>
+    </header>
+
+
+    {% comment 'Bloque breadcrumbs' %}
+        Use: for views with breadcrumbs
+        {% block breadcrumbs_items %}
+          Example:
+          <dd class="ag-breadcrumbs__item">
+            <a href="" class="ag-breadcrumbs__link">ítem2</a>
+          </dd>
+          <dd class="ag-breadcrumbs__item">
+            Item actual
+          </dd>
+        {% endblock %}
+    {% endcomment %}
+
+    {% block breadcrumbs %}
+      <nav class="ag-breadcrumbs">
+        <div class="ag-l-inner-huge">
+          <dl class="ag-breadcrumbs__list">
+            <dt class="ag-breadcrumbs__label">{% trans 'Estás en' %}:</dt>
+            <dd class="ag-breadcrumbs__item">
+              <a href="/" title="{% trans 'Ir a la página de inicio' %}"
+                class="ag-breadcrumbs__link">{% trans 'Home' %}</a>
+            </dd>
+            {% block breadcrumbs_items %}{% endblock %}
+          </dl>
+        </div>
+      </nav>
+    {% endblock %}
+
+
+    {% block content %}{% endblock %}
+
+    {% if messages %}
+      <div class="ag-o-messages">
+        {% regroup messages by level_tag as message_levels %}
+        {% for level in message_levels %}
+          <ul class="ag-o-messages__{{ level.grouper }}">
+            {% for message in level.list %}
+              <li class="ag-o-messages__item js-messagesItem ag-is-messageClose">
+                <span class="ag-alert i-alert">
+                  <span class="ag-alert__lead" tabindex="0">{{ message }}</span>
+                  <button class="ag-js-messageClose ag-alert__close i-close" type="button" tabindex="0">
+                    <span class="ag-is-visuallyhidden">{% trans "Cerrar" %}</span>
+                  </button>
+                </span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% include "biblored/includes/layout/footer.html" %}
+    
+    {% block js %}
+      {% include "biblored/includes/layout/javascript.html" %}
+      {% tawkto %}
+    {% endblock %}
+  </body>
+</html>

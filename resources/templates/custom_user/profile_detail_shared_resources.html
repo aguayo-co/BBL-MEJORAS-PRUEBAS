@@ -1,0 +1,12 @@
+{% extends "custom_user/profile_detail_base.html" %}
+
+{% load render_bundle from webpack_loader %}
+
+{% block notifications %}
+  {% include "biblored/includes/custom_user/profile_detail_notifications_shared_resources.html" with request_user=request.user shared_resources_notifications=shared_resources_notifications csrf_token=csrf_token only %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'ignore_shared_resource_api' 'js' %}
+{% endblock %}

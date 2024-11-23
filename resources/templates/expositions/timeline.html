@@ -1,0 +1,78 @@
+{% load i18n  static wagtailcore_tags wagtailadmin_tags  wagtailimages_tags %}
+
+<section class="ag-l-band ag-u-space-bottom ag-js-expositionTimelineSection">
+
+  <div class="ag-l-inner-outside">
+    <span class="ag-o-head-tag">
+      <strong class="ag-o-head-tag__ico i-pushpin">{% trans 'Cronología' %}</strong>
+    </span>
+  </div>
+
+  <header class="ag-l-inner-inside ag-o-header-wink">
+    <div class="ag-o-header-wink__inner">
+
+      <div class="ag-c-tooltip-wrapper ag-c-tooltip-wrapper_align">
+        <h2 class="ag-o-header-wink__title ag-o-subheadwink">{{ timeline.title }}</h2>
+
+        {# tooltip #}
+        {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="exposition_timeline" only %}
+      </div>
+
+      <p class="ag-o-header-wink__lead">{{ timeline.description }}</p>
+    </div>
+  </header>
+
+  <div class="ag-c-timeline ag-js-expositionTimelineWrapper" data-timeline-id="timeline_{{ timeline.pk }}">
+
+    <div id="timeline_filter_aside_{{ timeline.pk }}" class="ag-c-filter-aside ag-is-filter-aside-close ag-js-asideFiltersMenu">
+      {% include "expositions/exposition_filter_aside.html" with timeline=timeline only %}
+    </div>
+
+    {% comment %} Timeline {% endcomment %}
+    <div id="timeline_{{ timeline.pk }}" class="ag-js-timeline ag-c-timeline__wrap" data-timeline-id="{{ timeline.pk }}" data-categories-script-id="{{ timeline.categories_script_id }}" data-milestones-script-id="{{ timeline.milestones_script_id }}">
+    </div>
+
+    {% comment %} Control's Aside {% endcomment %}
+    <aside id="timeline_controls_{{ timeline.pk }}" class="ag-c-timeline__controls">
+      <ul class="ag-c-timeline__list">
+        <li class="ag-c-timeline__item-btn">
+          <button class="ag-c-timeline__control i-zoom-in" id="timeline_zoom_in_button_{{ timeline.id }}" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Acerca el contenido" %}</span>
+          </button>
+        </li>
+        <li class="ag-c-timeline__item-btn">
+          <button  class="ag-c-timeline__control i-zoom-out" id="timeline_zoom_out_button_{{ timeline.id }}" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Aleja el contenido" %}</span>
+          </button>
+        </li>
+        <li class="ag-c-timeline__item-btn">
+          <button  class="ag-c-timeline__control i-add_right" id="timeline_move_right_button_{{ timeline.id }}" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Mueve a la derecha" %}</span>
+          </button>
+        </li>
+        <li class="ag-c-timeline__item-btn">
+          <button  class="ag-c-timeline__control i-add_left" id="timeline_move_left_button_{{ timeline.id }}" type="button">
+            <span class="ag-is-visuallyhidden">{% trans "Mueve a la izquierda" %}</span>
+          </button>
+        </li>
+      </ul>
+      {% comment %} Bottom's filter {% endcomment %}
+      <button id="timeline_filter_button_{{ timeline.pk }}" class="ag-c-timeline__button-control ag-o-button-action i-filter ag-js-timelineFilterButton">
+        <span class="ag-is-visuallyhidden">{% trans "Abre el filtro de la línea de tiempo" %}</span>
+      </button>
+    </aside>
+
+    {% for milestone_block in timeline.milestones_content %}
+      {% if milestone_block.value.image %}
+        <div id="milestone_image_{{ milestone_block.id }}" class="ag-is-display-none">
+          {% image milestone_block.value.image fill-160x160 class="ag-c-timeline__image" %}
+        </div>
+      {% endif %}
+      {% include "biblored/includes/modals/modal_base_expositions.html" with milestone=milestone_block.value timeline=timeline milestone_id=milestone_block.id card='milestone' counter=forloop.counter0 only %}
+    {% endfor %}
+
+    {{ timeline.categories|json_script:timeline.categories_script_id }}
+    {{ timeline.milestones_dict_list|json_script:timeline.milestones_script_id }}
+
+  </div>
+</section>

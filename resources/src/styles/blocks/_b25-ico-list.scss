@@ -1,0 +1,117 @@
+/*------------------------------------*\
+  ID: B25
+  Ico list
+  Description: Icons list for go to social media buttons
+\*------------------------------------*/
+
+.ag-ico-list {
+  list-style: none;
+}
+
+.ag-ico-list__anchor {
+  @include flexbox;
+  @include align-items(center);
+  @include px-rem(max-width, 240px);
+  @include px-rem(min-width, 240px);
+  border: none;
+  @include px-rem(padding, 12px 0);
+  margin: 0 auto;
+
+  &:before {
+    display: block;
+    @include px-rem(width, 40px);
+    text-align: center;
+    @include font-rem(20px);
+  }
+
+  &.i-twitter {
+    color: $c-on-twitter;
+  }
+
+  &.i-link-facebook {
+    color: $c-on-facebook;
+  }
+
+  &.i-link-whatsapp {
+    color: $c-on-whatsapp;
+  }
+}
+
+.ag-has-ico-list__wink {
+  position: relative;
+}
+
+.ag-has-ico-list__text {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: $f-primary;
+  font-weight: $f-regular;
+  color: $c-on-text;
+  opacity: 0;
+  @include px-rem(font-size, 14px);
+}
+
+// Active class
+.ag-is-ico-list_show {
+  opacity: 0;
+  animation-name: blink;
+  animation-timing-function: cubic-bezier(0.420, 0.000, 0.580, 1.000);
+  animation-duration: 2s;
+}
+
+@media all and (min-width: 640px) {
+  .ag-ico-list {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    margin: 0 auto;
+  }
+
+  .ag-ico-list__item {
+    @include flex(1 0 50%);
+    max-width: 50%;
+  }
+}
+
+// medium    : $bp-medium: 768px;
+@include media-query(medium) {
+  .ag-ico-list {
+    max-width: 65%;
+  }
+}
+
+// wide    : $bp-wide: 1024px;
+@include media-query(wide) {
+  .ag-ico-list {
+    max-width: 55%;
+  }
+}
+
+
+@keyframes blink {
+
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}

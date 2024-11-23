@@ -1,0 +1,4 @@
+Email plain text
+
+{{ resource }}
+{{ the_sharing_user }}

@@ -1,0 +1,12 @@
+{% if  collection.owner.profile.avatar %}
+  <td class="ag-column_center ag-chip__avatar_box"
+    style="text-align: center;margin: 0 auto;height: 115px;width: 115px;max-width: 115px;min-width: 115px;font-size: 24px;padding: 0;display: inline-block;overflow: hidden;color: #fff;text-transform: uppercase;font-weight: 700;border-radius: 87%;background-color: #16223F;transition: all .2s;">
+    <img class="ag-chip__img" src="{% build_absolute_uri collection.owner.profile.avatar.url %}" alt="Avatar de usuario" style="width: 100%;vertical-align: bottom;">
+  </td>
+{% else %}
+  <td style="display: inline-block;height: 115px;width: 115px;max-width: 115px;min-width: 115px;font-size: 52px;padding: 0;overflow: hidden;color: #fff;text-transform: uppercase;font-weight: 700;border-radius: 87%;background-color: #16223F;transition: all .2s;">
+      <p style="line-height: 1;margin-top:31px; margin-bottom:31px;">
+        {{ collection.owner.initials }}
+      </p>
+  </td>
+{% endif %}

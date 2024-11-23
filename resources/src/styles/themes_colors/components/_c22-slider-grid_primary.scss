@@ -1,0 +1,51 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C22 Slider Grid
+  Description: only classes that has been affected with primary's theme color
+  Purple=> #442686 Variable : $c-primary-hover
+\*------------------------------------*/
+
+.ag-c-slider-grid {
+
+  .ag-c-slider-grid__control_next,
+  .ag-c-slider-grid__control_prev {
+    border: 1px solid $c-primary-hover;
+
+    &:before {
+      color: $c-primary-hover;
+    }
+  }
+
+
+  .ag-c-slider-grid__bullet {
+    background-color: $c-primary-hover;
+  }
+
+
+  .ag-has-slider-grid__counter {
+    color: $c-primary-hover;
+  }
+
+  //- SliderGrid OnlyClass for Video Gallery
+  .ag-has-slider-grid__item {
+
+    &:hover {
+      &:before {
+        background-color: rgba($c-primary-hover, .6);
+      }
+    }
+
+  }
+
+  .ag-c-slider-grid__button {
+
+    &:hover {
+      border: 3px solid $c-primary-hover;
+
+      .ag-c-slider-grid__caption {
+        background-color: rgba($c-primary-hover, .8);
+      }
+    }
+  }
+
+}

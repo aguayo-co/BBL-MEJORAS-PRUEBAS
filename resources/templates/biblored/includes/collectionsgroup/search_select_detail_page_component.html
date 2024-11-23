@@ -1,0 +1,22 @@
+{# Tags of collection collaborative or single #}
+{% include "biblored/includes/collectionsgroup/buttons/collections_tag.html" %}
+
+<ul class="ag-banner__buttons-list">
+
+  {# Favorites button {% if show_favorites_button %}#}
+  {% if favorites_group %}
+    <li class="ag-banner__buttons-item">
+      {% include "biblored/includes/collectionsgroup/buttons/collections_add_to_remove_from_favorites_group.html" with collection=collection favorites_group=favorites_group user=user color_icon=color_icon only %}
+    </li>
+  {% endif %}
+
+  <li class="ag-banner__buttons-item">
+    {# buttons into list of options #}
+    {% include "biblored/includes/options_menu/options_menu_for_details.html" with collection=collection user=user data_modal=data_modal data_modal="search_select_collections_groups" card="detail" classJsCopyUrl=classJsCopyUrl only %}
+  </li>
+
+</ul>
+
+<div class="ag-banner__hide-item">
+  {% include "biblored/includes/collectionsgroup/search_select_component.html" with collection=collection form=form data_modal="search_select_collections_groups" show_favorites_button=True favorites_group=favorites_group form_id="collection-detail-form" form_extra_classes=None form_prefix=None form_name=form_name form_button_type="submit" form_button_extra_classes=None csrf_token=csrf_token only %}
+</div>

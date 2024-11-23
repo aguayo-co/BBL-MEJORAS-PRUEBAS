@@ -1,0 +1,24 @@
+{% load i18n static wagtailimages_tags %}
+
+{% if avatar_item.value.user.profile.avatar %}
+  <figure class="ag-c-avatars-list__chip ag-c-avatars-list_color">
+    <img src="{{ avatar_item.value.user.profile.avatar.url  }}" class="ag-c-avatars-list__img" alt="{% trans 'Soy usuario de BibloRed: ' %}{{ avatar_item.value.user.full_name }}">
+  </figure>
+{% elif avatar_item.value.user.initials %}
+  <p class="ag-c-avatars-list__chip ag-c-avatars-list_color">
+    <span class="ag-c-avatars-list__initials">{{ avatar_item.value.user.initials }}</span>
+  </p>
+{% endif %}
+
+{% if avatar_item.value.image %}
+  {% if avatar_item.value.image.file.url %}
+    <figure class="ag-c-avatars-list__chip ag-c-avatars-list_color">
+      {% image avatar_item.value.image fill-160x160-c100 as avatar_img %}
+      <img src="{{ avatar_img.file.url }}" alt="Imagen de Avatar" class="ag-c-avatars-list__img">
+    </figure>
+  {% else %}
+    <div class="ag-c-avatars-list__chip ag-c-avatars-list_color">
+      <span class="ag-c-avatars-list__initials">Initials</span>
+    </div>
+  {% endif %}
+{% endif %}

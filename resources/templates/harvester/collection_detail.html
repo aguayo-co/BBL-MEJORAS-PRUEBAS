@@ -1,0 +1,311 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {% trans 'Detalle' %} {{ collection.title }} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %}
+  {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  {% if collection.collaborativecollection %}
+    <dd class="ag-breadcrumbs__item">
+      <a
+        class="ag-breadcrumbs__link"
+        title="{% trans 'Ir a colecciones colaborativas' %}"
+        href="{% url 'collaborative_collections' %}"
+      >
+        {% trans 'Colecciones colaborativas' %}
+      </a>
+    </dd>
+  {% else %}
+
+    <dd class="ag-breadcrumbs__item">
+      <a
+        class="ag-breadcrumbs__link"
+        title="{% trans 'Ir a Colecciones de usuario' %}"
+        href="{% url 'collections' %}"
+      >
+        {% trans 'Colecciones de usuario individuales' %}
+      </a>
+    </dd>
+
+  {% endif %}
+
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Detalle de colección: ' %}
+    {{ collection.title }}
+  </dd>
+{% endblock %}
+
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page"
+    id="maincontent"
+    tabindex="0"
+  >
+    <div class="ag-banner ag-u-margin-bottom">
+      {% include "biblored/includes/collections/collection_detail_header.html" with collection=object forms=forms favorites_group=collections_favorites_group csrf_token=csrf_token classJsCopyUrl="ag-js-copyUri" %}
+    </div>
+
+    <header class="ag-o-header">
+      <h2 class="ag-o-heading">{% trans "Contenidos de esta colección" %}</h2>
+    </header>
+
+    {% if page_obj.number == 1 %}
+      {% if  featured_resources %}
+        <div class="ag-l-inner-wide">
+          <div class="ag-zig-zag">
+            {% for featured_resource in featured_resources %}
+              <div class="ag-zig-zag__item">
+                <div class="ag-zig-zag__card">
+                  {% include "biblored/includes/resource/resource_item.html" with request=request object=featured_resource.contentresource.processed_data user=user only %}
+                </div>
+                <p class="ag-zig-zag__lead">
+                  {{ featured_resource.description }}
+                </p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% if  filters_form %}
+      <div class="ag-l-inner-wide">
+        <ul class="ag-l-griddle
+          ag-l-griddle__columns
+          ag-l-griddle_bottom-24"
+        >
+          <li class="ag-l-griddle__column">
+            {# Search form with filter for only collection #}
+            <form class="ag-c-search
+              ag-js-dropdown"
+              action="{% url 'search' %}"
+              id="search_form_with_collection_filter"
+            >
+              <div class="ag-c-search__control">
+                <div class="ag-c-search__input
+                  i-exclamation-mark
+                  ag-js-searchTextInputContainer"
+                >
+                  <label for="{{ search_form_with_collection_filter.search_text.id_for_label }}">
+                  <span class="ag-is-visuallyhidden">
+                    {{ search_form_with_collection_filter.search_text.label }}
+                  </span>
+                  </label>
+                  {{ search_form_with_collection_filter.search_text }}
+                  <div class="ag-c-search__suggestions
+                    ag-js-searchSuggestion
+                    ag-is-hide"
+                  >
+                  </div>
+                  <div class="ag-c-tip ag-js-tip" hidden>
+                    {% trans 'Ingresa al menos un término para realizar la búsqueda' %}
+                  </div>
+                </div>
+                <div class="ag-is-display-none">
+                  {{ search_form_with_collection_filter.collection_set }}
+                </div>
+                <button class="ag-c-search__button
+                  i-search"
+                >
+                  <span class="ag-is-visuallyhidden">{% trans 'Realizar búsqueda' %}</span>
+                </button>
+              </div>
+            </form>
+          </li>
+
+          <li class="ag-l-griddle__column">
+            {# filter-band #}
+            <div class="ag-c-filter-band
+              ag-s-filter-band"
+            >
+              {# Botón despliega filtros en Mobile #}
+              <div class="ag-is-show_mobile">
+                <button class="ag-o-btn
+                  ag-o-btn_small
+                  ag-js-asideOpen
+                  ag-js-filterBtn"
+                  type="button"
+                  tabindex="0"
+                >
+                  {% trans "Filtrar" %}
+                </button>
+              </div>
+              {# Botón filtrar para mobile #}
+              {# clase para abrir los filtros en mobile ag-is-aside_open #}
+              <div class="ag-l-aside
+                ag-l-aside_band
+                ag-js-aside"
+              >
+                <div class="ag-c-filter
+                  ag-js-asideContent"
+                >
+                  <div class="ag-c-filter-band__grid">
+                    <h2 class="ag-c-filter-band__title"
+                      tabindex="0"
+                    >
+                      {% trans "Filtrar" %}
+                    </h2>
+                    <form method="get"
+                      id="filters_form"
+                      class="ag-c-filter-band__form
+                      ag-js-searchFilter"
+                      tabindex="0"
+                    >
+                      {% include "biblored/includes/filters/horizontal_filters.html" %}
+
+                      {% for hidden in filters_form.hidden_fields %}
+                        {{ hidden }}
+                      {% endfor %}
+                    </form>
+                  </div>
+                </div>
+                <button class="ag-c-filter-band__btn
+                  ag-o-btn-tooltip
+                  i-close
+                  ag-js-asideClose"
+                  type="button"
+                >
+                  <span class="ag-o-btn-tooltip__tooltip">{% trans "Cerrar" %}</span>
+                </button>
+              </div>
+              {% include "biblored/includes/blocks/order_by.html" %}
+            </div>
+          </li>
+        </ul>
+
+        {# Grid with resources #}
+        <div class="ag-c-card-grid ag-c-card-grid_grid">
+          {% for resource in resources %}
+            <div class="ag-c-card__delete">
+              {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user collection=collection only %}
+            </div>
+          {% endfor %}
+        </div>
+
+        {# List paginator #}
+        {% include "biblored/includes/paginator.html" %}
+      </div>
+    {% endif %}
+
+    {% if not resources %}
+      {# Bloque Tipos de contenido #}
+      <section class="ag-l-inner-wide"
+        id="content"
+        tabindex="0"
+      >
+
+        <header class="ag-o-header">
+          <h2 class="ag-o-heading"
+            tabindex="0"
+          >
+            {% trans "Aún no tienes contenidos en tu colección" %}
+          </h2>
+          <p class="ag-o-subheading"
+            tabindex="0"
+          >
+            {% trans "Explora por tipos de contenidos." %}
+          </p>
+        </header>
+
+        <div class="ag-c-slider
+          ag-c-slider_contrast"
+        >
+          <div class="ag-c-slider__content
+            swiper-container
+            js-sliderFilter"
+          >
+            <ul class="ag-c-slider__list
+              swiper-wrapper"
+            >
+              {% for content_type in content_types %}
+                {% include "biblored/includes/sliders/type_slider.html" with content_type=content_type %}
+              {% endfor %}
+            </ul>
+          </div>
+
+          <button
+            class="ag-c-slider__control
+            ag-c-slider__control_prev
+            i-arrow-left
+            ag-has-slider_primary_prev"
+            type="button"
+          >
+            <span class="ag-is-visuallyhidden">{% trans "Anterior diapositiva" %}</span>
+          </button>
+          <button
+            class="ag-c-slider__control
+            ag-c-slider__control_next
+            i-arrow-right
+            ag-has-slider_primary_next"
+            type="button"
+          >
+            <span class="ag-is-visuallyhidden">{% trans "Siguiente diapositiva" %}</span>
+          </button>
+          <div class="ag-c-slider__dots
+            ag-has-slider_primary__dots"
+          ></div>
+
+        </div>
+      </section>
+
+      {# Bloque most_popular #}
+      <section class="ag-l-inner-wide">
+        <header class="ag-o-header">
+          <h2 class="ag-o-heading" tabindex="0">
+            {% trans "Conoce los contenidos más populares" %}
+          </h2>
+          <p class="ag-o-subheading">
+            {% trans "Los contenidos más populares de BibloRed y otras bibliotecas en la Biblioteca Digital de Bogotá." %}
+          </p>
+        </header>
+        {% if  most_popular %}
+          <div class="ag-c-card-grid ag-c-card-grid_grid">
+            {% for resource in most_popular %}
+              {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user only %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="ag-o-actions">
+          <a class="ag-o-btn
+            ag-o-actions__item"
+            href="{% url 'search' %}"
+          >
+            {% trans 'Ver más contenidos' %}
+          </a>
+        </div>
+      </section>
+    {% endif %}
+
+  </main>
+
+  {% include "biblored/includes/messages/messages_templates.html" %}
+  {% include "biblored/includes/modals/modal_delete_resource.html" %}
+  {% include "biblored/includes/modals/modal_left_collection.html" with form=forms.content_resources_actions collection=collection %}
+  {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'collection_groups_detail_page_form' 'js' %}
+  {% render_bundle 'collections_add_to_groups_api' 'js' %}
+  {% render_bundle 'collections_group_favorites_api' 'js' %}
+  {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+{% endblock %}

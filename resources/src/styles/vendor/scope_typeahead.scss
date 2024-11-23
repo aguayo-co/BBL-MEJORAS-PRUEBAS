@@ -1,0 +1,87 @@
+/*----------------------------------------------*\
+  ID: S01
+  Scope plugin Typeahead
+  Type: Scope for to Typeahead plugin
+  Description: https://twitter.github.io/typeahead.js/examples/
+\*----------------------------------------------*/
+
+// Scope class
+.ag-s-search {
+  .twitter-typeahead {
+    @include flex(1 1 100%);
+
+    .tt-menu {
+      width: 100%;
+      position: relative !important;
+      display: block !important;
+      top: 0px !important;
+    }
+
+    .tt-input {
+      transition: box-shadow 200ms ease-in-out;
+
+      &:focus {
+        box-shadow: inset 1px 2px 5px 1px rgba($c-on-border-secondary, .5);
+      }
+    }
+
+    .tt-cursor {
+      color: $c-secondary;
+    }
+
+    .tt-dataset.tt-dataset-states {
+      background-color: $c-neutro;
+      @include px-rem(margin-right, -40px);
+    }
+  }
+
+  .ag-list__item {
+    border-bottom: none;
+  }
+
+  .ag-list__row {
+    padding: 0;
+    @include px-rem(margin, 16px);
+  }
+
+  .ag-c-search__button {
+    @include px-rem(max-height, 48px);
+  }
+
+  .ag-c-tip {
+    right: 40px;
+    width: initial;
+    z-index: 1;
+  }
+
+  .ag-chip__avatar {
+    min-width: initial;
+    max-width: initial;
+    @include px-rem(width, 56px);
+    @include px-rem(height, 56px);
+  }
+
+  .ag-o-btn {
+    @include px-rem(min-width, 131px);
+  }
+}
+
+// State Class
+.ag-is-parentPostCard_hide {
+  display: none;
+}
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  // Scope class
+  .ag-s-search {
+    .ag-list__row {
+      @include px-rem(margin-left, 40px);
+      @include px-rem(margin-right, 40px);
+    }
+
+    .ag-c-search__button {
+      @include px-rem(max-height, 44px);
+    }
+  }
+}

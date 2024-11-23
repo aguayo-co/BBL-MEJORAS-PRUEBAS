@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  caddy:
+    volumes:
+      - bbl_bdb_sync:/srv/www:nocopy # nocopy is important
+
+  django:
+    volumes:
+      - bbl_bdb_sync:/srv/app:nocopy # nocopy is important
+
+  django-q:
+    volumes:
+      - bbl_bdb_sync:/srv/app:nocopy # nocopy is important
+
+  webpack:
+    volumes:
+      - bbl_bdb_sync:/srv/app:nocopy # nocopy is important
+
+volumes:
+  bbl_bdb_sync:
+    external: true

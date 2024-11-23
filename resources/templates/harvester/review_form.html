@@ -1,0 +1,47 @@
+{% extends "biblored/base.html" %}
+{% load i18n builtins static %}
+
+{% block title %}
+  {% trans "Edita tus comentarios para el recurso: " %}
+  {{ review.resource.title|cut:"['"|cut:"']"|safe }}
+{% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block description %}
+  {% trans "Edita y comparte los comentarios para el recurso:" %}
+  {{ review.resource.title|cut:"['"|cut:"']"|safe }}
+  {% trans "de la Biblioteca Digital de Bogotá" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans "Detalle de contenido" %}
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {{ review.resource.title|cut:"['"|cut:"']"|safe }}
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {% trans "Califica y comenta" %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <main class="ag-l-page">
+    <div class="ag-l-inner-wide">
+      <form id="collection-form" method="post" enctype="multipart/form-data" class="ag-js-validate ag-l-form">
+        {% csrf_token %}
+        {% include "biblored/includes/reviews/review_form.html" with review_form=form go_back_url=go_back_url resource=request.get.resource %}
+      </form>
+    </div>
+  </main>
+
+
+{% endblock %}

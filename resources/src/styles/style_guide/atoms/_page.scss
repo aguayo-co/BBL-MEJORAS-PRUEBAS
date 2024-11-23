@@ -1,0 +1,33 @@
+// page.scss -- Basic page properties
+//
+// Edit by Aguayo 2019
+html {
+  font-size: 100%;
+}
+
+body,
+.SG-page {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  overflow-x: hidden;
+  .SG-toc {
+
+    ul li {
+
+      a {
+        font-weight: 800;
+        margin-left: 10px;
+        color: $c-on-text;
+      }
+
+      ul li {
+        margin-left: 10px;
+
+        a {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

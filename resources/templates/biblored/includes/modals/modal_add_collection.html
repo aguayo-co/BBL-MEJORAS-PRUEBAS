@@ -1,0 +1,33 @@
+{% extends "biblored/includes/modals/modal_base_search_select_collections_groups.html" %}
+{% load i18n %}
+
+{% block data_modal %}{{data_modal}}{% endblock %}
+
+{% block title %}{% trans 'Selecciona las Colecciones en las que vas a añadir el contenido' %}{% endblock %}
+{% block paragraph %}
+  {% trans "Para consultar los contenidos añadidos busca la opción" %}
+  <strong class="ag-o-mark">{% trans "Tus colecciones" %}</strong> {% trans "en el menú principal o en" %}
+  <strong class="ag-o-mark">{% trans "Mi perfil" %}</strong>.
+{% endblock %}
+{% block subtitle %}{% trans 'Mis colecciones' %}{% endblock %}
+
+{% block article_content %}
+
+  <div class="ag-c-modal__box-center ag-js-iframe-loader">
+
+    <div class="ag-spinner">
+      <div class="ag-spinner_spinner"></div>
+      <div class="ag-spinner_spinner"></div>
+    </div>
+    <span class="ag-c-modal__text-small">{% trans "Cargando colecciones" %}</span>  
+  </div>
+
+  <iframe
+    class="ag-c-modal__iframe ag-o-iframe"
+    data-name='iframeCollections'
+    tabindex="0"
+    title="colecciones"
+  >
+  </iframe>
+{% endblock %}
+

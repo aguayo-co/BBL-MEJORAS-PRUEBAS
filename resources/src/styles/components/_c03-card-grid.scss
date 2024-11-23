@@ -1,0 +1,119 @@
+/*------------------------------------*\
+  ID: C03
+  Card
+  Description: Grid or layout that order the cards
+\*------------------------------------*/
+
+// Grupo de card
+.ag-c-card-grid {
+  .ag-c-card {
+    @include px-rem(margin-bottom, 12px);
+  }
+}
+
+// BP Max-width : 768px
+@include media-query(medium) {
+
+  // grid card
+  .ag-c-card-grid {
+    columns: 2;
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    @include px-rem(column-gap, 20px);
+
+    &:after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 1px;
+    }
+
+    .ag-c-card {
+      position: relative;
+      -webkit-column-break-inside: avoid;
+      break-inside: avoid-column;
+      /* for Firefox 1 elemnto previene desplazamiento */
+      display: grid;
+      page-break-inside: avoid;
+      width: 100%;
+      @include px-rem(padding-top, 6px);
+
+      // Previene desplazamiento contenidos a la siguiente columna en hover
+      &:after {
+        content: "-";
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* for Chrome and Edge */
+    @supports (break-inside: avoid-column) {
+      .ag-c-card {
+        display: flex;
+        width: initial;
+      }
+    }
+  }
+
+  // se aplica cuando las grillas no tienen elementos adicionales a las cards(modal y form)
+  .ag-c-card-grid_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // grid card resultados de búsqueda
+  .ag-c-card-grid_out-flex {
+    columns: 1;
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    @include px-rem(column-gap, 20px);
+  }
+
+}
+
+//  BP Max-width : 1024px
+@include media-query(wide) {
+  .ag-c-card-grid {
+    -webkit-column-gap: 30px;
+    -moz-column-gap: 30px;
+    @include px-rem(column-gap, 20px);
+  }
+
+  //Hack para safari 10+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      //column-gap de 30px en el resto de navegadores
+      .ag-c-card-grid_space {
+        @include px-rem(column-gap, 30px);
+      }
+    }
+  }
+}
+
+//  BP Max-width : 1180px;
+@include media-query(large) {
+  .ag-c-card-grid {
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    @include px-rem(column-gap, 40px);
+  }
+
+  //Hack para safari 10+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      //column-gap de 40px en el resto de navegadores
+      .ag-c-card-grid_space {
+        @include px-rem(column-gap, 40px);
+      }
+    }
+  }
+
+  .ag-c-card-grid_space {
+    @include px-rem(column-gap, 20px);
+  }
+
+  // grid card resultados de búsqueda
+  .ag-c-card-grid_out-flex {
+    columns: 2;
+  }
+}

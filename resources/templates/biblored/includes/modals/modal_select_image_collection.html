@@ -1,0 +1,41 @@
+{% extends "biblored/includes/modals/modal_base_select_image.html" %}
+{% load i18n %}
+
+{# Title and description for cover collection #}
+{% block title_header_select_image %}{% trans "Selecciona una foto de portada para tu colección" %}{% endblock title_header_select_image %}
+{% block description_header_select_image %}
+  <p class="ag-o-text ag-c-modal__text ag-c-modal__text_left ag-c-modal__row">
+    {% trans "Selecciona o sube una foto de portada. Si no escoges ni cargas una, el sistema lo hará." %}
+  </p>
+  {# TODO: link for politices #}
+  <p class="ag-o-text ag-c-modal__text ag-c-modal__text_left ag-c-modal__row">
+    {% trans "Antes de subir una imagen personalizada, lee nuestros" %}
+    <a
+      class="ag-o-link"
+      href="https://coleccionesdigitales.biblored.gov.co/wiki/index.php/Pol%C3%ADticas_de_la_Biblioteca_Digital_de_Bogot%C3%A1"
+      target="_blank"
+    >
+      {% trans "Términos y Condiciones" %}.
+    </a>
+    {% trans "Si estos no se cumplen, la colección será despublicada." %}
+  </p>
+{% endblock description_header_select_image %}
+
+{# Items for tabs menu #}
+{% block menu_tabs_select_image %}
+  <button class="ag-menu-bar__item ag-menu-bar__item_primary" data-button-tabs="choice-image" type="button">
+    {% trans "Opción uno: escoge una imagen" %}
+  </button>
+  <button class="ag-menu-bar__item ag-menu-bar__item_primary ag-menu-bar__item_active"
+    data-button-tabs="cropper" type="button">
+    {% trans "Opción dos: sube una imagen" %}
+  </button>
+{% endblock menu_tabs_select_image %}
+
+{# Content for tabs menu #}
+{% block content_tabs_select_image %}
+  {# Component choice image #}
+  {% include "biblored/includes/select_cover/choice-image.html" %}
+  {# Component cropper #}
+  {% include "biblored/includes/select_cover/cropper.html" %}
+{% endblock content_tabs_select_image %}

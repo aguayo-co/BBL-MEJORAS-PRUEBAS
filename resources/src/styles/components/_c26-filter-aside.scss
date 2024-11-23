@@ -1,0 +1,287 @@
+/*------------------------------------*\
+  ID: C26
+  Filter Aside
+  Description: Menú aside oculto sólo para páginas filtros de Exposiciones en la línea del tiempo
+\*------------------------------------*/
+
+.ag-c-filter-aside {
+  width: 100%;
+  @include px-rem(max-width, 300px);
+  height: 100vh;
+  position: fixed;
+  transition: right 500ms ease-out;
+  right: 0;
+  @include px-rem(top, 70px);
+  z-index: 3;
+  background-color: $c-neutro;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2),
+  0px 3px 4px rgba(0, 0, 0, 0.12),
+  0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.ag-c-filter-aside__content {
+  position: relative;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: calc( 100vh - 100px);
+}
+
+.ag-c-filter-aside__btn-close {
+  position: absolute;
+  @include px-rem(top, 10px);
+  @include px-rem(right, 10px);
+  color: $c-on-border-secondary;
+}
+
+.ag-c-filter-aside__control {
+  display: block;
+}
+
+/*------------------------------------*\
+  Checkbox custom => Themes color
+\*------------------------------------*/
+.ag-c-filter-aside__checkbox {
+  position: relative;
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include px-rem(margin, 20px 0);
+
+  label {
+    @include flexbox;
+    @include align-items(center);
+    @include flex(1 1 100%);
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+
+    &:before {
+      @include align-items(center);
+      background-color: $c-neutro;
+      @include px-rem(border-radius, 4px);
+      color: $c-neutro;
+      content: '';
+      @include flexbox;
+      @include justify-content(center);
+      @include px-rem(width, 18px);
+      @include px-rem(min-width, 18px);
+      @include px-rem(height, 18px);
+      @include px-rem(min-height, 18px);
+      @include px-rem(margin-right, 10px);
+      @include font-rem(9px);
+      text-align: center;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked + .i-check {
+      &:before {
+        content: $i-check;
+      }
+    }
+  }
+}
+
+.ag-is-filter-aside-close {
+  right: -120%;
+  transition: right 500ms ease-out;
+}
+
+.ag-c-filter-aside__title {
+  color: $c-primary;
+  @include font-rem(14px);
+  font-weight: $f-bold;
+  font-family: $f-primary;
+}
+
+.ag-c-filter-aside__wrap {
+  max-width: 85%;
+  @include px-rem(margin, 40px auto 20px);
+}
+
+.ag-c-filter-aside__list {
+  list-style: none;
+  @include px-rem(margin-top, 20px);
+}
+
+/*------------------------------------*\
+  Theme´s colors class: Only Timeline view
+  Theme-blue: $c-on-secondary #1AAACC
+\*------------------------------------*/
+.ag-is-filter-aside__category_blue {
+  /*------------------------------------*\
+    Checkbox custom => Themes color
+  \*------------------------------------*/
+  &.ag-c-filter-aside__checkbox {
+    &:before {
+      border: 2px solid $c-on-secondary;
+    }
+
+    label {
+      &:before {
+        border: 2px solid $c-on-secondary;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked+.i-check {
+        &:before {
+          background-color: $c-on-secondary;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-magenta: $c-secondary #E81744
+\*------------------------------------*/
+.ag-is-filter-aside__category_magenta {
+  /*------------------------------------*\
+    Checkbox custom => Themes color
+  \*------------------------------------*/
+  &.ag-c-filter-aside__checkbox {
+    &:before {
+      border: 2px solid $c-secondary;
+    }
+
+    label {
+      &:before {
+        border: 2px solid $c-secondary;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked+.i-check {
+        &:before {
+          background-color: $c-secondary;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-green: $c-on-primary #9EB923
+\*------------------------------------*/
+.ag-is-filter-aside__category_green {
+  /*------------------------------------*\
+    Checkbox custom => Themes color
+  \*------------------------------------*/
+  &.ag-c-filter-aside__checkbox {
+    &:before {
+      border: 2px solid $c-on-primary;
+    }
+
+    label {
+      &:before {
+        border: 2px solid $c-on-primary;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked+.i-check {
+        &:before {
+          background-color: $c-on-primary;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-purple: $c-primary-hover #442686
+\*------------------------------------*/
+.ag-is-filter-aside__category_purple {
+  /*------------------------------------*\
+    Checkbox custom => Themes color
+  \*------------------------------------*/
+  &.ag-c-filter-aside__checkbox {
+    &:before {
+      border: 2px solid $c-primary-hover;
+    }
+
+    label {
+      &:before {
+        border: 2px solid $c-primary-hover;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked+.i-check {
+        &:before {
+          background-color: $c-primary-hover;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-yellow: $c-on-tertiary #FFAF14
+\*------------------------------------*/
+.ag-is-filter-aside__category_yellow {
+  /*------------------------------------*\
+    Checkbox custom => Themes color
+  \*------------------------------------*/
+  &.ag-c-filter-aside__checkbox {
+    &:before {
+      border: 2px solid $c-on-tertiary;
+    }
+
+    label {
+      &:before {
+        border: 2px solid $c-on-tertiary;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked+.i-check {
+        &:before {
+          background-color: $c-on-tertiary;
+        }
+      }
+    }
+  }
+}
+
+/*------------------------------------*\
+  Theme-red: $c-is-error #EC0B04
+\*------------------------------------*/
+.ag-is-filter-aside__category_red {
+  /*------------------------------------*\
+    Checkbox custom => Themes color
+  \*------------------------------------*/
+  &.ag-c-filter-aside__checkbox {
+    &:before {
+      border: 2px solid $c-is-error;
+    }
+
+    label {
+      &:before {
+        border: 2px solid $c-is-error;
+      }
+    }
+
+    input[type="checkbox"] {
+      &:checked+.i-check {
+        &:before {
+          background-color: $c-is-error;
+        }
+      }
+    }
+  }
+}

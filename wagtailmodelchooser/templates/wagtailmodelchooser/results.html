@@ -1,0 +1,14 @@
+{% extends "wagtailadmin/generic/chooser/results.html" %}
+
+{% load wagtailadmin_tags wagtailimages_tags %}
+
+{% block listing_title %}{% endblock %}
+
+
+{% block no_search_results_message %}
+<p>No {{ opts.verbose_name_plural }} found matching your search.</p>
+{% endblock %}
+
+{% block no_items_message %}
+<p>There are no {{ opts.verbose_name_plural }}.</p>
+{% endblock %}

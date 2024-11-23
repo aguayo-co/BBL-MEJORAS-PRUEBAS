@@ -1,0 +1,114 @@
+{% extends "biblored/base.html" %}
+
+{% load render_bundle from webpack_loader %}
+{% load i18n %}
+{% load builtins %}
+
+{% block title %} {% trans 'Detalle' %} {{ object.title }} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %}
+  {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %}
+{% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{{ user.get_absolute_url }}" >{% trans 'Mi perfil' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{% url 'my_collections' %}" >{% trans 'Mis colecciones' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    <a class="ag-breadcrumbs__link" href="{% url 'collectionsgroups' %}" >{% trans 'Mis grupos de colecciones' %}</a>
+  </dd>
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Detalle de: ' %} {{ object.title }}
+  </dd>
+{% endblock %}
+
+
+{% block content %}
+{{ block.super }}
+<main class="ag-l-page" id="maincontent" tabindex="0">
+
+  <header class="ag-o-header" id="maincontent" tabindex="0">
+    <div class="ag-c-tooltip-wrapper">
+
+      <h1 class="ag-o-heading">
+        {{ object.title|title }}
+      </h1>
+
+      {# tooltip #}
+      {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="favorites" only %}
+    </div>
+    {% if collections %}
+      <p 
+        tabindex="0"
+      >
+        {%trans "Este es un “Grupo de Colecciones” que te permite organizar varias colecciones por temas"%}.
+      </p>
+      <a href="{% url 'collection_add' %}" class="ag-o-btn ag-u-margin-top-64">{% trans "Agregar Colección" %}</a>
+    {% else %}
+      <p
+        class="ag-u-space-both-32"
+        tabindex="0"
+      >
+        {%trans "Aún no tienes colecciones en este grupo. Añade la primera."%}.
+      </p>
+      <a href="{% url 'collection_add' %}" class="ag-o-btn">{% trans "Agregar Colección" %}</a>
+    {% endif %}
+  </header>
+
+  {% if collections %}
+  <div class="ag-l-inner-wide">
+    {# filter-band #}
+    <div
+      class="ag-c-filter-band ag-c-filter-band_end ag-c-filter-band_right"
+      tabindex="0"
+    >
+      {% include "biblored/includes/blocks/order_by.html" %}
+      {% if object.title != 'favoritos' %}
+      {# buttons into list of options #}
+      {% include "biblored/includes/options_menu/options_menu_for_group_collections_detail.html" with user=user groupcollection=object %}
+      {% endif %}
+    </div>
+    <div class="ag-c-card-grid">
+      {% for collection in collections_formset.initial %}
+      <div class="ag-c-card__delete">
+        {% with collection=collection.instance.content_object %}
+        {% include "biblored/includes/collectionsgroup/item.html" with collection=collection title_group=object.title %}
+        {% include "biblored/includes/collectionsgroup/search_select_list_page_component.html" with view=view counter=forloop.counter0 formset=collections_formset collection=collection favorites_group=collections_favorites_group csrf_token=csrf_token only %}
+        {% endwith %}
+      </div>
+      {% endfor %}
+    </div>
+    {# Paginador lista #}
+    {% include "biblored/includes/paginator.html" %}
+  </div>
+  {% endif %}
+
+</main>
+
+{% include "biblored/includes/messages/messages_templates.html" %}
+{% include "biblored/includes/modals/modal_delete_collection_from_collectionsgroup.html" %}
+
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+{% render_bundle 'collection_groups_card_component_form' 'js' %}
+{% render_bundle 'collections_add_to_groups_api' 'js' %}
+{% render_bundle 'collections_group_favorites_api' 'js' %}
+{% endblock %}

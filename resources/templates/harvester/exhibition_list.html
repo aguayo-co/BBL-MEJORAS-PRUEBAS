@@ -1,0 +1,104 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Exposiciones" %}{% endblock %}
+
+{% comment %} Template parent: base.html {% endcomment %}
+{% block description %} {% trans "Las exposiciones de la Biblioteca Digital de Bogotá agrupan, con criterios temáticos cronológicos, contenidos provenientes de ciudadanos, bibliotecas, museos y archivos" %} {% endblock %}
+{% block keywords %} {% trans 'Museos, Bibliotecas, Archivos, Bogotá, Entretenimiento, Libros, Fotos, Música, Historia'%} {% endblock %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% comment 'b08_breadcrumb' %}
+  Template parent: base.html
+  Block parent: breadcrumbs
+{% endcomment %}
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Exposiciones' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+
+  {{ block.super }}
+  <main class="ag-l-page">
+    <section>
+      <header class="ag-o-header ag-l-inner-wide" id="maincontent" tabindex="0">
+        <h1 class="ag-o-heading" tabindex="0">
+          {% trans "Exposiciones" %}
+        </h1>
+        <p class="ag-o-subheading" tabindex="0">
+          {% trans "A través de textos y recursos de contenido, disfruta recorridos temáticos organizados por investigadores para estudiantes, maestros, mediadores e interesados." %}
+        </p>
+      </header>
+
+      {% if  exhibition_list %}
+        <div class="ag-c-slider ag-c-slider_card" id="content" tabindex="0">
+          <div class="ag-c-slider__container swiper-container ag-js-slider-exhibition">
+            <ul class="swiper-wrapper">
+              {% for exhibition in exhibition_list %}
+                {% include "biblored/includes/collections/exhibition_banner.html" with exhibition=exhibition only %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endif %}
+
+    </section>
+
+    <section class="ag-l-inner-wide">
+      <header class="ag-o-header">
+        <h2 class="ag-o-heading" tabindex="0">
+          {% trans "Explora las exposiciones que tenemos para ti" %}
+        </h2>
+        <p class="ag-o-subheading" tabindex="0">
+          {% trans "Cientos de exposiciones para ti" %}
+        </p>
+      </header>
+
+      {# filter-band #}
+      <div class="ag-c-filter-band">
+        {# Botón despliega filtros en Mobile #}
+        <div class="ag-is-show_mobile">
+          <button class="ag-o-btn ag-o-btn_small ag-js-asideOpen ag-js-filterBtn" type="button">
+            {% trans "Filtrar" %}
+          </button>
+        </div>
+        {# Botón filtrar para mobile #}
+        {# clase para abrir los filtros en mobile ag-is-aside_open #}
+        <div class="ag-l-aside ag-l-aside_band ag-js-aside">
+          <button class="ag-o-btn-close i-close ag-js-asideClose" type="button"  tabindex="0">
+            <span class="ag-is-visuallyhidden">{% trans "Cerrar" %} </span>
+          </button>
+          <div class="ag-c-filter ag-js-asideContent">
+            <div class="ag-c-filter-band__grid">
+              <form method="get" id="filters_form" class="ag-c-filter-band__form"  tabindex="0">
+                {% include "biblored/includes/filters/filter_subject.html" %}
+
+                {% for hidden in filters_form.hidden_fields %}
+                  {{ hidden }}
+                {% endfor %}
+              </form>
+            </div>
+          </div>
+        </div>
+        {% include "biblored/includes/blocks/order_by.html" %}
+      </div>
+      <div class="ag-c-card-grid">
+        {% for exhibition in exhibition_list %}
+          {% include "biblored/includes/collections/exhibition_card.html" with exhibition=exhibition only %}
+        {% endfor %}
+      </div>
+
+      {# Paginador lista #}
+      {% include "biblored/includes/paginator.html" %}
+    </section>
+  </main>
+
+{% endblock %}
+

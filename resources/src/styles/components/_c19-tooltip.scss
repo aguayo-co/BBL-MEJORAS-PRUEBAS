@@ -1,0 +1,129 @@
+/*------------------------------------*\
+  Bloque c19-tooltip
+  Description: Elemento para mostrar información de ayuda al usuario
+  Type: Interactive
+\*------------------------------------*/
+
+/**
+ * Class: .ag-c-tooltip
+ * @description  elemento emergente que muestra información de ayuda al usuario
+ * @molecule c19_tooltip
+ * @section Ayudas
+ * @markup
+ *    <div class="ag-c-tooltip">
+ *      <button class="ag-c-tooltip__button ag-c-btn-ico i-close ag-js-tooltipButton" type="button">
+ *        <span class="ag-is-visuallyhidden">{% trans "Ayuda" %} </span>
+ *      </button>
+ *      <div class="ag-c-tooltip__box">
+ *        <div class="ag-c-tooltip__inner">
+ *          <p class="ag-c-tooltip__text">Tooltip de <strong class="ag-o-mark">Ayuda</strong> este mensaje se muestra al dar clic en el icono de ayuda.. </p>
+ *        </div>
+ *      </div>
+ *    </div>
+ */
+
+ // Use when to be placed next to a centered element
+.ag-c-tooltip-wrapper {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+}
+
+.ag-c-tooltip-wrapper_align {
+  @include align-items(flex-start);
+}
+
+.ag-c-tooltip {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  @include px-rem(margin, 0 10px);
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    width: 0;
+    opacity: 1;
+    transform: translateX(-50%);
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:before {
+    z-index: 3;
+    border-bottom: 8px solid $c-neutro;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+  }
+
+  &:after {
+    z-index: 1;
+    border-bottom: 10px solid $c-on-border;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+  }
+}
+
+
+.ag-c-tooltip__button {
+  @include px-rem(margin-top, 4px);
+  @include px-rem(padding-left, 10px);
+  &:hover {
+    color: $c-primary;
+  }
+}
+
+.ag-c-tooltip__box {
+  position: absolute;
+  z-index: 2;
+  top: 120%;
+  right: -50%;
+  left: auto;
+  @include px-rem(width, 270px);
+  @include px-rem(font-size, 12px);
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+.ag-c-tooltip__inner {
+  position: relative;
+  z-index: 2;
+  @include px-rem(padding, 16px 18px 8px);
+  border: 1px solid $c-on-border;
+  @include px-rem(border-radius, 10px);
+  background-color: $c-neutro;
+  transition: all 0.5s ease-in-out;
+}
+
+.ag-is-tipHidden {
+  overflow: hidden;
+  &:before,
+  &:after {
+    bottom: -20px;
+  }
+  &:after {
+    opacity: 0;
+  }
+  .ag-c-tooltip__box {
+    top: 176%;
+    opacity: 0;
+  }
+  .ag-c-tooltip__inner {
+    border: 1px solid $c-neutro;
+  }
+}
+//*- BP: 768px
+@include media-query(medium) {
+  .ag-c-tooltip_margin-top-8 {
+    @include px-rem(margin-top, 8px);
+  }
+}
+//*- BP: 1024px
+@include media-query(wide) {
+  .ag-c-tooltip__box {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}

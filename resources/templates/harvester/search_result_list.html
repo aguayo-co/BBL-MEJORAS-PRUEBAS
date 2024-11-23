@@ -1,0 +1,370 @@
+{% extends "biblored/base.html" %}
+
+{% load i18n builtins %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {% trans "Resultados de búsqueda" %} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+
+{% block keywords %}
+  {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  {% render_bundle 'search' 'css' %}
+{% endblock %}
+
+{% block breadcrumbs_items %}
+  <dd class="ag-breadcrumbs__item">
+    {% trans 'Resultado de búsqueda' %}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {% include "biblored/includes/loader.html" %}
+
+  {{ block.super }}
+  <main class="ag-l-page" id="maincontent" tabindex="0">
+    {# Class: `ag-is-filter-fixed_top` fix the bar nav into top #}
+    <div class="ag-l-out-flex ag-js-wrapFixBar ag-is-element-closest-filter">
+
+      {# Aside Filtros form #}
+      <div class="ag-js-asideDepth">
+        {% include "biblored/includes/filters/search_form_aside.html" with search_form=form boolean_operator_formset=boolean_operator_formset request=request only %}
+      </div>
+
+      <section class="ag-l-middle" id="content" tabindex="0">
+        {# Resumen filtros #}
+        {% include "biblored/includes/filters/filters_summary.html" with request=request only %}
+
+        {# Resultados de cada campo búsqueda avanzada #}
+        <div class="ag-o-header__item ag-o-hgroup__bottom">
+
+          {# Resultados de búsqueda #}
+          <header class="ag-o-hgroup">
+
+            {% if page_obj.paginator.count %}
+
+              {% if form.collection_set.value %}
+                <div class="ag-o-hgroup__flex">
+                  <p
+                    class="ag-o-text-bg ag-o-text-bg_fontsize ag-u-margin-top-8"
+                  >
+                    {% trans "Estás buscando" %} <span class="ag-o-mark ag-o-text_bold">{% trans "contenidos" %}</span> {% trans "en" %}
+                    {{ form.collection_set|get_collection_name }}
+                  </p>
+                  <a
+                    href="{% url 'collection' form.collection_set.value %}"
+                    class="ag-o-btn ag-o-btn_small"
+                  >
+                    {% trans "Volver a la colección" %}
+                  </a>
+                </div>
+              {% elif form.cleaned_data.sets %}
+                <div class="ag-o-hgroup__flex">
+                  <p
+                    class="ag-o-text-bg ag-o-text-bg_fontsize ag-u-margin-top-8"
+                  >
+                    {% trans "Estás buscando" %} <span class="ag-o-mark ag-o-text_bold">{% trans "contenidos" %}</span> {% trans "en" %}
+                    {{ form.cleaned_data.sets.name }}
+                  </p>
+                  <a
+                    href="{% url 'sets' %}{{ form.cleaned_data.sets.pk }}"
+                    class="ag-o-btn ag-o-btn_small"
+                  >
+                    {% trans "Volver a la colección" %}
+                  </a>
+                </div>
+              {% endif %}
+              {% if boolean_operator_formset|has_boolean_operator_forms %}
+                <h1 class="ag-o-subtitle ag-u-margin-top-16-mb">
+                  {% trans "Se" %} {% trans "encontr" %}{{ page_obj.paginator.count|pluralize:"ó,aron"}}
+                  <strong class="ag-o-mark">{{ page_obj.paginator.count }}</strong>
+                  {% trans "resultados en " %}
+                  <span class="ag-o-mark">
+                    {% if form.content_model.data == 'harvester.collection' %}
+                      {% trans "colecciones" %}
+                    {% else %}
+                      {% trans "recursos de contenido" %}
+                    {% endif %}
+                  </span>
+                  {% trans " luego de aplicar una " %}
+                  <span class="ag-o-mark"> {% trans "búsqueda avanzada" %} </span>
+                </h1>
+              {% else %}
+                <h1 class="ag-o-subtitle ag-u-margin-top-16-mb">
+                  {% trans "Se" %} {% trans "encontr" %}{{ page_obj.paginator.count|pluralize:"ó,aron"}}
+                  <strong class="ag-o-mark">{{ page_obj.paginator.count }}</strong>
+                  {% trans "resultado" %}{{ page_obj.paginator.count|pluralize }} {% trans "en" %}
+                  <span class="ag-o-mark">
+                    {% if form.content_model.data == 'harvester.collection' %}
+                      {% trans "colecciones" %}
+                    {% else %}
+                      {% trans "recursos de contenido" %}
+                    {% endif %}
+                  </span>
+                </h1>
+              {% endif %}
+            {% else %}
+
+              {# Texto: No encontramos resultados para tu búsqueda #}
+              <h1 class="ag-o-subtitle ag-o-header__item ">
+                {% if form.data.search_text %}
+                  {% trans "¡Lo sentimos! No encontramos resultados para tu búsqueda" %}
+                {% else %}
+                  {% trans "¡Lo sentimos! No encontramos resultados para la combinación de" %}
+                  <strong class="ag-o-mark">{% trans "filtros" %}</strong> {% trans "que aplicaste" %}.
+                {% endif %}
+              </h1>
+
+            {% endif %}
+
+            {# Texto: con la frase #}
+            {% if form.data.search_text %}
+              <p class="ag-o-text-bg ag-o-text-bg_fontsize">{% trans "Con la frase" %}
+                {% if form.data.exact_search == 'on' %}{% trans "exacta" %}{% endif %}
+                <span class="ag-o-mark ag-o-text_bold">{{ form.data.search_text }}.</span>
+              </p>
+            {% endif %}
+
+            {# Búsqueda avanzada #}
+            {% if boolean_operator_formset|has_boolean_operator_forms %}
+
+              {# Resultados de búsqueda avanzada #}
+              <ul class="ag-o-tree">
+                {% for boolean_operator in boolean_operator_formset.forms %}
+
+                  {% if forloop.first %}
+                    <li class="ag-o-tree__item">
+                  {% endif %}
+
+                {% if boolean_operator.is_or.value is True %}
+                  </li>
+                  <li class="ag-o-tree__item">
+
+                {% elif boolean_operator.q.value %}
+                  <span class="ag-o-tree__text">
+                      {% get_boolean_operator_first_letter forloop.counter0 boolean_operator_formset.forms %}
+                      {% get_boolean_operator_label boolean_operator.operator.value %}
+                    </span>
+                  <span class="ag-o-tree__text">
+                      {% get_boolean_operator_field_label boolean_operator.field.value %}
+                    </span>
+                  <strong class="ag-o-tree__text  ag-o-mark">
+                    {{ boolean_operator.q.value }}
+                  </strong>
+                {% endif %}
+
+                {% if forloop.last %}
+                  </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+
+              {# Rango de fechas de la búsqueda #}
+              {% if search_form.from_publish_year.value or search_form.to_publish_year.value %}
+                <div class="ag-result-list">
+                  <p class="ag-result-list__inline ag-o-text-bg">{% trans "Filtrado " %}
+                    {% if search_form.from_publish_year.value and search_form.to_publish_year.value == '' %}
+                      <span>{% trans " desde el año:  " %}</span>
+                      <strong class="ag-o-mark">{{ search_form.from_publish_year.value }}</strong>
+                    {% endif %}
+                    {% if search_form.to_publish_year.value and search_form.from_publish_year.value == '' %}
+                      <span>{% trans " hasta el año:  " %}</span>
+                      <strong class="ag-o-mark">{{ search_form.to_publish_year.value }}</strong>
+                    {% endif %}
+                    {% if search_form.from_publish_year.value and search_form.to_publish_year.value %}
+                      <span>{% trans " por el rango,   " %}</span>
+                    {% endif %}
+                  </p>
+                  {% if search_form.from_publish_year.value and search_form.to_publish_year.value %}
+                    <ul class="ag-result-list__inline ag-list">
+                      {% if search_form.from_publish_year.value %}
+                        <li class="ag-result-list__inline">
+                          <span>{% trans "desde el año " %}</span>
+                          <strong class="ag-o-mark">{{ search_form.from_publish_year.value }}</strong>
+                        </li>
+                      {% endif %}
+                      {% if search_form.to_publish_year.value %}
+                        <li class="ag-result-list__inline">
+                          <span>{% trans "hasta el año " %}</span>
+                          <strong class="ag-o-mark">{{ search_form.to_publish_year.value }}</strong>
+                        </li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              {# Botones para limpiar o volver a búsqueda avanzada #}
+              <div class="ag-filter-chip__actions ag-filter-chip__actions_centered">
+                <div class="ag-c-filter-chip__alert-wrap">
+                  <div class="ag-c-filter-chip__alert">
+                    <div class="ag-c-filter-chip__alert-text">
+                      {% trans "Si después de realizar la" %}
+                      <strong class="ag-o-mark">
+                        {% trans "búsqueda avanzada" %}
+                      </strong>
+                      {% include "biblored/includes/tooltip/tooltip.html" with tooltip_text=True type_toolip="advanced_search" only %}
+                      <span>{% trans "los resultados no son los esperados puedes" %}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <button
+                      class="ag-o-btn ag-o-btn_special ag-o-btn_outline"
+                      data-modal="clean_results_search"
+                      type="button"
+                      tabindex="0"
+                    >
+                      {% trans "Limpiar" %}
+                    </button>
+                    <a
+                      class="ag-o-btn  ag-o-btn_special"
+                      href="{% url 'advanced_search' %}?{% url_params %}"
+                      tabindex="0"
+                    >
+                      {% trans "Volver" %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+            {% endif %}
+
+            {# Sugerencia de texto: quizas quisiste decir #}
+            {% if didyoumean %}
+              <p class="ag-o-text-bg_fontsize">
+                {% trans "Quizás quisiste decir" %}
+                <button class="ag-o-undeline ag-js-didyoumeanText" type="button"><em>{{ didyoumean }} </em></button>
+              </p>
+            {% endif %}
+
+            {# Texto: tienes problemas para encontrar lo que buscsas #}
+            {% if not page_obj.paginator.count %}
+              <div class="ag-o-header__item ag-o-hgroup__bottom">
+                <p
+                  class="ag-o-subheading ag-o-text_medium">{% trans "¿Tienes problemas para encontrar lo que buscas?" %} </p>
+                <ul class="ag-o-hyphen">
+                  <li class="ag-o-hyphen__item">{% trans "Verifica que la palabra no tenga faltas de ortografía" %}.
+                  </li>
+                  <li class="ag-o-hyphen__item">{% trans "Prueba con otra palabra similar" %}.</li>
+                  <li class="ag-o-hyphen__item">{% trans "Intenta con una palabra menos específica" %}.</li>
+                </ul>
+                {% if not boolean_operator_formset|has_boolean_operator_forms %}
+                  <p>{% trans "O prueba con una combinación diferente de nuestras categorías en la" %} <a
+                    class="ag-o-link"
+                    href="{% url 'advanced_search' %}?{% url_params %}">{% trans "búsqueda avanzada" %}</a>.</p>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if page_obj.paginator.count %}
+              <div class="ag-c-filter-band">
+                {# Filtro: order-by #}
+                <div class="ag-c-filter-band__group ag-js-filterItem" data-name="data_sources">
+                  <button class="ag-c-filter-band__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-down"
+                          tabindex="0">{% trans "Ordenar" %}</button>
+                  <ul class="ag-c-filter-band__list ag-js-dropdownSlide ag-is-hidden">
+                    {% for order_by_option in form.order_by %}
+                      <li class="ag-c-filter-band__item">
+                        <a
+                          class="ag-c-filter-band__link {% if form.order_by.data == order_by_option.data.value %}ag-c-filter-band__link_active{% endif %}"
+                          href="?{% url_params 'order_by' order_by_option.data.value %}">{{ order_by_option.choice_label }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  {% if form.order_by.data %}
+                    {# Este input es usado para enviar el valor del campo order_by #}
+                    <input type="hidden" name="order_by" value="{{ form.order_by.data }}" form="search_form">
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+          </header>
+
+        </div>
+        
+        {% if page_obj.paginator.count %}
+          {# Listado de resultados colecciones #}
+          {% if form.content_model.data == 'harvester.collection' %}
+            {% for collection in collections_formset.initial %}
+              {% with collection=collection.instance content_type=collection.instance|get_meta:"model_name" %}
+                {# TODO FRONT: New card for Sets #}
+                {% if content_type == "set" %}
+                  {% include "biblored/includes/search/search_result_set.html" with object=collection title=collection.name content_type=content_type counter=forloop.counter0 has_tag="true" only %}
+                {% else %}
+                  {% include "biblored/includes/search/search_result_collection.html" with object=collection title=collection.title content_type=content_type counter=forloop.counter0 has_tag="true" %}
+                {% endif %}
+                {# ENDTODO FRONT: New card for Sets #}
+                {% if request.user.is_authenticated %}
+                  {% include "biblored/includes/collectionsgroup/search_select_list_page_component.html" with counter=forloop.counter0 formset=collections_formset collection=collection favorites_group=collections_favorites_group csrf_token=csrf_token only %}
+                {% endif %}
+              {% endwith %}
+            {% endfor %}
+          {% endif %}
+
+          {% if form.content_model.data == 'harvester.contentresource' %}
+            {# Listado de resultados resource #}
+            {% for resource in object_list %}
+              {% include "biblored/includes/search/search_result_resource.html" with object=resource.processed_data counter=forloop.counter0 user=user request=request only %}
+            {% endfor %}
+            {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}
+          {% endif %}
+
+          {# Grid lista de exposiciones #}
+          {% if form.content_model.data == 'expositions.exposition' %}
+            <div class="ag-c-card-grid">
+              {% for exposition in object_list %}
+                {% include "biblored/includes/collections/exposition_card.html" with exposition_card=exposition only %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {# Paginador lista #}
+          {% include "biblored/includes/paginator.html" %}
+
+        {% else %}
+
+          <header class="ag-o-header">
+            <h2 class="ag-o-heading" tabindex="0">
+              {% trans "Contenidos más populares" %}
+            </h2>
+            <p class="ag-o-subheading" tabindex="0">
+              {% trans "Los contenidos más populares de BibloRed y otras bibliotecas en la Biblioteca Digital de Bogotá." %}
+            </p>
+          </header>
+          <div class="ag-c-card-grid ag-c-card-grid_grid"> 
+            {% for resource in most_popular %}
+              {% include "biblored/includes/resource/resource_item.html" with request=request object=resource.processed_data user=user only %}
+            {% endfor %}
+          </div>
+          <div class="ag-o-actions">
+            <a class="ag-o-btn ag-o-actions__item" href="/">
+              {% trans 'Volver al home' %}
+            </a>
+          </div>
+
+        {% endif %}
+
+      </section>
+    </div>
+
+  </main>
+
+  {% include "biblored/includes/messages/messages_templates.html" %}
+  {% include "biblored/includes/modals/modal_clean_result_search.html" %}
+  {% include "biblored/includes/modals/modal_add_collection.html" with data_modal="add_collection" only %}
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {% render_bundle 'search' 'js' %}
+  {% render_bundle 'collection_groups_card_component_form' 'js' %}
+  {% render_bundle 'collections_add_to_groups_api' 'js' %}
+  {% render_bundle 'collections_group_favorites_api' 'js' %}
+  {% render_bundle 'content_resource_collections_edit_iframe_load_events' 'js' %}
+{% endblock %}

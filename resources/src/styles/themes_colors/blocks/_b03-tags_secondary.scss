@@ -1,0 +1,30 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color secondary
+  ID: B03
+  Tag
+  Description: only classes that has been affected with secondary's theme color
+  Blue =>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+.ag-tags {
+  .ag-tags__bullet {
+    &::before {
+      background: $c-on-secondary;
+    }
+  }
+
+  .ag-tags__tag_color {
+    border: 1px solid $c-on-secondary;
+    background-color: $c-on-secondary;
+  }
+
+  .ag-tags__ico {
+
+    &_theme {
+      &:before {
+        border-color: $c-on-secondary;
+        background-color: $c-on-secondary;
+      }
+    }
+  }
+}

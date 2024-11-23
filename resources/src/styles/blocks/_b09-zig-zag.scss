@@ -1,0 +1,85 @@
+/*------------------------------------*\
+  ID: B09
+  Grig zig-zag
+  Description: Grilla recursos destacados en zig zag
+  // @include font-rem(14px);
+  // @include px-rem(padding-right, 20px);
+\*------------------------------------*/
+
+/**
+ * Class: ag-zig-zag
+ * @description Grilla recursos destacados en zig zag
+ * @molecule b09_zig-zag
+ * @section Grid
+ * @markup
+ *   <div class="ag-zig-zag">
+ *     <div class="ag-zig-zag__item">
+ *       <div class="ag-zig-zag__card">
+ *         @{include:.ag-c-card_slot}
+ *       </div>
+ *       <p class="ag-zig-zag__lead">
+ *         Ahora que al mundo del cine lo acusan de repetitivo, de insustancial, de vivir a costa de remakes, de comedias tontas y de explosiones, llamaradas y toda clase de efectos especiales, no dejo de pensar en lo que fue el mundo de las estrellas hasta hace apenas treinta años, quizá menos. Porque lo cierto es que las llamadas estrellas de la pantalla han desaparecido del firmamento del cine. ¿Qué estrellas? Bien, estoy pensando en actores como Cary Grant, James Stewart o John Wayne, o en estrellas como Ava Gardner, Audrey Hepburn o Lana Turner. La verdad es que nadie les exigió ser grandes actores o actrices, aunque unos lo fueran de verdad y otros se limitaran a repetir su personaje. De hecho ha habido grandes actores (Charles Laughton, por ejemplo) que no alcanzaron la popularidad o el gancho
+ *       </p>
+ *     </div>
+ *     <div class="ag-zig-zag__item">
+ *       <div class="ag-zig-zag__card">
+ *         @{include:.ag-c-card_slot}
+ *       </div>
+ *       <p class="ag-zig-zag__lead">
+ *         Ahora que al mundo del cine lo acusan de repetitivo, de insustancial, de vivir a costa de remakes, de comedias tontas y de explosiones, llamaradas y toda clase de efectos especiales, no dejo de pensar en lo que fue el mundo de las estrellas hasta hace apenas treinta años, quizá menos. Porque lo cierto es que las llamadas estrellas de la pantalla han desaparecido del firmamento del cine. ¿Qué estrellas? Bien, estoy pensando en actores como Cary Grant, James Stewart o John Wayne, o en estrellas como Ava Gardner, Audrey Hepburn o Lana Turner. La verdad es que nadie les exigió ser grandes actores o actrices, aunque unos lo fueran de verdad y otros se limitaran a repetir su personaje. De hecho ha habido grandes actores (Charles Laughton, por ejemplo) que no alcanzaron la popularidad o el gancho
+ *       </p>
+ *     </div>
+ *   </div>
+ */
+.ag-zig-zag {
+  @include px-rem(margin-top, 40px);
+}
+.ag-zig-zag__item {
+  @include px-rem(margin, 30px 0);
+}
+
+.ag-zig-zag__lead {
+  @include px-rem(margin-top, 20px);
+}
+
+
+//  medium    : $bp-medium : 768px
+@include media-query(medium) {
+  .ag-zig-zag {
+    @include px-rem(max-width, 710px);
+    @include px-rem(margin, 40px auto);
+  }
+}
+
+
+//  wide      : $bp-wide   : 1024px
+@include media-query(wide) {
+  .ag-zig-zag {
+    max-width: 100%;
+  }
+  .ag-zig-zag__item {
+    @include flexbox;
+    @include align-items(center);
+    &:nth-child(even) {
+      @include flex-direction(row-reverse);
+      .ag-zig-zag__card {
+        @include px-rem(margin-right, 0);
+        @include px-rem(margin-left, 20px);
+      }
+
+      .ag-zig-zag__lead {
+        @include px-rem(margin-left, 0);
+        @include px-rem(margin-right, 20px);
+      }
+    }
+  }
+  .ag-zig-zag__card {
+    @include flex(1 50%);
+    @include px-rem(margin-right, 20px);
+  }
+  .ag-zig-zag__lead {
+    @include flex(1 50%);
+    margin-top: 0;
+    @include px-rem(margin-left, 20px);
+  }
+}

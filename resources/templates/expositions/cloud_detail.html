@@ -1,0 +1,47 @@
+{% load i18n static %}
+
+<div class="ag-l-inner-outside">
+  <span class="ag-o-head-tag">
+    <strong class="ag-o-head-tag__ico ag-o-head-tag__ico_big i-terms">{% trans "Nube de palabras" %}</strong>
+  </span>
+</div>
+
+<section class="ag-l-inner-inside ag-o-header-wink">
+  <header class="ag-o-header-wink__inner">
+    <h2 class="ag-o-header-wink__title ag-o-subheadwink">{{ cloud.title }}</h2>
+
+    {% if cloud.subtitle %}
+      <p class="ag-o-header-wink__lead">{{ cloud.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  <div class="ag-c-cloud-term__lead">
+    <h3 class="ag-o-headline ag-o-headline_title">
+      {% if cloud.group_by == "data_source"%}
+        {% trans "Fuente de datos" %}
+      {% elif cloud.group_by == "subject" %}
+        {% trans "Tema" %}
+      {% elif cloud.group_by == "creator" %}
+        {% trans "Autor" %}
+      {% elif cloud.group_by == "date" %}
+        {% trans "Fecha de publicación" %}
+      {% elif cloud.group_by == "type" %}
+        {% trans "Formato" %}
+      {% endif %}
+    </h3>
+    <small>{% trans "y número (Nº) de recursos" %}</small>
+  </div>
+</section>
+
+<div id="cloudWrap">
+  <span class="ag-is-visuallyhidden">{% trans "contenido nube de terminos" %}</span>
+</div>
+
+{% include "biblored/includes/modals/modal_cloud_term.html" with cloud=cloud modalcloudterms=cloud.groups.items subpage_parent=page_parent only %}
+
+{{ cloud.json_groups|json_script:"data-cloud" }}
+<!-- Resources amChart -->
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/forceDirected.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>

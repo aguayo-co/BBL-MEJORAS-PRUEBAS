@@ -1,0 +1,20 @@
+<template id="exposition_timeline_content">
+  <button class="ag-c-timeline__item ag-js-timelineContentButton" type="button">
+    <span class="ag-c-timeline__border ag-js-timelineContentImage">
+      <figure class="ag-c-timeline__fig">
+      </figure>
+    </span>
+    <ul class="ag-c-timeline__group">
+      <li class="ag-c-timeline__aside ag-c-timeline__aside_left">
+        <h4 class="ag-c-timeline__title i-after-redirection">__title__</h4>
+        {% comment %} TO DO:
+          1. Validar con if <h3 class="ag-c-timeline__subtitle"> | <span class="ag-c-timeline__lead"> ) para que no se pinten si llegan vacios. (Inputs de texto libre en el administrador).
+          2. Validar con if el span y la línea si no es un rango.
+        {% endcomment %}
+        <h3 class="ag-c-timeline__subtitle ag-js-firstSubtitle">__firstSubtitle__</h3>
+        <span class="ag-c-timeline__lead ag-js-secondSubtitle">__secondSubtitle__</span>
+        <span class="ag-c-timeline__lead">__start_year__<span class="ag-js-endYear">  -  __end_year__</span></span>
+      </li>
+    </ul>
+  </button>
+</template>

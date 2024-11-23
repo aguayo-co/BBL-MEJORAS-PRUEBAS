@@ -1,0 +1,35 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  Titles transversal style
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+.ag-c-cover,
+.ag-o-header-wink {
+
+  .ag-o-headwink,
+  .ag-o-subheadwink {
+
+    &:before {
+      background-color: $c-on-secondary;
+    }
+  }
+
+}
+
+// Division Tags on sections head  (Expositions)
+.ag-o-head-tag {
+
+  .ag-o-head-tag__ico {
+    &:before {
+      background-color: $c-on-secondary;
+    }
+  }
+
+  .ag-o-head-tag__ico_big {
+    &:before {
+      background-color: $c-on-secondary;
+    }
+  }
+}

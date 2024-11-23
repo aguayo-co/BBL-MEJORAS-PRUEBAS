@@ -1,0 +1,97 @@
+{% load i18n %}
+{% load static %}
+{% load wagtailimages_tags %}
+
+<div class="ag-c-modal ag-c-modal_custom-gallery ag-c-modal_cover ag-has-modal_opacity ag-js-modal" data-modal="{{media}}{{ block_counter }}">
+
+  <article class="ag-c-modal__inner ag-c-modal__inner_brimless ag-js-modalContent" tabindex="0">
+
+    <header class="ag-c-modal__headfix">
+
+      <ul class="ag-c-modal__wrap ag-tags ag-tags_press">
+        <li class="ag-tags__item">
+          <p class="ag-tags__ico ag-tags__ico_theme i-sketch">
+            <span class="ag-tags__tag ag-tags__tag_dark" tabindex="0">
+              {% trans "Exposición" %}
+            </span>
+          </p>
+        </li>
+        {% if subpage_parent.subject.name %}
+          <li class="ag-tags__item">
+            <p class="ag-tags__tag ag-tags__tag_color">
+              {{subpage_parent.subject.name}}
+            </p>
+          </li>
+        {% endif %}
+        <li class="ag-tags__item">
+          <span>
+            {% trans "Estás en:" %}
+            <a class="ag-o-undeline"
+              title="{% trans 'Ir a la exposición principal' %}"
+              href="{% url 'expositions:wagtail_serve' subpage_parent.get_parent.slug|add:'/' %}">
+              {{ subpage_parent.get_parent.title }}</a>
+          </span>
+        </li>
+      </ul>
+    </header>
+
+    <div class="ag-c-modal__header ag-o-header-wink ag-o-header-wink_inner">
+      <h2 class="ag-o-header-wink__title ag-o-subheadwink" tabindex="0">{{ modal.name }}</h2>
+    </div>
+
+
+    <div class="ag-c-modal__content ag-c-modal_cover__content">
+
+      <div class="swiper-container ag-c-slider-grid ag-c-slider-grid_wrap {{ media_slider }}" data-id="{{ block_counter }}">
+        <ul class="swiper-wrapper ag-c-slider-grid__inline">
+
+        {% if modal.videos %}
+
+          {% for modal_item in modal.videos %}
+            <li class="swiper-slide ag-c-slider-grid__item ag-has-slider-grid__iframe"
+              data-modal="{{ media }}{{ block_counter }}">
+              {{ modal_item.value.html }}
+            </li>
+          {% endfor %}
+
+        {% else %}
+
+          {% for modal_item in modal.images.all %}
+            <li class="swiper-slide ag-c-slider-grid__item">
+              <figure class="ag-c-slider-grid__figure" data-modal="{{ media }}{{ block_counter }}">
+                <span class="ag-c-slider-grid__crop">
+                  {% image modal_item.image fill-640x640 class="ag-c-slider-grid__image" %}
+                </span>
+                <figcaption class="ag-c-slider-grid__caption" tabindex="0">
+                  {{ modal_item.image.title }}
+                </figcaption>
+              </figure>
+            </li>
+          {% endfor %}
+
+        {% endif %}
+
+        </ul>
+
+        <footer class="ag-c-slider-grid__paginator">
+          <div id="{{ control_slider }}_swiper_pagination-{{ block_counter }}" class="ag-has-slider-grid__counter" tabindex="0"></div>
+          <small class="ag-c-slider-grid__lead" tabindex="0">{{ media_type }}</small>
+        </footer>
+
+        <button id="{{ control_slider }}_swiper_control_next-{{ block_counter }}" class="ag-c-slider-grid__control ag-js-slider-grid-control ag-c-slider-grid__control_next" type="button">
+          <span class="ag-is-visuallyhidden">{% trans "Adelante" %}</span>
+        </button>
+        <button id="{{ control_slider }}_swiper_control_prev-{{ block_counter }}" class="ag-c-slider-grid__control ag-js-slider-grid-control ag-c-slider-grid__control_prev" type="button">
+          <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <button class="ag-o-btn-tooltip ag-c-modal__btn-close ag-js-modalClose i-close">
+      <span class="ag-o-btn-tooltip__tooltip">{% trans "Cerrar" %}</span>
+    </button>
+
+  </article>
+</div>

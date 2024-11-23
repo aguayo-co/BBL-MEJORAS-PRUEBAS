@@ -1,0 +1,95 @@
+{% load i18n static %}
+
+<article class="ag-c-card ag-t-cards__green ag-s-card_position">
+  <div class="ag-c-card_top-shadow">
+    {# wrap: indenta los contenidos #}
+    <div class="ag-c-card__border">
+      <a class="ag-c-card__action" href="{{ collection.get_absolute_url }}" title="{% trans 'Ir al detalle de' %} {{ collection.name }}">
+        
+        {# collection type tag #}
+        <div class="ag-c-card__top">
+          <ul class="ag-tags">
+            <li class="ag-tags__item">
+              <span class="ag-tags__ico ag-tags__ico_green i-star">
+                <span class="ag-tags__tag ag-tags__tag_dark">
+                  {% trans "Contenido Sugerido" %}
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        {# type of content #}
+        <ul class="ag-c-card__bar ag-c-card__bar_bg">
+          {% for resource_type, count in collection.resources_by_type_count.items %}
+              {% if forloop.first %}
+              <li class="ag-c-card__bar-item">
+                  <strong class="ag-c-card__bar-label">{% trans "Encuentra en esta colección" %}:</strong>
+                  <ul class="ag-c-card__bar-sublist">
+              {% endif %}
+                      <li class="ag-c-card__bar-subitem ag-tags__bullet ag-tags__bullet_first">{% if not resource_type == 'Otros' %}{{ count }}{% endif %} {{ resource_type }}</li>
+              {% if forloop.last %}
+                  </ul>
+              </li>
+              {% endif %}
+          {% endfor %}
+        </ul>
+
+        {# image #}
+        {% if collection.image %}
+          <figure class="ag-c-card__media ag-c-card__color">
+            <img class="ag-c-card__img" src="{{ collection.image.url }}" alt=" {% trans 'Imagen de referencia' %} {{ collection.name }}">
+          </figure>
+        {% endif %}
+
+        {# title and description #}
+        <div class="ag-c-card__canvas ag-c-card__canvas_padding0">
+
+          <div class="ag-c-card__divider">
+            {% if  collection.name %}
+            <h2 class="ag-c-card__title" tabindex="0"> {{ collection.name }} </h2>
+            {% endif %}
+            {% if collection.description %}
+            <div class="ag-c-card__lead">
+              {{ collection.description|striptags }}
+            </div>
+            {% endif %}
+          </div>
+
+        </div>
+
+      </a>
+
+      <footer class="ag-c-card__inner-below">
+        <ul class="ag-c-card__button-list ag-c-card__button-list_margin ag-c-card__button-columns">
+
+          {# avatar #}
+          <li class="ag-c-card__list-item">
+            <a class="ag-chip" href="{{ collection.data_source.search_url }}" title="{% trans 'Ver otras colecciones creadas por' %} {{ collection.data_source.name }} ">
+              {% if collection.data_source.logo %}
+              <figure class="ag-chip__avatar ag-chip__avatar_neutro">
+                <img class="ag-chip__img" src="{{ collection.data_source.logo.url }}" alt="{% trans 'Logo' %} {{ collection.data_source.name }}">
+              </figure>
+              {% endif %}
+
+              <span class="ag-chip__text">
+                <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+                {{ collection.data_source.name }}
+              </span>
+            </a>
+          </li>
+
+          {# menu options #}
+          <li class="ag-c-card__button-col">
+            {# buttons into list of options #}
+            {% include "biblored/includes/options_menu/options_menu_for_collection_item.html" with counter=counter collection=collection processed_data=resource.processed_data user=user card="set" only %}
+          </li>
+
+        </ul>
+      </footer>
+
+    </div>
+  </div>
+</article>
+
+{% include "biblored/includes/modals/modal_share_social.html" with counter=counter object=collection title=collection.name card="set" classJsCopyUrl="ag-js-copyUrlAnotherPage" only %}

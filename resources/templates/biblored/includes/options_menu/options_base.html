@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{# List buttons with options for edit, add, share and manage #}
+
+
+{% if user.is_authenticated %}
+
+  <div class="ag-list-button{% if align == "right" %} ag-list-button_right {% endif %} ag-js-buttonList">
+    <button
+      class="ag-list-button__action i-after-menu ag-js-actionButtonList"
+      type="button"
+      tabindex="0"
+    >
+      <span class="ag-list-button__span">{% trans "Opciones" %}</span>
+    </button>
+    
+      <ul class="ag-list-button__list ag-list-button_position-list">
+
+        {% block options_item_list %}{% endblock %}
+
+      </ul>
+  </div>
+
+{% else %}
+
+  <button
+    class="ag-list-button__button ag-list-button__border ag-list-button__align-right i-share"
+    data-modal="share_social_{{ card }}_{{ counter }}"
+  >
+    {% trans "Compartir" %}
+  </button>
+
+{% endif %}
+  
+
+
+{# Modal for share in social media #}
+{% block option_modal %}{% endblock %}

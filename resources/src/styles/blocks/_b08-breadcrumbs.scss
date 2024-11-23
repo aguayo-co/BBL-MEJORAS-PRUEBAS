@@ -1,0 +1,108 @@
+/*----------------------------------------------*\
+  ID: B08
+  Breadcrumbs
+  Type: Navigation
+  Description: Es una lista de links que ubica al usuario en la estructura del sitio web, la página actual no es un link.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-breadcrumbs
+ * @description  es una lista de links que ubica al usuario en la estructura del sitio web, la página actual no es un link.
+ * @molecule b07_Breadcrumbs
+ * @section Navegación
+ * @markup
+ *  <nav class="ag-breadcrumbs">
+ *    <dl class="ag-breadcrumbs__list">
+ *      <dt class="ag-breadcrumbs__label">Estás en:</dt>
+ *      <dd class="ag-breadcrumbs__item">
+ *        <a href="" class="ag-breadcrumbs__link">ítem</a>
+ *      </dd>
+ *      <dd class="ag-breadcrumbs__item">
+ *        <a href="" class="ag-breadcrumbs__link">ítem2</a>
+ *      </dd>
+ *      <dd class="ag-breadcrumbs__item">
+ *        Item actual
+ *      </dd>
+ *    </dl>
+ *  </nav>
+*/
+
+.ag-breadcrumbs {
+  display: none;
+  width: 100%;
+  background-color: $c-surface;
+  color: $c-on-text;
+  @include px-rem(margin-top, 68px);
+}
+
+.ag-breadcrumbs__list {
+  @include flexbox;
+  @include px-rem(padding, 10px 0);
+}
+
+.ag-breadcrumbs__label {
+  font-weight: $f-bold;
+}
+
+.ag-breadcrumbs__item {
+  max-width: 33%;
+  @include px-rem(margin-left, 4px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &:before {
+    content: '/';
+  }
+}
+
+.ag-breadcrumbs__item:nth-child(2) {
+  &:before {
+    content: '';
+  }
+}
+
+//Hack para safari 10+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .ag-breadcrumbs__item {
+      &:first-of-type {
+        @include px-rem(margin-right, 4px);
+        overflow: visible;
+      }
+    }
+  }
+}
+
+.ag-breadcrumbs__link {
+  color: $c-on-link;
+
+  &:hover {
+    color: $c-on-over;
+  }
+}
+
+// Media query para estilos | desde 768px en adelante
+@include media-query(medium) {
+  .ag-breadcrumbs {
+    display: block;
+  }
+}
+
+
+// Media query para ajustar el breadcrumb | desde 768px hasta 1500px 
+@media screen and (max-width:1500px) {
+  .ag-breadcrumbs {
+    .ag-l-inner-huge {
+      max-width: $canvas-w;
+    }
+  }
+}
+
+
+// Media query para ajustar el max-width del breadcrumb | 790px hasta 768px
+@media screen and (max-width:790px) {
+  .ag-breadcrumbs__item {
+    max-width: 28%;
+  }
+}

@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{# Filtro: order-by #}
+<div class="ag-c-filter-band__group ag-js-filterItem" data-name="data_sources">
+  <button class="ag-c-filter-band__label ag-js-dropdownBtn ag-js-filterBtnDropdown i-after-arrow-down" tabindex="0">{% trans 'Ordenar' %}</button>
+  <ul class="ag-c-filter-band__list ag-c-filter-band__list_absolute ag-js-dropdownSlide ag-is-hidden">
+    {% for ordering_option, ordering_label in ordering_options.items %}
+      <li class="ag-c-filter-band__item" tabindex="0">
+        <a class="ag-c-filter-band__link {% if applied_ordering == ordering_option %}ag-c-filter-band__link_active{% endif %}" href="?{% url_params 'order_by' ordering_option %}">
+          {{ ordering_label }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,15 @@
+{% extends "biblored/includes/custom_user/profile_detail_notifications_base.html" %}
+
+{% load i18n %}
+
+{% block nav_tabs %}
+  <nav class="ag-menu-bar" tabindex="0">
+    {% include "biblored/includes/custom_user/tab-nav-items/link/invitations.html" with tab_counter=request_user.invitations_count only %}
+    {% include "biblored/includes/custom_user/tab-nav-items/link/requests.html" with tab_counter=request_user.requests_count only %}
+    {% include "biblored/includes/custom_user/tab-nav-items/active/shared_resources.html" with tab_counter=request_user.shared_resources_count only %}
+  </nav>
+{% endblock nav_tabs %}
+
+{% block notifications_list %}
+  {% include "custom_user/shared_resources_list.html" with request_user=request.user shared_resources_notifications=shared_resources_notifications only %}
+{% endblock notifications_list %}

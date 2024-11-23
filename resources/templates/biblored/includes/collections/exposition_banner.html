@@ -1,0 +1,72 @@
+{% load i18n %}
+{% load wagtailimages_tags inspector %}
+
+<li class="swiper-slide ag-banner ag-t-banner{% if exposition_banner.theme == 'purple' %}_purple{% endif %}{% if exposition_banner.theme == 'blue' %}_blue{% endif %}">
+
+  {% if exposition_banner.image %}
+    <figure class="ag-banner__picture">
+      {% image exposition_banner.image max-1108x641 class="ag-banner__img" %}
+    </figure>
+  {% endif %}
+
+  <div class="ag-banner__intro">
+
+    <div class="ag-banner__side">
+
+      <ul class="ag-tags ag-tags_press ag-tags_margin-none">
+
+        <li class="ag-tags__item">
+          <span class="ag-tags__ico ag-tags__ico_theme i-sketch">
+            <span class="ag-tags__tag ag-tags__tag_light ag-tags__tag_size10">
+              {% trans "Exposición" %}
+            </span>
+          </span>
+        </li>
+
+        {% if exposition_banner.exposition_type %}
+          <li class="ag-tags__item ag-tags__bullet">
+            <span class="ag-tags__ico">
+              <span class="ag-tags__tag ag-tags__tag_light ag-tags__tag_size10">
+                  {{ exposition_banner.exposition_type }}
+                </span>
+              </span>
+          </li>
+        {% endif %}
+
+        {% if exposition_banner.subject.name %}
+          <li class="ag-tags__item ag-tags__bullet">
+            <p class="ag-tags__tag ag-tags__tag_light ag-tags__tag_size10">
+              {{ exposition_banner.subject.name }}
+            </p>
+          </li>
+        {% endif %}
+
+      </ul>
+
+      {% if exposition_banner.title %}
+        <h3 class="ag-banner__headline" tabindex="0">
+          {{ exposition_banner.title }}
+        </h3>
+      {% endif %}
+      <div class="ag-chip__text">
+        <span class="ag-chip__label">{% trans "Curador" %}</span>
+        <strong>{{ exposition_banner.author.full_name }}</strong>
+      </div>
+    </div>
+
+    <a class="ag-o-btn ag-banner__btn" href="{{ exposition_banner.url }}" title="{% trans 'Ir al detalle de' %} {{ exposition_banner.title }}"> {% trans 'Ingresa a esta exposición'%} </a>
+  </div>
+
+  <button class="ag-c-slider__control ag-c-slider__control_transparent ag-c-slider__control_prev i-arrow-left"
+    type="button">
+    <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+  </button>
+  <button class="ag-c-slider__control ag-c-slider__control_transparent ag-c-slider__control_next i-arrow-right"
+    type="button">
+    <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+  </button>
+
+</li>
+
+{% comment %} aqui
+{{ exposition_banner|inspect }} {% endcomment %}

@@ -1,0 +1,20 @@
+{% extends "biblored/includes/modals/modal_base_search_select_collections_groups.html" %}
+
+{% load i18n %}
+
+{% block article_content %}
+  {% include "biblored/includes/collectionsgroup/search_select_fielset_with_create_btn.html" with form=form select_data_name="collections_groups" checkboxes_data_name="collections_groups_checkboxes" only %}
+{% endblock %}
+
+{% block action_footer %}
+  <div class="ag-c-modal__item-control">
+    <button
+      class="ag-o-btn
+      ag-o-actions__item
+      ag-js-modalClose"
+      type="button"
+    >
+      {% trans "Agregar" %}
+    </button>
+  </div>
+{% endblock action_footer %}

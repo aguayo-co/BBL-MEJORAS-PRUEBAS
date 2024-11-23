@@ -1,0 +1,425 @@
+/*----------------------------------------------*\
+  ID: C08
+  Bannner Gallery
+  Type: Slider
+  Description: Deslizador para banner para galería con imágenes.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-c-slider-gallery
+ * @description   Deslizador para banner para galería con imágenes.
+ * @structure c08_slider-gallery
+ * @flag full-width
+ * @section Banner
+ * @markup
+ *   <div class="SG-component__preview ag-l-inner-wide">
+ *     <div class="ag-c-slider-gallery">
+ *       <div class="swiper-container ag-c-slider-gallery__container ag-js-slider-gallery">
+ *         <div class="swiper-wrapper ag-c-slider-gallery__wrapper">
+ *
+ *           <div class="swiper-slide ag-c-slider-gallery__slide">
+ *             <div class="ag-c-slider-gallery__item">
+ *
+ *                 <figure class="ag-c-slider-gallery__mask">
+ *                   <img class="ag-c-slider-gallery__img" src="../biblored/img/demo/slider-gallery/gallery_viaje-america.jpg"
+ *                     alt="Home - Historia Viaje a América">
+ *                 </figure>
+ *
+ *                 <article class="ag-c-card">
+ *                   <div class="ag-c-card__border">
+ *                     <div class="ag-c-card__canvas">
+ *                       <div class="ag-c-card__top">
+ *                         <ul class="ag-tags">
+ *                           <li class="ag-tags__item">
+ *                             <span class="ag-tags__ico ag-tags__ico_green i-star">
+ *                               <span class="ag-tags__tag ag-tags__tag_dark" href="#">
+ *                                 { Contenido Sugerido }
+ *                               </span>
+ *                             </span>
+ *                           </li>
+ *                         </ul>
+ *                       </div>
+ *                       <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver { resource.title }">
+ *                         <div class="ag-c-card__content">
+ *                           <div class="ag-c-card__text">
+ *                             <h2 class="ag-c-card__title"> { Los bogotanos en el bogotazo }</h2>
+ *                             <div class="ag-c-card__lead">
+ *                               { Una colección que reune contenidos digitales sobre la memoria en torno a la figura de Jorge Eliécer Gaitán.  }
+ *                             </div>
+ *                           </div>
+ *                         </div>
+ *                       </a>
+ *                       <footer class="ag-c-card__footer">
+ *                         <ul class="ag-c-card__list">
+ *                           <li class="ag-c-card__list-item ag-chip">
+ *                             <figure class="ag-chip__avatar">
+ *                               <img class="ag-chip__img" src="../biblored/img/demo/avatar-5.jpg" alt="Creador">
+ *                             </figure>
+ *                             <span class="ag-chip__text">
+ *                               <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+ *                               { Lorena Carvajal }
+ *                             </span>
+ *                           </li>
+ *                         </ul>
+ *                       </footer>
+ *                     </div>
+ *                   </div>
+ *                 </article>
+ *
+ *             </div>
+ *           </div>
+ *
+ *           <div class="swiper-slide ag-c-slider-gallery__slide">
+ *             <div class="ag-c-slider-gallery__item">
+ *
+ *                 <figure class="ag-c-slider-gallery__mask">
+ *                   <img class="ag-c-slider-gallery__img" src="../biblored/img/demo/slider-gallery/gallery_fauna.jpg"
+ *                     alt="Home - Fauna y flora Colombiana">
+ *                 </figure>
+ *
+ *                 <article class="ag-c-card">
+ *                   <div class="ag-c-card__border">
+ *                     <div class="ag-c-card__canvas">
+ *                       <div class="ag-c-card__top">
+ *                         <ul class="ag-tags">
+ *                           <li class="ag-tags__item">
+ *                             <span class="ag-tags__ico ag-tags__ico_green i-star">
+ *                               <span class="ag-tags__tag ag-tags__tag_dark" href="#">
+ *                                 {% trans "Contenido Sugerido" %}
+ *                               </span>
+ *                             </span>
+ *                           </li>
+ *                         </ul>
+ *                       </div>
+ *                       <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver { resource.title }">
+ *                         <div class="ag-c-card__content">
+ *                           <div class="ag-c-card__text">
+ *                             <h2 class="ag-c-card__title"> { Los bogotanos en el bogotazo }</h2>
+ *                             <div class="ag-c-card__lead">
+ *                               { Una colección que reune contenidos digitales sobre la memoria en torno a la figura de Jorge Eliécer Gaitán.  }
+ *                             </div>
+ *                           </div>
+ *                         </div>
+ *                       </a>
+ *                       <footer class="ag-c-card__footer">
+ *                         <ul class="ag-c-card__list">
+ *                           <li class="ag-c-card__list-item ag-chip">
+ *                             <figure class="ag-chip__avatar">
+ *                               <img class="ag-chip__img" src="../biblored/img/demo/avatar-5.jpg" alt="Creador">
+ *                             </figure>
+ *                             <span class="ag-chip__text">
+ *                               <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+ *                               { Lorena Carvajal }
+ *                             </span>
+ *                           </li>
+ *                         </ul>
+ *                       </footer>
+ *                     </div>
+ *                   </div>
+ *                 </article>
+ *
+ *             </div>
+ *           </div>
+ *
+ *           <div class="swiper-slide ag-c-slider-gallery__slide">
+ *             <div class="ag-c-slider-gallery__item">
+ *                 <figure class="ag-c-slider-gallery__mask">
+ *                   <img class="ag-c-slider-gallery__img" src="../biblored/img/demo/slider-gallery/gallery_monument.jpg"
+ *                     alt="Home - Monumentos de San agustin">
+ *                 </figure>
+ *
+ *                 <article class="ag-c-card">
+ *                   <div class="ag-c-card__border">
+ *                     <div class="ag-c-card__canvas">
+ *                       <div class="ag-c-card__top">
+ *                         <ul class="ag-tags">
+ *                           <li class="ag-tags__item">
+ *                             <span class="ag-tags__ico ag-tags__ico_green i-star">
+ *                               <span class="ag-tags__tag ag-tags__tag_dark" href="#">
+ *                                 {% trans "Contenido Sugerido" %}
+ *                               </span>
+ *                             </span>
+ *                           </li>
+ *                         </ul>
+ *                       </div>
+ *                       <a class="ag-c-card__action ag-c-card__divider" href="#" title="Ver { resource.title }">
+ *                         <div class="ag-c-card__content">
+ *                           <div class="ag-c-card__text">
+ *                             <h2 class="ag-c-card__title"> { Los bogotanos en el bogotazo }</h2>
+ *                             <div class="ag-c-card__lead">
+ *                               { Una colección que reune contenidos digitales sobre la memoria en torno a la figura de Jorge Eliécer Gaitán.  }
+ *                             </div>
+ *                           </div>
+ *                         </div>
+ *                       </a>
+ *                       <footer class="ag-c-card__footer">
+ *                         <ul class="ag-c-card__list">
+ *                           <li class="ag-c-card__list-item ag-chip">
+ *                             <figure class="ag-chip__avatar">
+ *                               <img class="ag-chip__img" src="../biblored/img/demo/avatar-5.jpg" alt="Creador">
+ *                             </figure>
+ *                             <span class="ag-chip__text">
+ *                               <strong class="ag-chip__label">{% trans "Creador" %}</strong>
+ *                               { Lorena Carvajal }
+ *                             </span>
+ *                           </li>
+ *                         </ul>
+ *                       </footer>
+ *                     </div>
+ *                   </div>
+ *                 </article>
+ *             </div>
+ *           </div>
+ *
+ *         </div>
+ *
+ *         <div class="ag-c-slider__dots"></div>
+ *           <button class="ag-c-slider-gallery__control ag-c-slider__control_prev i-arrow-left" type="button">
+ *               <span class="ag-is-visuallyhidden">{% trans "Atrás" %}</span>
+ *           </button>
+ *           <button class="ag-c-slider-gallery__control ag-c-slider__control_next i-arrow-right" type="button">
+ *               <span class="ag-is-visuallyhidden">{% trans "Siguiente" %}</span>
+ *           </button>
+ *         </div>
+ *       </div>
+ *     </div>
+ *    </div>
+ *
+*/
+
+//- .ag-c-slider-gallery -> Swiper Custom
+.ag-c-slider-gallery {
+  @include px-rem(margin-bottom, 20px);
+
+  .ag-c-card__canvas {
+    @include px-rem(padding, 16px);
+  }
+
+  .ag-c-card__list,
+  .ag-c-card__list-item {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .swiper-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+  }
+
+  .ag-c-slider__control_prev,
+  .ag-c-slider__control_next {
+
+    &:hover {
+      color: $c-neutro;
+      border: 1px solid $c-neutro;
+      background-color: $c-primary-hover;
+    }
+  }
+
+  .swiper-wrapper {
+    @include align-items(center);
+  }
+
+  .swiper-container {
+    width: 100%;
+    @include px-rem(padding-bottom, 50px);
+  }
+
+  .ag-c-slider__dots {
+    @include px-rem(margin, 30px auto 0);
+  }
+
+  //- Contenido que se oculta en el carrusel
+  .swiper-slide:not(.swiper-slide-active) {
+    z-index: -1;
+    transition: all 2s ease;
+
+    .ag-c-slider-gallery__img {
+      filter: grayscale(80%);
+    }
+
+    .ag-c-card__lead,
+    .ag-c-card__footer {
+      visibility: visible;
+      position: absolute;
+      clip: rect(1px 1px 1px 1px);
+      transition: all 2s ease;
+    }
+  }
+
+  .swiper-slide-active {
+    @include flex(1 0 auto);
+    @include align-items(center);
+
+    transition: all 2s ease;
+
+    .ag-c-card__lead,
+    .ag-c-card__footer {
+      visibility: visible;
+      transition: all .3s ease-out;
+    }
+  }
+
+  .ag-c-slider__bullet {
+    background-color: rgba($c-primary-hover, 0.9);
+    opacity: 0;
+    &.swiper-pagination-bullet {
+      @include px-rem(margin, 0 1px);
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+
+  .swiper-pagination-bullet-active-next,
+  .swiper-pagination-bullet-active-prev {
+    opacity: .5;
+  }
+
+}
+
+.ag-c-slider-gallery__wrapper {
+  list-style: none;
+}
+
+.ag-c-slider-gallery__slide {
+  @include px-rem(max-width, 280px);
+
+  transition: all 2s ease-in-out;
+
+  &.swiper-slide {
+    opacity: 0;
+  }
+
+  &.swiper-slide-prev,
+  &.swiper-slide-active,
+  &.swiper-slide-next {
+    opacity: 1;
+  }
+
+  &:not(.swiper-slide-active) {
+    .ag-c-slider-gallery__controls {
+      display: none;
+    }
+  }
+}
+
+.ag-c-slider-gallery__item {
+  position: relative;
+  transition: box-shadow 0.2s ease-in-out;
+  @include px-rem(width, 280px);
+  margin: 0 auto;
+
+  &:hover {
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+
+    .ag-c-card__divider {
+      border-bottom: none;
+    }
+  }
+
+  .ag-c-card {
+    width: 100%;
+  }
+}
+
+.ag-c-slider-gallery__mask {
+  @include px-rem(max-width, 488px);
+}
+
+.ag-c-slider-gallery__img {
+  display: block;
+  width: 100%;
+}
+
+.ag-c-slider-gallery__controls {
+  position: absolute;
+  @include px-rem(bottom, 20px);
+  z-index: -5;
+  display: none;
+  width: 100%;
+  @include justify-content(space-between);
+  @include align-items(center);
+}
+
+.ag-c-slider-gallery__control {
+  position: relative;
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 40px);
+  @include px-rem(height, 40px);
+  color: $c-primary-hover;
+  border: 1px solid $c-primary-hover;
+  border-radius: 50%;
+  background-color: $c-neutro;
+
+  &:hover {
+    border: 1px solid $c-secondary;
+
+  }
+
+  &.ag-c-slider__control_prev {
+    left: -25%;
+  }
+
+  &.ag-c-slider__control_next {
+    right: -25%;
+  }
+}
+
+
+
+// BP: 480px
+@include media-query(small-m) {
+  .ag-c-slider-gallery__slide {
+    @include px-rem(max-width, 320px);
+  }
+
+  .ag-c-slider-gallery__item {
+    @include px-rem(width, 320px);
+  }
+
+}
+
+@media screen and (min-width: 540px) {
+  .ag-c-slider-gallery__controls {
+    @include flexbox;
+  }
+}
+
+
+@media screen and (min-width: 620px) {
+  .ag-c-slider-gallery__slide {
+    @include px-rem(max-width, 380px);
+  }
+
+  .ag-c-slider-gallery__item {
+    @include px-rem(width, 380px);
+  }
+
+}
+
+@include media-query(medium) {
+
+  .ag-c-slider-gallery {
+    @include px-rem(margin-bottom, 40px);
+    .ag-c-card__canvas {
+      @include px-rem(padding, 24px);
+    }
+  }
+
+  .ag-c-slider-gallery__item {
+    @include px-rem(max-width, 420px);
+  }
+
+}
+
+
+@include media-query(wide) {
+  .ag-c-slider-gallery {
+    @include px-rem(margin-bottom, 60px);
+  }
+}

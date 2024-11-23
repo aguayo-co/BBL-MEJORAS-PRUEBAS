@@ -1,0 +1,10 @@
+<a
+  class="ag-menu-bar__item"
+  href="{% block anchor_url %}{% endblock %}"
+  title="{% block anchor_title %}{% endblock %}"
+>
+  {% block tab_text %}{% endblock %}
+  <span class="ag-menu-bar__notification">
+    {% block tab_counter %}{{ tab_counter }}{% endblock %}
+  </span>
+</a>

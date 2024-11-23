@@ -1,0 +1,80 @@
+{% load i18n static %}
+
+<div class="ag-c-cropper" data-content-tabs="cropper">
+
+  <figure class="ag-c-cropper__mask ag-js-preview-image">
+    <figcaption class="ag-c-cropper__caption">{% trans 'Click en el botón "Subir una foto" para comenzar. ' %}</figcaption>
+  </figure>
+
+  <div class="ag-c-cropper__nav-actions">
+
+    <div class="ag-c-cropper__group">
+      <h5 class="ag-c-cropper__title">{% trans "Acercar" %}</h5>
+      <div class="ag-c-cropper__actions">
+        <button type="button" class="ag-c-cropper__ico i-zoom-out ag-js-zoomOut">
+          <span class="ag-is-hide">Zoom in</span>
+        </button>
+        <button type="button" class="ag-c-cropper__ico i-zoom-in ag-js-zoomIn">
+          <span class="ag-is-hide">Zoom out</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ag-c-cropper__group">
+      <h5 class="ag-c-cropper__title">{% trans "Rotar" %}</h5>
+      <div class="ag-c-cropper__actions">
+        <button type="button" class="ag-c-cropper__ico i-rotate-right ag-js-right">
+          <span class="ag-is-hide">Adelante</span>
+        </button>
+        <button type="button" class="ag-c-cropper__ico i-rotate-left ag-js-left">
+          <span class="ag-is-hide">Atras</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ag-c-cropper__group ag-c-cropper__group_widthx2">
+      <h5 class="ag-c-cropper__title">{% trans "Mover" %}</h5>
+      <div class="ag-c-cropper__actions">
+        <button type="button" class="ag-c-cropper__ico i-arrow-alt-left ag-js-move-left">
+          <span class="ag-is-hide">Izquierda</span>
+        </button>
+        <button type="button" class="ag-c-cropper__ico i-arrow-alt-up ag-js-move-top">
+          <span class="ag-is-hide">Arriba</span>
+        </button>
+        <button type="button" class="ag-c-cropper__ico i-arrow-alt-right ag-js-move-right">
+          <span class="ag-is-hide">Derecha</span>
+        </button>
+        <button type="button" class="ag-c-cropper__ico i-arrow-alt-down ag-js-move-down">
+          <span class="ag-is-hide">Abajo</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ag-c-cropper__group">
+      <div class="ag-c-cropper__actions ag-c-cropper__actions_input">
+        <input class="ag-c-cropper__input" id="upload_image" name="upload_image" type="file">
+        <label class="ag-c-cropper__label" for="upload_image">{% trans "Subir una foto" %}</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ag-o-actions">
+    <button 
+      class="ag-o-btn ag-o-btn_outline ag-o-btn_full ag-o-btn_order ag-o-actions__item ag-js-modalClose"
+    >
+      {% trans "Cancelar" %}
+    </button>
+    <button 
+      class="ag-o-btn ag-o-btn_full ag-o-actions__item ag-js-crop-image" 
+      type="button"
+    >
+      {% if is_profile %}
+      {% trans "Confirmar" %}
+      {% else %}
+      {% trans "Confirmar portada" %}
+      {% endif %}
+    </button>
+  </div>
+
+</div>

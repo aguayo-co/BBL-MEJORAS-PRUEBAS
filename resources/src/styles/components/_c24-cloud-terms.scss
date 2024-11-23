@@ -1,0 +1,76 @@
+/*------------------------------------*\
+ID: C24
+Cloud Terms
+Type: Information
+Description: Nube de palabras con información agrupada según una caracteriztica
+\*------------------------------------*/
+#cloudWrap {
+  @include px-rem(height, 450px);
+}
+
+.ag-Circle {
+  stroke-width: 1;
+  stroke: transparent;
+  fill: $c-primary-disabled;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    fill: rgba($c-secondary, 0.3);
+  }
+}
+
+foreignObject {
+  overflow: visible;
+}
+
+.ag-c-cloud__box {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  color: $c-primary;
+}
+
+.ag-js-cloud-hover {
+  .ag-c-cloud__box {
+    color: $c-secondary;
+  }
+}
+
+.ag-c-cloud__lead {
+  display: block;
+  width: 40px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ag-c-cloud__tooltip {
+  text-align: center;
+  @include px-rem(font-size, 14px);
+  color: $c-on-text;
+}
+
+.ag-c-cloud-term__lead {
+  width: max-content;
+  @include px-rem(margin, 20px auto);
+  @include px-rem(padding, 10px);
+  @include px-rem(border-radius, 8px);
+  line-height: 0.8;
+  text-align: center;
+  background-color: $c-primary-disabled;
+}
+
+.ag-c-modal__counter {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.js-modalCloud {
+  display: none;
+}
+
+.ag-AmChartsLogo-group {
+  opacity: 0;
+}

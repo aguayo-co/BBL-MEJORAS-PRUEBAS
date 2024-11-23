@@ -1,0 +1,145 @@
+/*------------------------------------*\
+    Customization to buttons that aside for Wagtail's administrator
+\*------------------------------------*/
+.nav-main .menu-item a {
+    white-space: normal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/*------------------------------------*\
+    Widget actions
+\*------------------------------------*/
+
+.instance-selector-widget__display-wrap {
+    margin-bottom: 20px;
+}
+
+.instance-selector-widget__actions {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.instance-selector-widget__actions .button {
+    margin: 5px 10px;
+}
+
+.object .fields .field-row {
+    padding-top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+/*------------------------------------*\
+    Fields labels
+\*------------------------------------*/
+
+.field label {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.field.decimal_field.number_input label {
+    width: 70%;
+}
+
+@media screen and (min-width: 50em) {
+    .field-col.col4 .field-content,
+    .field-col.col4 label {
+    width: 100%;
+    }
+}
+
+.fields .field-row .field-col {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 1024px) {
+    .fields .field-row .field-col {
+        -ms-flex: 1 0 33.33333%;
+        flex: 1 0 33.33333%;
+        width: 33.33333%;
+    }
+}
+
+/*------------------------------------*\
+    Images labels
+\*------------------------------------*/
+
+.admin_image_chooser {
+    margin: 10px 0;
+}
+
+.chooser .chosen {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+/*------------------------------------*\
+    Date fields
+\*------------------------------------*/
+.date_field.admin_date_input .field-content,
+.field.char_field.admin_auto_height_text_input .field-content {
+    width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .date_field.admin_date_input .field-content,
+    .field.char_field.admin_auto_height_text_input .field-content {
+        width: 83.33333%;
+    }
+}
+
+.field.char_field.admin_auto_height_text_input .field-content textarea {
+    min-height: 53px;
+}
+
+/*------------------------------------*\
+    Avatar's checkbox
+\*------------------------------------*/
+.field.boolean_field.checkbox_input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.field.boolean_field.checkbox_input label {
+    width: auto;
+    padding: 0;
+}
+
+/*------------------------------------*\
+    Buttons tags
+\*------------------------------------*/
+.fields .button.icon-tag {
+    margin-bottom: 6px;
+}

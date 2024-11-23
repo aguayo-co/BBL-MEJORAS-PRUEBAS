@@ -1,0 +1,85 @@
+{% extends "biblored/base.html" %}
+
+{% load wagtailcore_tags i18n static wagtailimages_tags %}
+{% load render_bundle from webpack_loader %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block description %}
+  {% trans 'La Biblioteca Digital de Bogotá brinda acceso a contenidos de bibliotecas, bases de datos, audios, vídeos, fotografías de manera gratuita para el mundo' %}
+{% endblock %}
+{% block keywords %} {% trans 'Cultura, Historia, Ciencia, Bogotá, Entretenimiento, Gratis, Biblioteca digital, Libros, Fotos, Base de datos' %} {% endblock %}
+{% block opengraph %}
+  {% include "biblored/includes/open_graph_page.html" %}
+{% endblock  %}
+
+{% block search %}
+  {% include "biblored/includes/layout/header_search.html" %}
+{% endblock %}
+
+{% block breadcrumbs_items %}
+  {% if page.get_parent.content_type.model != "homepage" %}
+    <dd class="ag-breadcrumbs__item">
+      <a 
+        class="ag-breadcrumbs__link"
+        title="{% trans 'Ir a ' %}{{ page.get_parent.title }}"
+        href="{% url 'expositions:wagtail_serve' page.get_parent.slug|add:'/' %}"
+        > 
+
+        {{ page.get_parent.title }} 
+
+      </a>
+    </dd>
+  {% endif %}
+  <dd class="ag-breadcrumbs__item">
+    {{ page.title }}
+  </dd>
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+
+  <main class="ag-l-page">
+
+    <header class="ag-o-main-header ag-o-main-header_gap24" id="maincontent" tabindex="0">
+      
+      <h2 class="ag-o-heading">{{ self.title }}</h2>
+      {% if self.search_description %}
+        <p class="ag-o-subheading ag-o-subheading_w100">{{ self.search_description }}</p>
+      {% endif %}
+
+      {% if self.search_image %}
+        <figure class="ag-o-main-header__figure">
+          {% image self.search_image max-860x433 class="ag-o-main-header__img" %}
+        </figure>
+      {% endif %}
+    </header>
+
+    
+
+    {# Page components #}
+    {% for block in self.content %}
+      
+      {% if block.block_type == 'image_gallery' %}
+        <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+            {% include "expositions/exposition_image_gallery.html" with imagegallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+        </section>
+      {% elif  block.block_type == 'video_gallery' %}
+        <section class="ag-l-band-surface ag-u-space-bottom {% if forloop.first %} ag-is-button-scroll-stop {% endif %}">
+            {% include "expositions/exposition_video_gallery.html" with videogallery=block.value page_parent=page block_counter=forloop.counter0 only %}
+        </section>
+      {% else %}
+        {% include_block block with block_id=block.id %}
+      {% endif %}
+      
+    {% endfor %}
+    
+    <div class="ag-l-inner-inside ag-u-sides-padding">
+      <button class="ag-list-button__button ag-list-button__border-top i-share" type="button" data-modal="share_social_detail_0">{% trans "Compartir este contenido" %}</button>
+    </div>
+
+  </main>
+
+  {% include "biblored/includes/modals/modal_share_social.html" with object=self.specific title=page.title card="detail" counter=0 classJsCopyUrl="ag-js-copyUri" only %}
+
+{% endblock content %}

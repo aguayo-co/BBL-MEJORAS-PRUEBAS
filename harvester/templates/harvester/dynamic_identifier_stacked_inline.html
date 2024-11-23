@@ -1,0 +1,64 @@
+{% load i18n admin_urls static %}
+<div class="js-inline-admin-formset inline-group"
+     id="{{ inline_admin_formset.formset.prefix }}-group"
+     data-inline-type="stacked"
+     data-inline-formset="{{ inline_admin_formset.inline_formset_data }}">
+<fieldset class="module {{ inline_admin_formset.classes }}">
+  <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}</h2>
+{{ inline_admin_formset.formset.management_form }}
+{{ inline_admin_formset.formset.non_form_errors }}
+<p>{% blocktrans %}
+Use esta configuración para generar un identificador de forma dinámica.
+Cada configuración le permite escoger un <strong>campo</strong> y asignar una acción de captura.
+También puede definir un <strong>patrón</strong> de expresión regular para extraer el dato.
+{% endblocktrans %}</p>
+<p>{% blocktrans %}
+Se usarán todos los datos capturados para generar un identificador dinámico.
+El orden de las configuraciones afecta el identificador generado.
+{% endblocktrans %}</p>
+<p>{% blocktrans %}
+Tenga en cuenta que al momento de cosechar nuevamente una fuente el ID generado
+por los recursos existente debe coincidir con el de los recursos a cosechar, de lo
+contrario se duplicarán.{% endblocktrans %}
+<br>
+{% blocktrans %}
+Es importante asegurar que cada configuración extraiga el mismo dato tanto de los recursos
+existentes como de los nuevos.
+{% endblocktrans %}</p>
+
+{% if original.has_expired_dynamic_identifiers %}
+    <ul class="errorlist"><li>
+      {% trans "No se permiten cambios en el Identificador Dinámico, existen recursos en proceso de actualización. Intente más tarde." %}
+    </li></ul>
+{% endif %}
+
+{% for inline_admin_form in inline_admin_formset %}<div class="inline-related{% if inline_admin_form.original or inline_admin_form.show_url %} has_original{% endif %}{% if forloop.last and inline_admin_formset.has_add_permission %} empty-form last-related{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
+  <h3><b>{{ inline_admin_formset.opts.verbose_name|capfirst }}:</b>&nbsp;<span class="inline_label">{% if inline_admin_form.original %}{{ inline_admin_form.original }}{% if inline_admin_form.model_admin.show_change_link and inline_admin_form.model_admin.has_registered_model %} <a href="{% url inline_admin_form.model_admin.opts|admin_urlname:'change' inline_admin_form.original.pk|admin_urlquote %}" class="{% if inline_admin_formset.has_change_permission %}inlinechangelink{% else %}inlineviewlink{% endif %}">{% if inline_admin_formset.has_change_permission %}{% trans "Change" %}{% else %}{% trans "View" %}{% endif %}</a>{% endif %}
+{% else %}#{{ forloop.counter }}{% endif %}</span>
+      {% if inline_admin_form.show_url %}<a href="{{ inline_admin_form.absolute_url }}">{% trans "View on site" %}</a>{% endif %}
+    {% if inline_admin_formset.formset.can_delete and inline_admin_formset.has_delete_permission and inline_admin_form.original %}<span class="delete">{{ inline_admin_form.deletion_field.field }} {{ inline_admin_form.deletion_field.label_tag }}</span>{% endif %}
+  </h3>
+  {% if inline_admin_form.form.non_field_errors %}{{ inline_admin_form.form.non_field_errors }}{% endif %}
+  {% for fieldset in inline_admin_form %}
+    {% include "admin/includes/fieldset.html" %}
+  {% endfor %}
+  {% if inline_admin_form.needs_explicit_pk_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+  {% if inline_admin_form.fk_field %}{{ inline_admin_form.fk_field.field }}{% endif %}
+</div>{% endfor %}
+{#{% if inline_admin_formset.has_add_permission or inline_admin_formset.has_change_permission or inline_admin_formset.has_delete_permission %}#}
+{#    <input class="default dynamic_identifier_test_button" type="button" value="Probar Patrón">#}
+{#    <table id="dynamic_identifier_result_table">#}
+{#        <tbody>#}
+{#            <tr id="result_header_dynamic_identifier" style="display: none">#}
+{#                <th>Datos de Entrada</th>#}
+{#                <th>Identificador Dinámico</th>#}
+{#            </tr>#}
+{#        </tbody>#}
+{#    </table>#}
+{#{% endif %}#}
+</fieldset>
+</div>
+
+{% url 'admin:dynamic_identifier_regex_sample' 0 as dynamic_identifier_url %}
+{{ dynamic_identifier_url|json_script:"dynamic_identifier_url" }}
+

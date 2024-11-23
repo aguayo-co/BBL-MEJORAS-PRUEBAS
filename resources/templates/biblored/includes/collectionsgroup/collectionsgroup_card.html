@@ -1,0 +1,44 @@
+{% load i18n %}
+{% load static wagtailimages_tags %}
+
+<article class="ag-c-card-group-collection ag-s-card_position">
+    <a class="ag-c-card-group-collection__link" href="{{ collectionsgroup.get_absolute_url }}">
+      <div 
+        class="ag-c-card-group-collection__grid
+        {% if collectionsgroup.collections.count == 0 %} ag-c-card-group-collection__grid_empty
+        {% elif collectionsgroup.collections.count == 2 %}ag-c-card-group-collection__grid_two{% endif %}">
+        {% for collection in collectionsgroup.collections.all|slice:":3" %}
+          <figure 
+            class="ag-c-card-group-collection__mask
+            {% if collectionsgroup.collections.count == 1 %} ag-c-card-group-collection__mask_one{% endif %}">
+              <img
+                class="ag-c-card-group-collection__img"
+                src="{% if collection.image %}{{ collection.image.url }}{% else %}
+                {% if collection|get_meta:"model_name" == "set" %}{% static 'biblored/img/resource/no-image.svg' %}{% else %}
+                {% static collection.default_cover_image|get_static_rel_path %}{% endif %}
+                {% endif %}"
+                alt="{% trans 'Imagen de referencia de' %} {{ collection.title }}"
+              />
+          </figure>
+        {% endfor %}
+      </div>
+    </a>
+    <footer class="ag-c-card-group-collection__footer">
+
+      <div class="ag-c-card-group-collection__box">
+        <h3 
+          class="ag-o-subheadwink ag-o-subheadwink_size">
+          {{ collectionsgroup.title|capfirst }}
+        </h3>
+        <small
+          class="ag-c-card-group-collection__count">
+          {{ collectionsgroup.collections.count}} {% trans "colecciones" %}
+        </small>
+      </div>
+      {# buttons into list of options #}
+      {% include "biblored/includes/options_menu/options_menu_for_group_collections.html" with  collectionsgroup=collectionsgroup user=user only %}
+    </footer>
+</article>
+
+{% include "biblored/includes/modals/modal_edit_group_collection.html" %}
+{% include "biblored/includes/modals/modal_delete_group_collection.html" %}

@@ -1,0 +1,27 @@
+{% load i18n %}
+
+{# filter-band #}
+{% if collections|length > 0 %}
+  <div class="ag-c-filter-band ag-c-filter-band_end" tabindex="0">
+    {% include "biblored/includes/blocks/order_by.html" %}
+  </div>
+{% endif %}  
+
+<div class="ag-c-card-grid">
+  {% for collection in collections %}
+    {% include "biblored/includes/collections/collection_card.html" with collection=collection favorites_group=collections_favorites_group color_icon='blue' user=user only %}
+  {% endfor %}
+</div>
+  
+{# message of empty list collection #}
+{% if collections|length == 0 %}
+  <p class="ag-o-headline ag-o-headline_title">
+
+    {{ profile.user.full_name }} {% trans "aún no tiene colecciones" %}
+    {% if collectionstr == "individualcollections" %} {% trans "de usuario" %}
+    {% elif collectionstr == "collaborativecollections" %} {% trans "colaborativas" %}
+    {% endif %}
+
+  </p>
+{% endif %}
+  

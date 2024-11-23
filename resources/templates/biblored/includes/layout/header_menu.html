@@ -1,0 +1,66 @@
+{% load i18n menu_tags %}
+
+{# Component: l01_header #}
+<div class="ag-l-header__aside ag-is-menu_hidemobile ag-js-subMenu">
+  {# Component: c09_menu #}
+  <nav class="ag-c-menu">
+    <button class="ag-c-menu__action ag-js-btnBack" type="button">
+        <span class="ag-c-menu__txt i-arrow-left"> {% trans "Volver" %} </span>
+    </button>
+
+    {% main_menu add_sub_menus_inline=True %}
+
+  </nav>
+  {# Component: c10_chip-menu #}
+  <nav class="ag-c-menu-chip">
+    {% if user.is_authenticated %}
+      <div class="ag-is-menu-chip__current">
+        {# Bloque: Usuario registrado #}
+        <button class="ag-c-menu-chip__name js-btnOpenMenuChip" type="button" tabindex="0">
+          <small class="ag-c-menu-chip__crop">
+            {% if user.profile.avatar %}
+              <img class="ag-c-menu-chip__img" src="{{ user.profile.avatar.url }}" alt="{% trans 'Avatar usuario' %} {{ user.full_name }}">
+            {% else %}
+              <span class="ag-c-menu-chip__initials"> {{ user.initials }} </span>
+            {% endif %}
+          </small>
+          <span class="ag-c-menu-chip__caption"> {{ user.full_name }} </span>
+          <small class="ag-c-menu-chip__alert">{{ user.notifications_count }}</small>
+        </button>
+        {#Componente: Menú de Usuario registrado #}
+        <ul class="ag-c-menu-chip__list js-boxMenuChip ag-js-menuListItem" tabindex="0">
+          <li class="ag-c-menu-chip__item ag-c-menu-chip__item_double ag-js-menuSublistItem">
+            <a class="ag-c-menu-chip__link ag-js-menuSublistItem" title="{% trans 'Ir a mi perfil' %}" href="{{ user.get_absolute_url }}" tabindex="0">
+              <span class="ag-c-menu-chip__txt">
+                {% trans "Mi perfil" %}
+              </span>
+            </a>
+            <small class="ag-c-menu-chip__alert">{{ user.notifications_count }}</small>
+          </li>
+          <li class="ag-c-menu-chip__item ag-js-menuSublistItem">
+            <a class="ag-c-menu-chip__link ag-js-menuSublistItem" title="{% trans 'Cerrar esta sesión' %}" href="{% url 'logout' %}" tabindex="0">
+              <span class="ag-c-menu-chip__txt">
+                {% trans "Cerrar sesión" %}
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    {% else %}
+      {# Element: botón de ingreso de sesión #}
+        <a class="ag-c-menu-chip__btn ag-u-margin-bottom-16-mb i-user" title="{% trans 'Iniciar sesión' %}" href="{% url 'login' %}" tabindex="0">
+          <span class="ag-c-menu-chip__txt">
+            {% trans "Ingresa" %} 
+          </span>
+        </a>
+        {# Element: botón de registro #}
+        <a class="" href="{{ registration_url }}" title="{% trans 'Afiliate a' %} BibloRed" target="_blank" tabindex="0">
+          <span class="ag-c-menu-chip__txt ag-c-menu-chip__txt_bg">
+            {% trans "Afíliate" %}
+          </span>
+        </a>
+    
+    {% endif %}
+  </nav>
+</div>
+

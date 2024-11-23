@@ -1,0 +1,99 @@
+/*----------------------------------------------*\
+  ID: b12_skydrop
+  Skydrop
+  Type: Information
+  Description: Contenedor de elementos para mostrar información.
+\*----------------------------------------------*/
+
+/**
+ * Class: .ag-skydrop
+ * @description  Contenedor de elementos para mostrar información.
+ * @molecule b12_skydrop
+ * @section Information
+ * @markup
+ *  <div class="ag-l-band-neutro">
+ *    <div class="ag-l-canvas">
+ *      <div class="swiper-container js-sliderTablet">
+ *        <div class="swiper-wrapper ag-skydrop">
+ *          <div class="swiper-slide ag-skydrop__item i-consult-contents">
+ *            <article class="ag-skydrop__item-content">
+ *              <h3 class="ag-o-headline">Consulta</h3>
+ *	            <p class="ag-o-text">contenidos disponibles en BibloRed y otros espacios culturales.</p>
+ *            </article>
+ *          </div>
+ *          <div class="swiper-slide ag-skydrop__item i-create">
+ *            <article class="ag-skydrop__item-content">
+ *              <h3 class="ag-o-headline">Crea</h3>
+ *	            <p class="ag-o-text">colecciones de tu interés y compártelas</p>
+ *            </article>
+ *          </div>
+ *          <div class="swiper-slide ag-skydrop__item i-collaborate">
+ *            <article class="ag-skydrop__item-content">
+ *              <h3 class="ag-o-headline">Participa</h3>
+ *  	          <p class="ag-o-text">sumando contenidos a una colección existente.</p>
+ *            </article>
+ *          </div>
+ *        </div>
+ *      </div>
+ *    </div>
+ *  </div>
+ */
+
+
+.ag-skydrop {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include px-rem(padding, 70px 0);
+}
+
+.ag-skydrop__item {
+  @include align-items(center);
+  @include flexbox;
+  @include flex-shrink(0);
+  @include flex-grow(0);
+  @include justify-content(center);
+  color: $c-primary;
+
+  &:hover {
+    &::before {
+      background-color: $c-primary-hover;
+      color: $c-surface;
+    }
+  }
+
+  &::before {
+    @include align-items(center);
+    background-color: $c-surface;
+    border-radius: 50%;
+    color: $c-primary-hover;
+    @include flexbox;
+    @include flex-shrink(0);
+    @include font-rem(30px);
+    @include px-rem(height, 66px);
+    @include justify-content(center);
+    @include px-rem(margin-right, 20px);
+    @include px-rem(width, 66px);
+    transition: all .4s ease-in-out;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  } 
+}
+
+.ag-skydrop__title {
+  line-height: 1.4;
+  @include font-rem(15px);
+  font-weight: $f-medium;
+  font-family: $f-primary;
+}
+
+@include media-query(wide) {
+  .ag-skydrop__item {
+    @include px-rem(flex-basis, 352px);
+    @include flex-shrink(1);
+  }
+  .ag-skydrop__title {
+    @include font-rem(22px);
+  }
+}

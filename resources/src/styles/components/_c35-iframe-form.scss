@@ -1,0 +1,92 @@
+/*------------------------------------*\
+  ID: C35
+  Iframe form
+  Description: component to form is into the iframe
+\*------------------------------------*/
+
+.ag-iframe-form__legend {
+  font-family: $f-primary;
+  font-weight: $f-bold;
+  color: $c-primary;
+  @include px-rem(font-size, 16px);
+}
+
+.ag-iframe-form__link {
+  @include justify-content(flex-end);
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+.ag-iframe-form__list {
+  list-style: none;
+}
+
+.ag-iframe-form__item {
+  @include px-rem(padding-top, 24px);
+  @include px-rem(padding-bottom, 24px);
+  @include px-rem(padding-left, 16px);
+
+  &:nth-child(odd) {
+    background-color: $c-surface;
+  }
+}
+
+.ag-iframe-form__actions {
+  @include px-rem(margin-top, 40px);
+}
+
+.ag-iframe-form__both-spaces {
+  @include px-rem(margin-top, 40px);
+  @include px-rem(margin-bottom, 40px);
+}
+
+.ag-iframe-form__filter-search {
+  @include px-rem(max-width, 632px);
+  margin-left: auto;
+  margin-right: auto;
+
+  .ag-select-search {
+    &:after {
+      @include px-rem(top, 23px);
+      @include px-rem(right, 12px);
+      @include px-rem(font-size, 26px);
+      color: $c-neutro;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      @include px-rem(top, -1px);
+      @include px-rem(right, -1px);
+      display: block;
+      @include px-rem(width, 51px);
+      @include px-rem(min-height, 51px);
+      @include px-rem(border-top-right-radius, 4px);
+      @include px-rem(border-bottom-right-radius, 4px);
+      background-color: $c-secondary;
+    }
+  }
+}
+
+// max-width 1023px
+@include media-query(wide-max) {
+  .ag-iframe-form {
+    max-width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// min-width 768px
+@include media-query(medium) {
+  .ag-iframe-form__item {
+    @include px-rem(padding-left, 24px);
+  }
+}

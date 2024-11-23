@@ -1,0 +1,21 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color primary
+  ID: C24 Cloud Term
+  Description: only classes that has been affected with primary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+#cloudWrap {
+  
+  .ag-Circle {
+    &:hover {
+      fill: rgba($c-on-secondary, 0.3);
+    }
+  }
+
+  .ag-js-cloud-hover {
+    .ag-c-cloud__box {
+      color: $c-on-secondary;
+    }
+  }
+
+}

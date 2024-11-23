@@ -1,0 +1,173 @@
+/*----------------------------------------------*\
+  ID: c37_featured-list
+  Featured list
+  Type: Information
+  Description: Contenedor de elementos para mostrar caracterizticas.
+\*----------------------------------------------*/
+
+/**
+ * Class: .c-featured-list
+ * @description  Contenedor de elementos para mostrar caracterizticas.
+ * @molecule c37_featured-list
+ * @section Information
+ * @markup
+ *  <div class="ag-l-band-neutro">
+ *    <div class="ag-l-canvas">
+ *       <nav class="c-featured-list"><a href="/wagtail/pages/" title="Ir a  Afíliate" class="c-featured__card
+ *       "><span class="c-featured__icon i-person-following"><span class="ag-is-visuallyhidden">Icono card</span></span><header class="c-featured__header"><h3 class="c-featured__title">Afíliate</h3><div class="c-featured__text"><div class="rich-text">y lleva libros, películas, música y más a tu casa.</div></div><span class="c-featured__action i-arrow-alt-right"><span class="ag-is-visuallyhidden">Icono flecha</span></span></header></a><a href="/wagtail/pages/" title="Ir a  Descubre" class="
+ *       c-featured__card
+ *       "><span class="c-featured__icon i-consult-contents"><span class="ag-is-visuallyhidden">Icono card</span></span><header class="c-featured__header"><h3 class="c-featured__title">Descubre</h3><div class="c-featured__text"><div class="rich-text">más de 3.000.000 de contenidos disponibles en BibloRed.</div></div><span class="c-featured__action i-arrow-alt-right"><span class="ag-is-visuallyhidden">Icono flecha</span></span></header></a><a href="/wagtail/pages/" title="Ir a  Participa" class="
+ *       c-featured__card
+ *       c-featured__card_short
+ *       "><span class="c-featured__icon i-collaborate"><span class="ag-is-visuallyhidden">Icono card</span></span><header class="c-featured__header"><h3 class="c-featured__title">Participa</h3><span class="c-featured__action i-arrow-alt-right"><span class="ag-is-visuallyhidden">Icono flecha</span></span></header></a><a href="/wagtail/pages/" title="Ir a  Explora" class="
+ *       c-featured__card
+ *       "><span class="c-featured__icon i-compass"><span class="ag-is-visuallyhidden">Icono card</span></span><header class="c-featured__header"><h3 class="c-featured__title">Explora</h3><div class="c-featured__text"><div class="rich-text">las exposiciones y colecciones de otros usuarios e instituciones.</div></div><span class="c-featured__action i-arrow-alt-right"><span class="ag-is-visuallyhidden">Icono flecha</span></span></header></a></nav>
+ *    </div>
+ *  </div>
+ */
+
+
+.c-featured__card {
+  display: block;
+  border: 1px solid $c-on-border;
+  @include px-rem(padding, 16px);
+  transition: all 0.2s ease-in-out;
+
+  &:hover,
+  &:active {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+    .c-featured__icon,
+    .c-featured__action::before {
+      color: $c-neutro;
+      background-color: $c-primary-hover;
+    }
+
+  }
+}
+
+.c-featured__title {
+  @include px-rem(margin-bottom, 4px);
+  font-family: $f-primary;
+  font-weight: $f-medium;
+  @include px-rem(font-size, 18px);
+  color: $c-primary;
+}
+
+.c-featured__icon {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-rem(width, 64px);
+  @include px-rem(min-width, 64px);
+  @include px-rem(height, 64px);
+  @include px-rem(min-height, 64px);
+  border-radius: 50%;
+  color: $c-primary-hover;
+  background-color: $c-surface-bg-10;
+  transition: all 0.2s ease-in-out;
+
+  &::before {
+    @include px-rem(font-size, 32px);
+  }
+}
+
+.c-featured__action {
+  display: block;
+  @include px-rem(margin-top, 8px);
+}
+
+.c-featured__action {
+  display: block;
+  @include px-rem(margin-top, 8px);
+  text-align: right;
+
+  &::before {
+    display: inline-flex;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-rem(width, 32px);
+    @include px-rem(height, 32px);
+    border-radius: 50%;
+    color: $c-primary-hover;
+    background-color: $c-surface-bg-10;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+@include media-query(medium-max) {
+  .c-featured-list {
+    @include px-rem(max-width, 340px);
+    @include px-rem(margin, 0 auto 40px);
+  }
+
+  .c-featured__card {
+    @include flexbox;
+    @include align-items(center);
+    @include px-rem(column-gap, 24px);
+
+    &:not( &:last-of-type) {
+      @include px-rem(margin-bottom, 16px);
+    }
+  }
+  .c-featured__card_short {
+    @include px-rem(column-gap, 64px);
+  }
+
+  .c-featured__header {
+    width: 100%;
+    .c-featured__card_short & {
+      @include flexbox;
+      @include justify-content(space-between);
+      @include align-items(center);
+      width: 100%;
+    }
+  }
+  .c-featured__title {
+    .c-featured__card_short & {
+      margin-bottom: 0;
+    }
+  }
+  .c-featured__action {
+    .c-featured__card_short & {
+      margin-top: 0;
+    }
+  }
+
+
+}
+
+@include media-query(medium) {
+  .c-featured-list,
+  .c-featured__card {
+    @include flexbox;
+  }
+
+  .c-featured-list {
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(stretch);
+    @include px-rem(column-gap, 16px);
+    @include px-rem(row-gap, 16px);
+  }
+
+  .c-featured__card {
+    @include flex-direction(column);
+    @include justify-content(space-evenly);
+    @include px-rem(max-width, 250px);
+    @include px-rem(min-width, 250px);
+    @include px-rem(padding-right, 24px);
+    @include px-rem(padding-left, 24px);
+    text-align: center;
+  }
+
+  .c-featured__title {
+    @include px-rem(margin-bottom, 8px);
+  }
+
+  .c-featured__icon {
+    margin-right: auto;
+    @include px-rem(margin-bottom, 16px);
+    margin-left: auto;
+  }
+}

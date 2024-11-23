@@ -1,0 +1,66 @@
+{% load i18n %}
+
+<dialog 
+  class="ag-c-modal ag-c-modal_smallSize ag-c-modal_cover-mb ag-js-modal"
+  data-modal="delete_collections_group"
+>
+  <div class="ag-c-modal__content">
+    <div class="ag-c-modal__setting">
+      <article class="ag-c-modal__inner">
+        <header class="ag-o-header ag-o-header_top-0">
+          <h3 
+            class="ag-c-modal__title ag-c-modal__title_top ag-u-space-bottom ag-u-margin-top-24"
+          >
+            {% trans "¿Estás seguro que deseas eliminar el “Grupo de Colecciones”" %} {{ collectionsgroup.title }}?
+          </h3>
+          <p 
+            class="ag-o-text ag-o-text_left ag-u-margin-bottom-16"
+          >
+            {% trans 'Al eliminar el "Grupo de Colecciones" las siguientes colecciones ya no estarán asociadas a este grupo: ' %}
+          </p>
+          <ul 
+            class="ag-o-hyphen ag-o-hyphen_color ag-u-margin-bottom-16"
+          >
+            {% for list in list_collection %}
+              <li class="ag-o-hyphen__item">{{ list.title }}</li>
+            {% endfor %}
+          </ul>
+          <p 
+            class="ag-o-text ag-o-text_left ag-u-margin-bottom-16"
+          >
+            {% trans "Las colecciones no serán eliminadas" %}.
+          </p>
+          <p 
+            class="ag-o-text ag-o-text_left"
+          >
+            {% trans "Este cambio no se puede revertir. Por favor confirma tu decisión de eliminar el Grupo de colecciones denominado" %} {{ collectionsgroup.title }}.
+          </p>
+        </header>
+        <footer class="ag-c-modal__footer ag-c-modal__footer_none-margin">
+          <div class="ag-o-actions">
+            <button 
+              class="ag-o-btn ag-o-btn_outline ag-o-btn_order ag-o-btn_full ag-o-actions__item" 
+              type="button"
+            >
+              {% trans "Cancelar" %}
+            </button>
+            <button 
+              class="ag-o-btn ag-o-btn_full ag-o-actions__item ag-js-deleteCollectionsGroupBtn" 
+              type="submit"
+            >
+              {% trans "Si, quiero eliminarlo" %}
+            </button>
+          </div>
+        </footer>
+      </article>
+      <button class="ag-c-modal__tooltip-btn-24
+          ag-o-btn-tooltip
+          i-close
+          ag-js-modalClose" type="button">
+          <span class="ag-o-btn-tooltip__tooltip">
+            Cerrar
+          </span>
+        </button>
+    </div>
+  </div>
+</dialog>

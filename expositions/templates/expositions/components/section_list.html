@@ -1,0 +1,49 @@
+{% load i18n static wagtailimages_tags %}
+
+
+{% if self.show_context_delimiter %}
+  <div class="ag-l-inner-outside ag-u-margin-both-40">
+    <span class="ag-o-head-tag">
+      <strong class="ag-o-head-tag__ico ag-o-head-tag__ico_big i-history">
+        {% trans 'Contexto' %}
+      </strong>
+    </span>
+  </div>
+{% endif %}
+
+{% if self.title or self.intro %}
+  <section class="ag-l-inner-outside ag-o-header-wink">
+    {% if self.title %}
+      <header class="ag-o-header-wink__inner">
+        <h2
+          class="ag-o-header-wink__title ag-o-subheadwink"
+        >
+          {{ self.title }}
+        </h2>
+      </header>
+    {% endif %}
+    {% if self.intro %}
+      <div
+        class="ag-u-width-92 ag-s01-rich-text ag-u-sides-padding"
+      >
+        {{ self.intro }}
+      </div>
+    {% endif %}
+  </section>
+{% endif %}
+
+<section class="ag-l-inner-outside ag-u-sides-padding">
+
+  {% for image_alignment in self.image_group_list %}
+    {% include "expositions/section_list_columns.html" %}
+  {% endfor %}
+
+</section>
+
+{% if self.closure %}
+  <div class="ag-l-inner-inside ag-u-sides-padding">
+    <div class="ag-s01-rich-text">
+      {{ self.closure }}
+    </div>
+  </div>
+{% endif %} 

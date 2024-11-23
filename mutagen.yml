@@ -1,0 +1,13 @@
+sync:
+  defaults:
+    mode: two-way-resolved
+    ignore:
+      vcs: true
+      paths:
+        - "/.*/"
+        - "/node_modules/"
+        - "__pycache__"
+        - "/mutagen.yml*"
+  bbl:
+    alpha: "."
+    beta: "docker://bbl_mutagen/srv/app"

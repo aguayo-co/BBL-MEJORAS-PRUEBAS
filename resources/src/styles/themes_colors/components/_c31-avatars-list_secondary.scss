@@ -1,0 +1,26 @@
+/*------------------------------------*\
+  Theme Styles: BBL's Theme color secondary
+  ID: C31
+  Chip
+  Description: only classes that has been affected with secondary's theme color
+  Blue=>#1AAACC Variable : $c-on-secondary
+\*------------------------------------*/
+
+.ag-c-avatars-list__chip {
+
+  &.ag-c-avatars-list_color {
+    background-color: $c-on-secondary;
+    border: 4px solid $c-on-secondary;
+  }
+
+}
+
+.ag-c-avatars-list__anchor {
+  &:hover,
+  &:active {
+    .ag-c-avatars-list__chip.ag-c-avatars-list_color {
+      border: 4px solid $c-on-secondary_light;
+    }
+
+  }
+}

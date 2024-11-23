@@ -1,0 +1,157 @@
+/*------------------------------------*\
+	Patterns Elements
+    #Styles clases de utilidades
+\*------------------------------------*/
+.ag-u-scroll-space {
+  @include px-rem(padding-top, 80px);
+  margin-top: 0;
+}
+.ag-u-divider {
+  border-bottom: 1px solid $c-on-border;
+}
+
+.ag-u-clean-bullets {
+  list-style: none;
+}
+
+.ag-u-locator {
+  position: relative;
+}
+
+.ag-u-block {
+  display: block;
+}
+
+.ag-u-center {
+  text-align: center;
+}
+
+.ag-u-margin-top {
+  @include px-rem(margin-top, 32px);
+}
+
+.ag-u-margin-top-8 {
+  @include px-rem(margin-top, 8px);
+}
+
+.ag-u-margin-top-16-mb {
+  margin-top: 0
+}
+
+.ag-u-margin-top-24 {
+  @include px-rem(margin-top, 24px);
+}
+
+.ag-u-margin-top-64 {
+  @include px-rem(margin-top, 64px);
+}
+
+.ag-u-margin-top-80 {
+  @include px-rem(margin-top, 80px);
+}
+
+.ag-u-margin-bottom-16 {
+  @include px-rem(margin-bottom, 16px);
+}
+
+.ag-u-margin-bottom-24 {
+  @include px-rem(margin-bottom, 24px);
+}
+
+.ag-u-margin-bottom {
+  @include px-rem(margin-bottom, 40px);
+}
+
+.ag-u-margin-bottom-72 {
+  @include px-rem(margin-bottom, 72px);
+}
+
+.ag-u-margin-both-40 {
+  @include px-rem(margin-top, 40px);
+  @include px-rem(margin-bottom, 40px);
+}
+
+.ag-u-margin-both-32 {
+  @include px-rem(margin-top, 32px);
+  @include px-rem(margin-bottom, 32px);
+}
+
+.ag-u-space-bottom {
+  @include px-rem(padding-bottom, 40px);
+}
+
+.ag-u-space-bottom-24 {
+  @include px-rem(padding-bottom, 24px);
+}
+
+.ag-u-space-bottom-80 {
+  @include px-rem(padding-bottom, 80px);
+}
+
+.ag-u-space-bottom-90 {
+  @include px-rem(padding-bottom, 90px);
+}
+
+.ag-u-space-both {
+  @include px-rem(padding-top, 40px);
+  @include px-rem(padding-bottom, 40px);
+}
+
+.ag-u-space-both-16 {
+  @include px-rem(padding-top, 16px);
+  @include px-rem(padding-bottom, 16px);
+}
+
+.ag-u-space-both-24 {
+  @include px-rem(padding-top, 24px);
+  @include px-rem(padding-bottom, 24px);
+}
+
+.ag-u-space-both-32 {
+  @include px-rem(padding-top, 32px);
+  @include px-rem(padding-bottom, 32px);
+}
+
+.ag-u-padding-top-43 {
+  @include px-rem(padding-top, 43px);
+}
+
+.ag-u-group-wrap {
+  width: 100%;
+  @include px-rem(max-width, 480px);
+  margin: 0 auto;
+}
+
+.ag-u-scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+//- BP Max-with: 767px
+@include media-query(medium-max) {
+  .ag-u-width-92 {
+    width: 92%;
+    margin: 0 auto;
+  }
+
+  .ag-u-margin-top-16-mb {
+    @include px-rem(margin-top, 16px);
+  }
+  .ag-u-margin-bottom-16-mb {
+    @include px-rem(margin-bottom, 16px);
+  }
+}
+
+//- BP min-width: 1024px
+@include media-query(wide) {
+  .ag-u-sides-padding {
+    @include px-rem(padding, 0 40px);
+  }
+}
+
+
+//- BP min-width: 1280px
+@include media-query(wide) {
+  .ag-u-sides-padding-min-1280 {
+    @include px-rem(padding, 0 40px);
+  }
+}

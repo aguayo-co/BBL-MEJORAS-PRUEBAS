@@ -1,0 +1,55 @@
+{% load i18n %}
+{% load inspectors menu_helpers %}
+<ul class="ag-c-menu__list" tabindex="0">
+  {% for menu_item in menu_items %}
+
+    {% has_visible_submenu_items menu_item.sub_menu.items as show_submenu %}
+
+    {% if menu_item.has_children_in_menu and show_submenu %}
+      {% if not menu_item.get_view_restrictions.count or user.is_authenticated %}
+        <li class="ag-c-menu__item ag-is-menu__current ag-js-dropdownMobile ag-js-menuListHeader">
+          <span class="ag-c-menu__head-link i-after-arrow-down ag-js-dropdownBtn">
+            <span class="ag-c-menu__txt i-after-arrow-up">
+              {{ menu_item.text }}
+            </span>
+          </span>
+          {# submenu #}
+          <ul class="ag-c-menu__sublist ag-js-dropdownSlide ag-is-hide_mobile ag-js-menuListItem" tabindex="0">
+
+            {% for sub_menu_item in menu_item.sub_menu.items %}
+
+              {% if not sub_menu_item.get_view_restrictions.count or user.is_authenticated %}
+
+                <li class="ag-c-menu__sublist-item ag-js-menuSublistItem">
+                  <a class="ag-c-menu__link" href="{{ sub_menu_item.href }}" title="{% trans 'Ir a la página de ' %}{{ sub_menu_item.text }}" tabindex="0">
+                    <span class="ag-c-menu__txt">
+                      {{ sub_menu_item.text }}
+                    </span>
+                  </a>
+                </li>
+
+              {% endif %}
+
+            {% endfor %}
+
+          </ul>
+
+        </li>
+      {% endif %}
+    {% else %}
+      {% if not menu_item.get_view_restrictions.count or user.is_authenticated %}
+
+        <li class="ag-c-menu__item">
+          <a class="ag-c-menu__head-link" href="{{ menu_item.href }}" title="{% trans 'Ir a la página de' %}{{ menu_item.text }}" tabindex="0">
+              <span class="ag-c-menu__txt">
+                {{ menu_item.text }}
+              </span>
+          </a>
+        </li>
+
+      {% endif %}
+
+    {% endif %}
+
+  {% endfor %}
+</ul>
